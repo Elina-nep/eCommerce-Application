@@ -6,14 +6,19 @@
 - Halina Dziamyanchyk - https://github.com/halinad
 
 ## Deploy
+to be announced
 
+## Database
+to be announced
 
-## Technologies
-- react
-- typescript
-- react-router-dom
-- sass
-- eslint
+## Technologies and libraries
+- create-react-app was chosen to simplify the creation of the SPA. The advantages of the selected library: built-in and customized builder, which reduces the time to start; JSX language - to reduce the code base and more descriptive code; built-in efficient rendering methods. Disadvantages: the need to learn new syntax and ideology for the team.
+- typescript was chosen to reduce errors and integration errors of modules in the task.
+- react-router-dom library for creating rotation in the application. Advantages: quick start; the ability to work with search queries (query); easy integration with create-react-app.
+- eslint and prettier were used to reduce code misprints and enforce code style.
+- Husky was used to organize pre-commit eslint launch and abort the commit in case of errors.
+- jest is the testing library, was used for functional testing of components.
+
 
 ## Available scripts
 
