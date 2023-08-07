@@ -20,7 +20,7 @@ export const AuthContext = createContext<IUserAuth>({
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [ifAuth, setIfAuth] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   return (
     <AuthContext.Provider
@@ -32,7 +32,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     >
       {!loading && children}
       {loading && <LoadingSpinner />}
-      {children}
     </AuthContext.Provider>
   );
 };
