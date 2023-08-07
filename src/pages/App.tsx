@@ -1,7 +1,7 @@
 import React from 'react';
 // import logo from '../logo.svg';
 import './App.css';
-import Register from './auth/Register';
+import { Register } from './auth/Register';
 
 function App() {
   return (
