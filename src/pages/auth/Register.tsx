@@ -41,7 +41,7 @@ const theme = createTheme({
   },
 });
 
-export const Register: React.FC = () => {
+export const RegisterPage: React.FC = () => {
   const { handleSubmit, control } = useForm<IRegistrationForm>();
   const { errors } = useFormState({
     control,
