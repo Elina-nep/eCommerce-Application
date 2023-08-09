@@ -1,3 +1,6 @@
+import { RegisterOptions } from 'react-hook-form';
+import { parse, differenceInYears, isValid } from 'date-fns';
+
 const REQUIRED_FIELD = 'This field is requierd';
 
 export const nameValidation = {
@@ -19,24 +22,17 @@ export const nameValidation = {
   },
 };
 
-import { parse, differenceInYears, isValid } from 'date-fns';
-import { RegisterOptions } from 'react-hook-form';
-
 export const ageValidation = (minAge: number): RegisterOptions => ({
   required: REQUIRED_FIELD,
   validate: (value: string) => {
     const parsedDate = parse(value, 'yyyy-MM-dd', new Date());
-
     if (!isValid(parsedDate)) {
       return 'Invalid date format.';
     }
-
     const age = differenceInYears(new Date(), parsedDate);
-
     if (age < minAge) {
       return `Must be at least ${minAge} years old.`;
     }
-
     return true;
   },
 });
@@ -55,7 +51,6 @@ export const passwordValidation = {
     if (!hasUppercase || !hasLowercase || !hasNumber) {
       return 'Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number.';
     }
-
     return true;
   },
 };
@@ -89,16 +84,20 @@ export const postalCodeValidation = {
     if (country === 'Germany') {
       postalCodeRegex = /^\d{5}$/;
       errorMessage = 'Postal code for Germany must have 5 digits.';
+    } else if (country === 'Belarus') {
+      postalCodeRegex = /^\d{6}$/;
+      errorMessage = 'Postal code for Belarus must have 6 digits.';
+    } else if (country === 'Serbia') {
+      postalCodeRegex = /^\d{5}$/;
+      errorMessage = 'Postal code for Serbia must have 5 digits.';
     } else if (country === 'USA') {
       postalCodeRegex = /^\d{5}(-\d{4})?$/;
       errorMessage =
         'Postal code for USA must match the format "#####-####" (5 digits followed by optional hyphen and 4 digits) or "########" (9 digits).';
     }
-
     if (!postalCodeRegex.test(value)) {
       return errorMessage;
     }
-
     return true;
   },
 };

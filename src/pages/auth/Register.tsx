@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
+
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import FormHelperText from '@mui/material/FormHelperText';
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import Checkbox from '@mui/material/Checkbox';
 
 import {
   Controller,
@@ -22,7 +26,7 @@ import {
   countryValidation,
   postalCodeValidation,
 } from '../../util/validation';
-import { IRegistrationForm } from '../../types/index';
+import { IRegistrationForm } from './registrationForm';
 import './Register.css';
 
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -42,8 +46,8 @@ export const Register: React.FC = () => {
   const { errors } = useFormState({
     control,
   });
-  const watchedCountry = useWatch({ control, name: 'country' });
-
+  const watchedCountry = useWatch({ control, name: 'billCountry' });
+  const [billingAddressMatches, setBillingAddressMatches] = useState(true);
   const onSubmit: SubmitHandler<IRegistrationForm> = (data) =>
     console.log(data);
 
@@ -140,10 +144,33 @@ export const Register: React.FC = () => {
                 />
               )}
             />
+            <p>BillingAddresses</p>
             <div className="col-2">
+              <FormGroup>
+                <Controller
+                  control={control}
+                  name="isBillingAddressDefault"
+                  defaultValue={false}
+                  render={({ field }) => (
+                    <FormGroup>
+                      <FormControlLabel
+                        labelPlacement="bottom"
+                        control={
+                          <Checkbox
+                            size="small"
+                            {...field}
+                            onChange={(e) => field.onChange(e)}
+                          />
+                        }
+                        label="Save"
+                      />
+                    </FormGroup>
+                  )}
+                />
+              </FormGroup>
               <Controller
                 control={control}
-                name="street"
+                name="billStreet"
                 rules={streetValidation}
                 render={({ field }) => (
                   <TextField
@@ -154,15 +181,15 @@ export const Register: React.FC = () => {
                     size="small"
                     margin="normal"
                     type="string"
-                    error={!!errors?.street?.message}
-                    helperText={errors?.street?.message}
+                    error={!!errors?.billStreet?.message}
+                    helperText={errors?.billStreet?.message}
                   />
                 )}
               />
 
               <Controller
                 control={control}
-                name="city"
+                name="billCity"
                 rules={nameValidation}
                 render={({ field }) => (
                   <TextField
@@ -173,8 +200,8 @@ export const Register: React.FC = () => {
                     size="small"
                     margin="normal"
                     type="string"
-                    error={!!errors?.city?.message}
-                    helperText={errors?.city?.message}
+                    error={!!errors?.billCity?.message}
+                    helperText={errors?.billCity?.message}
                   />
                 )}
               />
@@ -182,7 +209,7 @@ export const Register: React.FC = () => {
             <div className="col-2">
               <Controller
                 control={control}
-                name="postalCode"
+                name="billPostalCode"
                 rules={{
                   ...postalCodeValidation,
                   validate: (value: string) =>
@@ -198,8 +225,8 @@ export const Register: React.FC = () => {
                     size="small"
                     margin="normal"
                     type="string"
-                    error={!!errors?.postalCode?.message}
-                    helperText={errors?.postalCode?.message}
+                    error={!!errors?.billPostalCode?.message}
+                    helperText={errors?.billPostalCode?.message}
                   />
                 )}
               />
@@ -209,12 +236,12 @@ export const Register: React.FC = () => {
               margin="normal"
               fullWidth
               size="small"
-              error={!!errors?.country?.message}
+              error={!!errors?.billCountry?.message}
             >
               <InputLabel id="country-select-label">Country</InputLabel>
               <Controller
                 control={control}
-                name="country"
+                name="billCountry"
                 rules={countryValidation}
                 render={({ field }) => (
                   <Select
@@ -226,14 +253,163 @@ export const Register: React.FC = () => {
                   >
                     <MenuItem value="USA">USA</MenuItem>
                     <MenuItem value="Germany">Germany</MenuItem>
+                    <MenuItem value="Serbia">Serbia</MenuItem>
+                    <MenuItem value="Belarus">Belarus</MenuItem>
                   </Select>
                 )}
               />
-              {errors?.country?.message && (
-                <FormHelperText>{errors.country.message}</FormHelperText>
+              {errors?.billCountry?.message && (
+                <FormHelperText>{errors.billCountry.message}</FormHelperText>
               )}
             </FormControl>
+            <FormGroup>
+              <Controller
+                control={control}
+                name="areAdressesSame"
+                defaultValue={true}
+                render={({ field }) => (
+                  <FormGroup>
+                    <FormControlLabel
+                      control={
+                        <Checkbox
+                          defaultChecked
+                          {...field}
+                          onChange={(e) => {
+                            field.onChange(e);
+                            setBillingAddressMatches(e.target.checked);
+                          }}
+                        />
+                      }
+                      label="My billing address matches shipping address"
+                    />
+                  </FormGroup>
+                )}
+              />
+            </FormGroup>
+            {!billingAddressMatches && (
+              <div>
+                <p>Shipping Addresses</p>
+                <div className="col-2">
+                  <FormGroup>
+                    <Controller
+                      control={control}
+                      name="isShippingAddressDefault"
+                      defaultValue={false}
+                      render={({ field }) => (
+                        <FormGroup>
+                          <FormControlLabel
+                            labelPlacement="bottom"
+                            control={
+                              <Checkbox
+                                size="small"
+                                {...field}
+                                onChange={(e) => field.onChange(e)}
+                              />
+                            }
+                            label="Save"
+                          />
+                        </FormGroup>
+                      )}
+                    />
+                  </FormGroup>
+                  <Controller
+                    control={control}
+                    name="shipStreet"
+                    rules={streetValidation}
+                    render={({ field }) => (
+                      <TextField
+                        label="Street"
+                        onChange={(e) => field.onChange(e)}
+                        value={field.value}
+                        fullWidth={true}
+                        size="small"
+                        margin="normal"
+                        type="string"
+                        error={!!errors?.shipStreet?.message}
+                        helperText={errors?.shipStreet?.message}
+                      />
+                    )}
+                  />
 
+                  <Controller
+                    control={control}
+                    name="shipCity"
+                    rules={nameValidation}
+                    render={({ field }) => (
+                      <TextField
+                        label="City"
+                        onChange={(e) => field.onChange(e)}
+                        value={field.value}
+                        fullWidth={true}
+                        size="small"
+                        margin="normal"
+                        type="string"
+                        error={!!errors?.shipCity?.message}
+                        helperText={errors?.shipCity?.message}
+                      />
+                    )}
+                  />
+                </div>
+                <div className="col-2">
+                  <Controller
+                    control={control}
+                    name="shipPostalCode"
+                    rules={{
+                      ...postalCodeValidation,
+                      validate: (value: string) =>
+                        postalCodeValidation.validate(value, {
+                          country: watchedCountry,
+                        }),
+                    }}
+                    render={({ field }) => (
+                      <TextField
+                        label="Postal Code"
+                        {...field}
+                        fullWidth={true}
+                        size="small"
+                        margin="normal"
+                        type="string"
+                        error={!!errors?.shipPostalCode?.message}
+                        helperText={errors?.shipPostalCode?.message}
+                      />
+                    )}
+                  />
+                </div>
+
+                <FormControl
+                  margin="normal"
+                  fullWidth
+                  size="small"
+                  error={!!errors?.shipCountry?.message}
+                >
+                  <InputLabel id="country-select-label">Country</InputLabel>
+                  <Controller
+                    control={control}
+                    name="shipCountry"
+                    rules={countryValidation}
+                    render={({ field }) => (
+                      <Select
+                        labelId="country-select-label"
+                        id="country-select"
+                        value={field.value}
+                        label="Country"
+                        onChange={(e) => field.onChange(e)}
+                      >
+                        <MenuItem value="USA">USA</MenuItem>
+                        <MenuItem value="Germany">Germany</MenuItem>
+                        <MenuItem value="Serbia">Serbia</MenuItem>
+                        <MenuItem value="Belarus">Belarus</MenuItem>
+                      </Select>
+                    )}
+                  />
+                  {errors?.shipCountry?.message && (
+                    <FormHelperText>
+                      {errors.shipCountry.message}
+                    </FormHelperText>
+                  )}
+                </FormControl>
+              </div>
+            )}
             <button type="submit" className="registration-page__btn">
               Create account
             </button>
