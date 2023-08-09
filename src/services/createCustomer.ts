@@ -1,18 +1,5 @@
-import { BaseAddress } from '@commercetools/platform-sdk';
+import { ICreateCustomer } from '../types';
 import { apiRoot } from './BuildClient';
-
-interface ICreateCustomer {
-  email: string;
-  password: string;
-  firstName: string;
-  lastName: string;
-  dateOfBirth?: string;
-  addresses?: BaseAddress[];
-  defaultShippingAddress?: number;
-  shippingAddresses?: number[];
-  defaultBillingAddress?: number;
-  billingAddresses?: number[];
-}
 
 export const createCustomer = ({
   email,

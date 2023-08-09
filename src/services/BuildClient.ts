@@ -6,18 +6,18 @@ import {
 } from '@commercetools/sdk-client-v2';
 import { createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
 
-export const projectKey = process.env.REACT_APP_PROJECT_KEY || '';
-const scopes = process.env.REACT_APP_SCOPES?.split(' ') || [
-  'view_published_products:beefront',
-];
+export const projectKey = process.env.REACT_APP_PROJECT_KEY!;
+const scopes = [process.env.REACT_APP_SCOPES!];
+const clientId = process.env.REACT_APP_CLIENT_ID;
+const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
 
 // Configure authMiddlewareOptions
 const authMiddlewareOptions: AuthMiddlewareOptions = {
-  host: 'https://auth.europe-west1.gcp.commercetools.com',
+  host: process.env.REACT_APP_AUTH_URL!,
   projectKey: projectKey,
   credentials: {
-    clientId: process.env.REACT_APP_CLIENT_ID || '',
-    clientSecret: process.env.REACT_APP_CLIENT_SECRET || '',
+    clientId: clientId!,
+    clientSecret: clientSecret!,
   },
   scopes,
   fetch,
@@ -25,7 +25,7 @@ const authMiddlewareOptions: AuthMiddlewareOptions = {
 
 // Configure httpMiddlewareOptions
 const httpMiddlewareOptions: HttpMiddlewareOptions = {
-  host: 'https://api.europe-west1.gcp.commercetools.com',
+  host: process.env.REACT_APP_HOST_URL!,
   fetch,
 };
 
