@@ -1,14 +1,20 @@
 import React from 'react';
-// import logo from '../logo.svg';
+
+import { Outlet } from 'react-router-dom';
+import { Header } from '../components/header/Header';
+import { Footer } from '../components/footer/Footer';
 import './App.css';
 import { Register } from './auth/Register';
 
-function App() {
+export const App = () => {
   return (
-    <div className="App">
-      <Register />
-    </div>
+    <>
+      <Header />
+      <Outlet />
+      <div className="App">
+        <Register />
+      </div>
+      <Footer />
+    </>
   );
-}
-
-export default App;
+};
