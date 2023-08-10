@@ -41,15 +41,29 @@ export const passwordValidation = {
   required: REQUIRED_FIELD,
   minLength: {
     value: 8,
-    message: 'Password must have at least 8 characters.',
+    message: 'Password must be at least 8 characters long.',
   },
   validate: (value: string) => {
     const hasUppercase = /[A-Z]/.test(value);
     const hasLowercase = /[a-z]/.test(value);
     const hasNumber = /\d/.test(value);
+    const hasSpecialChar = /[!@#$%^&*]/.test(value);
+    const hasNoWhitespace = /^\S+$/.test(value);
 
-    if (!hasUppercase || !hasLowercase || !hasNumber) {
-      return 'Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number.';
+    if (!hasUppercase) {
+      return 'Password must contain at least 1 uppercase letter.';
+    }
+    if (!hasLowercase) {
+      return 'Password must contain at least 1 lowercase letter.';
+    }
+    if (!hasNumber) {
+      return 'Password must contain at least 1 number.';
+    }
+    if (!hasSpecialChar) {
+      return 'Password must contain at least 1 special character (e.g., !@#$%^&*).';
+    }
+    if (!hasNoWhitespace) {
+      return 'Password must not contain leading or trailing whitespace.';
     }
     return true;
   },
@@ -60,6 +74,13 @@ export const emailValidation = {
   pattern: {
     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
     message: 'Invalid email address.',
+  },
+  validate: (value: string) => {
+    const trimmedValue = value.trim();
+    if (value !== trimmedValue) {
+      return 'Email address must not contain leading or trailing whitespace.';
+    }
+    return true;
   },
 };
 
