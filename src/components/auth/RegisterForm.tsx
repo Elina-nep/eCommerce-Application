@@ -31,6 +31,8 @@ import { IRegistrationForm } from '../../types/registrationForm';
 import './Register.css';
 
 export const RegisterForm: React.FC = () => {
+  const today = new Date().toISOString().split('T')[0];
+
   const { handleSubmit, control } = useForm<IRegistrationForm>();
   const { errors } = useFormState({
     control,
@@ -152,6 +154,10 @@ export const RegisterForm: React.FC = () => {
                   value={field.value || ''}
                   error={!!errors?.dateBirth?.message}
                   helperText={errors?.dateBirth?.message}
+                  inputProps={{
+                    min: '1901-01-01',
+                    max: today,
+                  }}
                 />
               )}
             />
