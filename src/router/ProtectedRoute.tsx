@@ -7,7 +7,7 @@ export const ProtectedRoute = () => {
   return (
     <>
       {!ifAuth && <Outlet />}
-      {ifAuth && <Navigate to="/main" />}
+      {ifAuth && <Navigate to="/" />}
     </>
   );
 };
