@@ -10,6 +10,7 @@ export const loginCustomer = ({ email, password }: ILoginCustomer) => {
     .execute()
     .then(({ body }) => {
       console.log(body);
+      alert('you succesfully logged in');
     })
     .catch(console.error);
 };

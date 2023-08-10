@@ -29,17 +29,8 @@ import {
 import { IRegistrationForm } from './registrationForm';
 import './Register.css';
 
-import { createTheme, ThemeProvider } from '@mui/material/styles';
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#000',
-    },
-    error: {
-      main: '#FE4004',
-    },
-  },
-});
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from './theme';
 
 export const RegisterPage: React.FC = () => {
   const { handleSubmit, control } = useForm<IRegistrationForm>();
@@ -50,30 +41,32 @@ export const RegisterPage: React.FC = () => {
   const [billingAddressMatches, setBillingAddressMatches] = useState(true);
   const onSubmit: SubmitHandler<IRegistrationForm> = (data) => {
     console.log(data);
-    if (data.areAdressesSame) {
-      if (data.isBillingAddressDefault) {
-        console.log('2 same addresses: default');
-        createCustomer({
-          email: data.email,
-          password: data.password,
-          firstName: data.firstName,
-          lastName: data.lastName,
-          dateOfBirth: data.dateBirth,
-          addresses: [
-            {
-              country: data.billCountry,
-              city: data.billCity,
-              streetName: data.billStreet,
-              postalCode: data.billPostalCode,
-            },
-          ],
-          // defaultShippingAddress: 0,
-          // defaultBillingAddress: 0,
-          // shippingAddresses: [],
-          // billingAddresses: [],
-        });
-      }
-    }
+
+    createCustomer({
+      email: data.email,
+      password: data.password,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      dateOfBirth: data.dateBirth,
+      addresses: [
+        {
+          country: data.billCountry,
+          city: data.billCity,
+          streetName: data.billStreet,
+          postalCode: data.billPostalCode,
+        },
+        {
+          country: data.shipCountry,
+          city: data.shipCity,
+          streetName: data.shipStreet,
+          postalCode: data.shipPostalCode,
+        },
+      ],
+      // defaultShippingAddress: 0,
+      defaultBillingAddress: 0,
+      shippingAddresses: [0],
+      billingAddresses: [0],
+    });
   };
 
   return (

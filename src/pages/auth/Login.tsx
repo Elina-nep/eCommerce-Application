@@ -4,8 +4,8 @@ import {
   useFormState,
   SubmitHandler,
 } from 'react-hook-form';
+import { loginCustomer } from '../../services/loginCustomer';
 import TextField from '@mui/material/TextField';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -17,25 +17,18 @@ import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { passwordValidation, emailValidation } from '../../util/validation';
 import { ILoginForm } from './loginForm';
 import './Login.css';
-
-const theme = createTheme({
-  palette: {
-    primary: {
-      main: '#000',
-    },
-    error: {
-      main: '#FE4004',
-    },
-  },
-});
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from './theme';
 
 export const LoginPage: React.FC = () => {
   const { handleSubmit, control } = useForm<ILoginForm>();
   const { errors } = useFormState({
     control,
   });
-  const onSubmit: SubmitHandler<ILoginForm> = (data) => console.log(data);
-
+  const onSubmit: SubmitHandler<ILoginForm> = (data) => {
+    console.log(data);
+    loginCustomer({ email: data.email, password: data.password });
+  };
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
@@ -56,7 +49,7 @@ export const LoginPage: React.FC = () => {
               <TextField
                 label="Email"
                 onChange={(e) => field.onChange(e)}
-                value={field.value}
+                value={field.value || ''}
                 fullWidth
                 size="small"
                 margin="normal"
@@ -83,7 +76,7 @@ export const LoginPage: React.FC = () => {
                 <OutlinedInput
                   id="outlined-adornment-password"
                   type={showPassword ? 'text' : 'password'}
-                  value={field.value}
+                  value={field.value || ''}
                   onChange={field.onChange}
                   endAdornment={
                     <InputAdornment position="end">
