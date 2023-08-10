@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import { createCustomer } from '../../services/createCustomer';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -48,8 +48,22 @@ export const RegisterPage: React.FC = () => {
   });
   const watchedCountry = useWatch({ control, name: 'billCountry' });
   const [billingAddressMatches, setBillingAddressMatches] = useState(true);
-  const onSubmit: SubmitHandler<IRegistrationForm> = (data) =>
+  const onSubmit: SubmitHandler<IRegistrationForm> = (data) => {
     console.log(data);
+
+    createCustomer({
+      email: data.email,
+      password: data.password,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      dateOfBirth: data.dateBirth,
+      // addresses: [],
+      // defaultShippingAddress: 0,
+      // shippingAddresses: [],
+      // defaultBillingAddress: 0,
+      // billingAddresses: [],
+    });
+  };
 
   return (
     <div>
@@ -65,7 +79,7 @@ export const RegisterPage: React.FC = () => {
                   <TextField
                     label="First Name"
                     onChange={(e) => field.onChange(e)}
-                    value={field.value}
+                    value={field.value || ''}
                     fullWidth={true}
                     size="small"
                     margin="normal"
@@ -82,7 +96,7 @@ export const RegisterPage: React.FC = () => {
                   <TextField
                     label="Last Name"
                     onChange={(e) => field.onChange(e)}
-                    value={field.value}
+                    value={field.value || ''}
                     fullWidth={true}
                     size="small"
                     margin="normal"
@@ -100,7 +114,7 @@ export const RegisterPage: React.FC = () => {
                 <TextField
                   label="Email"
                   onChange={(e) => field.onChange(e)}
-                  value={field.value}
+                  value={field.value || ''}
                   fullWidth={true}
                   size="small"
                   margin="normal"
@@ -117,7 +131,7 @@ export const RegisterPage: React.FC = () => {
                 <TextField
                   label="Password"
                   onChange={(e) => field.onChange(e)}
-                  value={field.value}
+                  value={field.value || ''}
                   fullWidth={true}
                   size="small"
                   margin="normal"
@@ -139,6 +153,7 @@ export const RegisterPage: React.FC = () => {
                   size="small"
                   margin="normal"
                   type="date"
+                  value={field.value || ''}
                   error={!!errors?.dateBirth?.message}
                   helperText={errors?.dateBirth?.message}
                 />
@@ -176,7 +191,7 @@ export const RegisterPage: React.FC = () => {
                   <TextField
                     label="Street"
                     onChange={(e) => field.onChange(e)}
-                    value={field.value}
+                    value={field.value || ''}
                     fullWidth={true}
                     size="small"
                     margin="normal"
@@ -195,7 +210,7 @@ export const RegisterPage: React.FC = () => {
                   <TextField
                     label="City"
                     onChange={(e) => field.onChange(e)}
-                    value={field.value}
+                    value={field.value || ''}
                     fullWidth={true}
                     size="small"
                     margin="normal"
@@ -225,6 +240,7 @@ export const RegisterPage: React.FC = () => {
                     size="small"
                     margin="normal"
                     type="string"
+                    value={field.value || ''}
                     error={!!errors?.billPostalCode?.message}
                     helperText={errors?.billPostalCode?.message}
                   />
@@ -247,7 +263,7 @@ export const RegisterPage: React.FC = () => {
                   <Select
                     labelId="country-select-label"
                     id="country-select"
-                    value={field.value}
+                    value={field.value || ''}
                     label="Country"
                     onChange={(e) => field.onChange(e)}
                   >
@@ -320,7 +336,7 @@ export const RegisterPage: React.FC = () => {
                       <TextField
                         label="Street"
                         onChange={(e) => field.onChange(e)}
-                        value={field.value}
+                        value={field.value || ''}
                         fullWidth={true}
                         size="small"
                         margin="normal"
@@ -339,7 +355,7 @@ export const RegisterPage: React.FC = () => {
                       <TextField
                         label="City"
                         onChange={(e) => field.onChange(e)}
-                        value={field.value}
+                        value={field.value || ''}
                         fullWidth={true}
                         size="small"
                         margin="normal"
@@ -369,6 +385,7 @@ export const RegisterPage: React.FC = () => {
                         size="small"
                         margin="normal"
                         type="string"
+                        value={field.value || ''}
                         error={!!errors?.shipPostalCode?.message}
                         helperText={errors?.shipPostalCode?.message}
                       />
@@ -391,7 +408,7 @@ export const RegisterPage: React.FC = () => {
                       <Select
                         labelId="country-select-label"
                         id="country-select"
-                        value={field.value}
+                        value={field.value || ''}
                         label="Country"
                         onChange={(e) => field.onChange(e)}
                       >
