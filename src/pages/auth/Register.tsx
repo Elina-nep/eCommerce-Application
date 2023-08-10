@@ -50,19 +50,30 @@ export const RegisterPage: React.FC = () => {
   const [billingAddressMatches, setBillingAddressMatches] = useState(true);
   const onSubmit: SubmitHandler<IRegistrationForm> = (data) => {
     console.log(data);
-
-    createCustomer({
-      email: data.email,
-      password: data.password,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      dateOfBirth: data.dateBirth,
-      // addresses: [],
-      // defaultShippingAddress: 0,
-      // shippingAddresses: [],
-      // defaultBillingAddress: 0,
-      // billingAddresses: [],
-    });
+    if (data.areAdressesSame) {
+      if (data.isBillingAddressDefault) {
+        console.log('2 same addresses: default');
+        createCustomer({
+          email: data.email,
+          password: data.password,
+          firstName: data.firstName,
+          lastName: data.lastName,
+          dateOfBirth: data.dateBirth,
+          addresses: [
+            {
+              country: data.billCountry,
+              city: data.billCity,
+              streetName: data.billStreet,
+              postalCode: data.billPostalCode,
+            },
+          ],
+          // defaultShippingAddress: 0,
+          // defaultBillingAddress: 0,
+          // shippingAddresses: [],
+          // billingAddresses: [],
+        });
+      }
+    }
   };
 
   return (
@@ -267,10 +278,10 @@ export const RegisterPage: React.FC = () => {
                     label="Country"
                     onChange={(e) => field.onChange(e)}
                   >
-                    <MenuItem value="USA">USA</MenuItem>
-                    <MenuItem value="Germany">Germany</MenuItem>
-                    <MenuItem value="Serbia">Serbia</MenuItem>
-                    <MenuItem value="Belarus">Belarus</MenuItem>
+                    <MenuItem value="US">USA</MenuItem>
+                    <MenuItem value="DE">Germany</MenuItem>
+                    <MenuItem value="RS">Serbia</MenuItem>
+                    <MenuItem value="BY">Belarus</MenuItem>
                   </Select>
                 )}
               />
