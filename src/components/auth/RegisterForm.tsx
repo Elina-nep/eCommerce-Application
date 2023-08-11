@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import {
   useForm,
   useFormState,
   SubmitHandler,
   useWatch,
 } from 'react-hook-form';
-import { createCustomer } from '../../services/createCustomer';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
 import { IRegistrationForm } from '../../types/registrationForm';
@@ -14,6 +13,7 @@ import AddressesContainer from './assets/Addresses';
 import { PersonalData } from './assets/PersonalData';
 import { CustomCheckbox } from './assets/CustomCheckbox';
 // import { checkboxValue } from '../../types/form';
+import { AuthContext } from '../../context/AuthProvider';
 
 export const RegisterForm: React.FC = () => {
   const { handleSubmit, control } = useForm<IRegistrationForm>();
@@ -22,6 +22,7 @@ export const RegisterForm: React.FC = () => {
   });
   const watchedCountry = useWatch({ control, name: 'billCountry' });
   const [billingAddressMatches, setBillingAddressMatches] = useState(true);
+  const { createCustomer } = useContext(AuthContext);
   const onSubmit: SubmitHandler<IRegistrationForm> = (data) => {
     console.log(data);
     const billinAdd = {

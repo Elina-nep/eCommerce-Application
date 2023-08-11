@@ -4,9 +4,8 @@ import {
   useFormState,
   SubmitHandler,
 } from 'react-hook-form';
-import { loginCustomer } from '../../services/loginCustomer';
 import TextField from '@mui/material/TextField';
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import IconButton from '@mui/material/IconButton';
 import OutlinedInput from '@mui/material/OutlinedInput';
 import InputLabel from '@mui/material/InputLabel';
@@ -19,12 +18,15 @@ import { ILoginForm } from '../../types/loginForm';
 import './Login.css';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
+import { AuthContext } from '../../context/AuthProvider';
 
 export const LoginForm: React.FC = () => {
   const { handleSubmit, control } = useForm<ILoginForm>();
   const { errors } = useFormState({
     control,
   });
+
+  const { loginCustomer } = useContext(AuthContext);
   const onSubmit: SubmitHandler<ILoginForm> = (data) => {
     console.log(data);
     loginCustomer({ email: data.email, password: data.password });

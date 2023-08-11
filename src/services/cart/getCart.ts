@@ -1,4 +1,4 @@
-import { apiRoot } from './BuildClient';
+import { apiRoot } from '../BuildClient';
 
 export const getCart = () => {
   apiRoot
