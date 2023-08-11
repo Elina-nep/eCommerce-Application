@@ -5,14 +5,16 @@ import React, {
   useState,
 } from 'react';
 import LoadingSpinner from '../components/loading/LoadingSpinner';
-import { ILoginCustomer } from '../types';
-import { loginCustomerService } from '../services';
+import { ICreateCustomer, ILoginCustomer } from '../types';
+import { loginCustomerService } from '../services/auth/loginCustomerService';
+import { createCustomerService } from '../services/auth/createCustomerService';
 
 interface IUserAuth {
   ifAuth: boolean;
   setLoading: Dispatch<SetStateAction<boolean>>;
   setIfAuth: Dispatch<SetStateAction<boolean>>;
   loginCustomer: (data: ILoginCustomer) => void;
+  createCustomer: (data: ICreateCustomer) => void;
 }
 
 export const AuthContext = createContext<IUserAuth>({
@@ -20,6 +22,7 @@ export const AuthContext = createContext<IUserAuth>({
   setLoading: () => {},
   setIfAuth: () => {},
   loginCustomer: () => {},
+  createCustomer: () => {},
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -31,7 +34,19 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   // }
   const loginCustomer = (data: ILoginCustomer) => {
     loginCustomerService(data)
-      .then(() => {
+      .then((body) => {
+        alert(`Hello ${body.body.customer.firstName || 'my friend'}!`);
+        setIfAuth(true);
+      })
+      .catch((e) => {
+        throw e;
+      });
+  };
+
+  const createCustomer = (data: ICreateCustomer) => {
+    createCustomerService(data)
+      .then((body) => {
+        alert(`User ${body.body.customer.email} is created`);
         setIfAuth(true);
       })
       .catch((e) => {
@@ -46,6 +61,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setLoading,
         setIfAuth,
         loginCustomer,
+        createCustomer,
       }}
     >
       {!loading && children}

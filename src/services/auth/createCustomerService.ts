@@ -12,11 +12,10 @@ export const createCustomerService = ({
   shippingAddresses,
   defaultBillingAddress,
   billingAddresses,
-}: ICreateCustomer) => {
+}: ICreateCustomer) =>
   apiRoot
     .customers()
     .post({
-      // The CustomerDraft is the object within the body
       body: {
         email: email,
         password: password,
@@ -30,10 +29,4 @@ export const createCustomerService = ({
         billingAddresses: billingAddresses,
       },
     })
-    .execute()
-    .then(({ body }) => {
-      console.log(body.customer.id);
-      alert(`User is created ${body.customer.id}`);
-    })
-    .catch(console.error);
-};
+    .execute();

@@ -1,5 +1,4 @@
-import React, { useState } from 'react';
-import { createCustomer } from '../../services/createCustomer';
+import React, { useContext, useState } from 'react';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
@@ -29,6 +28,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
 import { IRegistrationForm } from '../../types/registrationForm';
 import './Register.css';
+import { AuthContext } from '../../context/AuthProvider';
 
 export const RegisterForm: React.FC = () => {
   const today = new Date().toISOString().split('T')[0];
@@ -39,6 +39,7 @@ export const RegisterForm: React.FC = () => {
   });
   const watchedCountry = useWatch({ control, name: 'billCountry' });
   const [billingAddressMatches, setBillingAddressMatches] = useState(true);
+  const { createCustomer } = useContext(AuthContext);
   const onSubmit: SubmitHandler<IRegistrationForm> = (data) => {
     console.log(data);
 
