@@ -33,6 +33,7 @@ export const createCustomerService = ({
     .execute()
     .then(({ body }) => {
       console.log(body.customer.id);
+      alert(`User is created ${body.customer.id}`);
     })
     .catch(console.error);
 };
