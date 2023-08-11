@@ -1,2 +1,2 @@
-export { createCustomer } from './createCustomer';
-export { loginCustomer } from './loginCustomer';
+export { createCustomerService } from './auth/createCustomerService';
+export { loginCustomerService } from './auth/loginCustomerService';

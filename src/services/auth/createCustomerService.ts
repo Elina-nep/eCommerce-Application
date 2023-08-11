@@ -1,7 +1,7 @@
-import { ICreateCustomer } from '../types';
-import { apiRoot } from './BuildClient';
+import { ICreateCustomer } from '../../types';
+import { apiRoot } from '../BuildClient';
 
-export const createCustomer = ({
+export const createCustomerService = ({
   email,
   password,
   firstName,
