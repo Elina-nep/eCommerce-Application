@@ -6,6 +6,7 @@ import {
   passwordValidation,
   ageValidation,
 } from '../../../util/validation';
+import TextField from '@mui/material/TextField';
 import { CustomTextInput } from './CustomTextInput';
 import { PersonalDataProps } from '../../../types/form';
 
@@ -14,7 +15,6 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
   errors,
 }) => {
   const today = new Date().toISOString().split('T')[0];
-
   return (
     <div>
       <div className="col-2">
@@ -58,21 +58,23 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
         control={control}
         name="dateBirth"
         rules={ageValidation(13)}
-        render={({ field }) =>
-          CustomTextInput(
-            {
-              ...field,
-              // label: 'Date of Birth',
-              type: 'date',
-              value: field.value || '',
-              calendarlimit: {
-                min: '1901-01-01',
-                max: today,
-              },
-            },
-            errors,
-          )
-        }
+        render={({ field }) => (
+          <TextField
+            // label="Date of Birth"
+            {...field}
+            fullWidth={true}
+            size="small"
+            margin="normal"
+            type="date"
+            value={field.value || ''}
+            error={!!errors?.dateBirth?.message}
+            helperText={errors?.dateBirth?.message}
+            inputProps={{
+              min: '1901-01-01',
+              max: today,
+            }}
+          />
+        )}
       />
     </div>
   );

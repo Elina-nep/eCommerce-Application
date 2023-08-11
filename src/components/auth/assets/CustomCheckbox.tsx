@@ -8,16 +8,15 @@ import { CustomCheckboxProps } from '../../../types/form';
 export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
   control,
   name,
-  defaultValue,
   label,
   onChange,
+  defaultChecked,
 }) => {
   return (
     <FormGroup>
       <Controller
         control={control}
         name={name}
-        defaultValue={defaultValue}
         render={({ field }) => (
           <FormControlLabel
             labelPlacement="bottom"
@@ -25,6 +24,7 @@ export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
               <Checkbox
                 size="small"
                 {...field}
+                defaultChecked={defaultChecked}
                 onChange={(e) => {
                   field.onChange(e);
                   if (onChange) {

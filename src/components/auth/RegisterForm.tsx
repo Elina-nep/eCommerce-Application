@@ -12,7 +12,6 @@ import './Register.css';
 import AddressesContainer from './assets/Addresses';
 import { PersonalData } from './assets/PersonalData';
 import { CustomCheckbox } from './assets/CustomCheckbox';
-// import { checkboxValue } from '../../types/form';
 import { AuthContext } from '../../context/AuthProvider';
 
 export const RegisterForm: React.FC = () => {
@@ -37,13 +36,10 @@ export const RegisterForm: React.FC = () => {
       streetName: data.shipStreet,
       postalCode: data.shipPostalCode,
     };
-
     const addresses = [billinAdd];
-
     if (!data.areAddressesSame) {
       addresses.push(shipAdd);
     }
-
     let defaultShippingAddress;
 
     if (data.areAddressesSame && data.isBillingAddressDefault) {
@@ -76,7 +72,6 @@ export const RegisterForm: React.FC = () => {
               <CustomCheckbox
                 control={control}
                 name="isBillingAddressDefault"
-                defaultValue={false}
                 label="Save"
               />
               <p>BillingAddresses</p>
@@ -91,8 +86,8 @@ export const RegisterForm: React.FC = () => {
             <CustomCheckbox
               control={control}
               name="areAddressesSame"
-              defaultValue={true}
               label="My billing address matches shipping address"
+              defaultChecked={true}
               onChange={(checked) => setBillingAddressMatches(checked)}
             />
             {!billingAddressMatches && (
@@ -101,7 +96,6 @@ export const RegisterForm: React.FC = () => {
                   <CustomCheckbox
                     control={control}
                     name="isShippingAddressDefault"
-                    defaultValue={false}
                     label="Save"
                   />
                   <p>Shipping Addresses</p>
