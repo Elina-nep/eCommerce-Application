@@ -1,13 +1,16 @@
 import { RegisterOptions } from 'react-hook-form';
 import { parse, differenceInYears, isValid } from 'date-fns';
 
-const REQUIRED_FIELD = 'This field is requierd';
+const REQUIRED_FIELD = 'This field is required';
 
-export const nameValidation = {
-  required: REQUIRED_FIELD,
+interface NameValidation {
+  validate: (value: string) => string | boolean;
+}
+
+export const nameValidation: NameValidation = {
   validate: (value: string) => {
     if (!value.trim()) {
-      return 'This field is required.';
+      return REQUIRED_FIELD;
     }
 
     if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?0-9]/.test(value)) {
@@ -116,9 +119,11 @@ export const postalCodeValidation = {
       errorMessage =
         'Postal code for USA must match the format "#####-####" (5 digits followed by optional hyphen and 4 digits) or "########" (9 digits).';
     }
+
     if (!postalCodeRegex.test(value)) {
       return errorMessage;
     }
+
     return true;
   },
 };

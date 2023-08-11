@@ -56,6 +56,7 @@ export const LoginForm: React.FC = () => {
                 type="email"
                 error={!!errors.email?.message}
                 helperText={errors?.email?.message}
+                autoComplete="email"
               />
             )}
           />
@@ -91,6 +92,7 @@ export const LoginForm: React.FC = () => {
                     </InputAdornment>
                   }
                   label="Password"
+                  autoComplete="password"
                 />
               </FormControl>
             )}
