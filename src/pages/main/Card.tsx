@@ -1,0 +1,28 @@
+import React from 'react';
+import Button from '../../components/buttons/Button';
+import { CardData } from '../../types';
+
+type CardProps = {
+  card: CardData;
+  handleLearnMoreClick: (cardData: CardData) => void;
+};
+
+const Card: React.FC<CardProps> = ({ card, handleLearnMoreClick }) => {
+  return (
+    <>
+      <div className="card">
+        <h3 className="card-title">{card.discountText}</h3>
+        <img src={card.image} alt="Card" />
+
+        <Button
+          onClick={() => handleLearnMoreClick(card)}
+          className="button-info"
+        >
+          Learn more
+        </Button>
+      </div>
+    </>
+  );
+};
+
+export default Card;

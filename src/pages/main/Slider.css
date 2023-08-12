@@ -1,0 +1,116 @@
+main {
+  width: 100%;
+  background-size: cover;
+  height: 690px;
+  display: flex;
+  align-items: center;
+  background-image: url('../../../public/assets/воздушные-шары.jpg');
+}
+
+.slider {
+  width: 98%;
+  height: 75%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: auto;
+}
+
+.slide-container {
+  display: flex;
+  width: auto;
+  overflow: hidden;
+  position: relative;
+  width: 1200px;
+  display: flex;
+  margin: auto;
+}
+
+.cards {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.card {
+  width: 82px;
+  flex: 0 0 32%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  height: 516px;
+  margin-right: 2%;
+}
+
+.card:last-child {
+  margin-right: 0;
+}
+
+.card-title {
+  position: relative;
+  top: 10%;
+  margin: 10px 0;
+  width: 60%;
+  text-align: center;
+  font-size: 24px;
+}
+
+.card img {
+  width: 50%;
+  height: 30%;
+}
+
+button:active {
+  background-color: #ccc;
+}
+
+button:focus {
+  outline: none;
+}
+
+.button-pagination {
+  width: 70px;
+  height: 70px;
+  border-radius: 70px;
+  z-index: 1;
+  background: white;
+  color: #50a294;
+  border: 1px solid #50a294;
+}
+
+.button-pagination:hover {
+  background: #ff814e;
+  color: white;
+  border: none;
+}
+
+.button-pagination:first-child {
+  right: -30px;
+  position: relative;
+}
+
+.button-pagination:last-child {
+  left: -30px;
+  position: relative;
+}
+
+.button-info {
+  position: relative;
+  bottom: 10%;
+  background: #ff814e;
+  color: #2a2a2a;
+  width: 220px;
+  height: 50px;
+  border-radius: 10px;
+  font-size: 26px;
+  border: none;
+}
+
+.button-info:hover {
+  background: #fe4004;
+  color: white;
+}
