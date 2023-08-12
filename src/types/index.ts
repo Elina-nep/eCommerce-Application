@@ -8,3 +8,8 @@ export interface ColumnItem {
   title: string;
   links: LinkItem[];
 }
+
+export interface HeadProps {
+  cartTotal: number;
+  cartItemsCount: number;
+}

@@ -1,11 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { HeadProps } from '../../types';
 import './Head.css';
-
-interface HeadProps {
-  cartTotal: number;
-  cartItemsCount: number;
-}
 
 const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
   return (
