@@ -1,12 +1,6 @@
 import React, { useEffect } from 'react';
 import Button from '../../components/buttons/Button';
-
-export type ModalProps = {
-  description: string;
-  couponDate: string;
-  couponCode: string;
-  closeModal: () => void;
-};
+import { ModalProps } from '../../types';
 
 export const Modal: React.FC<ModalProps> = ({
   description,

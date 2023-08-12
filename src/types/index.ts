@@ -23,3 +23,15 @@ export interface CardData {
   couponCode?: string;
   description: string;
 }
+
+export type ModalProps = {
+  description: string;
+  couponDate: string;
+  couponCode: string;
+  closeModal: () => void;
+};
+
+export type CardProps = {
+  card: CardData;
+  handleLearnMoreClick: (cardData: CardData) => void;
+};

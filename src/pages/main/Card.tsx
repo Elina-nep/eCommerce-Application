@@ -1,11 +1,6 @@
 import React from 'react';
 import Button from '../../components/buttons/Button';
-import { CardData } from '../../types';
-
-type CardProps = {
-  card: CardData;
-  handleLearnMoreClick: (cardData: CardData) => void;
-};
+import { CardProps } from '../../types';
 
 const Card: React.FC<CardProps> = ({ card, handleLearnMoreClick }) => {
   return (
