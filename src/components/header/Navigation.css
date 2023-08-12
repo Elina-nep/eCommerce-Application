@@ -1,0 +1,26 @@
+.nav {
+  background: #50a294;
+  display: flex;
+  justify-content: space-around;
+  color: white;
+  padding: 10px;
+}
+
+.nav a {
+  list-style-type: none;
+  text-decoration: none;
+  color: white;
+  padding: 5px 15px 5px 15px;
+}
+
+.nav a:hover {
+  background: #ff814e;
+  padding: 5px 15px 5px 15px;
+  border-radius: 5px;
+}
+
+.navigation-container {
+  display: flex;
+  width: 60%;
+  justify-content: space-around;
+}
