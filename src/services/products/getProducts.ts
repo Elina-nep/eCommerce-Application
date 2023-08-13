@@ -1,7 +1,7 @@
-import { apiRoot } from '../BuildClient';
+import { formFlow } from '../BuildClient';
 
 export const getProducts = () => {
-  apiRoot
+  formFlow()
     .products()
     .get()
     .execute()

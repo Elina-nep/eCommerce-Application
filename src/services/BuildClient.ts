@@ -38,25 +38,27 @@ const httpMiddlewareOptions: HttpMiddlewareOptions = {
   fetch,
 };
 
-const currentToken = getExistingToken();
+const formAnonFlow = () => {
+  const currentToken = getExistingToken();
 
-const ctpClient = currentToken
-  ? new ClientBuilder()
-      .withExistingTokenFlow(currentToken, existingAuthMiddlewareOptions)
-      .withHttpMiddleware(httpMiddlewareOptions)
-      .withLoggerMiddleware()
-      .build()
-  : new ClientBuilder()
-      .withAnonymousSessionFlow(authAnonMiddlewareOptions)
-      .withHttpMiddleware(httpMiddlewareOptions)
-      .withLoggerMiddleware()
-      .build();
+  const ctpClient = currentToken
+    ? new ClientBuilder()
+        .withExistingTokenFlow(currentToken, existingAuthMiddlewareOptions)
+        .withHttpMiddleware(httpMiddlewareOptions)
+        .withLoggerMiddleware()
+        .build()
+    : new ClientBuilder()
+        .withAnonymousSessionFlow(authAnonMiddlewareOptions)
+        .withHttpMiddleware(httpMiddlewareOptions)
+        .withLoggerMiddleware()
+        .build();
 
-export const apiRoot = createApiBuilderFromCtpClient(ctpClient).withProjectKey({
-  projectKey: projectKey,
-});
+  return createApiBuilderFromCtpClient(ctpClient).withProjectKey({
+    projectKey: projectKey,
+  });
+};
 
-export const formPassFlow = (user: UserAuthOptions) => {
+const formPassFlow = (user: UserAuthOptions) => {
   console.log('new formPassFlow');
   localStorage.clear();
   const passwordAuthMiddlewareOptions: PasswordAuthMiddlewareOptions = {
@@ -81,4 +83,9 @@ export const formPassFlow = (user: UserAuthOptions) => {
   return createApiBuilderFromCtpClient(newCtpClient).withProjectKey({
     projectKey: projectKey,
   });
+};
+
+export const formFlow = (user?: UserAuthOptions) => {
+  if (user) return formPassFlow(user);
+  return formAnonFlow();
 };

@@ -1,7 +1,7 @@
-import { apiRoot } from '../BuildClient';
+import { formFlow } from '../BuildClient';
 
 export const getCart = () => {
-  apiRoot
+  formFlow()
     .me()
     .carts()
     .get()
