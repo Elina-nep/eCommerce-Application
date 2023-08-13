@@ -1,3 +1,10 @@
+import { getProducts } from '../../services/products/getProducts';
+
 export const MainPage = () => {
-  return <main>This is Main page</main>;
+  return (
+    <main>
+      <p>This is Main page</p>
+      <button onClick={getProducts}>GET PRODUCTS</button>
+    </main>
+  );
 };
