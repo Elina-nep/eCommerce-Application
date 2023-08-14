@@ -15,10 +15,11 @@ import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { passwordValidation, emailValidation } from '../../util/validation';
 import { ILoginForm } from '../../types/loginForm';
-import './Login.css';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
 import { AuthContext } from '../../context/AuthProvider';
+import { FormError } from './FormError';
+import './Login.css';
 
 export const LoginForm: React.FC = () => {
   const { handleSubmit, control } = useForm<ILoginForm>();
@@ -27,10 +28,21 @@ export const LoginForm: React.FC = () => {
   });
 
   const { loginCustomer } = useContext(AuthContext);
-  const onSubmit: SubmitHandler<ILoginForm> = (data) => {
+
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
+  const onSubmit: SubmitHandler<ILoginForm> = async (data) => {
     console.log(data);
-    loginCustomer({ email: data.email, password: data.password });
+    try {
+      await loginCustomer({ email: data.email, password: data.password });
+      setErrorMessage('');
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setErrorMessage(error.message || 'An error occurred');
+      }
+    }
   };
+
   const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
   const handleMouseDownPassword = (
@@ -99,12 +111,12 @@ export const LoginForm: React.FC = () => {
               </FormControl>
             )}
           />
-
           <button type="submit" className="login-page__btn">
             Log in
           </button>
         </form>
       </ThemeProvider>
+      {errorMessage && <FormError message={errorMessage} />}{' '}
     </div>
   );
 };

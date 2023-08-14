@@ -39,3 +39,7 @@ export interface AddressesContainerProps {
   watchedCountry: string;
   prefix: string;
 }
+
+export interface FormErrorProps {
+  message: string;
+}
