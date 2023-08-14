@@ -6,28 +6,55 @@
 - Halina Dziamyanchyk - https://github.com/halinad
 
 ## Deploy
+to be announced
 
+## Database
+to be announced
 
-## Technologies
-- react
-- typescript
-- react-router-dom
-- sass
-- eslint
+## Technologies and libraries
+- create-react-app was chosen to simplify the creation of the SPA. The advantages of the selected library: built-in and customized builder, which reduces the time to start; JSX language - to reduce the code base and more descriptive code; built-in efficient rendering methods. Disadvantages: the need to learn new syntax and ideology for the team.
+- typescript was chosen to reduce errors and integration errors of modules in the task.
+- react-router-dom library for creating rotation in the application. Advantages: quick start; the ability to work with search queries (query); easy integration with create-react-app.
+- eslint and prettier were used to reduce code misprints and enforce code style.
+- Husky was used to organize pre-commit eslint launch and abort the commit in case of errors.
+- jest is the testing library, was used for functional testing of components.
+
 
 ## Available scripts
 
-### `dev`
-Запуск приложения в режиме "разработка" Открывается на странице ... вашего браузера по умолчанию.
-При изменении кода, страница обновляется автоматически В консоль выводятся ошибки линтера.
+### `npm start`
 
-### `build`
-Собирает приложение в папку `dist/`
-Билд оптимизирован и готов к разворачиванию на сервере.
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
 ### `lint`
-запуск eslint
+Runs eslint command, automatic fix of possible linting errors.
 
-### `preview`
-запуск превью билда
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
 

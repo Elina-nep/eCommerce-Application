@@ -1,0 +1,13 @@
+{
+  "testEnvironment": "jsdom",
+  "transform": {
+    "^.+\\.tsx?$": "ts-jest",
+    "^.+\\.svg$": "jest-transformer-svg"
+  },
+  "moduleNameMapper": {
+    "\\.(css|scss)$": "jest-css-modules"
+  },
+  "setupFilesAfterEnv": [
+    "@testing-library/jest-dom/extend-expect"
+  ]
+}
