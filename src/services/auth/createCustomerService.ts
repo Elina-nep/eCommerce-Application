@@ -1,7 +1,7 @@
-import { ICreateCustomer } from '../types';
-import { apiRoot } from './BuildClient';
+import { ICreateCustomer } from '../../types';
+import { apiRoot } from '../BuildClient';
 
-export const createCustomer = ({
+export const createCustomerService = ({
   email,
   password,
   firstName,
@@ -12,11 +12,10 @@ export const createCustomer = ({
   shippingAddresses,
   defaultBillingAddress,
   billingAddresses,
-}: ICreateCustomer) => {
+}: ICreateCustomer) =>
   apiRoot
     .customers()
     .post({
-      // The CustomerDraft is the object within the body
       body: {
         email: email,
         password: password,
@@ -30,9 +29,4 @@ export const createCustomer = ({
         billingAddresses: billingAddresses,
       },
     })
-    .execute()
-    .then(({ body }) => {
-      console.log(body.customer.id);
-    })
-    .catch(console.error);
-};
+    .execute();
