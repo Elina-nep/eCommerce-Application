@@ -8,7 +8,9 @@ const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
 
-const router = createBrowserRouter(routerObj);
+const router = createBrowserRouter(routerObj, {
+  basename: '/eCommerce-Application',
+});
 
 root.render(
   <React.StrictMode>
