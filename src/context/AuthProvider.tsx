@@ -15,6 +15,7 @@ interface IUserAuth {
   setIfAuth: Dispatch<SetStateAction<boolean>>;
   loginCustomer: (data: ILoginCustomer) => void;
   createCustomer: (data: ICreateCustomer) => void;
+  logOut: () => void;
 }
 
 export const AuthContext = createContext<IUserAuth>({
@@ -23,15 +24,14 @@ export const AuthContext = createContext<IUserAuth>({
   setIfAuth: () => {},
   loginCustomer: () => {},
   createCustomer: () => {},
+  logOut: () => {},
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const [ifAuth, setIfAuth] = useState(false);
+  const token = localStorage.getItem('token');
+  const [ifAuth, setIfAuth] = useState(!!token);
   const [loading, setLoading] = useState(false);
-  // const token = localStorage.getItem('token');
-  // if (!token) {
 
-  // }
   const loginCustomer = (data: ILoginCustomer) => {
     loginCustomerService(data)
       .then((body) => {
@@ -54,6 +54,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       });
   };
 
+  const logOut = () => {
+    setIfAuth(false);
+    localStorage.clear();
+  };
+
   return (
     <AuthContext.Provider
       value={{
@@ -62,6 +67,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setIfAuth,
         loginCustomer,
         createCustomer,
+        logOut,
       }}
     >
       {!loading && children}
