@@ -2,7 +2,7 @@
   "name": "e-commerce-application",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://elina-nep.github.io/eCommerce-Application/",
+  "homepage": "./eCommerce-Application/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
