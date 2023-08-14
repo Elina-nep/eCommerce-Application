@@ -39,6 +39,13 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+        env:
+          REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
+          REACT_APP_CLIENT_SECRET: ${{ secrets.REACT_APP_CLIENT_SECRET }}
+          REACT_APP_PROJECT_KEY: ${{ secrets.REACT_APP_PROJECT_KEY }}
+          REACT_APP_HOST_URL: ${{ secrets.REACT_APP_HOST_URL }}
+          REACT_APP_AUTH_URL: ${{ secrets.REACT_APP_AUTH_URL }}
+          REACT_APP_SCOPES: ${{ secrets.REACT_APP_SCOPES }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
