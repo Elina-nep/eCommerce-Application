@@ -9,5 +9,14 @@
   },
   "setupFilesAfterEnv": [
     "@testing-library/jest-dom/extend-expect"
+  ],
+  "coveragePathIgnorePatterns": [
+    "node_modules",
+    "test-config",
+    "interfaces",
+    "jestGlobalMocks.ts",
+    ".module.ts",
+    "<rootDir>/src/context/*",
+    "<rootDir>/src/services/*"
   ]
 }

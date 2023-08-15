@@ -16,11 +16,13 @@ import { AuthContext } from '../../context/AuthProvider';
 import { FormError } from './FormError';
 
 export const RegisterForm: React.FC = () => {
+
   const { handleSubmit, control } = useForm<IRegistrationForm>({
     defaultValues: {
       areAddressesSame: true,
     },
   });
+
   const { errors } = useFormState({
     control,
   });
@@ -48,6 +50,7 @@ export const RegisterForm: React.FC = () => {
       addresses.push(shipAdd);
     }
     let defaultShippingAddress;
+
 
     if (data.areAddressesSame && data.isBillingAddressDefault) {
       defaultShippingAddress = 0;
@@ -84,6 +87,7 @@ export const RegisterForm: React.FC = () => {
             <PersonalData control={control} errors={errors} />
             <div className="col-2">
               <CustomCheckbox
+
                 id="isBillingAddressDefault"
                 control={control}
                 name="isBillingAddressDefault"
@@ -93,6 +97,7 @@ export const RegisterForm: React.FC = () => {
             </div>
 
             <AddressesContainer
+
               control={control}
               errors={errors}
               watchedCountry={watchedCountry}
@@ -106,6 +111,7 @@ export const RegisterForm: React.FC = () => {
               isChecked={billingAddressMatches}
               onChange={(checked) => setBillingAddressMatches(checked)}
             />
+
             {!billingAddressMatches && (
               <div>
                 <div className="col-2">

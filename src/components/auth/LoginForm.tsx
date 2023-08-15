@@ -17,7 +17,6 @@ import './Login.css';
 
 export const LoginForm: React.FC = () => {
   const [visible, setVisible] = useState(false);
-
   const { handleSubmit, control } = useForm<ILoginForm>();
   const { errors } = useFormState({
     control,
@@ -68,6 +67,7 @@ export const LoginForm: React.FC = () => {
             name="password"
             rules={passwordValidation}
             render={({ field }) => (
+
               <TextField
                 id="loginPassword"
                 label="Password"
