@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Button from '../../components/buttons/Button';
 import { cards } from '../../pages/main/constants';
 import { CardData, ModalProps } from '../../types';
@@ -16,7 +16,10 @@ const Slider = () => {
     couponCode: '',
     closeModal: () => {},
   });
-
+  useEffect(() => {
+    setTotalSlides(3);
+  }, []);
+  const [totalSlides, setTotalSlides] = useState(3);
   const prevSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? cards.length - 7 : prev - 1));
   };
@@ -77,6 +80,18 @@ const Slider = () => {
           {'>'}
         </Button>
       </div>
+      <>
+        <div className="slider-indicator">
+          {Array.from(Array(totalSlides).keys()).map((index) => (
+            <div
+              key={index}
+              className={`indicator-dot ${
+                index === currentSlide ? 'active' : ''
+              }`}
+            />
+          ))}
+        </div>
+      </>
     </>
   );
 };

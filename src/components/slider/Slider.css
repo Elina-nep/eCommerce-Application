@@ -4,7 +4,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: auto;
+  margin: 4% 0 2% 0;
   gap: 2%;
 }
 
@@ -17,4 +17,23 @@
   height: 100%;
   display: flex;
   margin: auto;
+}
+
+.slider-indicator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgb(255, 255, 255);
+  margin: 0 5px;
+  transition: background-color 0.5s ease;
+}
+
+.indicator-dot.active {
+  background-color: #fe4004;
 }

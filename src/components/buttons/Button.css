@@ -8,16 +8,18 @@ button:focus {
 
 .button-pagination {
   width: 60px;
-  height: 60px;
+  height: 55px;
   border-radius: 60px;
   z-index: 1;
-  background: white;
+  background-color: white;
   color: #50a294;
   border: 1px solid #50a294;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
 }
 
 .button-pagination:hover {
-  background: #ff814e;
+  background-color: #ff814e;
   color: white;
   border: 1px solid #ff814e;
 }
@@ -25,17 +27,25 @@ button:focus {
 .button-info {
   position: relative;
   bottom: 10%;
-  background: #ff814e;
+  background-color: #ff814e;
   color: #2a2a2a;
-  width: 220px;
-  height: 50px;
-  border-radius: 10px;
-  font-size: 26px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em 0;
+  width: 10em;
+  font-size: 1.5vw;
+  list-style-type: none;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
   border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
 }
 
 .button-info:hover {
-  background: #fe4004;
+  background-color: #fe4004;
   color: white;
 }
 
