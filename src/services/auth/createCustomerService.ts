@@ -1,5 +1,5 @@
 import { ICreateCustomer } from '../../types';
-import { apiRoot } from '../BuildClient';
+import { formFlow } from '../BuildClient';
 
 export const createCustomerService = ({
   email,
@@ -13,7 +13,7 @@ export const createCustomerService = ({
   defaultBillingAddress,
   billingAddresses,
 }: ICreateCustomer) =>
-  apiRoot
+  formFlow({ username: email, password: password })
     .customers()
     .post({
       body: {
