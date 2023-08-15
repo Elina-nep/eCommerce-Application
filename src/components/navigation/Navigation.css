@@ -8,15 +8,23 @@
 }
 
 .nav a {
+  font-size: 1.4vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2em 0;
+  width: 8em;
+  text-align: center;
+  font-size: 1.1vw;
+  color: white;
   list-style-type: none;
   text-decoration: none;
-  color: white;
-  padding: 5px 15px 5px 15px;
+  border-radius: 5px;
+  text-align: center;
 }
 
 .nav a:hover {
   background: #ff814e;
-  padding: 5px 15px 5px 15px;
   border-radius: 5px;
 }
 
@@ -24,20 +32,25 @@
   display: flex;
   width: 60%;
   justify-content: space-around;
+  align-items: center;
 }
 
 .text-field-container {
+  width: 30%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: calc(1.4rem + 2px);
 }
 
 .text-field__input {
+  font-size: 1.2vw;
   display: block;
   width: 80%;
-  height: calc(1.8rem + 2px);
+  height: 100%;
   padding: 0.375rem 0.75rem;
   font-family: inherit;
-  font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
@@ -73,9 +86,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 0;
-  bottom: 0;
-  right: 0;
+  height: 100%;
   width: 2.5rem;
   background-color: white;
   cursor: pointer;

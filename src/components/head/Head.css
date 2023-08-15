@@ -1,7 +1,7 @@
 .head {
   background-color: #ffffff;
   align-items: center;
-  padding: 15px;
+  padding: 10px;
 }
 
 .logo {
@@ -20,12 +20,11 @@
 }
 
 .logo-picture {
-  width: 15%;
-  height: 50%;
-}
-
-.logo-picture img {
-  width: 60%;
+  width: 20%;
+  height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .store-title {
@@ -51,7 +50,7 @@
   width: 30%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .cart a {
@@ -64,31 +63,68 @@
 }
 
 .login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2em 0;
+  width: 6em;
+  text-align: center;
   font-size: 1.1vw;
   color: white;
   list-style-type: none;
   text-decoration: none;
   background: #fe4004;
+  border: 1px solid #fe4004;
   border-radius: 5px;
-  padding: 2px 15px;
+  text-align: center;
+}
+
+.login:hover {
+  background: white;
+  border: 1px solid #fe4004;
+  color: #fe4004;
 }
 
 .register {
-  font-size: 1.1vw;
   color: #50a294;
+  border: 1px solid #50a294;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2em 0;
+  width: 6em;
+  text-align: center;
+  font-size: 1.1vw;
   list-style-type: none;
   text-decoration: none;
-  border: 1px solid #50a294;
   border-radius: 5px;
-  padding: 2px 15px;
+  text-align: center;
+}
+
+.register:hover {
+  background: #50a294;
+  border: 1px solid #50a294;
+  color: white;
 }
 
 .logout {
-  font-size: 1.1vw;
   color: #2a2a2a;
+  border: 1px solid #2a2a2a;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2em 0;
+  width: 6em;
+  text-align: center;
+  font-size: 1.1vw;
   list-style-type: none;
   text-decoration: none;
-  border: 1px solid #2a2a2a;
   border-radius: 5px;
-  padding: 2px 15px;
+  text-align: center;
+}
+
+.logout:hover {
+  background: #2a2a2a;
+  border: 1px solid #2a2a2a;
+  color: white;
 }
