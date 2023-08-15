@@ -14,30 +14,34 @@ export const Modal: React.FC<ModalProps> = ({
   ) => {
     e.stopPropagation();
   };
-  useEffect(() => {
-    const body = document.querySelector('body');
-    if (body) {
-      body.classList.add('modal-open');
-    }
 
-    return () => {
-      if (body) {
-        body.classList.remove('modal-open');
-      }
+  useEffect(() => {
+    const offScroll = () => {
+      const handleScroll = () => {
+        window.scrollTo(0, 0);
+      };
+
+      window.addEventListener('scroll', handleScroll);
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
     };
+
+    offScroll();
   }, []);
+
   return (
     <div className="modal" onClick={closeModal}>
       <div className="modal-content" onClick={handleModalClick}>
-        <Button onClick={closeModal} className="close">
-          {'x'}
-        </Button>
         <div className="modal-text">
           <h4>{description}</h4>
           <p>{`Date: ${couponDate}`}</p>
           <p>{`Code: ${couponCode}`}</p>
         </div>
       </div>
+      <Button onClick={closeModal} className="close">
+        {'x'}
+      </Button>
     </div>
   );
 };

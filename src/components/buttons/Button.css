@@ -55,15 +55,27 @@ button:focus {
 }
 
 .close {
+  font-size: 1.2rem;
   position: absolute;
   text-align: center;
   width: 50px;
   height: 50px;
   border-radius: 50px;
   z-index: 1;
-  background: white;
+  background-color: white;
   color: #50a294;
   border: 1px solid #50a294;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   right: 22%;
   top: 20%;
+}
+
+.close:hover {
+  background-color: #ff814e;
+  color: white;
+  border: 1px solid #ff814e;
 }
