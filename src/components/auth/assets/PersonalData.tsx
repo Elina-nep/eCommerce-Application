@@ -23,7 +23,10 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
           name="firstName"
           rules={nameValidation}
           render={({ field }) =>
-            CustomTextInput({ ...field, label: 'First Name' }, errors)
+            CustomTextInput(
+              { ...field, id: 'firstName', label: 'First Name' },
+              errors,
+            )
           }
         />
         <Controller
@@ -31,7 +34,10 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
           name="lastName"
           rules={nameValidation}
           render={({ field }) =>
-            CustomTextInput({ ...field, label: 'Last Name' }, errors)
+            CustomTextInput(
+              { ...field, id: 'lastName', label: 'Last Name' },
+              errors,
+            )
           }
         />
       </div>
@@ -40,7 +46,10 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
         name="email"
         rules={emailValidation}
         render={({ field }) =>
-          CustomTextInput({ ...field, label: 'Email' }, errors)
+          CustomTextInput(
+            { ...field, id: 'registrEmail', label: 'Email' },
+            errors,
+          )
         }
       />
       <Controller
@@ -49,7 +58,12 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
         rules={passwordValidation}
         render={({ field }) =>
           CustomTextInput(
-            { ...field, label: 'Password', type: 'password' },
+            {
+              ...field,
+              id: 'registrPassword',
+              label: 'Password',
+              type: 'password',
+            },
             errors,
           )
         }
@@ -60,6 +74,7 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
         rules={ageValidation(13)}
         render={({ field }) => (
           <TextField
+            id="dateBirth"
             // label="Date of Birth"
             {...field}
             fullWidth={true}

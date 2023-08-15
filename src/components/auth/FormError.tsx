@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormErrorProps } from '../../types/form';
+import { FormErrorProps } from '../../types';
 import './FormError.css';
 
 export class FormError extends React.Component<FormErrorProps> {

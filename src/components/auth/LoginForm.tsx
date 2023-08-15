@@ -6,22 +6,17 @@ import {
 } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { useContext, useState } from 'react';
-import IconButton from '@mui/material/IconButton';
-import OutlinedInput from '@mui/material/OutlinedInput';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
-import FormControl from '@mui/material/FormControl';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { passwordValidation, emailValidation } from '../../util/validation';
 import { ILoginForm } from '../../types/loginForm';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
 import { AuthContext } from '../../context/AuthProvider';
 import { FormError } from './FormError';
+import { TogglePasswordVisibility } from '../../util/ToggleVisibility';
 import './Login.css';
 
 export const LoginForm: React.FC = () => {
+  const [visible, setVisible] = useState(false);
   const { handleSubmit, control } = useForm<ILoginForm>();
   const { errors } = useFormState({
     control,
@@ -43,14 +38,6 @@ export const LoginForm: React.FC = () => {
     }
   };
 
-  const [showPassword, setShowPassword] = useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleMouseDownPassword = (
-    event: React.MouseEvent<HTMLButtonElement>,
-  ) => {
-    event.preventDefault();
-  };
-
   return (
     <div className="login-page">
       <ThemeProvider theme={theme}>
@@ -61,6 +48,7 @@ export const LoginForm: React.FC = () => {
             rules={emailValidation}
             render={({ field }) => (
               <TextField
+                id="loginEmail"
                 label="Email"
                 onChange={(e) => field.onChange(e)}
                 value={field.value || ''}
@@ -79,36 +67,28 @@ export const LoginForm: React.FC = () => {
             name="password"
             rules={passwordValidation}
             render={({ field }) => (
-              <FormControl
+
+              <TextField
+                id="loginPassword"
+                label="Password"
+                onChange={(e) => field.onChange(e)}
+                value={field.value || ''}
                 fullWidth
-                variant="outlined"
                 size="small"
                 margin="normal"
-              >
-                <InputLabel htmlFor="outlined-adornment-password">
-                  Password
-                </InputLabel>
-                <OutlinedInput
-                  id="outlined-adornment-password"
-                  type={showPassword ? 'text' : 'password'}
-                  value={field.value || ''}
-                  onChange={field.onChange}
-                  endAdornment={
-                    <InputAdornment position="end">
-                      <IconButton
-                        aria-label="toggle password visibility"
-                        onClick={handleClickShowPassword}
-                        onMouseDown={handleMouseDownPassword}
-                        edge="end"
-                      >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  }
-                  label="Password"
-                  autoComplete="password"
-                />
-              </FormControl>
+                type={visible ? 'text' : 'password'}
+                error={!!errors.password?.message}
+                helperText={errors?.password?.message}
+                autoComplete="password"
+                InputProps={{
+                  endAdornment: (
+                    <TogglePasswordVisibility
+                      visible={visible}
+                      setVisible={setVisible}
+                    />
+                  ),
+                }}
+              />
             )}
           />
           <button type="submit" className="login-page__btn">

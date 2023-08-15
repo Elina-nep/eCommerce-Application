@@ -31,7 +31,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const token = localStorage.getItem('token');
   const [ifAuth, setIfAuth] = useState(!!token);
   const [loading, setLoading] = useState(false);
-
   const loginCustomer = (data: ILoginCustomer): Promise<void> => {
     return new Promise((resolve, reject) => {
       loginCustomerService(data)

@@ -13,6 +13,7 @@ export interface TextFieldProps {
     max?: string;
   };
   autocomplete?: string;
+  id: string;
 }
 
 export type CheckboxFieldName =
@@ -24,8 +25,9 @@ export interface CustomCheckboxProps {
   control: Control<IRegistrationForm>;
   name: CheckboxFieldName;
   label: string;
-  defaultChecked?: boolean;
+  isChecked?: boolean;
   onChange?: (checked: boolean) => void;
+  id: string;
 }
 
 export interface PersonalDataProps {
@@ -42,4 +44,9 @@ export interface AddressesContainerProps {
 
 export interface FormErrorProps {
   message: string;
+}
+
+export interface ToggleVisibilityProps {
+  visible: boolean;
+  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
