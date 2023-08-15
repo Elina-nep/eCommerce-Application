@@ -29,18 +29,21 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
           </Link>
         </div>
         <div className="links">
-          <Link to="login" className="login">
-            Sign in
-          </Link>
-          <Link to="register" className="register">
-            Sign up
-          </Link>{' '}
-          <br />
           {ifAuth ? (
             <Link to="logout" className="logout">
               Log out
             </Link>
-          ) : null}
+          ) : (
+            <>
+              <Link to="login" className="login">
+                Sign in
+              </Link>
+              <Link to="register" className="register">
+                Sign up
+              </Link>{' '}
+              <br />
+            </>
+          )}
         </div>
       </div>
     </div>
