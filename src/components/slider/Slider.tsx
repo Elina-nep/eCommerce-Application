@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import Button from '../../components/buttons/Button';
+import { cards } from '../../pages/main/constants';
 import { CardData, ModalProps } from '../../types';
-import Card from './Card';
-import { cards } from './constants';
-import Modal from './ModalWindow';
+import Card from '../card/Card';
+import Modal from '../modalwindow/ModalWindow';
+
+import './Slider.css';
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);

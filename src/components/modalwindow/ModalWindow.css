@@ -1,0 +1,31 @@
+body.modal-open {
+  overflow: hidden;
+}
+
+.modal {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  width: 50%;
+  background-color: white;
+  padding: 1rem;
+}
+
+.modal-text {
+  text-align: center;
+  width: 40%;
+  position: relative;
+  right: 0px;
+  margin-left: 60%;
+  font-weight: normal;
+}

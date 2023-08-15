@@ -1,6 +1,7 @@
 import React from 'react';
-import Slider from './Slider';
-import './Slider.css';
+import Slider from '../../components/slider/Slider';
+
+import './Main.css';
 
 export const MainPage = () => {
   return (

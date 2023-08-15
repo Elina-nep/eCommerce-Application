@@ -1,5 +1,5 @@
 import React from 'react';
-import Button from '../../components/buttons/Button';
+import Button from '../buttons/Button';
 import { CardProps } from '../../types';
 
 const Card: React.FC<CardProps> = ({ card, handleLearnMoreClick }) => {

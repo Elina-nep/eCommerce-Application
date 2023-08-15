@@ -1,0 +1,12 @@
+main {
+  width: 100%;
+  background-size: cover;
+  height: 690px;
+  display: flex;
+  align-items: center;
+  background-image: url('../../../public/assets/воздушные-шары.jpg');
+}
+
+body {
+  width: 100%;
+}
