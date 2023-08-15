@@ -1,9 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthProvider';
 import { HeadProps } from '../../types';
 import './Head.css';
 
 const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
+  const { ifAuth } = useContext(AuthContext);
+
   return (
     <div className="head">
       <div className="headnav">
@@ -21,10 +24,10 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
         </div>
         <div className="cart">
           <Link to="cart">
-            CART / ${cartTotal.toFixed(2)} gds: {cartItemsCount}
+            {' '}
+            CART / ${cartTotal.toFixed(2)} gds: {cartItemsCount}{' '}
           </Link>
         </div>
-
         <div className="links">
           <Link to="login" className="login">
             Sign in
@@ -33,9 +36,11 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
             Sign up
           </Link>{' '}
           <br />
-          <Link to="logout" className="logout">
-            Log out
-          </Link>
+          {ifAuth ? (
+            <Link to="logout" className="logout">
+              Log out
+            </Link>
+          ) : null}
         </div>
       </div>
     </div>
