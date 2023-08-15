@@ -25,7 +25,7 @@
 }
 
 .logo-picture img {
-  width: 90%;
+  width: 60%;
 }
 
 .store-title {
@@ -37,12 +37,12 @@
   text-decoration: none;
   color: #fe4004;
   margin: 0;
-  font-size: 2.1vw;
+  font-size: 1.6vw;
 }
 
 .slogan {
   color: #ff814e;
-  font-size: 1.3vw;
+  font-size: 1vw;
   white-space: nowrap;
 }
 
@@ -60,10 +60,11 @@
   text-decoration: none;
   position: relative;
   left: 5%;
-  font-size: 1.3vw;
+  font-size: 1.1vw;
 }
 
 .login {
+  font-size: 1.1vw;
   color: white;
   list-style-type: none;
   text-decoration: none;
@@ -73,6 +74,7 @@
 }
 
 .register {
+  font-size: 1.1vw;
   color: #50a294;
   list-style-type: none;
   text-decoration: none;
@@ -82,6 +84,7 @@
 }
 
 .logout {
+  font-size: 1.1vw;
   color: #2a2a2a;
   list-style-type: none;
   text-decoration: none;
