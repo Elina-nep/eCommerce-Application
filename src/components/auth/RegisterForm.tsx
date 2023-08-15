@@ -84,6 +84,7 @@ export const RegisterForm: React.FC = () => {
             <PersonalData control={control} errors={errors} />
             <div className="col-2">
               <CustomCheckbox
+                id="isBillingAddressDefault"
                 control={control}
                 name="isBillingAddressDefault"
                 label="Save"
@@ -98,6 +99,7 @@ export const RegisterForm: React.FC = () => {
               prefix="bill"
             />
             <CustomCheckbox
+              id="areAddressesSame"
               control={control}
               name="areAddressesSame"
               label="My billing address matches shipping address"
@@ -108,6 +110,7 @@ export const RegisterForm: React.FC = () => {
               <div>
                 <div className="col-2">
                   <CustomCheckbox
+                    id="isShippingAddressDefault"
                     control={control}
                     name="isShippingAddressDefault"
                     label="Save"

@@ -13,6 +13,7 @@ export interface TextFieldProps {
     max?: string;
   };
   autocomplete?: string;
+  id: string;
 }
 
 export type CheckboxFieldName =
@@ -26,6 +27,7 @@ export interface CustomCheckboxProps {
   label: string;
   isChecked?: boolean;
   onChange?: (checked: boolean) => void;
+  id: string;
 }
 
 export interface PersonalDataProps {

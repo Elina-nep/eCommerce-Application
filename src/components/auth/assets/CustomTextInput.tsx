@@ -12,6 +12,7 @@ export const CustomTextInput = (
     // calendarlimit,
     onChange,
     autocomplete,
+    id,
     ...restProps
   }: TextFieldProps,
   errors: FieldErrors<IRegistrationForm>,
@@ -30,6 +31,7 @@ export const CustomTextInput = (
       error={!!errors[name]?.message}
       helperText={errors[name]?.message}
       autoComplete={autoCompleteValue}
+      id={id}
       {...restProps}
     />
   );

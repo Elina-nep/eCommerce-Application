@@ -49,6 +49,7 @@ export const LoginForm: React.FC = () => {
             rules={emailValidation}
             render={({ field }) => (
               <TextField
+                id="loginEmail"
                 label="Email"
                 onChange={(e) => field.onChange(e)}
                 value={field.value || ''}
@@ -68,6 +69,7 @@ export const LoginForm: React.FC = () => {
             rules={passwordValidation}
             render={({ field }) => (
               <TextField
+                id="loginPassword"
                 label="Password"
                 onChange={(e) => field.onChange(e)}
                 value={field.value || ''}
