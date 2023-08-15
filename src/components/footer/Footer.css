@@ -3,11 +3,11 @@
   color: #50a294;
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 1% 7%;
 }
 
 .column {
-  margin-right: 20px;
+  margin-right: 2%;
 }
 
 .column h3 {
@@ -40,4 +40,20 @@
 
 .column-phone-number {
   color: #fe4004;
+}
+
+.column a::before {
+  height: 5%;
+  content: url('../../../public/assets/салют.png');
+  background-size: contain;
+  opacity: 0;
+  transition:
+    width 0.5s,
+    opacity 0.5s;
+}
+
+.column a:hover::before {
+  height: 5%;
+  width: 30px;
+  opacity: 1;
 }
