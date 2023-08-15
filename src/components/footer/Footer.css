@@ -28,10 +28,12 @@
 .column ul li a {
   color: #50a294;
   text-decoration: none;
+  transition: color 0.5s ease;
 }
 
 .column p {
-  margin: 0;
+  white-space: nowrap;
+  margin: 0 10%;
 }
 
 .column a:hover {
@@ -40,6 +42,7 @@
 
 .column-phone-number {
   color: #fe4004;
+  margin-top: 0;
 }
 
 .column a::before {

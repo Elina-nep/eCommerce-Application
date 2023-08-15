@@ -21,6 +21,7 @@
   text-decoration: none;
   border-radius: 5px;
   text-align: center;
+  transition: background-color 0.5s ease;
 }
 
 .nav a:hover {
@@ -94,6 +95,7 @@
   transition: background-color 0.15s ease-in-out;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
+  transition: background-color 0.5s ease;
 }
 
 .text-field__aicon:hover {

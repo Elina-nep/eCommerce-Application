@@ -21,20 +21,24 @@ h3 {
 }
 
 .not-found-page-text a {
+  margin-top: 2%;
   background: #ff814e;
   color: #2a2a2a;
-  font-size: 1.4vw;
+  position: relative;
+  bottom: 10%;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.2em 0;
-  width: 8em;
-  text-align: center;
-  font-size: 1.1vw;
+  padding: 0.5em 0;
+  width: 10em;
+  font-size: 1.5vw;
   list-style-type: none;
   text-decoration: none;
   border-radius: 5px;
   text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
 }
 
 .not-found-page-text a:hover {

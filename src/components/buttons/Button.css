@@ -7,6 +7,7 @@ button:focus {
 }
 
 .button-pagination {
+  font-size: 1.2rem;
   width: 60px;
   height: 55px;
   border-radius: 60px;
@@ -16,6 +17,10 @@ button:focus {
   border: 1px solid #50a294;
   cursor: pointer;
   transition: background-color 0.5s ease;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .button-pagination:hover {
