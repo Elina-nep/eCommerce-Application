@@ -13,16 +13,23 @@ import AddressesContainer from './assets/Addresses';
 import { PersonalData } from './assets/PersonalData';
 import { CustomCheckbox } from './assets/CustomCheckbox';
 import { AuthContext } from '../../context/AuthProvider';
+import { FormError } from './FormError';
 
 export const RegisterForm: React.FC = () => {
-  const { handleSubmit, control } = useForm<IRegistrationForm>();
+  const { handleSubmit, control } = useForm<IRegistrationForm>({
+    defaultValues: {
+      areAddressesSame: true,
+    },
+  });
   const { errors } = useFormState({
     control,
   });
   const watchedCountry = useWatch({ control, name: 'billCountry' });
   const [billingAddressMatches, setBillingAddressMatches] = useState(true);
   const { createCustomer } = useContext(AuthContext);
-  const onSubmit: SubmitHandler<IRegistrationForm> = (data) => {
+
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
     console.log(data);
     const billinAdd = {
       country: data.billCountry,
@@ -48,18 +55,25 @@ export const RegisterForm: React.FC = () => {
       defaultShippingAddress = 1;
     }
 
-    createCustomer({
-      email: data.email,
-      password: data.password,
-      firstName: data.firstName,
-      lastName: data.lastName,
-      dateOfBirth: data.dateBirth,
-      addresses: addresses,
-      defaultBillingAddress: data.isBillingAddressDefault ? 0 : undefined,
-      defaultShippingAddress: defaultShippingAddress,
-      billingAddresses: [0],
-      shippingAddresses: data.areAddressesSame ? [0] : [1],
-    });
+    try {
+      await createCustomer({
+        email: data.email,
+        password: data.password,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        dateOfBirth: data.dateBirth,
+        addresses: addresses,
+        defaultBillingAddress: data.isBillingAddressDefault ? 0 : undefined,
+        defaultShippingAddress: defaultShippingAddress,
+        billingAddresses: [0],
+        shippingAddresses: data.areAddressesSame ? [0] : [1],
+      });
+      setErrorMessage('');
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setErrorMessage(error.message || 'An error occurred');
+      }
+    }
   };
 
   return (
@@ -70,6 +84,7 @@ export const RegisterForm: React.FC = () => {
             <PersonalData control={control} errors={errors} />
             <div className="col-2">
               <CustomCheckbox
+                id="isBillingAddressDefault"
                 control={control}
                 name="isBillingAddressDefault"
                 label="Save"
@@ -84,16 +99,18 @@ export const RegisterForm: React.FC = () => {
               prefix="bill"
             />
             <CustomCheckbox
+              id="areAddressesSame"
               control={control}
               name="areAddressesSame"
               label="My billing address matches shipping address"
-              defaultChecked={true}
+              isChecked={billingAddressMatches}
               onChange={(checked) => setBillingAddressMatches(checked)}
             />
             {!billingAddressMatches && (
               <div>
                 <div className="col-2">
                   <CustomCheckbox
+                    id="isShippingAddressDefault"
                     control={control}
                     name="isShippingAddressDefault"
                     label="Save"
@@ -113,6 +130,7 @@ export const RegisterForm: React.FC = () => {
               Create account
             </button>
           </form>
+          {errorMessage && <FormError message={errorMessage} />}{' '}
         </div>
       </ThemeProvider>
     </div>

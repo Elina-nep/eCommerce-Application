@@ -32,26 +32,35 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   // if (!token) {
 
   // }
-  const loginCustomer = (data: ILoginCustomer) => {
-    loginCustomerService(data)
-      .then((body) => {
-        alert(`Hello ${body.body.customer.firstName || 'my friend'}!`);
-        setIfAuth(true);
-      })
-      .catch((e) => {
-        throw e;
-      });
+
+  const loginCustomer = (data: ILoginCustomer): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      loginCustomerService(data)
+        .then((body) => {
+          alert(`Hello ${body.body.customer.firstName || 'my friend'}!`);
+          setIfAuth(true);
+          resolve();
+        })
+        .catch((e) => {
+          const errorMessage = e.message || 'An error occurred';
+          reject(new Error(errorMessage));
+        });
+    });
   };
 
-  const createCustomer = (data: ICreateCustomer) => {
-    createCustomerService(data)
-      .then((body) => {
-        alert(`User ${body.body.customer.email} is created`);
-        setIfAuth(true);
-      })
-      .catch((e) => {
-        throw e;
-      });
+  const createCustomer = (data: ICreateCustomer): Promise<void> => {
+    return new Promise((resolve, reject) => {
+      createCustomerService(data)
+        .then((body) => {
+          alert(`User ${body.body.customer.email} is created`);
+          setIfAuth(true);
+          resolve();
+        })
+        .catch((e) => {
+          const errorMessage = e.message || 'An error occurred';
+          reject(new Error(errorMessage));
+        });
+    });
   };
 
   return (

@@ -34,6 +34,7 @@ const AddressesContainer: React.FC<AddressesContainerProps> = ({
         rules={{ ...streetValidation, required: true }}
         render={({ field }) => (
           <TextField
+            id="street"
             label="Street"
             {...field}
             fullWidth={true}
@@ -60,6 +61,7 @@ const AddressesContainer: React.FC<AddressesContainerProps> = ({
         }}
         render={({ field }) => (
           <TextField
+            id="city"
             label="City"
             {...field}
             fullWidth={true}
@@ -87,6 +89,7 @@ const AddressesContainer: React.FC<AddressesContainerProps> = ({
         }}
         render={({ field }) => (
           <TextField
+            id="postalCode"
             label="Postal Code"
             {...field}
             fullWidth={true}
