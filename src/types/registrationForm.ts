@@ -12,7 +12,7 @@ export interface IRegistrationForm {
   shipCity: string;
   shipPostalCode: string;
   shipCountry: string;
-  areAdressesSame: boolean;
+  areAddressesSame: boolean;
   isBillingAddressDefault: boolean;
   isShippingAddressDefault: boolean;
 }

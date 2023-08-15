@@ -1,13 +1,16 @@
 import { RegisterOptions } from 'react-hook-form';
 import { parse, differenceInYears, isValid } from 'date-fns';
 
-const REQUIRED_FIELD = 'This field is requierd';
+const REQUIRED_FIELD = 'This field is required';
 
-export const nameValidation = {
-  required: REQUIRED_FIELD,
+interface NameValidation {
+  validate: (value: string) => string | boolean;
+}
+
+export const nameValidation: NameValidation = {
   validate: (value: string) => {
     if (!value.trim()) {
-      return 'This field is required.';
+      return REQUIRED_FIELD;
     }
 
     if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?0-9]/.test(value)) {
@@ -41,15 +44,29 @@ export const passwordValidation = {
   required: REQUIRED_FIELD,
   minLength: {
     value: 8,
-    message: 'Password must have at least 8 characters.',
+    message: 'Password must be at least 8 characters long.',
   },
   validate: (value: string) => {
     const hasUppercase = /[A-Z]/.test(value);
     const hasLowercase = /[a-z]/.test(value);
     const hasNumber = /\d/.test(value);
+    const hasSpecialChar = /[!@#$%^&*]/.test(value);
+    const hasNoWhitespace = /^\S+$/.test(value);
 
-    if (!hasUppercase || !hasLowercase || !hasNumber) {
-      return 'Password must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number.';
+    if (!hasUppercase) {
+      return 'Password must contain at least 1 uppercase letter.';
+    }
+    if (!hasLowercase) {
+      return 'Password must contain at least 1 lowercase letter.';
+    }
+    if (!hasNumber) {
+      return 'Password must contain at least 1 number.';
+    }
+    if (!hasSpecialChar) {
+      return 'Password must contain at least 1 special character (e.g., !@#$%^&*).';
+    }
+    if (!hasNoWhitespace) {
+      return 'Password must not contain leading or trailing whitespace.';
     }
     return true;
   },
@@ -60,6 +77,13 @@ export const emailValidation = {
   pattern: {
     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
     message: 'Invalid email address.',
+  },
+  validate: (value: string) => {
+    const trimmedValue = value.trim();
+    if (value !== trimmedValue) {
+      return 'Email address must not contain leading or trailing whitespace.';
+    }
+    return true;
   },
 };
 
@@ -95,9 +119,11 @@ export const postalCodeValidation = {
       errorMessage =
         'Postal code for USA must match the format "#####-####" (5 digits followed by optional hyphen and 4 digits) or "########" (9 digits).';
     }
+
     if (!postalCodeRegex.test(value)) {
       return errorMessage;
     }
+
     return true;
   },
 };

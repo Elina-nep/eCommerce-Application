@@ -1,4 +1,3 @@
-export {};
 export interface LinkItem {
   title: string;
   to: string;
@@ -35,3 +34,8 @@ export type CardProps = {
   card: CardData;
   handleLearnMoreClick: (cardData: CardData) => void;
 };
+export type { ICreateCustomer } from './registration';
+export type { ILoginCustomer } from './login';
+export type { ILoginForm } from './loginForm';
+export type { IRegistrationForm } from './registrationForm';
+export type { FormErrorProps } from './form';

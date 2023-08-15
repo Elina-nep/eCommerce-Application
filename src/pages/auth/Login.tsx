@@ -1,3 +1,5 @@
-export const LoginPage = () => {
-  return <div> This is login page </div>;
+import { LoginForm } from '../../components/auth/LoginForm';
+
+export const LoginPage: React.FC = () => {
+  return <LoginForm />;
 };
