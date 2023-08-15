@@ -43,3 +43,8 @@ export interface AddressesContainerProps {
 export interface FormErrorProps {
   message: string;
 }
+
+export interface ToggleVisibilityProps {
+  visible: boolean;
+  setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+}
