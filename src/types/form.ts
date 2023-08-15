@@ -24,7 +24,7 @@ export interface CustomCheckboxProps {
   control: Control<IRegistrationForm>;
   name: CheckboxFieldName;
   label: string;
-  defaultChecked?: boolean;
+  isChecked?: boolean;
   onChange?: (checked: boolean) => void;
 }
 

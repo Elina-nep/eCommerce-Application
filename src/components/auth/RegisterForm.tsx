@@ -16,7 +16,11 @@ import { AuthContext } from '../../context/AuthProvider';
 import { FormError } from './FormError';
 
 export const RegisterForm: React.FC = () => {
-  const { handleSubmit, control } = useForm<IRegistrationForm>();
+  const { handleSubmit, control } = useForm<IRegistrationForm>({
+    defaultValues: {
+      areAddressesSame: true,
+    },
+  });
   const { errors } = useFormState({
     control,
   });
@@ -97,7 +101,7 @@ export const RegisterForm: React.FC = () => {
               control={control}
               name="areAddressesSame"
               label="My billing address matches shipping address"
-              defaultChecked={true}
+              isChecked={billingAddressMatches}
               onChange={(checked) => setBillingAddressMatches(checked)}
             />
             {!billingAddressMatches && (

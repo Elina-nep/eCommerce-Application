@@ -9,8 +9,8 @@ export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
   control,
   name,
   label,
+  isChecked,
   onChange,
-  defaultChecked,
 }) => {
   return (
     <FormGroup>
@@ -24,7 +24,7 @@ export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
               <Checkbox
                 size="small"
                 {...field}
-                defaultChecked={defaultChecked}
+                checked={isChecked}
                 onChange={(e) => {
                   field.onChange(e);
                   if (onChange) {
