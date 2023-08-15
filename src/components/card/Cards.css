@@ -1,0 +1,36 @@
+.cards {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.card {
+  width: 80px;
+  flex: 0 0 32%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: white;
+  margin-right: 2%;
+}
+
+.card:last-child {
+  margin-right: 0;
+}
+
+.card-title {
+  position: relative;
+  top: 10%;
+  margin: 10px 0;
+  width: 60%;
+  text-align: center;
+  font-size: 24px;
+}
+
+.card img {
+  width: 40%;
+  height: 30%;
+}
