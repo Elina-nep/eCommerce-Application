@@ -13,7 +13,7 @@ export const createCustomerService = ({
   defaultBillingAddress,
   billingAddresses,
 }: ICreateCustomer) =>
-  formFlow({ username: email, password: password })
+  formFlow()
     .customers()
     .post({
       body: {
