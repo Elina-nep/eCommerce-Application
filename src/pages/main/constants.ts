@@ -1,4 +1,4 @@
-import { CardData } from '../../types';
+import { CardData } from '../../types/sliderCard';
 import imageToAddskylantern from '../../assets/sky-lantern.jpeg';
 import imageToAddBalloons from '../../assets/balloons.jpg';
 import imageToAddHoli from '../../assets/holi.jpg';

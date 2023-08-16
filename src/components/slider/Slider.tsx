@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import Button from '../../components/buttons/Button';
 import { cards } from '../../pages/main/constants';
-import { CardData, ModalProps } from '../../types';
+import { ModalProps } from '../../types';
+import { CardData } from '../../types/sliderCard';
 import Card from '../card/Card';
 import Modal from '../modalwindow/ModalWindow';
 
