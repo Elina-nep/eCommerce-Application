@@ -67,7 +67,6 @@ export const LoginForm: React.FC = () => {
             name="password"
             rules={passwordValidation}
             render={({ field }) => (
-
               <TextField
                 id="loginPassword"
                 label="Password"
