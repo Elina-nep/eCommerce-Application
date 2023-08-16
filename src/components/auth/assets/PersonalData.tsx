@@ -44,7 +44,7 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
       <Controller
         control={control}
         name="email"
-        rules={emailValidation}
+        rules={{ validate: emailValidation }}
         render={({ field }) =>
           CustomTextInput(
             { ...field, id: 'registrEmail', label: 'Email' },

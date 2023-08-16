@@ -72,19 +72,18 @@ export const passwordValidation = {
   },
 };
 
-export const emailValidation = {
-  required: REQUIRED_FIELD,
-  pattern: {
-    value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-    message: 'Invalid email address.',
-  },
-  validate: (value: string) => {
-    const trimmedValue = value.trim();
-    if (value !== trimmedValue) {
-      return 'Email address must not contain leading or trailing whitespace.';
-    }
-    return true;
-  },
+export const emailValidation = (value: string) => {
+  if (!value) {
+    return 'Email is required.';
+  }
+  if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(value)) {
+    return 'Invalid email address.';
+  }
+  const trimmedValue = value.trim();
+  if (value !== trimmedValue) {
+    return 'Email address must not contain leading or trailing whitespace.';
+  }
+  return true;
 };
 
 export const streetValidation = {
