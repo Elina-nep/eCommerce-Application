@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Button from '../buttons/Button';
 import { ModalProps } from '../../types';
 import './ModalWindow.css';
@@ -10,6 +10,8 @@ export const Modal: React.FC<ModalProps> = ({
   image,
   closeModal,
 }) => {
+  const modalContentRef = useRef<HTMLDivElement>(null);
+
   const handleModalClick = (
     e: React.MouseEvent<HTMLDivElement, MouseEvent>,
   ) => {
@@ -17,29 +19,37 @@ export const Modal: React.FC<ModalProps> = ({
   };
 
   useEffect(() => {
-    const handleScroll = () => {
-      window.scrollTo(0, 0);
-    };
+    if (modalContentRef.current) {
+      const scrollX = window.scrollX;
+      const scrollY = window.scrollY;
+      modalContentRef.current.scrollTop = scrollY;
+      modalContentRef.current.scrollLeft = scrollX;
 
-    window.addEventListener('scroll', handleScroll);
+      const handleScroll = () => {
+        const scrollTop = modalContentRef.current?.scrollTop || scrollY;
+        const scrollLeft = modalContentRef.current?.scrollLeft || scrollY;
+        window.scrollTo(scrollLeft, scrollTop);
+      };
 
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+      window.addEventListener('scroll', handleScroll);
+
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }
   }, []);
 
   const handleCloseButtonClick = () => {
-    window.removeEventListener('scroll', handleScroll);
     closeModal();
-  };
-
-  const handleScroll = () => {
-    window.scrollTo(0, 0);
   };
 
   return (
     <div className="modal" onClick={closeModal}>
-      <div className="modal-content" onClick={handleModalClick}>
+      <div
+        ref={modalContentRef}
+        className="modal-content"
+        onClick={handleModalClick}
+      >
         <div className="modal-image">
           <img src={image} alt="logo" />
         </div>
