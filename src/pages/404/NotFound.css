@@ -1,5 +1,5 @@
 .not-found-page {
-  background: white;
+  background: var(--light-color);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,7 +11,7 @@
 .not-found-page-text {
   display: flex;
   text-align: center;
-  color: #ff814e;
+  color: var(--primary-color-light);
   flex-direction: column;
   align-items: center;
   font-size: 1.2em;
@@ -19,13 +19,13 @@
 }
 
 h3 {
-  color: #50a294;
+  color: var(--secondary-color);
 }
 
 .not-found-page-text a {
   margin-top: 2%;
-  background: #ff814e;
-  color: #2a2a2a;
+  background: var(--primary-color-light);
+  color: var(--dark-color);
   position: relative;
   bottom: 10%;
   display: flex;
@@ -44,8 +44,8 @@ h3 {
 }
 
 .not-found-page-text a:hover {
-  color: white;
-  background: #fe4004;
+  color: var(--light-color);
+  background: var(--primary-color);
 }
 img {
   width: 40%;

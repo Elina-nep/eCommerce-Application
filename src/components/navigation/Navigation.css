@@ -1,8 +1,8 @@
 .nav {
-  background: #50a294;
+  background: var(--secondary-color);
   display: flex;
   justify-content: space-around;
-  color: white;
+  color: var(--light-color);
   padding: 5px;
   align-items: center;
 }
@@ -15,7 +15,7 @@
   padding: 0.2em 0;
   width: 8em;
   text-align: center;
-  color: white;
+  color: var(--light-color);
   list-style-type: none;
   text-decoration: none;
   border-radius: 5px;
@@ -24,7 +24,7 @@
 }
 
 .nav a:hover {
-  background: #ff814e;
+  background: var(--primary-color-light);
   border-radius: 5px;
 }
 
@@ -53,10 +53,10 @@
   font-family: inherit;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
-  background-color: #fff;
+  color: var(--dark-color);
+  background-color: var(--light-color);
   background-clip: padding-box;
-  border: 1px solid white;
+  border: 1px solid var(--light-color);
   border-top-left-radius: 0.5rem;
   border-bottom-left-radius: 0.5rem;
   transition:
@@ -71,12 +71,12 @@
   opacity: 1;
 }
 .text-field__input::placeholder {
-  color: #212529;
+  color: var(--dark-color);
   opacity: 0.4;
 }
 .text-field__input:focus {
-  color: #212529;
-  background-color: #fff;
+  color: var(--dark-color);
+  background-color: var(--light-color);
   border-color: #bdbdbd;
   outline: 0;
   box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
@@ -88,9 +88,9 @@
   justify-content: center;
   height: 100%;
   width: 2.5rem;
-  background-color: white;
+  background-color: var(--light-color);
   cursor: pointer;
-  color: #50a294;
+  color: var(--secondary-color);
   transition: background-color 0.15s ease-in-out;
   border-top-right-radius: 0.5rem;
   border-bottom-right-radius: 0.5rem;
@@ -98,6 +98,6 @@
 }
 
 .text-field__aicon:hover {
-  background-color: #ff814e;
-  color: white;
+  background-color: var(--primary-color-light);
+  color: var(--light-color);
 }

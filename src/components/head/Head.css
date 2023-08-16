@@ -1,5 +1,5 @@
 .head {
-  background-color: #ffffff;
+  background-color: var(--light-color);
   align-items: center;
   padding: 7px;
 }
@@ -34,13 +34,13 @@
 .store-name {
   list-style-type: none;
   text-decoration: none;
-  color: #fe4004;
+  color: var(--primary-color);
   margin: 0;
   font-size: 1.7vw;
 }
 
 .slogan {
-  color: #ff814e;
+  color: var(--primary-color-light);
   font-size: 1.1vw;
   white-space: nowrap;
 }
@@ -54,7 +54,7 @@
 }
 
 .cart a {
-  color: #2a2a2a;
+  color: var(--dark-color);
   list-style-type: none;
   text-decoration: none;
   position: relative;
@@ -70,25 +70,25 @@
   width: 5em;
   text-align: center;
   font-size: 1.1vw;
-  color: white;
+  color: var(--light-color);
   list-style-type: none;
   text-decoration: none;
-  background-color: #fe4004;
-  border: 1px solid #fe4004;
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
   border-radius: 5px;
   text-align: center;
   transition: background-color 0.5s ease;
 }
 
 .login:hover {
-  background-color: white;
-  border: 1px solid #fe4004;
-  color: #fe4004;
+  background-color: var(--light-color);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
 }
 
 .register {
-  color: #50a294;
-  border: 1px solid #50a294;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,14 +104,14 @@
 }
 
 .register:hover {
-  background: #50a294;
-  border: 1px solid #50a294;
-  color: white;
+  background: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: var(--light-color);
 }
 
 .logout {
-  color: #2a2a2a;
-  border: 1px solid #2a2a2a;
+  color: var(--dark-color);
+  border: 1px solid var(--dark-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -127,7 +127,7 @@
 }
 
 .logout:hover {
-  background: #2a2a2a;
-  border: 1px solid #2a2a2a;
-  color: white;
+  background: var(--dark-color);
+  border: 1px solid var(--dark-color);
+  color: var(--light-color);
 }

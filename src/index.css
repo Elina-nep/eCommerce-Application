@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-code {
-  font-family: 'Iceland';
+:root {
+  --primary-color: #fe4004;
+  --primary-color-light: #ff814e;
+  --secondary-color: #50a294;
+  --dark-color: #2a2a2a;
+  --light-color: #ffffff;
 }

@@ -12,9 +12,9 @@ button:focus {
   height: 55px;
   border-radius: 60px;
   z-index: 1;
-  background-color: white;
-  color: #50a294;
-  border: 1px solid #50a294;
+  background-color: var(--light-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
   cursor: pointer;
   transition: background-color 0.5s ease;
   text-align: center;
@@ -25,16 +25,16 @@ button:focus {
 }
 
 .button-pagination:hover {
-  background-color: #ff814e;
-  color: white;
-  border: 1px solid #ff814e;
+  background-color: var(--primary-color-light);
+  color: var(--light-color);
+  border: 1px solid var(--primary-color-light);
 }
 
 .button-info {
   position: relative;
   bottom: 10%;
-  background-color: #ff814e;
-  color: #2a2a2a;
+  background-color: var(--primary-color-light);
+  color: var(--dark-color);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -52,8 +52,8 @@ button:focus {
 }
 
 .button-info:hover {
-  background-color: #fe4004;
-  color: white;
+  background-color: var(--primary-color);
+  color: var(--light-color);
 }
 
 .close {
@@ -63,9 +63,9 @@ button:focus {
   height: 50px;
   border-radius: 50px;
   z-index: 1;
-  background-color: white;
-  color: #50a294;
-  border: 1px solid #50a294;
+  background-color: var(--light-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
   cursor: pointer;
   transition: background-color 0.5s ease;
   display: flex;
@@ -75,7 +75,7 @@ button:focus {
 }
 
 .close:hover {
-  background-color: #ff814e;
-  color: white;
-  border: 1px solid #ff814e;
+  background-color: var(--primary-color-light);
+  color: var(--light-color);
+  border: 1px solid var(--primary-color-light);
 }

@@ -1,6 +1,6 @@
 .footer {
-  background-color: #2a2a2a;
-  color: #50a294;
+  background-color: var(--dark-color);
+  color: var(--secondary-color);
   display: flex;
   justify-content: space-between;
   padding: 1% 7%;
@@ -27,7 +27,7 @@
 
 .column ul li a {
   font-size: 1.3vw;
-  color: #50a294;
+  color: var(--secondary-color);
   text-decoration: none;
   transition: color 0.5s ease;
 }
@@ -38,11 +38,11 @@
 }
 
 .column a:hover {
-  color: white;
+  color: var(--light-color);
 }
 
 .column-phone-number {
-  color: #fe4004;
+  color: var(--primary-color);
   margin-top: 0;
 }
 
