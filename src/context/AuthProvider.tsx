@@ -51,6 +51,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       createCustomerService(data)
         .then((body) => {
           alert(`User ${body.body.customer.email} is created`);
+          loginCustomerService({ email: data.email, password: data.password });
           setIfAuth(true);
           resolve();
         })
