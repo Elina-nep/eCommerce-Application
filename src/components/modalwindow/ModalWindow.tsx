@@ -7,6 +7,7 @@ export const Modal: React.FC<ModalProps> = ({
   description,
   couponDate,
   couponCode,
+  image,
   closeModal,
 }) => {
   const handleModalClick = (
@@ -16,30 +17,39 @@ export const Modal: React.FC<ModalProps> = ({
   };
 
   useEffect(() => {
-    const offScroll = () => {
-      const handleScroll = () => {
-        window.scrollTo(0, 0);
-      };
-
-      window.addEventListener('scroll', handleScroll);
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
+    const handleScroll = () => {
+      window.scrollTo(0, 0);
     };
 
-    offScroll();
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
+
+  const handleCloseButtonClick = () => {
+    window.removeEventListener('scroll', handleScroll);
+    closeModal();
+  };
+
+  const handleScroll = () => {
+    window.scrollTo(0, 0);
+  };
 
   return (
     <div className="modal" onClick={closeModal}>
       <div className="modal-content" onClick={handleModalClick}>
+        <div className="modal-image">
+          <img src={image} alt="logo" />
+        </div>
         <div className="modal-text">
           <h4>{description}</h4>
           <p>{`Date: ${couponDate}`}</p>
-          <p>{`Code: ${couponCode}`}</p>
+          <p className="coupon-code">{`${couponCode}`}</p>
         </div>
       </div>
-      <Button onClick={closeModal} className="close">
+      <Button onClick={handleCloseButtonClick} className="close">
         {'x'}
       </Button>
     </div>

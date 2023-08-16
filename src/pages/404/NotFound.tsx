@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { Footer } from '../../components/footer/Footer';
 import { Header } from '../../components/header/Header';
 import './NotFound.css';
+import imageToAddError from '../../assets/swinging.gif';
 
 export const NotFound = () => {
   return (
@@ -10,7 +11,7 @@ export const NotFound = () => {
       <div className="not-found-page">
         <div>
           <img
-            src="./assets/swinging.gif"
+            src={imageToAddError}
             alt="404 Image"
             className="not-found-page-img"
           ></img>

@@ -6,9 +6,7 @@ import './Main.css';
 export const MainPage = () => {
   return (
     <main>
-      <React.StrictMode>
-        <Slider />
-      </React.StrictMode>
+      <Slider />
     </main>
   );
 };

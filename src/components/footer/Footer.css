@@ -26,6 +26,7 @@
 }
 
 .column ul li a {
+  font-size: 1.3vw;
   color: #50a294;
   text-decoration: none;
   transition: color 0.5s ease;
@@ -47,7 +48,7 @@
 
 .column a::before {
   height: 5%;
-  content: url('../../../public/assets/салют.png');
+  content: url('../../assets/salut.png');
   background-size: contain;
   opacity: 0;
   transition:

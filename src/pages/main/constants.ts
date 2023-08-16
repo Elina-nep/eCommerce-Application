@@ -1,10 +1,19 @@
 import { CardData } from '../../types';
+import imageToAddskylantern from '../../assets/sky-lantern.jpeg';
+import imageToAddBalloons from '../../assets/balloons.jpg';
+import imageToAddHoli from '../../assets/holi.jpg';
+import imageToAddWeb from '../../assets/spider-web.jpg';
+import imageToAddCandles from '../../assets/candles.jpg';
+import imageToAddPoppers from '../../assets/poppers.jpg';
+import imageToAddSets from '../../assets/sets.jpg';
+import imageToAddHats from '../../assets/hats.jpg';
+import imageToAddDecoration from '../../assets/decoration.jpg';
 
 export const cards: CardData[] = [
   {
     id: 1,
-    discountText: 'Get 15% on sky lanterns',
-    image: './assets/sky-lantern.jpeg',
+    discountText: 'Get 15% off on Sky lanterns',
+    image: imageToAddskylantern,
     buttonText: 'Learn more',
     couponDate: 'Ends 04/12/2023 Online exclusive! ',
     couponCode: 'SKY15',
@@ -12,8 +21,8 @@ export const cards: CardData[] = [
   },
   {
     id: 2,
-    discountText: 'Get 20% off balloons set',
-    image: './assets/balloons.jpg',
+    discountText: 'Get 20% off on Balloons set',
+    image: imageToAddBalloons,
     buttonText: 'Learn more',
     couponDate: 'Ends 08/12/2023 Online exclusive! ',
     couponCode: 'BALLOON20',
@@ -22,7 +31,7 @@ export const cards: CardData[] = [
   {
     id: 3,
     discountText: 'Get 30% off on Holi colors',
-    image: './assets/holi.jpg',
+    image: imageToAddHoli,
     buttonText: 'Learn more',
     couponDate: 'Ends 01/11/2023 Online exclusive!',
     couponCode: 'HOLI30',
@@ -30,8 +39,8 @@ export const cards: CardData[] = [
   },
   {
     id: 4,
-    discountText: 'Get 30% on artificial spider webs',
-    image: './assets/spider-web.jpg',
+    discountText: 'Get 30% off on Spider webs',
+    image: imageToAddWeb,
     buttonText: 'Learn more',
     couponDate: 'Ends 31/10/2023 Online exclusive! ',
     couponCode: 'WEB30',
@@ -39,8 +48,8 @@ export const cards: CardData[] = [
   },
   {
     id: 5,
-    discountText: 'Get 25% off on party candles',
-    image: './assets/candles.jpg',
+    discountText: 'Get 25% off on Party candles',
+    image: imageToAddCandles,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/25/2023 Online exclusive!',
     couponCode: 'CANDLE25',
@@ -48,8 +57,8 @@ export const cards: CardData[] = [
   },
   {
     id: 6,
-    discountText: 'Get 20% off party poppers',
-    image: './assets/poppers.jpg',
+    discountText: 'Get 20% off on Party poppers',
+    image: imageToAddPoppers,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/31/2023 Online exclusive!',
     couponCode: 'POPPER20',
@@ -57,8 +66,8 @@ export const cards: CardData[] = [
   },
   {
     id: 7,
-    discountText: '10% off all gift sets',
-    image: './assets/sets.jpg',
+    discountText: 'Get 10% off on Gift sets',
+    image: imageToAddSets,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/31/2023 Online exclusive!',
     couponCode: 'All products from this category are on sale.',
@@ -66,8 +75,8 @@ export const cards: CardData[] = [
   },
   {
     id: 8,
-    discountText: 'Get 30% off party hats',
-    image: './assets/hats.jpg',
+    discountText: 'Get 30% off on Party hats',
+    image: imageToAddHats,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/31/2023 Online exclusive!',
     couponCode: 'HAT30',
@@ -75,8 +84,8 @@ export const cards: CardData[] = [
   },
   {
     id: 9,
-    discountText: '15% off all decoration products.',
-    image: './assets/decoration.jpg',
+    discountText: 'Get 15% off on Decoration.',
+    image: imageToAddDecoration,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/31/2023 Online exclusive!',
     couponCode: 'All products from this category are on sale.',

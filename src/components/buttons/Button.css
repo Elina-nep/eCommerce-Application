@@ -38,9 +38,9 @@ button:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 0.5em 0;
+  padding: 0.4em 0;
   width: 10em;
-  font-size: 1.5vw;
+  font-size: 1.6vw;
   list-style-type: none;
   text-decoration: none;
   border-radius: 5px;

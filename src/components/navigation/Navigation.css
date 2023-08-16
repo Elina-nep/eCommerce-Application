@@ -8,14 +8,13 @@
 }
 
 .nav a {
-  font-size: 1.4vw;
+  font-size: 1.2vw;
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 0.2em 0;
   width: 8em;
   text-align: center;
-  font-size: 1.1vw;
   color: white;
   list-style-type: none;
   text-decoration: none;

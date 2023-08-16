@@ -19,16 +19,33 @@
   color: #2a2a2a;
   box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
   border-radius: 2%;
+  font-size: 1.4em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .modal-text {
   text-align: center;
-  width: 40%;
+  width: 50%;
   position: relative;
   right: 0px;
-  margin-left: 60%;
   font-weight: normal;
   color: #2a2a2a;
-  border: 1px solid #2a2a2a;
   border-radius: 4%;
+}
+
+.modal-image {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coupon-code {
+  width: auto;
+  color: #fe4004;
+  border: 5px dotted #50a294;
+  border-radius: 4%;
+  padding: 0.1em;
 }

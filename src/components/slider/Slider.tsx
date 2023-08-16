@@ -11,6 +11,7 @@ const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalData, setModalData] = useState<ModalProps>({
+    image: '',
     description: '',
     couponDate: '',
     couponCode: '',
@@ -30,6 +31,7 @@ const Slider = () => {
 
   const handleLearnMoreClick = (cardData: CardData) => {
     setModalData({
+      image: cardData.image,
       description: cardData.description,
       couponDate: cardData.couponDate,
       couponCode: cardData.couponCode ?? '',
@@ -49,6 +51,7 @@ const Slider = () => {
           description={modalData.description}
           couponDate={modalData.couponDate}
           couponCode={modalData.couponCode ?? ''}
+          image={modalData.image}
           closeModal={closeModal}
         />
       )}

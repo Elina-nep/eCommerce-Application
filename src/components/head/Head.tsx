@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import { HeadProps } from '../../types';
 import './Head.css';
+import imageToAddCottoncandy from '../../assets/cotton-candy.png';
 
 const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
   const { ifAuth } = useContext(AuthContext);
@@ -12,7 +13,7 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
       <div className="headnav">
         <div className="logo">
           <div className="logo-picture">
-            <img src={process.env.PUBLIC_URL + 'assets/вата.png'} alt="logo" />
+            <img src={imageToAddCottoncandy} alt="logo" />
           </div>
           <div className="store-title">
             <Link to="/" className="store-name">
