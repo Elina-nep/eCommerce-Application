@@ -8,7 +8,7 @@
 }
 
 .nav a {
-  font-size: 1.2vw;
+  font-size: var(--font-small);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -45,7 +45,7 @@
 }
 
 .text-field__input {
-  font-size: 1.2vw;
+  font-size: var(--font-small);
   display: block;
   width: 80%;
   height: 100%;

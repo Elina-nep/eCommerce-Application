@@ -3,7 +3,7 @@
   color: var(--secondary-color);
   display: flex;
   justify-content: space-between;
-  padding: 1% 7%;
+  padding: 0.8% 7%;
 }
 
 .column {
@@ -13,6 +13,7 @@
 .column h3 {
   margin-bottom: 10px;
   font-weight: inherit;
+  font-size: var(--font-medium);
 }
 
 .column ul {
@@ -26,13 +27,14 @@
 }
 
 .column ul li a {
-  font-size: 1.3vw;
+  font-size: var(--font-small);
   color: var(--secondary-color);
   text-decoration: none;
   transition: color 0.5s ease;
 }
 
 .column p {
+  font-size: var(--font-small);
   white-space: nowrap;
   margin: 0 10%;
 }

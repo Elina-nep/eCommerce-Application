@@ -13,4 +13,15 @@ body {
   --secondary-color: #50a294;
   --dark-color: #2a2a2a;
   --light-color: #ffffff;
+
+  --screen-small: 576px;
+  --screen-medium: 768px;
+  --screen-large: 992px;
+  --screen-xlarge: 1200px;
+
+  --font-xsmall: 1rem;
+  --font-small: 1.1rem;
+  --font-medium: 1.2rem;
+  --font-large: 1.4rem;
+  --font-xlarge: 1.7rem;
 }

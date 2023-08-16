@@ -36,21 +36,21 @@
   text-decoration: none;
   color: var(--primary-color);
   margin: 0;
-  font-size: 1.7vw;
+  font-size: var(--font-large);
 }
 
 .slogan {
   color: var(--primary-color-light);
-  font-size: 1.1vw;
+  font-size: var(--font-xsmall);
   white-space: nowrap;
 }
 
 .links {
-  font-size: 1.3vw;
-  width: 25%;
+  font-size: var(--font-medium);
+  width: 30%;
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .cart a {
@@ -59,7 +59,7 @@
   text-decoration: none;
   position: relative;
   left: 5%;
-  font-size: 1.2vw;
+  font-size: var(--font-xsmall);
 }
 
 .login {
@@ -69,7 +69,7 @@
   padding: 0.2em 0;
   width: 5em;
   text-align: center;
-  font-size: 1.1vw;
+  font-size: var(--font-xsmall);
   color: var(--light-color);
   list-style-type: none;
   text-decoration: none;
@@ -95,7 +95,7 @@
   padding: 0.2em 0;
   width: 5em;
   text-align: center;
-  font-size: 1.1vw;
+  font-size: var(--font-xsmall);
   list-style-type: none;
   text-decoration: none;
   border-radius: 5px;
@@ -118,7 +118,7 @@
   padding: 0.2em 0;
   width: 5em;
   text-align: center;
-  font-size: 1.1vw;
+  font-size: var(--font-xsmall);
   list-style-type: none;
   text-decoration: none;
   border-radius: 5px;
