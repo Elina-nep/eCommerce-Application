@@ -1,10 +1,16 @@
-import { fireEvent, render, waitFor, screen } from '@testing-library/react';
+import {
+  fireEvent,
+  render,
+  waitFor,
+  screen,
+  act,
+} from '@testing-library/react';
 import { LoginForm } from '../src/components/auth/LoginForm';
 
 test('checks wrong email', async () => {
   const wrapper = render(<LoginForm />);
-
   expect(wrapper).toBeTruthy();
+
   const inputs = {
     email: wrapper.container.querySelector('#loginEmail'),
     password: wrapper.container.querySelector('#loginPassword'),
@@ -36,43 +42,21 @@ test('checks wrong email', async () => {
     expect(screen.getByText('Invalid email address.')).toBeInTheDocument();
   });
 
-  // fireEvent.change(inputs.email!, {
-  //   target: {
-  //     value: '  email@email.com   ',
-  //   },
-  // });
+  await act(async () => {
+    fireEvent.change(inputs.email!, {
+      target: {
+        value: 'email@email.com',
+      },
+    });
 
-  // fireEvent(
-  //   wrapper.container.querySelector('.login-page__btn')!,
-  //   new MouseEvent('click', {
-  //     bubbles: true,
-  //     cancelable: true,
-  //   }),
-  // );
-
-  // await waitFor(() => {
-  //   const error = wrapper.container.querySelector('.Mui-error');
-  //   expect(error).toBeTruthy();
-  //   expect(
-  //     screen.getByText(
-  //       'Email address must not contain leading or trailing whitespace.',
-  //     ),
-  //   ).toBeInTheDocument();
-  // });
-
-  fireEvent.change(inputs.email!, {
-    target: {
-      value: 'email@email.com',
-    },
+    fireEvent(
+      wrapper.container.querySelector('.login-page__btn')!,
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
   });
-
-  fireEvent(
-    wrapper.container.querySelector('.login-page__btn')!,
-    new MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-    }),
-  );
 
   await waitFor(() => {
     const error = wrapper.container.querySelector('.error_message');
@@ -117,19 +101,21 @@ test('checks wrong password', async () => {
     ).toBeInTheDocument();
   });
 
-  fireEvent.change(inputs.password!, {
-    target: {
-      value: 'aaaaaaaa',
-    },
-  });
+  await act(async () => {
+    fireEvent.change(inputs.password!, {
+      target: {
+        value: 'aaaaaaaa',
+      },
+    });
 
-  fireEvent(
-    wrapper.container.querySelector('.login-page__btn')!,
-    new MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-    }),
-  );
+    fireEvent(
+      wrapper.container.querySelector('.login-page__btn')!,
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+  });
 
   await waitFor(() => {
     const error = wrapper.container.querySelector('.Mui-error');
@@ -139,19 +125,21 @@ test('checks wrong password', async () => {
     ).toBeInTheDocument();
   });
 
-  fireEvent.change(inputs.password!, {
-    target: {
-      value: 'AAAAAAA!',
-    },
+  await act(async () => {
+    fireEvent.change(inputs.password!, {
+      target: {
+        value: 'AAAAAAA!',
+      },
+    });
+    fireEvent(
+      wrapper.container.querySelector('.login-page__btn')!,
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
   });
 
-  fireEvent(
-    wrapper.container.querySelector('.login-page__btn')!,
-    new MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-    }),
-  );
   await waitFor(() => {
     const error = wrapper.container.querySelector('.Mui-error');
     expect(error).toBeTruthy();
@@ -160,33 +148,12 @@ test('checks wrong password', async () => {
     ).toBeInTheDocument();
   });
 
-  fireEvent.change(inputs.password!, {
-    target: {
-      value: 'aaaAAA!!!',
-    },
-  });
-
-  fireEvent(
-    wrapper.container.querySelector('.login-page__btn')!,
-    new MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-    }),
-  );
-
-  await waitFor(() => {
-    const error = wrapper.container.querySelector('.Mui-error');
-    expect(error).toBeTruthy();
-    expect(
-      screen.getByText('Password must contain at least 1 number.'),
-    ).toBeInTheDocument();
-
+  await act(async () => {
     fireEvent.change(inputs.password!, {
       target: {
         value: 'aaaAAA!!!',
       },
     });
-
     fireEvent(
       wrapper.container.querySelector('.login-page__btn')!,
       new MouseEvent('click', {
@@ -204,19 +171,43 @@ test('checks wrong password', async () => {
     ).toBeInTheDocument();
   });
 
-  fireEvent.change(inputs.password!, {
-    target: {
-      value: 'aaaAAA111',
-    },
+  await act(async () => {
+    fireEvent.change(inputs.password!, {
+      target: {
+        value: 'aaaAAA!!!',
+      },
+    });
+    fireEvent(
+      wrapper.container.querySelector('.login-page__btn')!,
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
   });
 
-  fireEvent(
-    wrapper.container.querySelector('.login-page__btn')!,
-    new MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-    }),
-  );
+  await waitFor(() => {
+    const error = wrapper.container.querySelector('.Mui-error');
+    expect(error).toBeTruthy();
+    expect(
+      screen.getByText('Password must contain at least 1 number.'),
+    ).toBeInTheDocument();
+  });
+
+  await act(async () => {
+    fireEvent.change(inputs.password!, {
+      target: {
+        value: 'aaaAAA111',
+      },
+    });
+    fireEvent(
+      wrapper.container.querySelector('.login-page__btn')!,
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+  });
 
   await waitFor(() => {
     const error = wrapper.container.querySelector('.Mui-error');
@@ -228,19 +219,20 @@ test('checks wrong password', async () => {
     ).toBeInTheDocument();
   });
 
-  fireEvent.change(inputs.password!, {
-    target: {
-      value: '  aaaAAA111!!  ',
-    },
+  await act(async () => {
+    fireEvent.change(inputs.password!, {
+      target: {
+        value: '  aaaAAA111!!  ',
+      },
+    });
+    fireEvent(
+      wrapper.container.querySelector('.login-page__btn')!,
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
   });
-
-  fireEvent(
-    wrapper.container.querySelector('.login-page__btn')!,
-    new MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-    }),
-  );
 
   await waitFor(() => {
     const error = wrapper.container.querySelector('.Mui-error');
@@ -252,25 +244,26 @@ test('checks wrong password', async () => {
     ).toBeInTheDocument();
   });
 
-  fireEvent.change(inputs.email!, {
-    target: {
-      value: 'email@email.com',
-    },
-  });
+  await act(async () => {
+    fireEvent.change(inputs.email!, {
+      target: {
+        value: 'email@email.com',
+      },
+    });
 
-  fireEvent.change(inputs.password!, {
-    target: {
-      value: 'aaAA11!!',
-    },
+    fireEvent.change(inputs.password!, {
+      target: {
+        value: 'aaAA11!!',
+      },
+    });
+    fireEvent(
+      wrapper.container.querySelector('.login-page__btn')!,
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
   });
-
-  fireEvent(
-    wrapper.container.querySelector('.login-page__btn')!,
-    new MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-    }),
-  );
 
   await waitFor(() => {
     const error = wrapper.container.querySelector('.error_message');
@@ -292,13 +285,11 @@ test('checks email and password', async () => {
       value: 'email@email',
     },
   });
-
   fireEvent.change(inputs.password!, {
     target: {
-      value: 'aaaAAA11',
+      value: 'aaa',
     },
   });
-
   fireEvent(
     wrapper.container.querySelector('.login-page__btn')!,
     new MouseEvent('click', {
@@ -306,40 +297,42 @@ test('checks email and password', async () => {
       cancelable: true,
     }),
   );
-
   await waitFor(() => {
-    const emailError = wrapper.container.querySelector('.Mui-error');
+    const emailError = wrapper.container.querySelector(
+      '#loginEmail-helper-text',
+    );
     expect(emailError).toBeTruthy();
     expect(screen.getByText('Invalid email address.')).toBeInTheDocument();
-
-    const passwordError = wrapper.container.querySelector('.Mui-error');
+    const passwordError = wrapper.container.querySelector(
+      '#loginPassword-helper-text',
+    );
     expect(passwordError).toBeTruthy();
     expect(
-      screen.getByText(
-        'Password must contain at least 1 special character (e.g., !@#$%^&*).',
-      ),
+      screen.getByText('Password must be at least 8 characters long.'),
     ).toBeInTheDocument();
   });
 
-  fireEvent.change(inputs.email!, {
-    target: {
-      value: 'email@email.com',
-    },
-  });
+  await act(async () => {
+    fireEvent.change(inputs.email!, {
+      target: {
+        value: 'email@email.com',
+      },
+    });
 
-  fireEvent.change(inputs.password!, {
-    target: {
-      value: 'aaaAA11!!!',
-    },
-  });
+    fireEvent.change(inputs.password!, {
+      target: {
+        value: 'aaaAA11!!!',
+      },
+    });
 
-  fireEvent(
-    wrapper.container.querySelector('.login-page__btn')!,
-    new MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-    }),
-  );
+    fireEvent(
+      wrapper.container.querySelector('.login-page__btn')!,
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+  });
 
   await waitFor(() => {
     const error = wrapper.container.querySelector('.error_message');
