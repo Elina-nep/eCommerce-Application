@@ -45,7 +45,7 @@ export const LoginForm: React.FC = () => {
           <Controller
             control={control}
             name="email"
-            rules={emailValidation}
+            rules={{ validate: emailValidation }}
             render={({ field }) => (
               <TextField
                 id="loginEmail"
