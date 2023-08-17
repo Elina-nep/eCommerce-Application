@@ -27,7 +27,6 @@ export const RegisterForm: React.FC = () => {
 
   const [errorMessage, setErrorMessage] = useState<string>('');
   const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
-    console.log(data);
     const billinAdd = {
       country: data.billCountry,
       city: data.billCity,

@@ -1,3 +1,7 @@
+import { enableFetchMocks } from 'jest-fetch-mock';
+import fetch from 'jest-fetch-mock';
+enableFetchMocks();
+
 import {
   fireEvent,
   render,
@@ -6,9 +10,28 @@ import {
   act,
 } from '@testing-library/react';
 import { LoginForm } from '../src/components/auth/LoginForm';
+import { AuthProvider } from '../src/context/AuthProvider';
+
+fetch.mockResponse(() =>
+  Promise.resolve({ json: () => Promise.resolve('resolved') }).then(() => {
+    return {
+      body: JSON.stringify({
+        customer: {
+          firstName: 'Test',
+        },
+      }),
+    };
+  }),
+);
+
+window.alert = () => {};
 
 test('checks wrong email', async () => {
-  const wrapper = render(<LoginForm />);
+  const wrapper = render(
+    <AuthProvider>
+      <LoginForm />
+    </AuthProvider>,
+  );
   expect(wrapper).toBeTruthy();
 
   const inputs = {

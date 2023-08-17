@@ -27,7 +27,6 @@ export const LoginForm: React.FC = () => {
   const [errorMessage, setErrorMessage] = useState<string>('');
 
   const onSubmit: SubmitHandler<ILoginForm> = async (data) => {
-    console.log(data);
     try {
       await loginCustomer({ email: data.email, password: data.password });
       setErrorMessage('');

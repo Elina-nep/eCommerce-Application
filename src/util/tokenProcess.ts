@@ -14,6 +14,5 @@ export const tokenCache = {
 export const getExistingToken = () => {
   const cache = localStorage.getItem('token');
   const token = cache ? `Bearer ${JSON.parse(cache)?.token}` : '';
-  console.log('getExistingToken', token);
   return token;
 };
