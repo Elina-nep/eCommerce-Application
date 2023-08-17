@@ -6,7 +6,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "DOTENV_CONFIG_PATH=.env jest --setupFiles=dotenv/config",
+    "test": "DOTENV_CONFIG_PATH=.env jest --setupFiles=dotenv/config --coverage",
     "eject": "react-scripts eject",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "pre-commit": "lint-staged",
