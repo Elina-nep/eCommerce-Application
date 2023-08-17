@@ -9,7 +9,7 @@ interface NameValidation {
 
 export const nameValidation: NameValidation = {
   validate: (value: string) => {
-    if (!value.trim()) {
+    if (!value) {
       return REQUIRED_FIELD;
     }
 
