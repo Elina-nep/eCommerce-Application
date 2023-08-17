@@ -3,11 +3,11 @@ import { parse, differenceInYears, isValid } from 'date-fns';
 
 const REQUIRED_FIELD = 'This field is required';
 
-interface NameValidation {
+interface StringValidation {
   validate: (value: string) => string | boolean;
 }
 
-export const nameValidation: NameValidation = {
+export const nameValidation: StringValidation = {
   validate: (value: string) => {
     if (!value) {
       return REQUIRED_FIELD;
@@ -15,10 +15,6 @@ export const nameValidation: NameValidation = {
 
     if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?0-9]/.test(value)) {
       return 'Cannot contain special characters or numbers.';
-    }
-
-    if (!/[a-zA-Z]/.test(value)) {
-      return 'Must contain at least one character.';
     }
 
     return true;
@@ -86,25 +82,39 @@ export const emailValidation = (value: string) => {
   return true;
 };
 
-export const streetValidation = {
-  required: REQUIRED_FIELD,
-  minLength: {
-    value: 1,
-    message: 'Street must have at least 1 character.',
+export const streetValidation: StringValidation = {
+  validate: (value: string) => {
+    if (!value) {
+      return REQUIRED_FIELD;
+    }
+
+    if (!/[a-zA-Z]/.test(value)) {
+      return 'Must contain at least one character.';
+    }
+
+    return true;
   },
 };
 
 export const countryValidation = {
-  required: REQUIRED_FIELD,
+  validate: (value: string) => {
+    if (!value) {
+      return REQUIRED_FIELD;
+    }
+    return true;
+  },
 };
 
 export const postalCodeValidation = {
-  required: REQUIRED_FIELD,
-  validate: (value: string, { country }: { country: string }) => {
+  validate: (value: string, country: string) => {
     let postalCodeRegex = /^(?:[A-Z0-9]+([- ]?[A-Z0-9]+)*)?$/;
-    let errorMessage = 'Invalid postal code.';
+    let errorMessage = '';
 
-    if (country === 'Germany') {
+    if (!value) {
+      errorMessage = REQUIRED_FIELD;
+    } else if (!country) {
+      errorMessage = REQUIRED_FIELD;
+    } else if (country === 'Germany') {
       postalCodeRegex = /^\d{5}$/;
       errorMessage = 'Postal code for Germany must have 5 digits.';
     } else if (country === 'Belarus') {
@@ -120,7 +130,7 @@ export const postalCodeValidation = {
     }
 
     if (!postalCodeRegex.test(value)) {
-      return errorMessage;
+      return errorMessage || 'Invalid postal code.';
     }
 
     return true;
