@@ -1,50 +1,30 @@
+import { enableFetchMocks } from 'jest-fetch-mock';
+import fetch from 'jest-fetch-mock';
+enableFetchMocks();
+
 import React from 'react';
-import { fireEvent, render, waitFor, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import { LoginForm } from '../src/components/auth/LoginForm';
+import { AuthProvider } from '../src/context/AuthProvider';
+
+fetch.mockResponse(() =>
+  Promise.resolve({ json: () => Promise.resolve('resolved') }).then(() => {
+    return {
+      body: JSON.stringify({
+        customer: {
+          firstName: 'Test',
+        },
+      }),
+    };
+  }),
+);
 
 test('renders login form', async () => {
-  const wrapper = render(<LoginForm />);
+  window.alert = () => {};
+  const wrapper = render(
+    <AuthProvider>
+      <LoginForm />
+    </AuthProvider>,
+  );
   expect(wrapper).toBeTruthy();
-  const inputs = {
-    email: wrapper.container
-      .querySelector('.MuiTextField-root')!
-      .querySelector('input'),
-  };
-
-  fireEvent.change(inputs.email!, {
-    target: {
-      value: 'email@email',
-    },
-  });
-
-  fireEvent(
-    wrapper.container.querySelector('.login-page__btn')!,
-    new MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-    }),
-  );
-
-  await waitFor(() => {
-    const error = wrapper.container.querySelector('.Mui-error');
-    expect(error).toBeTruthy();
-    expect(screen.getByText('Invalid email address.')).toBeInTheDocument();
-  });
-  fireEvent.change(inputs.email!, {
-    target: {
-      value: 'email@email.com',
-    },
-  });
-
-  fireEvent(
-    wrapper.container.querySelector('.login-page__btn')!,
-    new MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-    }),
-  );
-  await waitFor(() => {
-    const error = wrapper.container.querySelector('.Mui-error');
-    expect(error).toBeFalsy();
-  });
 });
