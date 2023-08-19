@@ -3,7 +3,7 @@ import Button from '../../components/buttons/Button';
 import { cards } from '../../pages/main/constants';
 import { ModalProps } from '../../types';
 import { CardData } from '../../types/sliderCard';
-import Card from '../card/Card';
+import Card from '../card/CouponCard';
 import Modal from '../modalwindow/ModalWindow';
 
 import './Slider.css';

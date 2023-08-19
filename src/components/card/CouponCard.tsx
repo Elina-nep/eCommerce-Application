@@ -1,7 +1,7 @@
 import React from 'react';
 import Button from '../buttons/Button';
 import { CardProps } from '../../types';
-import './Cards.css';
+import './CouponCard.css';
 
 const Card: React.FC<CardProps> = ({ card, handleLearnMoreClick }) => {
   return (
