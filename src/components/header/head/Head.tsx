@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../../context/AuthProvider';
+import { AuthContext } from '../../../context/AuthProvider';
 import './Head.css';
 import imageToAddCottoncandy from '../../assets/cotton-candy.png';
-import { HeadProps } from '../../types/cart';
+import { HeadProps } from '../../../types/cart';
 
 const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
   const { ifAuth } = useContext(AuthContext);

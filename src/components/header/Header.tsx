@@ -1,5 +1,5 @@
-import Head from '../head/Head';
-import { Navigation } from '../navigation/Navigation';
+import Head from './head/Head';
+import { Navigation } from './navigation/Navigation';
 
 export const Header = () => {
   return (
