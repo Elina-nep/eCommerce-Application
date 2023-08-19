@@ -16,9 +16,10 @@ export const catalogLinks: LinkItem[] = [
 ];
 
 export const columns: ColumnItem[] = [
-  { title: 'Information', links },
-  { title: 'Catalog', links: catalogLinks },
+  { id: 'information', title: 'Information', links },
+  { id: 'catalog', title: 'Catalog', links: catalogLinks },
   {
+    id: 'my-account',
     title: 'My account',
     links: [
       { title: 'My room', to: '#' },

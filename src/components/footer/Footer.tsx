@@ -6,8 +6,8 @@ import LinkList from './FooterLink';
 export const Footer: React.FC = () => {
   return (
     <footer className="footer">
-      {columns.map((column, index) => (
-        <div className="column" key={index}>
+      {columns.map((column) => (
+        <div className="column" key={column.id}>
           <h3>{column.title}</h3>
           <LinkList links={column.links} />
         </div>

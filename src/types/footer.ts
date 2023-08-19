@@ -6,4 +6,5 @@ export interface LinkItem {
 export interface ColumnItem {
   title: string;
   links: LinkItem[];
+  id: string;
 }
