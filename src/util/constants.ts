@@ -1,13 +1,13 @@
-import { CardData } from '../../types/sliderCard';
-import imageToAddskylantern from '../../assets/sky-lantern.jpeg';
-import imageToAddBalloons from '../../assets/balloons.jpg';
-import imageToAddHoli from '../../assets/holi.jpg';
-import imageToAddWeb from '../../assets/spider-web.jpg';
-import imageToAddCandles from '../../assets/candles.jpg';
-import imageToAddPoppers from '../../assets/poppers.jpg';
-import imageToAddSets from '../../assets/sets.jpg';
-import imageToAddHats from '../../assets/hats.jpg';
-import imageToAddDecoration from '../../assets/decoration.jpg';
+import { CardData } from '../types/sliderCard';
+import imageToAddskylantern from '../assets/sky-lantern.jpeg';
+import imageToAddBalloons from '../assets/balloons.jpg';
+import imageToAddHoli from '../assets/holi.jpg';
+import imageToAddWeb from '../assets/spider-web.jpg';
+import imageToAddCandles from '../assets/candles.jpg';
+import imageToAddPoppers from '../assets/poppers.jpg';
+import imageToAddSets from '../assets/sets.jpg';
+import imageToAddHats from '../assets/hats.jpg';
+import imageToAddDecoration from '../assets/decoration.jpg';
 
 export const cards: CardData[] = [
   {

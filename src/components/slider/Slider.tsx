@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Button from '../../components/buttons/Button';
-import { cards } from '../../pages/main/constants';
+import { cards } from '../../util/index';
 import { ModalProps } from '../../types';
 import { CardData } from '../../types/sliderCard';
 import Card from '../card/CouponCard';
