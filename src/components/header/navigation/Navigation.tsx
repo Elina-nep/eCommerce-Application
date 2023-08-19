@@ -4,9 +4,9 @@ export function Navigation() {
   return (
     <nav className="nav">
       <div className="navigation-container">
-        <Link to="/collection">Catalog</Link>
-        <Link to="/my-room">My room</Link>
-        <Link to="/about-us">About us</Link>
+        <Link to="#">Catalog</Link>
+        <Link to="#">My room</Link>
+        <Link to="#">About us</Link>
         <div className="text-field-container">
           <input
             className="text-field__input"

@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 import './Head.css';
-import imageToAddCottoncandy from '../../assets/cotton-candy.png';
+import imageToAddCottoncandy from '../../../assets/cotton-candy.png';
 import { HeadProps } from '../../../types/cart';
 
 const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
@@ -24,7 +24,7 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
           </div>
         </div>
         <div className="cart">
-          <Link to="cart">
+          <Link to="#">
             {' '}
             CART / ${cartTotal.toFixed(2)} gds: {cartItemsCount}{' '}
           </Link>
