@@ -6,7 +6,7 @@ import imageToAddCottoncandy from '../../../assets/cotton-candy.png';
 import { HeadProps } from '../../../types/cart';
 
 const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
-  const { ifAuth } = useContext(AuthContext);
+  const { ifAuth, logOut } = useContext(AuthContext);
 
   return (
     <div className="head">
@@ -30,16 +30,19 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
         </div>
         <div className="links">
           {ifAuth ? (
-            <Link to="logout" className="logout">
-              Log out
-            </Link>
+            <button className="logout" onClick={logOut}>
+              {' '}
+              Log out{' '}
+            </button>
           ) : (
             <>
               <Link to="login" className="login">
-                Sign in
+                {' '}
+                Sign in{' '}
               </Link>
               <Link to="register" className="register">
-                Sign up
+                {' '}
+                Sign up{' '}
               </Link>
               <br />
             </>
