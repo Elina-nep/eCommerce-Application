@@ -25,7 +25,7 @@
   margin-bottom: 10px;
 }
 
-.indicator-dot {
+.slider__indicator-dot {
   width: 10px;
   height: 10px;
   border-radius: 50%;
@@ -34,6 +34,6 @@
   transition: background-color 0.5s ease;
 }
 
-.indicator-dot.active {
+.slider__indicator-dot.active {
   background-color: var(--primary-color);
 }

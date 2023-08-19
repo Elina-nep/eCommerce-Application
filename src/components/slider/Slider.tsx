@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Button from '../../components/buttons/Button';
 import { cards } from '../../pages/main/constants';
 import { ModalProps } from '../../types';
@@ -7,6 +7,7 @@ import Card from '../card/Card';
 import Modal from '../modalwindow/ModalWindow';
 
 import './Slider.css';
+import SliderIndicator from './SliderIndicator';
 
 const Slider = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -18,16 +19,18 @@ const Slider = () => {
     couponCode: '',
     closeModal: () => {},
   });
-  useEffect(() => {
-    setTotalSlides(3);
-  }, []);
-  const [totalSlides, setTotalSlides] = useState(3);
+  const [totalSlides] = useState(3);
+  const slidePosition = 7;
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev === 0 ? cards.length - 7 : prev - 1));
+    setCurrentSlide((prev) =>
+      prev === 0 ? cards.length - slidePosition : prev - 1,
+    );
   };
 
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev === cards.length - 7 ? 0 : prev + 1));
+    setCurrentSlide((next) =>
+      next === cards.length - slidePosition ? 0 : next + 1,
+    );
   };
 
   const handleLearnMoreClick = (cardData: CardData) => {
@@ -70,10 +73,10 @@ const Slider = () => {
               width: `${cards.length * 102}%`,
             }}
           >
-            {cards.map((card, index) => (
+            {cards.map((card) => (
               <Card
                 card={card}
-                key={index}
+                key={card.id}
                 handleLearnMoreClick={handleLearnMoreClick}
               />
             ))}
@@ -85,16 +88,10 @@ const Slider = () => {
         </Button>
       </div>
       <>
-        <div className="slider-indicator">
-          {Array.from(Array(totalSlides).keys()).map((index) => (
-            <div
-              key={index}
-              className={`indicator-dot ${
-                index === currentSlide ? 'active' : ''
-              }`}
-            />
-          ))}
-        </div>
+        <SliderIndicator
+          totalSlides={totalSlides}
+          currentSlide={currentSlide}
+        />
       </>
     </>
   );
