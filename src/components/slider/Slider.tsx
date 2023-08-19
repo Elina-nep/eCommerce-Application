@@ -66,7 +66,7 @@ const Slider = () => {
 
         <div className="slide-container">
           <div
-            className="cards"
+            className="slide-container-cards"
             style={{
               transform: `translateX(-${currentSlide * 102}%)`,
               transition: 'transform 0.5s ease',

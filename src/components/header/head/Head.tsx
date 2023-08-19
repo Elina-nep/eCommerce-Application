@@ -11,24 +11,28 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
   return (
     <div className="head">
       <div className="headnav">
-        <div className="logo">
-          <div className="logo-picture">
-            <img src={imageToAddCottoncandy} alt="logo" />
-          </div>
-          <div className="store-title">
-            <Link to="/" className="store-name">
+        <Link to="/" className="store-name">
+          <div className="logo">
+            <div className="logo-picture">
+              <img
+                className="logo-img"
+                src={imageToAddCottoncandy}
+                alt="logo"
+              />
+            </div>
+            <div className="store-title">
               Enchant Fest
-            </Link>
-            <br />
-            <span className="slogan">Unleash the Magic of Festivals</span>
+              <br />
+              <span className="slogan">Unleash the Magic of Festivals</span>
+            </div>
           </div>
-        </div>
+        </Link>
         <div className="cart">
           <Link to="#">
             CART / ${cartTotal.toFixed(2)} gds: {cartItemsCount}
           </Link>
         </div>
-        <div className="links">
+        <div className="registration-links">
           {ifAuth ? (
             <button className="logout" onClick={logOut}>
               {' '}

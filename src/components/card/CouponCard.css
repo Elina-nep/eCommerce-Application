@@ -1,9 +1,4 @@
-.cards {
-  display: flex;
-  transition: transform 0.5s ease;
-}
-
-.card {
+.coupon-card {
   width: 80px;
   flex: 0 0 32%;
   padding: 0 10px;
@@ -17,11 +12,11 @@
   margin-right: 2%;
 }
 
-.card:last-child {
+.coupon-card:last-child {
   margin-right: 0;
 }
 
-.card-title {
+.coupon-card-title {
   position: relative;
   top: 10%;
   margin: 10px 0;
@@ -30,7 +25,7 @@
   font-size: var(--font-xlarge);
 }
 
-.card img {
+.coupon-card-img {
   width: 40%;
-  height: 30%;
+  height: 40%;
 }

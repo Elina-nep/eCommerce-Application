@@ -51,7 +51,7 @@ export const Modal: React.FC<ModalProps> = ({
         onClick={handleModalClick}
       >
         <div className="modal-image">
-          <img src={image} alt="logo" />
+          <img className="modal-image" src={image} alt="logo" />
         </div>
         <div className="modal-text">
           <h4>{description}</h4>

@@ -1,11 +1,14 @@
 .head {
   background-color: var(--light-color);
   align-items: center;
-  padding: 7px;
+  padding: 5px;
+}
+
+.logo-img {
+  width: 45%;
 }
 
 .logo {
-  width: 35%;
   display: flex;
   flex-direction: row;
 }
@@ -37,6 +40,7 @@
   color: var(--primary-color);
   margin: 0;
   font-size: var(--font-large);
+  width: 40%;
 }
 
 .slogan {
@@ -45,7 +49,7 @@
   white-space: nowrap;
 }
 
-.links {
+.registration-links {
   font-size: var(--font-medium);
   width: 30%;
   display: flex;

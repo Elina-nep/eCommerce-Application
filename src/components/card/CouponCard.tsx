@@ -6,9 +6,9 @@ import './CouponCard.css';
 const Card: React.FC<CardProps> = ({ card, handleLearnMoreClick }) => {
   return (
     <>
-      <div className="card">
-        <h3 className="card-title">{card.discountText}</h3>
-        <img src={card.image} alt="Card" />
+      <div className="coupon-card">
+        <h3 className="coupon-card-title">{card.discountText}</h3>
+        <img className="coupon-card-img" src={card.image} alt="Card" />
 
         <Button
           onClick={() => handleLearnMoreClick(card)}

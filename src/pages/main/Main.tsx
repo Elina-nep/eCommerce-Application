@@ -6,7 +6,9 @@ import './Main.css';
 export const MainPage = () => {
   return (
     <main className="main-page">
-      <Slider />
+      <div className="main-page-container">
+        <Slider />
+      </div>
     </main>
   );
 };
