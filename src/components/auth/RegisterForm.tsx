@@ -1,19 +1,15 @@
 import React, { useContext, useState } from 'react';
-import {
-  useForm,
-  useFormState,
-  SubmitHandler,
-  useWatch,
-} from 'react-hook-form';
+import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from './theme';
 import { IRegistrationForm } from '../../types/registrationForm';
-import './Register.css';
-import AddressesContainer from './assets/Addresses';
 import { PersonalData } from './assets/PersonalData';
 import { CustomCheckbox } from './assets/CustomCheckbox';
 import { AuthContext } from '../../context/AuthProvider';
 import { FormError } from './FormError';
+import { BillAddresses } from './assets/BillAddresses';
+import { ShipAddresses } from './assets/ShipAddress';
+import './Register.css';
 
 export const RegisterForm: React.FC = () => {
   const { handleSubmit, control } = useForm<IRegistrationForm>({
@@ -25,13 +21,12 @@ export const RegisterForm: React.FC = () => {
   const { errors } = useFormState({
     control,
   });
-  const watchedCountry = useWatch({ control, name: 'billCountry' });
+
   const [billingAddressMatches, setBillingAddressMatches] = useState(true);
   const { createCustomer } = useContext(AuthContext);
 
   const [errorMessage, setErrorMessage] = useState<string>('');
   const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
-    console.log(data);
     const billinAdd = {
       country: data.billCountry,
       city: data.billCity,
@@ -93,12 +88,8 @@ export const RegisterForm: React.FC = () => {
               <p>BillingAddresses</p>
             </div>
 
-            <AddressesContainer
-              control={control}
-              errors={errors}
-              watchedCountry={watchedCountry}
-              prefix="bill"
-            />
+            <BillAddresses control={control} errors={errors} />
+
             <CustomCheckbox
               id="areAddressesSame"
               control={control}
@@ -119,13 +110,7 @@ export const RegisterForm: React.FC = () => {
                   />
                   <p>Shipping Addresses</p>
                 </div>
-
-                <AddressesContainer
-                  control={control}
-                  errors={errors}
-                  watchedCountry={watchedCountry}
-                  prefix="ship"
-                />
+                <ShipAddresses control={control} errors={errors} />
               </div>
             )}
             <button type="submit" className="registration-page__btn">

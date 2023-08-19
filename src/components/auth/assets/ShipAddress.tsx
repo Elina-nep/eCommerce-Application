@@ -1,4 +1,4 @@
-import React from 'react';
+import { AddressesContainerProps } from '../../../types/form';
 import { Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import InputLabel from '@mui/material/InputLabel';
@@ -6,35 +6,38 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 import FormHelperText from '@mui/material/FormHelperText';
-import { IRegistrationForm } from '../../../types/registrationForm';
 import {
   streetValidation,
   nameValidation,
   postalCodeValidation,
   countryValidation,
 } from '../../../util/validation';
-import { AddressesContainerProps } from '../../../types/form';
+import { IRegistrationForm } from '../../../types';
 
-const AddressesContainer: React.FC<AddressesContainerProps> = ({
+import { useWatch } from 'react-hook-form';
+
+export const ShipAddresses: React.FC<AddressesContainerProps> = ({
   control,
   errors,
-  watchedCountry,
-  prefix,
-}) => {
-  const nameValidate = (value: string): string =>
-    nameValidation.validate(value) as string;
+}: AddressesContainerProps) => {
+  const watchedCountry = useWatch({
+    control,
+    name: 'shipCountry',
+    defaultValue: '',
+  });
+
   const postalCodeValidate = (value: string): string =>
-    postalCodeValidation.validate(value, { country: watchedCountry }) as string;
+    postalCodeValidation.validate(value, watchedCountry) as string;
 
   return (
     <div>
       <Controller
         control={control}
-        name={`${prefix}Street` as keyof IRegistrationForm}
-        rules={{ ...streetValidation, required: true }}
+        name={`shipStreet`}
+        rules={streetValidation}
         render={({ field }) => (
           <TextField
-            id="street"
+            id={`shipStreet`}
             label="Street"
             {...field}
             fullWidth={true}
@@ -42,26 +45,20 @@ const AddressesContainer: React.FC<AddressesContainerProps> = ({
             size="small"
             margin="normal"
             type="string"
-            error={
-              !!errors[`${prefix}Street` as keyof IRegistrationForm]?.message
-            }
+            error={!!errors[`shipStreet` as keyof IRegistrationForm]?.message}
             helperText={
-              errors[`${prefix}Street` as keyof IRegistrationForm]?.message
+              errors[`shipStreet` as keyof IRegistrationForm]?.message
             }
           />
         )}
       />
       <Controller
         control={control}
-        name={`${prefix}City` as keyof IRegistrationForm}
-        rules={{
-          ...nameValidation,
-          required: true,
-          validate: (value) => nameValidate(value as string),
-        }}
+        name="shipCity"
+        rules={nameValidation}
         render={({ field }) => (
           <TextField
-            id="city"
+            id={`shipCity`}
             label="City"
             {...field}
             fullWidth={true}
@@ -69,27 +66,23 @@ const AddressesContainer: React.FC<AddressesContainerProps> = ({
             size="small"
             margin="normal"
             type="string"
-            error={
-              !!errors[`${prefix}City` as keyof IRegistrationForm]?.message
-            }
-            helperText={
-              errors[`${prefix}City` as keyof IRegistrationForm]?.message
-            }
+            error={!!errors[`shipCity` as keyof IRegistrationForm]?.message}
+            helperText={errors[`shipCity` as keyof IRegistrationForm]?.message}
           />
         )}
       />
 
       <Controller
         control={control}
-        name={`${prefix}PostalCode` as keyof IRegistrationForm}
+        name={`shipPostalCode` as keyof IRegistrationForm}
         rules={{
           ...postalCodeValidation,
-          required: true,
+          required: 'This field is required',
           validate: (value) => postalCodeValidate(value as string),
         }}
         render={({ field }) => (
           <TextField
-            id="postalCode"
+            id={`shippostalCode`}
             label="Postal Code"
             {...field}
             fullWidth={true}
@@ -98,11 +91,10 @@ const AddressesContainer: React.FC<AddressesContainerProps> = ({
             margin="normal"
             type="string"
             error={
-              !!errors[`${prefix}PostalCode` as keyof IRegistrationForm]
-                ?.message
+              !!errors[`shipPostalCode` as keyof IRegistrationForm]?.message
             }
             helperText={
-              errors[`${prefix}PostalCode` as keyof IRegistrationForm]?.message
+              errors[`shipPostalCode` as keyof IRegistrationForm]?.message
             }
           />
         )}
@@ -111,19 +103,19 @@ const AddressesContainer: React.FC<AddressesContainerProps> = ({
         margin="normal"
         fullWidth
         size="small"
-        error={!!errors[`${prefix}Country` as keyof IRegistrationForm]?.message}
+        error={!!errors[`shipCountry` as keyof IRegistrationForm]?.message}
       >
-        <InputLabel id={`${prefix}country-select-label`}>Country</InputLabel>
+        <InputLabel id={`shipcountry-select-label`}>Country</InputLabel>
         <Controller
           control={control}
-          name={`${prefix}Country` as keyof IRegistrationForm}
-          rules={{ ...countryValidation, required: true }}
+          name="shipCountry"
+          rules={{ validate: countryValidation.validate }}
           render={({ field }) => (
             <Select
               {...field}
-              labelId={`${prefix}country-select-label`}
+              labelId={`shipcountry-select-label`}
               value={field.value || ''}
-              id={`${prefix}country-select`}
+              id={`shipcountry-select`}
             >
               <MenuItem value="US">USA</MenuItem>
               <MenuItem value="DE">Germany</MenuItem>
@@ -132,14 +124,12 @@ const AddressesContainer: React.FC<AddressesContainerProps> = ({
             </Select>
           )}
         />
-        {errors[`${prefix}Country` as keyof IRegistrationForm]?.message && (
+        {errors[`shipCountry` as keyof IRegistrationForm]?.message && (
           <FormHelperText>
-            {errors[`${prefix}Country` as keyof IRegistrationForm]?.message}
+            {errors[`shipCountry` as keyof IRegistrationForm]?.message}
           </FormHelperText>
         )}
       </FormControl>
     </div>
   );
 };
-
-export default AddressesContainer;

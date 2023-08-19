@@ -38,8 +38,8 @@ export interface PersonalDataProps {
 export interface AddressesContainerProps {
   control: Control<IRegistrationForm>;
   errors: FieldErrors<IRegistrationForm>;
-  watchedCountry: string;
-  prefix: string;
+  watchedCountry?: string;
+  prefix?: string;
 }
 
 export interface FormErrorProps {
