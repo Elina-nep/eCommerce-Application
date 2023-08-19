@@ -25,3 +25,7 @@ body {
   --font-large: 1.4rem;
   --font-xlarge: 1.7rem;
 }
+
+body {
+  width: 100%;
+}

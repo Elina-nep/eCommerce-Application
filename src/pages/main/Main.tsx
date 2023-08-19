@@ -5,7 +5,7 @@ import './Main.css';
 
 export const MainPage = () => {
   return (
-    <main>
+    <main className="main-page">
       <Slider />
     </main>
   );

@@ -7,12 +7,12 @@ export const Footer: React.FC = () => {
   return (
     <footer className="footer">
       {columns.map((column) => (
-        <div className="column" key={column.id}>
+        <div className="footer__column" key={column.id}>
           <h3>{column.title}</h3>
           <LinkList links={column.links} />
         </div>
       ))}
-      <div className="column">
+      <div className="footer__column">
         <h3>Contacts</h3>
         <p>
           Company Inc., <br />

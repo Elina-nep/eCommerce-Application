@@ -1,4 +1,4 @@
-main {
+.main-page {
   width: 100%;
   background-size: cover;
   height: 600px;
@@ -6,8 +6,4 @@ main {
   flex-direction: column;
   align-items: center;
   background-image: url('../../assets/big-balloons.jpg');
-}
-
-body {
-  width: 100%;
 }

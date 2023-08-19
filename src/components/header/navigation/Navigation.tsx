@@ -9,15 +9,15 @@ export function Navigation() {
         <Link to="#">Catalog</Link>
         <Link to="#">My room</Link>
         <Link to="#">About us</Link>
-        <div className="text-field-container">
+        <div className="navigation-text-field-container">
           <input
-            className="text-field__input"
+            className="navigation-text-field__input"
             type="search"
             name="find"
             id="find"
             placeholder="...Search"
           />
-          <span className="text-field__aicon">
+          <span className="navigation-text-field__aicon">
             <InputIcon />
           </span>
         </div>

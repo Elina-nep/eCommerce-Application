@@ -6,40 +6,40 @@
   padding: 0.8% 7%;
 }
 
-.column {
+.footer__column {
   margin-right: 2%;
 }
 
-.column h3 {
+.footer__column h3 {
   margin-bottom: 10px;
   font-weight: inherit;
   font-size: var(--font-medium);
 }
 
-.column ul {
+.footer__column ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
 }
 
-.column ul li {
+.footer__column ul li {
   margin-bottom: 5px;
 }
 
-.column ul li a {
+.footer__column ul li a {
   font-size: var(--font-small);
   color: var(--secondary-color);
   text-decoration: none;
   transition: color 0.5s ease;
 }
 
-.column p {
+.footer__column p {
   font-size: var(--font-small);
   white-space: nowrap;
   margin: 0 10%;
 }
 
-.column a:hover {
+.footer__column a:hover {
   color: var(--light-color);
 }
 
@@ -48,7 +48,7 @@
   margin-top: 0;
 }
 
-.column a::before {
+.footer__column a::before {
   height: 5%;
   content: url('../../assets/salut.png');
   background-size: contain;
@@ -58,7 +58,7 @@
     opacity 0.5s;
 }
 
-.column a:hover::before {
+.footer__column a:hover::before {
   height: 5%;
   width: 30px;
   opacity: 1;

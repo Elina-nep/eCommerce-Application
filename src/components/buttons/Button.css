@@ -1,7 +1,3 @@
-button:active {
-  background-color: #ccc;
-}
-
 button:focus {
   outline: none;
 }
