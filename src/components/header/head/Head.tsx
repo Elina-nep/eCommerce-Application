@@ -25,8 +25,7 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
         </div>
         <div className="cart">
           <Link to="#">
-            {' '}
-            CART / ${cartTotal.toFixed(2)} gds: {cartItemsCount}{' '}
+            CART / ${cartTotal.toFixed(2)} gds: {cartItemsCount}
           </Link>
         </div>
         <div className="links">
@@ -41,7 +40,7 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
               </Link>
               <Link to="register" className="register">
                 Sign up
-              </Link>{' '}
+              </Link>
               <br />
             </>
           )}
