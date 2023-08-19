@@ -2,17 +2,17 @@ import { LinkItem, ColumnItem } from '../types/footer';
 
 export const links: LinkItem[] = [
   { title: 'Home', to: '/' },
-  { title: 'Catalog', to: '#' },
-  { title: 'About us', to: '#' },
+  { title: 'Catalog', to: '#9' },
+  { title: 'About us', to: '#10' },
 ];
 
 export const catalogLinks: LinkItem[] = [
-  { title: 'Birthday', to: '#' },
-  { title: 'Decorations', to: '#' },
-  { title: 'Balloons', to: '#' },
-  { title: 'Lightnings', to: '#' },
-  { title: 'Party Supplies', to: '#' },
-  { title: 'Gifts', to: '#' },
+  { title: 'Birthday', to: '#3' },
+  { title: 'Decorations', to: '#4' },
+  { title: 'Balloons', to: '#5' },
+  { title: 'Lightnings', to: '#6' },
+  { title: 'Party Supplies', to: '#7' },
+  { title: 'Gifts', to: '#8' },
 ];
 
 export const columns: ColumnItem[] = [
@@ -22,8 +22,8 @@ export const columns: ColumnItem[] = [
     id: 'my-account',
     title: 'My account',
     links: [
-      { title: 'My room', to: '#' },
-      { title: 'My cart', to: '#' },
+      { title: 'My room', to: '#1' },
+      { title: 'My cart', to: '#2' },
     ],
   },
 ];
