@@ -16,8 +16,8 @@ export const routerObj = createRoutesFromElements(
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Route>
+        <Route path="*" element={<NotFound />} />
       </Route>
     </Route>
-    <Route path="*" element={<NotFound />} />
   </>,
 );

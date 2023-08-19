@@ -1,13 +1,10 @@
 import { Link } from 'react-router-dom';
-import { Footer } from '../../components/footer/Footer';
-import { Header } from '../../components/header/Header';
 import './NotFound.css';
 import imageToAddError from '../../assets/swinging.gif';
 
 export const NotFound = () => {
   return (
     <>
-      <Header />
       <div className="not-found-page">
         <div>
           <img
@@ -24,7 +21,6 @@ export const NotFound = () => {
           <Link to="/">Home</Link>
         </div>
       </div>
-      <Footer />
     </>
   );
 };
