@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
-import './Head.css';
 import imageToAddCottoncandy from '../../../assets/cotton-candy.png';
 import { HeadProps } from '../../../types/index';
+import './Head.scss';
 
 const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
   const { ifAuth, logOut } = useContext(AuthContext);
@@ -35,18 +35,15 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
         <div className="registration-links">
           {ifAuth ? (
             <button className="logout" onClick={logOut}>
-              {' '}
-              Log out{' '}
+              Log out
             </button>
           ) : (
             <>
               <Link to="login" className="login">
-                {' '}
-                Sign in{' '}
+                Sign in
               </Link>
               <Link to="register" className="register">
-                {' '}
-                Sign up{' '}
+                Sign up
               </Link>
               <br />
             </>

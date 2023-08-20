@@ -1,0 +1,207 @@
+.head {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background-color: var(--light-color);
+}
+
+.headnav {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 60%;
+  left: 40%;
+  @media (min-width: 390px) and (max-width: 575px) {
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    margin: 0 auto;
+  }
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+}
+
+.logo-img {
+  @media (min-width: 390px) and (max-width: 576px) {
+    width: 68%;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    width: 70%;
+  }
+  @media (min-width: 768px) and (max-width: 991px) {
+    width: 61%;
+  }
+  @media (min-width: 992px) and (max-width: 1200px) {
+    width: 61%;
+  }
+  @media (min-width: 1201px) and (max-width: 4000px) {
+    width: 80px;
+  }
+}
+
+.logo-picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: auto;
+}
+
+.store-title {
+  width: 80%;
+  font-size: var(--font-large);
+  @media (min-width: 390px) and (max-width: 768px) {
+    font-size: var(--font-small);
+  }
+}
+.store-name {
+  width: 40%;
+  margin: 0;
+  list-style-type: none;
+  text-decoration: none;
+  color: var(--primary-color);
+  @media (min-width: 390px) and (max-width: 768px) {
+    width: 30%;
+  }
+}
+.slogan {
+  color: var(--primary-color-light);
+  font-size: var(--font-xsmall);
+  display: flex;
+  @media (min-width: 390px) and (max-width: 576px) {
+    font-size: 0.8rem;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+}
+
+.cart {
+  display: flex;
+  flex-wrap: wrap;
+  color: var(--dark-color);
+  list-style-type: none;
+  text-decoration: none;
+  position: relative;
+  font-size: var(--font-xsmall);
+  @media (min-width: 390px) and (max-width: 575px) {
+    margin: 0 8%;
+  }
+}
+
+.cart a {
+  color: var(--dark-color);
+  list-style-type: none;
+  text-decoration: none;
+  font-size: var(--font-xsmall);
+  @media (min-width: 390px) and (max-width: 575px) {
+    font-size: 0.9rem;
+  }
+}
+
+.registration-links {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--font-medium);
+  width: 30%;
+  @media (min-width: 390px) and (max-width: 768px) {
+    justify-content: space-between;
+  }
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 8vw;
+  padding: 0.2em 0;
+  font-size: var(--font-xsmall);
+  color: var(--light-color);
+  list-style-type: none;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  transition: background-color 0.5s ease;
+  &:hover {
+    cursor: pointer;
+    background-color: var(--light-color);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+  }
+  @media (min-width: 390px) and (max-width: 768px) {
+    width: 42%;
+  }
+}
+
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  padding: 0.2em 0;
+  width: 8vw;
+  font-size: var(--font-xsmall);
+  list-style-type: none;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.5s ease;
+  &:hover {
+    cursor: pointer;
+    background: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--light-color);
+  }
+  @media (min-width: 390px) and (max-width: 768px) {
+    width: 42%;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    margin-left: 5%;
+  }
+}
+
+.logout {
+  font-family: 'Iceland';
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 0.2em 0;
+  width: 8vw;
+  font-size: var(--font-xsmall);
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  border: 1px solid var(--dark-color);
+  list-style-type: none;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.5s ease;
+  &:hover {
+    cursor: pointer;
+    background: var(--dark-color);
+    border: 1px solid var(--dark-color);
+    color: var(--light-color);
+  }
+  @media (min-width: 390px) and (max-width: 768px) {
+    width: 68%;
+    margin: 0 auto;
+  }
+}
