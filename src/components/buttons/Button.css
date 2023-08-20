@@ -1,77 +1,115 @@
-button:focus {
-  outline: none;
+@media screen and (max-width: 1440px) {
+  button:focus {
+    outline: none;
+  }
+
+  .button-pagination {
+    font-size: var(--font-medium);
+    width: 60px;
+    height: 55px;
+    border-radius: 60px;
+    z-index: 1;
+    background-color: var(--light-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Iceland';
+  }
+
+  .button-pagination:hover {
+    background-color: var(--primary-color-light);
+    color: var(--light-color);
+    border: 1px solid var(--primary-color-light);
+  }
+
+  .button-info {
+    position: relative;
+    bottom: 8%;
+    background-color: var(--primary-color-light);
+    color: var(--dark-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.4em 0;
+    width: 20vw;
+    font-size: var(--font-large);
+    list-style-type: none;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    font-family: 'Iceland';
+  }
+
+  .button-info:hover {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+  }
+
+  .close {
+    font-size: var(--font-medium);
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    z-index: 1;
+    background-color: var(--light-color);
+    color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Iceland';
+  }
+
+  .close:hover {
+    background-color: var(--primary-color-light);
+    color: var(--light-color);
+    border: 1px solid var(--primary-color-light);
+  }
 }
 
-.button-pagination {
-  font-size: var(--font-medium);
-  width: 60px;
-  height: 55px;
-  border-radius: 60px;
-  z-index: 1;
-  background-color: var(--light-color);
-  color: var(--secondary-color);
-  border: 1px solid var(--secondary-color);
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Iceland';
+@media screen and (max-width: 768px) {
+  button:focus {
+    outline: none;
+  }
+
+  .button-pagination {
+    font-size: var(--font-medium);
+    width: 50px;
+    height: 45px;
+    border-radius: 50px;
+    border: 1px solid var(--secondary-color);
+  }
+
+  .button-info {
+    bottom: 10%;
+    padding: 0.4em 0;
+    width: 10em;
+    font-size: var(--font-large);
+    border-radius: 5px;
+  }
+
+  .close {
+    font-size: var(--font-medium);
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    border: 1px solid var(--secondary-color);
+  }
 }
 
-.button-pagination:hover {
-  background-color: var(--primary-color-light);
-  color: var(--light-color);
-  border: 1px solid var(--primary-color-light);
+@media screen and (max-width: 576px) {
 }
 
-.button-info {
-  position: relative;
-  bottom: 10%;
-  background-color: var(--primary-color-light);
-  color: var(--dark-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.4em 0;
-  width: 10em;
-  font-size: var(--font-large);
-  list-style-type: none;
-  text-decoration: none;
-  border-radius: 5px;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-  font-family: 'Iceland';
-}
-
-.button-info:hover {
-  background-color: var(--primary-color);
-  color: var(--light-color);
-}
-
-.close {
-  font-size: var(--font-medium);
-  text-align: center;
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  z-index: 1;
-  background-color: var(--light-color);
-  color: var(--secondary-color);
-  border: 1px solid var(--secondary-color);
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-family: 'Iceland';
-}
-
-.close:hover {
-  background-color: var(--primary-color-light);
-  color: var(--light-color);
-  border: 1px solid var(--primary-color-light);
+@media screen and (min-width: 380px) and (max-width: 485px) {
 }

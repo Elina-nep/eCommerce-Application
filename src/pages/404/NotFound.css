@@ -1,51 +1,78 @@
-.not-found-page {
-  background: var(--light-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  height: 500px;
-  justify-content: space-around;
+@media screen and (max-width: 1440px) {
+  .not-found-page {
+    background: var(--light-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 500px;
+    justify-content: space-around;
+  }
+
+  .not-found-page-text {
+    display: flex;
+    text-align: center;
+    color: var(--secondary-color);
+    flex-direction: column;
+    align-items: center;
+    font-size: var(--font-medium);
+    width: 50%;
+  }
+
+  .not-found-page-text a {
+    margin-top: 2%;
+    background: var(--primary-color-light);
+    color: var(--dark-color);
+    position: relative;
+    bottom: 10%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.4em 0;
+    width: 10em;
+    font-size: var(--font-large);
+    list-style-type: none;
+    text-decoration: none;
+    border-radius: 5px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+
+  .not-found-page-text a:hover {
+    color: var(--light-color);
+    background: var(--primary-color);
+  }
+
+  .not-found-page-img {
+    position: relative;
+    top: 5%;
+    width: 40%;
+  }
 }
 
-.not-found-page-text {
-  display: flex;
-  text-align: center;
-  color: var(--secondary-color);
-  flex-direction: column;
-  align-items: center;
-  font-size: var(--font-medium);
-  width: 50%;
-}
+@media screen and (max-width: 768px) {
+  .not-found-page {
+    height: 400px;
+  }
 
-.not-found-page-text a {
-  margin-top: 2%;
-  background: var(--primary-color-light);
-  color: var(--dark-color);
-  position: relative;
-  bottom: 10%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0.4em 0;
-  width: 10em;
-  font-size: var(--font-large);
-  list-style-type: none;
-  text-decoration: none;
-  border-radius: 5px;
-  text-align: center;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-}
+  .not-found-page-text {
+    font-size: var(--font-small);
+    width: 60%;
+  }
 
-.not-found-page-text a:hover {
-  color: var(--light-color);
-  background: var(--primary-color);
-}
+  .not-found-page-text a {
+    margin-top: 1%;
+    bottom: 8%;
+    padding: 0.2em 0;
+    width: 8em;
+    font-size: var(--font-small);
+    border-radius: 4px;
+  }
 
-.not-found-page-img {
-  position: relative;
-  top: 5%;
-  width: 40%;
+  .not-found-page-img {
+    top: 2%;
+    width: 35%;
+  }
 }
