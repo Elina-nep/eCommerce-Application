@@ -15,7 +15,7 @@ export function Navigation() {
             type="search"
             name="find"
             id="find"
-            placeholder="...Search"
+            placeholder="Search"
           />
           <span className="navigation-text-field__aicon">
             <InputIcon />
