@@ -1,0 +1,36 @@
+.login-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 500px;
+  background-size: cover;
+  background-image: url('../../assets/big-balloons.jpg');
+}
+
+.login-page__form {
+  background-color: var(--primary-color-light);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+.login-page__btn {
+  width: 5em;
+  padding: 0.2em 0;
+  margin-top: 1rem;
+  font-family: 'Iceland';
+  text-align: center;
+  font-size: var(--font-small);
+  color: var(--light-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--light-color);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+  }
+}

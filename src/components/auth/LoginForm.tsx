@@ -13,7 +13,7 @@ import { theme } from './theme';
 import { AuthContext } from '../../context/AuthProvider';
 import { FormError } from './FormError';
 import { TogglePasswordVisibility } from '../../util/ToggleVisibility';
-import './Login.css';
+import './LoginForm.scss';
 
 export const LoginForm: React.FC = () => {
   const [visible, setVisible] = useState(false);
@@ -40,7 +40,7 @@ export const LoginForm: React.FC = () => {
   return (
     <div className="login-page">
       <ThemeProvider theme={theme}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(onSubmit)} className="login-page__form">
           <Controller
             control={control}
             name="email"
@@ -90,7 +90,7 @@ export const LoginForm: React.FC = () => {
             )}
           />
           <button type="submit" className="login-page__btn">
-            Log in
+            Sign in
           </button>
         </form>
       </ThemeProvider>
