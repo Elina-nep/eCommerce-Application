@@ -1,0 +1,11 @@
+.form_error {
+  padding: 4px 0;
+  margin-bottom: 1.1rem;
+  border-radius: 8px;
+  background-color: var(--light-color);
+}
+
+.error_message {
+  font-size: var(--font-medium);
+  color: var(--primary-color);
+}

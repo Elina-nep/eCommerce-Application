@@ -9,7 +9,7 @@ import { useContext, useState } from 'react';
 import { passwordValidation, emailValidation } from '../../util/validation';
 import { ILoginForm } from '../../types/loginForm';
 import { ThemeProvider } from '@mui/material/styles';
-import { theme } from './theme';
+import { loginTheme } from './theme';
 import { AuthContext } from '../../context/AuthProvider';
 import { FormError } from './FormError';
 import { TogglePasswordVisibility } from '../../util/ToggleVisibility';
@@ -39,7 +39,7 @@ export const LoginForm: React.FC = () => {
 
   return (
     <div className="login-page">
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={loginTheme}>
         <form onSubmit={handleSubmit(onSubmit)} className="login-page__form">
           <Controller
             control={control}
@@ -92,9 +92,9 @@ export const LoginForm: React.FC = () => {
           <button type="submit" className="login-page__btn">
             Sign in
           </button>
+          {errorMessage && <FormError message={errorMessage} />}
         </form>
       </ThemeProvider>
-      {errorMessage && <FormError message={errorMessage} />}{' '}
     </div>
   );
 };

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import { ThemeProvider } from '@mui/material/styles';
-import { theme } from './theme';
+import { registerTheme } from './theme';
 import { IRegistrationForm } from '../../types/registrationForm';
 import { PersonalData } from './assets/PersonalData';
 import { CustomCheckbox } from './assets/CustomCheckbox';
@@ -74,7 +74,7 @@ export const RegisterForm: React.FC = () => {
 
   return (
     <div>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={registerTheme}>
         <div className="registration-page">
           <form
             onSubmit={handleSubmit(onSubmit)}
@@ -89,18 +89,17 @@ export const RegisterForm: React.FC = () => {
                 label="Save billing address as default"
               />
             </div>
-
             <BillAddresses control={control} errors={errors} />
-
-            <CustomCheckbox
-              id="areAddressesSame"
-              control={control}
-              name="areAddressesSame"
-              label="My billing address matches shipping address"
-              isChecked={billingAddressMatches}
-              onChange={(checked) => setBillingAddressMatches(checked)}
-            />
-
+            <div className="registration-page__col-1">
+              <CustomCheckbox
+                id="areAddressesSame"
+                control={control}
+                name="areAddressesSame"
+                label="My billing address matches shipping address"
+                isChecked={billingAddressMatches}
+                onChange={(checked) => setBillingAddressMatches(checked)}
+              />
+            </div>
             {!billingAddressMatches && (
               <div>
                 <div className="registration-page__col-2">
@@ -117,8 +116,8 @@ export const RegisterForm: React.FC = () => {
             <button type="submit" className="registration-page__btn">
               Create account
             </button>
+            {errorMessage && <FormError message={errorMessage} />}{' '}
           </form>
-          {errorMessage && <FormError message={errorMessage} />}{' '}
         </div>
       </ThemeProvider>
     </div>

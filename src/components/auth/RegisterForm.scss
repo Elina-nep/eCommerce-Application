@@ -20,6 +20,10 @@
 .registration-page__col-2 {
   display: flex;
 }
+.registration-page__col-1 {
+  display: flex;
+  justify-content: center;
+}
 
 .registration-page__spacing {
   width: 26px;
@@ -43,4 +47,20 @@
     border: 1px solid var(--secondary-color);
     color: var(--secondary-color);
   }
+}
+
+.MuiFormLabel-root,
+.MuiInputLabel-root,
+.MuiInputLabel-formControl,
+.MuiInputLabel-animated,
+.MuiInputLabel-sizeSmall,
+.MuiInputLabel-outlined,
+.MuiFormLabel-colorPrimary,
+.MuiInputLabel-root,
+.MuiInputLabel-formControl,
+.MuiInputLabel-animated,
+.MuiInputLabel-sizeSmall,
+.MuiInputLabel-outlined,
+.css-17l1wxi-MuiFormLabel-root-MuiInputLabel-root {
+  font-family: 'Iceland', sans-serif;
 }
