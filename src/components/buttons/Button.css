@@ -1,81 +1,80 @@
-@media screen and (max-width: 1440px) {
-  button:focus {
-    outline: none;
-  }
+button:focus {
+  outline: none;
+}
 
-  .button-pagination {
-    font-size: var(--font-medium);
-    width: 60px;
-    height: 55px;
-    border-radius: 60px;
-    z-index: 1;
-    background-color: var(--light-color);
-    color: var(--secondary-color);
-    border: 1px solid var(--secondary-color);
-    cursor: pointer;
-    transition: background-color 0.5s ease;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Iceland';
-  }
+.button-pagination {
+  font-size: var(--font-medium);
+  width: 60px;
+  height: 55px;
+  border-radius: 50%;
+  z-index: 1;
+  background-color: var(--light-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Iceland';
+}
 
-  .button-pagination:hover {
-    background-color: var(--primary-color-light);
-    color: var(--light-color);
-    border: 1px solid var(--primary-color-light);
-  }
+.button-pagination:hover {
+  background-color: var(--primary-color-light);
+  color: var(--light-color);
+  border: 1px solid var(--primary-color-light);
+}
 
-  .button-info {
-    position: relative;
-    bottom: 8%;
-    background-color: var(--primary-color-light);
-    color: var(--dark-color);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.4em 0;
-    width: 20vw;
-    font-size: var(--font-large);
-    list-style-type: none;
-    text-decoration: none;
-    border-radius: 5px;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.5s ease;
-    font-family: 'Iceland';
-  }
+.button-info {
+  position: relative;
+  margin: 0 0 0.5rem 0;
+  bottom: 2vh;
+  background-color: var(--primary-color-light);
+  color: var(--dark-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4em 0;
+  width: 20vw;
+  font-size: var(--font-large);
+  list-style-type: none;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  font-family: 'Iceland';
+}
 
-  .button-info:hover {
-    background-color: var(--primary-color);
-    color: var(--light-color);
-  }
+.button-info:hover {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
 
-  .close {
-    font-size: var(--font-medium);
-    text-align: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    z-index: 1;
-    background-color: var(--light-color);
-    color: var(--secondary-color);
-    border: 1px solid var(--secondary-color);
-    cursor: pointer;
-    transition: background-color 0.5s ease;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Iceland';
-  }
+.close {
+  font-size: var(--font-medium);
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  z-index: 1;
+  background-color: var(--light-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Iceland';
+}
 
-  .close:hover {
-    background-color: var(--primary-color-light);
-    color: var(--light-color);
-    border: 1px solid var(--primary-color-light);
-  }
+.close:hover {
+  background-color: var(--primary-color-light);
+  color: var(--light-color);
+  border: 1px solid var(--primary-color-light);
 }
 
 @media screen and (max-width: 768px) {
@@ -84,18 +83,18 @@
   }
 
   .button-pagination {
-    font-size: var(--font-medium);
-    width: 50px;
-    height: 45px;
-    border-radius: 50px;
+    font-size: var(--font-small);
+    width: 6vw;
+    height: 5.5vw;
+    border-radius: 50%;
     border: 1px solid var(--secondary-color);
   }
 
   .button-info {
-    bottom: 10%;
-    padding: 0.4em 0;
-    width: 10em;
-    font-size: var(--font-large);
+    bottom: 8%;
+    padding: 0.2em 0;
+    width: 6em;
+    font-size: var(--font-medium);
     border-radius: 5px;
   }
 

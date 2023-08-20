@@ -1,48 +1,75 @@
-@media screen and (max-width: 1440px) {
+.slider {
+  width: 95%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2%;
+  margin-top: 2%;
+}
+
+.slide-container {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  width: 100vw;
+}
+
+.slide-container-cards {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slider-indicator {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.slider__indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--light-color);
+  margin: 0 5px;
+  transition: background-color 0.5s ease;
+}
+
+.slider__indicator-dot.active {
+  background-color: var(--primary-color);
+}
+
+@media screen and (max-width: 768px) {
   .slider {
     width: 95%;
-    height: 60vh;
+    height: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 2%;
+    gap: 1%;
     margin-top: 2%;
   }
 
   .slide-container {
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    height: 100%;
-    width: 100vw;
-  }
-
-  .slide-container-cards {
-    display: flex;
-    transition: transform 0.5s ease;
+    width: auto;
+    width: 100%;
+    height: 35vh;
   }
 
   .slider-indicator {
-    display: flex;
-    justify-content: center;
     margin-bottom: 10px;
   }
 
   .slider__indicator-dot {
-    width: 10px;
-    height: 10px;
+    width: 1.2vw;
+    height: 1.2vw;
     border-radius: 50%;
-    background-color: var(--light-color);
     margin: 0 5px;
-    transition: background-color 0.5s ease;
-  }
-
-  .slider__indicator-dot.active {
-    background-color: var(--primary-color);
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 576px) {
   .slider {
     width: 95%;
     height: 100%;
@@ -69,9 +96,6 @@
     border-radius: 50%;
     margin: 0 5px;
   }
-}
-
-@media screen and (max-width: 576px) {
 }
 
 @media screen and (min-width: 380px) and (max-width: 485px) {

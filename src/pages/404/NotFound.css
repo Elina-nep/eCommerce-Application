@@ -1,55 +1,54 @@
-@media screen and (max-width: 1440px) {
-  .not-found-page {
-    background: var(--light-color);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    height: 500px;
-    justify-content: space-around;
-  }
+.not-found-page {
+  background: var(--light-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: space-around;
+  margin: 2% 0;
+  flex-grow: 1;
+}
 
-  .not-found-page-text {
-    display: flex;
-    text-align: center;
-    color: var(--secondary-color);
-    flex-direction: column;
-    align-items: center;
-    font-size: var(--font-medium);
-    width: 50%;
-  }
+.not-found-page-text {
+  display: flex;
+  text-align: center;
+  color: var(--secondary-color);
+  flex-direction: column;
+  align-items: center;
+  font-size: var(--font-medium);
+  width: 50%;
+}
 
-  .not-found-page-text a {
-    margin-top: 2%;
-    background: var(--primary-color-light);
-    color: var(--dark-color);
-    position: relative;
-    bottom: 10%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0.4em 0;
-    width: 10em;
-    font-size: var(--font-large);
-    list-style-type: none;
-    text-decoration: none;
-    border-radius: 5px;
-    text-align: center;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.5s ease;
-  }
+.not-found-page-text a {
+  margin-top: 2%;
+  background: var(--primary-color-light);
+  color: var(--dark-color);
+  position: relative;
+  bottom: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4em 0;
+  width: 10em;
+  font-size: var(--font-large);
+  list-style-type: none;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
 
-  .not-found-page-text a:hover {
-    color: var(--light-color);
-    background: var(--primary-color);
-  }
+.not-found-page-text a:hover {
+  color: var(--light-color);
+  background: var(--primary-color);
+}
 
-  .not-found-page-img {
-    position: relative;
-    top: 5%;
-    width: 40%;
-  }
+.not-found-page-img {
+  position: relative;
+  top: 5%;
+  width: 40%;
 }
 
 @media screen and (max-width: 768px) {
