@@ -1,0 +1,142 @@
+.head {
+  background-color: var(--light-color);
+  align-items: center;
+  padding: 5px;
+}
+
+.logo-img {
+  width: 45%;
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+}
+
+.headnav {
+  align-items: center;
+  width: 60%;
+  position: relative;
+  left: 40%;
+  justify-content: space-between;
+  display: inline-flex;
+}
+
+.logo-picture {
+  width: 20%;
+  height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.store-title {
+  width: 80%;
+}
+
+.store-name {
+  list-style-type: none;
+  text-decoration: none;
+  color: var(--primary-color);
+  margin: 0;
+  font-size: var(--font-large);
+  width: 40%;
+}
+
+.slogan {
+  color: var(--primary-color-light);
+  font-size: var(--font-xsmall);
+  white-space: nowrap;
+}
+
+.registration-links {
+  font-size: var(--font-medium);
+  width: 30%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.cart a {
+  color: var(--dark-color);
+  list-style-type: none;
+  text-decoration: none;
+  position: relative;
+  left: 5%;
+  font-size: var(--font-xsmall);
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2em 0;
+  width: 5em;
+  text-align: center;
+  font-size: var(--font-xsmall);
+  color: var(--light-color);
+  list-style-type: none;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+}
+
+.login:hover {
+  background-color: var(--light-color);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.register {
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.2em 0;
+  width: 5em;
+  text-align: center;
+  font-size: var(--font-xsmall);
+  list-style-type: none;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+}
+
+.register:hover {
+  background: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  color: var(--light-color);
+}
+
+.logout {
+  font-family: 'Iceland';
+  background-color: var(--light-color);
+  color: var(--dark-color);
+  border: 1px solid var(--dark-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.1em 0;
+  width: 5em;
+  text-align: center;
+  font-size: var(--font-xsmall);
+  list-style-type: none;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  transition: background-color 0.5s ease;
+  cursor: pointer;
+}
+
+.logout:hover {
+  background: var(--dark-color);
+  border: 1px solid var(--dark-color);
+  color: var(--light-color);
+}
