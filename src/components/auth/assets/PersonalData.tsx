@@ -17,7 +17,7 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
   const today = new Date().toISOString().split('T')[0];
   return (
     <div>
-      <div className="col-2">
+      <div className="registration-page__col-2">
         <Controller
           control={control}
           name="firstName"
@@ -29,6 +29,8 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
             )
           }
         />
+        <div className="registration-page__spacing" />
+
         <Controller
           control={control}
           name="lastName"
@@ -41,33 +43,37 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
           }
         />
       </div>
-      <Controller
-        control={control}
-        name="email"
-        rules={{ validate: emailValidation }}
-        render={({ field }) =>
-          CustomTextInput(
-            { ...field, id: 'registrEmail', label: 'Email' },
-            errors,
-          )
-        }
-      />
-      <Controller
-        control={control}
-        name="password"
-        rules={passwordValidation}
-        render={({ field }) =>
-          CustomTextInput(
-            {
-              ...field,
-              id: 'registrPassword',
-              label: 'Password',
-              type: 'password',
-            },
-            errors,
-          )
-        }
-      />
+      <div className="registration-page__col-2">
+        <Controller
+          control={control}
+          name="email"
+          rules={{ validate: emailValidation }}
+          render={({ field }) =>
+            CustomTextInput(
+              { ...field, id: 'registrEmail', label: 'Email' },
+              errors,
+            )
+          }
+        />
+        <div className="registration-page__spacing" />
+
+        <Controller
+          control={control}
+          name="password"
+          rules={passwordValidation}
+          render={({ field }) =>
+            CustomTextInput(
+              {
+                ...field,
+                id: 'registrPassword',
+                label: 'Password',
+                type: 'password',
+              },
+              errors,
+            )
+          }
+        />
+      </div>
       <Controller
         control={control}
         name="dateBirth"

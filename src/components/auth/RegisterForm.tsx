@@ -9,7 +9,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import { FormError } from './FormError';
 import { BillAddresses } from './assets/BillAddresses';
 import { ShipAddresses } from './assets/ShipAddress';
-import './Register.css';
+import './RegisterForm.scss';
 
 export const RegisterForm: React.FC = () => {
   const { handleSubmit, control } = useForm<IRegistrationForm>({
@@ -76,16 +76,18 @@ export const RegisterForm: React.FC = () => {
     <div>
       <ThemeProvider theme={theme}>
         <div className="registration-page">
-          <form onSubmit={handleSubmit(onSubmit)}>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="registration-page__form"
+          >
             <PersonalData control={control} errors={errors} />
-            <div className="col-2">
+            <div className="registration-page__col-2">
               <CustomCheckbox
                 id="isBillingAddressDefault"
                 control={control}
                 name="isBillingAddressDefault"
-                label="Save"
+                label="Save billing address as default"
               />
-              <p>BillingAddresses</p>
             </div>
 
             <BillAddresses control={control} errors={errors} />
@@ -101,14 +103,13 @@ export const RegisterForm: React.FC = () => {
 
             {!billingAddressMatches && (
               <div>
-                <div className="col-2">
+                <div className="registration-page__col-2">
                   <CustomCheckbox
                     id="isShippingAddressDefault"
                     control={control}
                     name="isShippingAddressDefault"
-                    label="Save"
+                    label="Save shipping address as default"
                   />
-                  <p>Shipping Addresses</p>
                 </div>
                 <ShipAddresses control={control} errors={errors} />
               </div>
