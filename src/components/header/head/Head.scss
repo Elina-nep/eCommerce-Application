@@ -37,6 +37,7 @@
 }
 
 .logo-img {
+  width: 20px;
   @media (min-width: 390px) and (max-width: 576px) {
     width: 68%;
   }
@@ -48,9 +49,6 @@
   }
   @media (min-width: 992px) and (max-width: 1200px) {
     width: 61%;
-  }
-  @media (min-width: 1201px) and (max-width: 4000px) {
-    width: 80px;
   }
 }
 
