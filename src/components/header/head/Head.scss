@@ -12,7 +12,7 @@
   position: relative;
   width: 60%;
   left: 40%;
-  @media (min-width: 390px) and (max-width: 575px) {
+  @media (min-width: 210px) and (max-width: 575px) {
     left: 0;
     display: flex;
     flex-direction: row;
@@ -38,7 +38,7 @@
 
 .logo-img {
   width: 20px;
-  @media (min-width: 390px) and (max-width: 576px) {
+  @media (min-width: 210px) and (max-width: 576px) {
     width: 68%;
   }
   @media (min-width: 576px) and (max-width: 768px) {
@@ -63,7 +63,7 @@
 .store-title {
   width: 80%;
   font-size: var(--font-large);
-  @media (min-width: 390px) and (max-width: 768px) {
+  @media (min-width: 210px) and (max-width: 768px) {
     font-size: var(--font-small);
   }
 }
@@ -73,7 +73,7 @@
   list-style-type: none;
   text-decoration: none;
   color: var(--primary-color);
-  @media (min-width: 390px) and (max-width: 768px) {
+  @media (min-width: 210px) and (max-width: 768px) {
     width: 30%;
   }
 }
@@ -81,7 +81,7 @@
   color: var(--primary-color-light);
   font-size: var(--font-xsmall);
   display: flex;
-  @media (min-width: 390px) and (max-width: 576px) {
+  @media (min-width: 210px) and (max-width: 576px) {
     font-size: 0.8rem;
   }
   @media (min-width: 576px) and (max-width: 768px) {
@@ -97,8 +97,9 @@
   text-decoration: none;
   position: relative;
   font-size: var(--font-xsmall);
-  @media (min-width: 390px) and (max-width: 575px) {
-    margin: 0 8%;
+  @media (min-width: 210px) and (max-width: 575px) {
+    margin: 0 6%;
+    width: 28%;
   }
 }
 
@@ -107,8 +108,8 @@
   list-style-type: none;
   text-decoration: none;
   font-size: var(--font-xsmall);
-  @media (min-width: 390px) and (max-width: 575px) {
-    font-size: 0.9rem;
+  @media (min-width: 210px) and (max-width: 575px) {
+    font-size: 0.8rem;
   }
 }
 
@@ -117,7 +118,7 @@
   justify-content: space-between;
   font-size: var(--font-medium);
   width: 30%;
-  @media (min-width: 390px) and (max-width: 768px) {
+  @media (min-width: 210px) and (max-width: 768px) {
     justify-content: space-between;
   }
 }
@@ -143,7 +144,7 @@
     border: 1px solid var(--primary-color);
     color: var(--primary-color);
   }
-  @media (min-width: 390px) and (max-width: 768px) {
+  @media (min-width: 210px) and (max-width: 768px) {
     width: 42%;
   }
 }
@@ -168,7 +169,7 @@
     border: 1px solid var(--secondary-color);
     color: var(--light-color);
   }
-  @media (min-width: 390px) and (max-width: 768px) {
+  @media (min-width: 210px) and (max-width: 768px) {
     width: 42%;
   }
   @media (min-width: 576px) and (max-width: 768px) {
@@ -198,7 +199,7 @@
     border: 1px solid var(--dark-color);
     color: var(--light-color);
   }
-  @media (min-width: 390px) and (max-width: 768px) {
+  @media (min-width: 210px) and (max-width: 768px) {
     width: 68%;
     margin: 0 auto;
   }
