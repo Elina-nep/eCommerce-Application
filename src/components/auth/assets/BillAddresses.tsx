@@ -95,7 +95,6 @@ export const BillAddresses: React.FC<AddressesContainerProps> = ({
                 value={field.value || ''}
                 id={`billcountry-select`}
               >
-                <MenuItem value="US">USA</MenuItem>
                 <MenuItem value="DE">Germany</MenuItem>
                 <MenuItem value="RS">Serbia</MenuItem>
                 <MenuItem value="BY">Belarus</MenuItem>

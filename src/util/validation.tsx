@@ -114,19 +114,16 @@ export const postalCodeValidation = {
       errorMessage = REQUIRED_FIELD;
     } else if (!country) {
       errorMessage = REQUIRED_FIELD;
-    } else if (country === 'Germany') {
+    } else if (country === 'DE') {
       postalCodeRegex = /^\d{5}$/;
       errorMessage = 'Postal code for Germany must have 5 digits.';
-    } else if (country === 'Belarus') {
-      postalCodeRegex = /^\d{6}$/;
-      errorMessage = 'Postal code for Belarus must have 6 digits.';
-    } else if (country === 'Serbia') {
+    } else if (country === 'BY') {
+      postalCodeRegex = /^220\d{3}$/;
+      errorMessage =
+        'Postal code for Belarus must start with "220" followed by 3 digits.';
+    } else if (country === 'RS') {
       postalCodeRegex = /^\d{5}$/;
       errorMessage = 'Postal code for Serbia must have 5 digits.';
-    } else if (country === 'USA') {
-      postalCodeRegex = /^\d{5}(-\d{4})?$/;
-      errorMessage =
-        'Postal code for USA must match the format "#####-####" (5 digits followed by optional hyphen and 4 digits) or "########" (9 digits).';
     }
 
     if (!postalCodeRegex.test(value)) {

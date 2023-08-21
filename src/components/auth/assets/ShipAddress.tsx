@@ -96,7 +96,6 @@ export const ShipAddresses: React.FC<AddressesContainerProps> = ({
                 value={field.value || ''}
                 id={`shipcountry-select`}
               >
-                <MenuItem value="US">USA</MenuItem>
                 <MenuItem value="DE">Germany</MenuItem>
                 <MenuItem value="RS">Serbia</MenuItem>
                 <MenuItem value="BY">Belarus</MenuItem>

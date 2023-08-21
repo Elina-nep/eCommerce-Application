@@ -17,7 +17,7 @@ import './LoginForm.scss';
 
 export const LoginForm: React.FC = () => {
   const [visible, setVisible] = useState(false);
-  const { handleSubmit, control } = useForm<ILoginForm>();
+  const { handleSubmit, control, setError } = useForm<ILoginForm>();
   const { errors } = useFormState({
     control,
   });
@@ -25,6 +25,16 @@ export const LoginForm: React.FC = () => {
   const { loginCustomer } = useContext(AuthContext);
 
   const [errorMessage, setErrorMessage] = useState<string>('');
+
+  const clearError = (fieldName: keyof ILoginForm) => {
+    if (errors[fieldName]) {
+      setError(fieldName, { type: 'manual', message: '' });
+    }
+  };
+
+  const onFocusInput = () => {
+    setErrorMessage('');
+  };
 
   const onSubmit: SubmitHandler<ILoginForm> = async (data) => {
     try {
@@ -49,7 +59,11 @@ export const LoginForm: React.FC = () => {
               <TextField
                 id="loginEmail"
                 label="Email"
-                onChange={(e) => field.onChange(e)}
+                onChange={(e) => {
+                  field.onChange(e);
+                  clearError('email');
+                }}
+                onFocus={onFocusInput}
                 value={field.value || ''}
                 fullWidth
                 size="small"
@@ -69,7 +83,11 @@ export const LoginForm: React.FC = () => {
               <TextField
                 id="loginPassword"
                 label="Password"
-                onChange={(e) => field.onChange(e)}
+                onChange={(e) => {
+                  field.onChange(e);
+                  clearError('password');
+                }}
+                onFocus={onFocusInput}
                 value={field.value || ''}
                 fullWidth
                 size="small"
