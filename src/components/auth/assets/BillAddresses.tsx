@@ -83,7 +83,7 @@ export const BillAddresses: React.FC<AddressesContainerProps> = ({
           size="small"
           error={!!errors[`billCountry` as keyof IRegistrationForm]?.message}
         >
-          <InputLabel id={`billcountry-select-label`}>Country</InputLabel>
+          <InputLabel id="billcountry-select-label">Country</InputLabel>
           <Controller
             control={control}
             name="billCountry"
@@ -91,9 +91,10 @@ export const BillAddresses: React.FC<AddressesContainerProps> = ({
             render={({ field }) => (
               <Select
                 {...field}
-                labelId={`billcountry-select-label`}
+                labelId="billcountry-select-label"
                 value={field.value || ''}
-                id={`billcountry-select`}
+                label="Country"
+                id="billcountry-select"
               >
                 <MenuItem value="DE">Germany</MenuItem>
                 <MenuItem value="RS">Serbia</MenuItem>

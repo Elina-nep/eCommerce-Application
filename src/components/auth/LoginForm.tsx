@@ -17,7 +17,8 @@ import './LoginForm.scss';
 
 export const LoginForm: React.FC = () => {
   const [visible, setVisible] = useState(false);
-  const { handleSubmit, control, setError } = useForm<ILoginForm>();
+  const { handleSubmit, control, setError, trigger, setValue } =
+    useForm<ILoginForm>();
   const { errors } = useFormState({
     control,
   });
@@ -34,6 +35,12 @@ export const LoginForm: React.FC = () => {
 
   const onFocusInput = () => {
     setErrorMessage('');
+  };
+
+  const onChangeInput = (fieldName: keyof ILoginForm, value: string) => {
+    setValue(fieldName, value);
+    trigger(fieldName);
+    clearError(fieldName);
   };
 
   const onSubmit: SubmitHandler<ILoginForm> = async (data) => {
@@ -61,7 +68,7 @@ export const LoginForm: React.FC = () => {
                 label="Email"
                 onChange={(e) => {
                   field.onChange(e);
-                  clearError('email');
+                  onChangeInput('email', e.target.value);
                 }}
                 onFocus={onFocusInput}
                 value={field.value || ''}
@@ -85,7 +92,7 @@ export const LoginForm: React.FC = () => {
                 label="Password"
                 onChange={(e) => {
                   field.onChange(e);
-                  clearError('password');
+                  onChangeInput('password', e.target.value);
                 }}
                 onFocus={onFocusInput}
                 value={field.value || ''}
