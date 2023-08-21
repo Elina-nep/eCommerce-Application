@@ -16,7 +16,7 @@ export const Footer: React.FC = () => {
         <h3>Contacts</h3>
         <p>
           Company Inc., <br />
-          ZM404, Cosmic Street, 42, <br />
+          ZM404, Cosmic St., 42, <br />
           Zuom Dustyville <br /> <br />
           Call us now:
         </p>

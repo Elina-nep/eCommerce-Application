@@ -47,21 +47,24 @@ export const Modal: React.FC<ModalProps> = ({
     <div className="modal" onClick={closeModal}>
       <div
         ref={modalContentRef}
-        className="modal-content"
+        className="modal-wrapper"
         onClick={handleModalClick}
       >
-        <div className="modal-image">
-          <img className="modal-image" src={image} alt="logo" />
-        </div>
-        <div className="modal-text">
-          <h4>{description}</h4>
-          <p>{`Date: ${couponDate}`}</p>
-          <p className="coupon-code">{`${couponCode}`}</p>
+        {' '}
+        <Button onClick={handleCloseButtonClick} className="close">
+          {'x'}
+        </Button>
+        <div className="modal-content">
+          <div className="modal-image">
+            <img className="modal-image" src={image} alt="logo" />
+          </div>
+          <div className="modal-text">
+            <h4>{description}</h4>
+            <p>{`Date: ${couponDate}`}</p>
+            <p className="coupon-code">{`${couponCode}`}</p>
+          </div>
         </div>
       </div>
-      <Button onClick={handleCloseButtonClick} className="close">
-        {'x'}
-      </Button>
     </div>
   );
 };
