@@ -84,7 +84,7 @@ export const ShipAddresses: React.FC<AddressesContainerProps> = ({
           size="small"
           error={!!errors[`shipCountry` as keyof IRegistrationForm]?.message}
         >
-          <InputLabel id={`shipcountry-select-label`}>Country</InputLabel>
+          <InputLabel id="shipcountry-select-label">Country</InputLabel>
           <Controller
             control={control}
             name="shipCountry"
@@ -92,9 +92,10 @@ export const ShipAddresses: React.FC<AddressesContainerProps> = ({
             render={({ field }) => (
               <Select
                 {...field}
-                labelId={`shipcountry-select-label`}
+                labelId="shipcountry-select-label"
                 value={field.value || ''}
-                id={`shipcountry-select`}
+                label="Country"
+                id="shipcountry-select"
               >
                 <MenuItem value="DE">Germany</MenuItem>
                 <MenuItem value="RS">Serbia</MenuItem>

@@ -10,7 +10,7 @@ export const CustomTextInput = (
     label,
     type,
     onChange,
-    onFocus, // Add onFocus prop
+    onFocus,
     autocomplete,
     id,
     ...restProps
