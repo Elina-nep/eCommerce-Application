@@ -58,18 +58,7 @@
 
 @media screen and (max-width: 768px) {
   .modal-wrapper {
-    position: relative;
     width: 450px;
-    background-color: white;
-    padding: 1rem;
-    color: var(--dark-color);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-    border-radius: 2%;
-    font-size: 1.4em;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    z-index: 1;
   }
 
   .modal-text h4 {
@@ -96,7 +85,6 @@
   }
 
   .modal-text h4 {
-    margin: 4% 0;
     font-size: var(--font-small);
   }
 
@@ -119,7 +107,6 @@
   }
 
   .modal-text h4 {
-    margin: 4% 0;
     font-size: var(--font-xsmall);
   }
 

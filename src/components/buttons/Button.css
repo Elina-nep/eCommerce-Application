@@ -91,61 +91,37 @@ button:focus {
 }
 
 @media screen and (max-width: 768px) {
-  button:focus {
-    outline: none;
-  }
-
   .button-pagination {
     font-size: var(--font-small);
     width: 7vw;
     height: 6.5vw;
-    border-radius: 50%;
-    border: 1px solid var(--secondary-color);
   }
 
   .button-info {
-    margin: 0 0 0.5rem 0;
-    bottom: 1.5vh;
-    width: 20vw;
     font-size: var(--font-xsmall);
-    border-radius: 5px;
   }
 
   .close {
     right: -5.5%;
     top: -8%;
-    font-size: var(--font-medium);
-    width: 50px;
-    height: 50px;
-    border-radius: 50px;
-    border: 1px solid var(--secondary-color);
   }
 }
 
 @media screen and (max-width: 576px) {
   .button-info {
     margin: 0 0 0.7rem 0;
-    bottom: 1.5vh;
     width: 30vw;
-    font-size: var(--font-xsmall);
-    border-radius: 5px;
   }
 }
 
 @media screen and (min-width: 380px) and (max-width: 485px) {
   .button-pagination {
-    font-size: var(--font-small);
     width: 9vw;
     height: 8.5vw;
-    border-radius: 50%;
-    border: 1px solid var(--secondary-color);
   }
 
   .button-info {
     margin: 0 0 0.5rem 0;
-    bottom: 1.5vh;
-    width: 30vw;
     font-size: var(--font-small);
-    border-radius: 5px;
   }
 }

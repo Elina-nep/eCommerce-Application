@@ -40,35 +40,12 @@
 }
 
 @media screen and (max-width: 768px) {
-  .coupon-card {
-    width: 0.5vw;
-    flex: 0 0 32%;
-    padding: 0 10px;
-    box-sizing: border-box;
-    border-radius: 10px;
-    align-items: center;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background-color: var(--light-color);
-    margin-right: 2%;
-  }
-
-  .coupon-card:last-child {
-    margin-right: 0;
-  }
-
   .coupon-card-title {
-    position: relative;
-    top: 1.5vh;
     margin: 0.5rem 0 0 0;
-    width: 20vw;
-    text-align: center;
     font-size: var(--font-small);
   }
 
   .coupon-card-img {
-    width: 12vw;
     margin: 2vh;
   }
 }
@@ -77,20 +54,11 @@
   .coupon-card {
     width: 12.4vw;
     flex: 0 0 33%;
-    padding: 0 10px;
-    border-radius: 10px;
-    margin-right: 2%;
-  }
-
-  .coupon-card:last-child {
-    margin-right: 0;
   }
 
   .coupon-card-title {
-    top: 1.5vh;
     margin: 0.7rem 0 0 0;
     width: 30vw;
-    font-size: var(--font-small);
   }
 
   .coupon-card-img {
@@ -103,19 +71,10 @@
     width: 15.6vw;
     flex: 0 0 36%;
     padding: 0 10px;
-    border-radius: 10px;
-    margin-right: 2%;
-  }
-
-  .coupon-card:last-child {
-    margin-right: 0;
   }
 
   .coupon-card-title {
-    top: 1.5vh;
     margin: 0.5rem 0 0 0;
-    width: 30vw;
-    font-size: var(--font-small);
   }
 
   .coupon-card-img {

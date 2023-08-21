@@ -82,17 +82,7 @@
     width: 60%;
   }
 
-  .not-found-page-text a {
-    margin-top: 1%;
-    bottom: 8%;
-    padding: 0.2em 0;
-    width: 8em;
-    font-size: var(--font-small);
-    border-radius: 4px;
-  }
-
   .not-found-page-img {
-    top: 2%;
     width: 55%;
   }
 }
