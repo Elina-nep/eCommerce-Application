@@ -72,7 +72,7 @@
   }
 }
 
-@media screen and (min-width: 380px) and (max-width: 485px) {
+@media screen and (max-width: 485px) {
   .not-found-page {
     justify-content: space-evenly;
   }
