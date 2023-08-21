@@ -52,8 +52,29 @@
 }
 
 @media screen and (max-width: 768px) {
+  .not-found-page-text {
+    font-size: var(--font-small);
+    width: 60%;
+  }
+
+  .not-found-page-text a {
+    margin-top: 1%;
+    bottom: 8%;
+    padding: 0.2em 0;
+    width: 8em;
+    font-size: var(--font-small);
+    border-radius: 4px;
+  }
+
+  .not-found-page-img {
+    top: 2%;
+    width: 35%;
+  }
+}
+
+@media screen and (min-width: 380px) and (max-width: 485px) {
   .not-found-page {
-    height: 400px;
+    justify-content: space-evenly;
   }
 
   .not-found-page-text {
@@ -72,6 +93,6 @@
 
   .not-found-page-img {
     top: 2%;
-    width: 35%;
+    width: 55%;
   }
 }

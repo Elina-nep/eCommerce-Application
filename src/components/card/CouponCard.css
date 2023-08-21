@@ -33,6 +33,9 @@
 @media screen and (max-width: 1000px) {
   .coupon-card-title {
     font-size: var(--font-large);
+    top: 1.5vh;
+    margin: 0.6rem 0 0 0;
+    width: 20vw;
   }
 }
 
@@ -41,7 +44,13 @@
     width: 0.5vw;
     flex: 0 0 32%;
     padding: 0 10px;
+    box-sizing: border-box;
     border-radius: 10px;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background-color: var(--light-color);
     margin-right: 2%;
   }
 
@@ -50,20 +59,24 @@
   }
 
   .coupon-card-title {
-    top: 8%;
-    margin: 0.2rem 0;
-    font-size: var(--font-medium);
+    position: relative;
+    top: 1.5vh;
+    margin: 0.5rem 0 0 0;
+    width: 20vw;
+    text-align: center;
+    font-size: var(--font-small);
   }
 
   .coupon-card-img {
-    width: 45%;
+    width: 12vw;
+    margin: 2vh;
   }
 }
 
 @media screen and (max-width: 576px) {
   .coupon-card {
-    width: 0.5vw;
-    flex: 0 0 32%;
+    width: 12.4vw;
+    flex: 0 0 33%;
     padding: 0 10px;
     border-radius: 10px;
     margin-right: 2%;
@@ -74,17 +87,39 @@
   }
 
   .coupon-card-title {
-    top: 10%;
-    margin: 10px 0;
-    width: 60%;
-    font-size: var(--font-medium);
+    top: 1.5vh;
+    margin: 0.7rem 0 0 0;
+    width: 30vw;
+    font-size: var(--font-small);
   }
 
   .coupon-card-img {
-    width: 40%;
-    height: 40%;
+    width: 50%;
   }
 }
 
 @media screen and (min-width: 380px) and (max-width: 485px) {
+  .coupon-card {
+    width: 15.6vw;
+    flex: 0 0 36%;
+    padding: 0 10px;
+    border-radius: 10px;
+    margin-right: 2%;
+  }
+
+  .coupon-card:last-child {
+    margin-right: 0;
+  }
+
+  .coupon-card-title {
+    top: 1.5vh;
+    margin: 0.5rem 0 0 0;
+    width: 30vw;
+    font-size: var(--font-small);
+  }
+
+  .coupon-card-img {
+    width: 40%;
+    margin: 2.5vh;
+  }
 }

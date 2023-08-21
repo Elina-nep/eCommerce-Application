@@ -54,12 +54,16 @@ button:focus {
 }
 
 .close {
+  position: absolute;
+  right: -4.5%;
+  z-index: 1;
+  top: -6%;
   font-size: var(--font-medium);
   text-align: center;
   width: 50px;
   height: 50px;
   border-radius: 50px;
-  z-index: 1;
+  z-index: 2;
   background-color: var(--light-color);
   color: var(--secondary-color);
   border: 1px solid var(--secondary-color);
@@ -77,6 +81,15 @@ button:focus {
   border: 1px solid var(--primary-color-light);
 }
 
+@media screen and (max-width: 1000px) {
+  .button-info {
+    font-size: var(--font-large);
+    bottom: 1.5vh;
+    margin: 0 0 0.6rem 0;
+    width: 20vw;
+  }
+}
+
 @media screen and (max-width: 768px) {
   button:focus {
     outline: none;
@@ -84,21 +97,23 @@ button:focus {
 
   .button-pagination {
     font-size: var(--font-small);
-    width: 6vw;
-    height: 5.5vw;
+    width: 7vw;
+    height: 6.5vw;
     border-radius: 50%;
     border: 1px solid var(--secondary-color);
   }
 
   .button-info {
-    bottom: 8%;
-    padding: 0.2em 0;
-    width: 6em;
-    font-size: var(--font-medium);
+    margin: 0 0 0.5rem 0;
+    bottom: 1.5vh;
+    width: 20vw;
+    font-size: var(--font-xsmall);
     border-radius: 5px;
   }
 
   .close {
+    right: -5.5%;
+    top: -8%;
     font-size: var(--font-medium);
     width: 50px;
     height: 50px;
@@ -108,7 +123,29 @@ button:focus {
 }
 
 @media screen and (max-width: 576px) {
+  .button-info {
+    margin: 0 0 0.7rem 0;
+    bottom: 1.5vh;
+    width: 30vw;
+    font-size: var(--font-xsmall);
+    border-radius: 5px;
+  }
 }
 
 @media screen and (min-width: 380px) and (max-width: 485px) {
+  .button-pagination {
+    font-size: var(--font-small);
+    width: 9vw;
+    height: 8.5vw;
+    border-radius: 50%;
+    border: 1px solid var(--secondary-color);
+  }
+
+  .button-info {
+    margin: 0 0 0.5rem 0;
+    bottom: 1.5vh;
+    width: 30vw;
+    font-size: var(--font-small);
+    border-radius: 5px;
+  }
 }
