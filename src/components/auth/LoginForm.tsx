@@ -9,15 +9,15 @@ import { useContext, useState } from 'react';
 import { passwordValidation, emailValidation } from '../../util/validation';
 import { ILoginForm } from '../../types/loginForm';
 import { ThemeProvider } from '@mui/material/styles';
-import { theme } from './theme';
+import { loginTheme } from './theme';
 import { AuthContext } from '../../context/AuthProvider';
 import { FormError } from './FormError';
 import { TogglePasswordVisibility } from '../../util/ToggleVisibility';
-import './Login.css';
+import './LoginForm.scss';
 
 export const LoginForm: React.FC = () => {
   const [visible, setVisible] = useState(false);
-  const { handleSubmit, control } = useForm<ILoginForm>();
+  const { handleSubmit, control, setError } = useForm<ILoginForm>();
   const { errors } = useFormState({
     control,
   });
@@ -25,6 +25,16 @@ export const LoginForm: React.FC = () => {
   const { loginCustomer } = useContext(AuthContext);
 
   const [errorMessage, setErrorMessage] = useState<string>('');
+
+  const clearError = (fieldName: keyof ILoginForm) => {
+    if (errors[fieldName]) {
+      setError(fieldName, { type: 'manual', message: '' });
+    }
+  };
+
+  const onFocusInput = () => {
+    setErrorMessage('');
+  };
 
   const onSubmit: SubmitHandler<ILoginForm> = async (data) => {
     try {
@@ -39,8 +49,8 @@ export const LoginForm: React.FC = () => {
 
   return (
     <div className="login-page">
-      <ThemeProvider theme={theme}>
-        <form onSubmit={handleSubmit(onSubmit)}>
+      <ThemeProvider theme={loginTheme}>
+        <form onSubmit={handleSubmit(onSubmit)} className="login-page__form">
           <Controller
             control={control}
             name="email"
@@ -49,7 +59,11 @@ export const LoginForm: React.FC = () => {
               <TextField
                 id="loginEmail"
                 label="Email"
-                onChange={(e) => field.onChange(e)}
+                onChange={(e) => {
+                  field.onChange(e);
+                  clearError('email');
+                }}
+                onFocus={onFocusInput}
                 value={field.value || ''}
                 fullWidth
                 size="small"
@@ -69,7 +83,11 @@ export const LoginForm: React.FC = () => {
               <TextField
                 id="loginPassword"
                 label="Password"
-                onChange={(e) => field.onChange(e)}
+                onChange={(e) => {
+                  field.onChange(e);
+                  clearError('password');
+                }}
+                onFocus={onFocusInput}
                 value={field.value || ''}
                 fullWidth
                 size="small"
@@ -90,11 +108,11 @@ export const LoginForm: React.FC = () => {
             )}
           />
           <button type="submit" className="login-page__btn">
-            Log in
+            Sign in
           </button>
+          {errorMessage && <FormError message={errorMessage} />}
         </form>
       </ThemeProvider>
-      {errorMessage && <FormError message={errorMessage} />}{' '}
     </div>
   );
 };

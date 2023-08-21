@@ -1,14 +1,12 @@
 import React from 'react';
 import { FormErrorProps } from '../../types';
-import './FormError.css';
+import './FormError.scss';
 
-export class FormError extends React.Component<FormErrorProps> {
-  render() {
-    return (
-      <div>
-        <p className="error_message">{this.props.message}</p>
-        <p className="error_message">Please try again</p>
-      </div>
-    );
-  }
-}
+export const FormError: React.FC<FormErrorProps> = (props) => {
+  return (
+    <div className="form_error">
+      <p className="error_message">⚠️ {props.message} ⚠️</p>
+      <p className="error_message">Please try again</p>
+    </div>
+  );
+};

@@ -13,61 +13,85 @@ import { PersonalDataProps } from '../../../types/form';
 export const PersonalData: React.FC<PersonalDataProps> = ({
   control,
   errors,
+  onFocusInput,
 }) => {
   const today = new Date().toISOString().split('T')[0];
+
   return (
     <div>
-      <div className="col-2">
+      <div className="registration-page__col-2">
         <Controller
           control={control}
           name="firstName"
           rules={nameValidation}
           render={({ field }) =>
             CustomTextInput(
-              { ...field, id: 'firstName', label: 'First Name' },
+              {
+                ...field,
+                id: 'firstName',
+                label: 'First Name',
+                onFocus: onFocusInput,
+              },
               errors,
             )
           }
         />
+        <div className="registration-page__spacing" />
+
         <Controller
           control={control}
           name="lastName"
           rules={nameValidation}
           render={({ field }) =>
             CustomTextInput(
-              { ...field, id: 'lastName', label: 'Last Name' },
+              {
+                ...field,
+                id: 'lastName',
+                label: 'Last Name',
+                onFocus: onFocusInput,
+              },
               errors,
             )
           }
         />
       </div>
-      <Controller
-        control={control}
-        name="email"
-        rules={{ validate: emailValidation }}
-        render={({ field }) =>
-          CustomTextInput(
-            { ...field, id: 'registrEmail', label: 'Email' },
-            errors,
-          )
-        }
-      />
-      <Controller
-        control={control}
-        name="password"
-        rules={passwordValidation}
-        render={({ field }) =>
-          CustomTextInput(
-            {
-              ...field,
-              id: 'registrPassword',
-              label: 'Password',
-              type: 'password',
-            },
-            errors,
-          )
-        }
-      />
+      <div className="registration-page__col-2">
+        <Controller
+          control={control}
+          name="email"
+          rules={{ validate: emailValidation }}
+          render={({ field }) =>
+            CustomTextInput(
+              {
+                ...field,
+                id: 'registrEmail',
+                label: 'Email',
+                onFocus: onFocusInput,
+              },
+              errors,
+            )
+          }
+        />
+        <div className="registration-page__spacing" />
+
+        <Controller
+          control={control}
+          name="password"
+          rules={passwordValidation}
+          render={({ field }) =>
+            CustomTextInput(
+              {
+                ...field,
+                id: 'registrPassword',
+                label: 'Password',
+                type: 'password',
+                onFocus: onFocusInput,
+              },
+              errors,
+            )
+          }
+        />
+      </div>
       <Controller
         control={control}
         name="dateBirth"

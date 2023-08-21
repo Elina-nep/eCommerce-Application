@@ -1,0 +1,132 @@
+.footer {
+  background-color: var(--dark-color);
+  color: var(--secondary-color);
+  display: flex;
+  justify-content: space-between;
+  padding: 0.8% 7%;
+}
+
+.footer__column {
+  margin-right: 2%;
+}
+
+.footer__column h3 {
+  margin-bottom: 10px;
+  font-weight: inherit;
+  font-size: var(--font-medium);
+}
+
+.footer__column ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__column ul li {
+  margin-bottom: 5px;
+}
+
+.footer__column ul li a {
+  font-size: var(--font-small);
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color 0.5s ease;
+}
+
+.footer__column p {
+  font-size: var(--font-small);
+  white-space: nowrap;
+  margin: 0 10%;
+}
+
+.footer__column a:hover {
+  color: var(--light-color);
+}
+
+.column-phone-number {
+  color: var(--primary-color);
+  margin-top: 0;
+  font-weight: 900;
+}
+
+.footer__column a::before {
+  height: 5%;
+  content: url('../../assets/salut.png');
+  background-size: contain;
+  opacity: 0;
+  transition:
+    width 0.5s,
+    opacity 0.5s;
+}
+
+.footer__column a:hover::before {
+  height: 5%;
+  width: 30px;
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 0.6% 5%;
+  }
+
+  .footer__column h3 {
+    font-size: var(--font-small);
+    margin-bottom: 8px;
+  }
+
+  .footer__column ul li {
+    margin-bottom: 3px;
+  }
+
+  .footer__column ul li a {
+    font-size: var(--font-xsmall);
+  }
+
+  .footer__column p {
+    font-size: var(--font-xsmall);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .footer {
+    padding: 0.5% 4%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .footer__column {
+    width: 33%;
+  }
+
+  .footer__column h3 {
+    margin-right: 2%;
+    width: 10rem;
+  }
+
+  .footer__column ul li {
+    margin-bottom: 0px;
+  }
+
+  .footer__column a::before {
+    opacity: 0;
+    transition: none;
+  }
+
+  .footer__column a:hover::before {
+    opacity: 0;
+  }
+}
+
+@media screen and (min-width: 380px) and (max-width: 485px) {
+  .footer {
+    justify-content: space-evenly;
+    padding: 0.4% 1%;
+  }
+
+  .footer__column:nth-child(1),
+  .footer__column:nth-child(2) {
+    display: none;
+  }
+}

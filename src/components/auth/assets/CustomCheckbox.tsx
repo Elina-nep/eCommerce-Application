@@ -20,7 +20,7 @@ export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({
         name={name}
         render={({ field }) => (
           <FormControlLabel
-            labelPlacement="bottom"
+            labelPlacement="end"
             control={
               <Checkbox
                 id={id}

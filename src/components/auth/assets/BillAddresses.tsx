@@ -31,105 +31,111 @@ export const BillAddresses: React.FC<AddressesContainerProps> = ({
 
   return (
     <div>
-      <Controller
-        control={control}
-        name={`billStreet`}
-        rules={streetValidation}
-        render={({ field }) => (
-          <TextField
-            id={`billStreet`}
-            label="Street"
-            {...field}
-            fullWidth={true}
-            value={field.value || ''}
-            size="small"
-            margin="normal"
-            type="string"
-            error={!!errors[`billStreet` as keyof IRegistrationForm]?.message}
-            helperText={
-              errors[`billStreet` as keyof IRegistrationForm]?.message
-            }
-          />
-        )}
-      />
-      <Controller
-        control={control}
-        name="billCity"
-        rules={nameValidation}
-        render={({ field }) => (
-          <TextField
-            id={`billCity`}
-            label="City"
-            {...field}
-            fullWidth={true}
-            value={field.value || ''}
-            size="small"
-            margin="normal"
-            type="string"
-            error={!!errors[`billCity` as keyof IRegistrationForm]?.message}
-            helperText={errors[`billCity` as keyof IRegistrationForm]?.message}
-          />
-        )}
-      />
-
-      <Controller
-        control={control}
-        name={`billPostalCode` as keyof IRegistrationForm}
-        rules={{
-          ...postalCodeValidation,
-          required: 'This field is required',
-          validate: (value) => postalCodeValidate(value as string),
-        }}
-        render={({ field }) => (
-          <TextField
-            id={`billpostalCode`}
-            label="Postal Code"
-            {...field}
-            fullWidth={true}
-            value={field.value || ''}
-            size="small"
-            margin="normal"
-            type="string"
-            error={
-              !!errors[`billPostalCode` as keyof IRegistrationForm]?.message
-            }
-            helperText={
-              errors[`billPostalCode` as keyof IRegistrationForm]?.message
-            }
-          />
-        )}
-      />
-      <FormControl
-        margin="normal"
-        fullWidth
-        size="small"
-        error={!!errors[`billCountry` as keyof IRegistrationForm]?.message}
-      >
-        <InputLabel id={`billcountry-select-label`}>Country</InputLabel>
+      <div className="registration-page__col-2">
         <Controller
           control={control}
-          name="billCountry"
-          rules={{ validate: countryValidation.validate }}
+          name={`billStreet`}
+          rules={streetValidation}
           render={({ field }) => (
-            <Select
+            <TextField
+              id={`billStreet`}
+              label="Street"
               {...field}
-              labelId={`billcountry-select-label`}
+              fullWidth={true}
               value={field.value || ''}
-              id={`billcountry-select`}
-            >
-              <MenuItem value="US">USA</MenuItem>
-              <MenuItem value="DE">Germany</MenuItem>
-              <MenuItem value="RS">Serbia</MenuItem>
-              <MenuItem value="BY">Belarus</MenuItem>
-            </Select>
+              size="small"
+              margin="normal"
+              type="string"
+              error={!!errors[`billStreet` as keyof IRegistrationForm]?.message}
+              helperText={
+                errors[`billStreet` as keyof IRegistrationForm]?.message
+              }
+            />
           )}
         />
-        {errors[`billCountry` as keyof IRegistrationForm]?.message && (
-          <FormHelperText>
-            {errors[`billCountry` as keyof IRegistrationForm]?.message}
-          </FormHelperText>
-        )}
-      </FormControl>
+        <div className="registration-page__spacing" />
+        <Controller
+          control={control}
+          name="billCity"
+          rules={nameValidation}
+          render={({ field }) => (
+            <TextField
+              id={`billCity`}
+              label="City"
+              {...field}
+              fullWidth={true}
+              value={field.value || ''}
+              size="small"
+              margin="normal"
+              type="string"
+              error={!!errors[`billCity` as keyof IRegistrationForm]?.message}
+              helperText={
+                errors[`billCity` as keyof IRegistrationForm]?.message
+              }
+            />
+          )}
+        />
+      </div>
+      <div className="registration-page__col-2">
+        <FormControl
+          margin="normal"
+          fullWidth
+          size="small"
+          error={!!errors[`billCountry` as keyof IRegistrationForm]?.message}
+        >
+          <InputLabel id={`billcountry-select-label`}>Country</InputLabel>
+          <Controller
+            control={control}
+            name="billCountry"
+            rules={{ validate: countryValidation.validate }}
+            render={({ field }) => (
+              <Select
+                {...field}
+                labelId={`billcountry-select-label`}
+                value={field.value || ''}
+                id={`billcountry-select`}
+              >
+                <MenuItem value="DE">Germany</MenuItem>
+                <MenuItem value="RS">Serbia</MenuItem>
+                <MenuItem value="BY">Belarus</MenuItem>
+              </Select>
+            )}
+          />
+          {errors[`billCountry` as keyof IRegistrationForm]?.message && (
+            <FormHelperText>
+              {errors[`billCountry` as keyof IRegistrationForm]?.message}
+            </FormHelperText>
+          )}
+        </FormControl>
+        <div className="registration-page__spacing" />
+        <Controller
+          control={control}
+          name={`billPostalCode` as keyof IRegistrationForm}
+          rules={{
+            ...postalCodeValidation,
+            required: 'This field is required',
+            validate: (value) => postalCodeValidate(value as string),
+          }}
+          render={({ field }) => (
+            <TextField
+              id={`billpostalCode`}
+              label="Postal Code"
+              {...field}
+              fullWidth={true}
+              value={field.value || ''}
+              size="small"
+              margin="normal"
+              type="string"
+              error={
+                !!errors[`billPostalCode` as keyof IRegistrationForm]?.message
+              }
+              helperText={
+                errors[`billPostalCode` as keyof IRegistrationForm]?.message
+              }
+            />
+          )}
+        />
+      </div>
     </div>
   );
 };

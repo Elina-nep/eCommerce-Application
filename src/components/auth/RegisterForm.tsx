@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import { ThemeProvider } from '@mui/material/styles';
-import { theme } from './theme';
+import { registerTheme } from './theme';
 import { IRegistrationForm } from '../../types/registrationForm';
 import { PersonalData } from './assets/PersonalData';
 import { CustomCheckbox } from './assets/CustomCheckbox';
@@ -9,7 +9,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import { FormError } from './FormError';
 import { BillAddresses } from './assets/BillAddresses';
 import { ShipAddresses } from './assets/ShipAddress';
-import './Register.css';
+import './RegisterForm.scss';
 
 export const RegisterForm: React.FC = () => {
   const { handleSubmit, control } = useForm<IRegistrationForm>({
@@ -21,6 +21,10 @@ export const RegisterForm: React.FC = () => {
   const { errors } = useFormState({
     control,
   });
+
+  const onFocusInput = () => {
+    setErrorMessage('');
+  };
 
   const [billingAddressMatches, setBillingAddressMatches] = useState(true);
   const { createCustomer } = useContext(AuthContext);
@@ -73,42 +77,48 @@ export const RegisterForm: React.FC = () => {
   };
 
   return (
-    <div>
-      <ThemeProvider theme={theme}>
-        <div className="registration-page">
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <PersonalData control={control} errors={errors} />
-            <div className="col-2">
+    <div className="registration-page">
+      <ThemeProvider theme={registerTheme}>
+        <div>
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="registration-page__form"
+          >
+            <PersonalData
+              control={control}
+              errors={errors}
+              onFocusInput={onFocusInput}
+            />
+            <p>Billing Address</p>
+            <div className="registration-page__col-2">
               <CustomCheckbox
                 id="isBillingAddressDefault"
                 control={control}
                 name="isBillingAddressDefault"
-                label="Save"
+                label="Save billing address as default"
               />
-              <p>BillingAddresses</p>
             </div>
-
             <BillAddresses control={control} errors={errors} />
-
-            <CustomCheckbox
-              id="areAddressesSame"
-              control={control}
-              name="areAddressesSame"
-              label="My billing address matches shipping address"
-              isChecked={billingAddressMatches}
-              onChange={(checked) => setBillingAddressMatches(checked)}
-            />
-
+            <div className="registration-page__col-1">
+              <CustomCheckbox
+                id="areAddressesSame"
+                control={control}
+                name="areAddressesSame"
+                label="My billing address matches shipping address"
+                isChecked={billingAddressMatches}
+                onChange={(checked) => setBillingAddressMatches(checked)}
+              />
+            </div>
             {!billingAddressMatches && (
               <div>
-                <div className="col-2">
+                <p>Shipping Address</p>
+                <div className="registration-page__col-2">
                   <CustomCheckbox
                     id="isShippingAddressDefault"
                     control={control}
                     name="isShippingAddressDefault"
-                    label="Save"
+                    label="Save shipping address as default"
                   />
-                  <p>Shipping Addresses</p>
                 </div>
                 <ShipAddresses control={control} errors={errors} />
               </div>
@@ -116,8 +126,8 @@ export const RegisterForm: React.FC = () => {
             <button type="submit" className="registration-page__btn">
               Create account
             </button>
+            {errorMessage && <FormError message={errorMessage} />}{' '}
           </form>
-          {errorMessage && <FormError message={errorMessage} />}{' '}
         </div>
       </ThemeProvider>
     </div>
