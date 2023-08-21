@@ -5,9 +5,19 @@
     "^.+\\.svg$": "jest-transformer-svg"
   },
   "moduleNameMapper": {
-    "\\.(css|scss)$": "jest-css-modules"
+    "\\.(css|scss)$": "jest-css-modules",
+    "\\.(jpg|ico|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "identity-obj-proxy"
   },
   "setupFilesAfterEnv": [
     "@testing-library/jest-dom/extend-expect"
+  ],
+  "coveragePathIgnorePatterns": [
+    "node_modules",
+    "test-config",
+    "interfaces",
+    "jestGlobalMocks.ts",
+    ".module.ts",
+    "<rootDir>/src/context/*",
+    "<rootDir>/src/services/*"
   ]
 }

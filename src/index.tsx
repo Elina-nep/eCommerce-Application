@@ -1,13 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { RouterProvider, createHashRouter } from 'react-router-dom';
+import { routerObj } from './router/RouterConfig';
 import './index.css';
-import App from './pages/App';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
 );
+
+const router = createHashRouter(routerObj, {
+  basename: '/',
+});
+
 root.render(
   <React.StrictMode>
-    <App />
+    <RouterProvider router={router} />
   </React.StrictMode>,
 );

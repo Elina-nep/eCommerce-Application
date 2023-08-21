@@ -1,0 +1,127 @@
+button:focus {
+  outline: none;
+}
+
+.button-pagination {
+  font-size: var(--font-medium);
+  width: 60px;
+  height: 55px;
+  border-radius: 50%;
+  z-index: 1;
+  background-color: var(--light-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Iceland';
+}
+
+.button-pagination:hover {
+  background-color: var(--primary-color-light);
+  color: var(--light-color);
+  border: 1px solid var(--primary-color-light);
+}
+
+.button-info {
+  position: relative;
+  margin: 0 0 0.5rem 0;
+  bottom: 2vh;
+  background-color: var(--primary-color-light);
+  color: var(--dark-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4em 0;
+  width: 20vw;
+  font-size: var(--font-large);
+  list-style-type: none;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  font-family: 'Iceland';
+}
+
+.button-info:hover {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+}
+
+.close {
+  position: absolute;
+  right: -4.5%;
+  z-index: 1;
+  top: -6%;
+  font-size: var(--font-medium);
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  z-index: 2;
+  background-color: var(--light-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Iceland';
+}
+
+.close:hover {
+  background-color: var(--primary-color-light);
+  color: var(--light-color);
+  border: 1px solid var(--primary-color-light);
+}
+
+@media screen and (max-width: 1000px) {
+  .button-info {
+    font-size: var(--font-large);
+    bottom: 1.5vh;
+    margin: 0 0 0.6rem 0;
+    width: 20vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .button-pagination {
+    font-size: var(--font-small);
+    width: 7vw;
+    height: 6.5vw;
+  }
+
+  .button-info {
+    font-size: var(--font-xsmall);
+  }
+
+  .close {
+    right: -5.5%;
+    top: -8%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .button-info {
+    margin: 0 0 0.7rem 0;
+    width: 30vw;
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .button-pagination {
+    width: 9vw;
+    height: 8.5vw;
+  }
+
+  .button-info {
+    margin: 0 0 0.5rem 0;
+    font-size: var(--font-small);
+  }
+}
