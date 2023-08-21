@@ -81,6 +81,7 @@ export const RegisterForm: React.FC = () => {
             className="registration-page__form"
           >
             <PersonalData control={control} errors={errors} />
+            <p>Billing Address</p>
             <div className="registration-page__col-2">
               <CustomCheckbox
                 id="isBillingAddressDefault"
@@ -102,6 +103,7 @@ export const RegisterForm: React.FC = () => {
             </div>
             {!billingAddressMatches && (
               <div>
+                <p>Shipping Address</p>
                 <div className="registration-page__col-2">
                   <CustomCheckbox
                     id="isShippingAddressDefault"
