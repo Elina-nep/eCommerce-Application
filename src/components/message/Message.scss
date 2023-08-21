@@ -1,0 +1,32 @@
+.message {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  bottom: 50px;
+  width: 250px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.message__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border: 1px solid var(--secondary-color);
+  border-radius: 10px;
+  width: 100%;
+}
+
+.message__title {
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  line-height: 0.6rem;
+}
+
+.message__text {
+  font-size: 1rem;
+  line-height: 0.1rem;
+  color: var(--secondary-color);
+}
