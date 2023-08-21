@@ -114,7 +114,7 @@ button:focus {
   }
 }
 
-@media screen and (min-width: 380px) and (max-width: 485px) {
+@media screen and (max-width: 485px) {
   .button-pagination {
     width: 9vw;
     height: 8.5vw;

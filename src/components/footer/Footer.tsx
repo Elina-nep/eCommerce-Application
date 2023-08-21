@@ -14,13 +14,13 @@ export const Footer: React.FC = () => {
       ))}
       <div className="footer__column">
         <h3>Contacts</h3>
-        <p>
+        <p className="footer__column-address">
           Company Inc., <br />
           ZM404, Cosmic St., 42, <br />
           Zuom Dustyville <br /> <br />
           Call us now:
         </p>
-        <p className="column-phone-number">(800) 2345-6789</p>
+        <p className="footer__column-phone-number">(800) 2345-6789</p>
       </div>
     </footer>
   );

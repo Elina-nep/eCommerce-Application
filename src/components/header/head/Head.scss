@@ -26,7 +26,8 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
+    width: 100%;
+    padding: 0 2%;
     margin: 0 auto;
   }
 }
@@ -74,7 +75,7 @@
   text-decoration: none;
   color: var(--primary-color);
   @media (min-width: 210px) and (max-width: 768px) {
-    width: 30%;
+    width: 40%;
   }
 }
 .slogan {
@@ -98,8 +99,8 @@
   position: relative;
   font-size: var(--font-xsmall);
   @media (min-width: 210px) and (max-width: 575px) {
-    margin: 0 6%;
-    width: 28%;
+    margin: 0 4%;
+    width: 20%;
   }
 }
 
@@ -120,15 +121,17 @@
   width: 30%;
   @media (min-width: 210px) and (max-width: 768px) {
     justify-content: space-between;
+    width: 28%;
   }
 }
 
 .login {
+  margin-right: 1%;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 8vw;
+  width: 10vw;
   padding: 0.2em 0;
   font-size: var(--font-xsmall);
   color: var(--light-color);
@@ -145,11 +148,14 @@
     color: var(--primary-color);
   }
   @media (min-width: 210px) and (max-width: 768px) {
-    width: 42%;
+    width: 24vw;
+    font-size: 0.8rem;
+    margin-right: 1%;
   }
 }
 
 .register {
+  margin-right: 1%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -157,7 +163,7 @@
   color: var(--secondary-color);
   border: 1px solid var(--secondary-color);
   padding: 0.2em 0;
-  width: 8vw;
+  width: 10vw;
   font-size: var(--font-xsmall);
   list-style-type: none;
   text-decoration: none;
@@ -170,10 +176,11 @@
     color: var(--light-color);
   }
   @media (min-width: 210px) and (max-width: 768px) {
-    width: 42%;
+    width: 24vw;
+    font-size: 0.8rem;
+    margin-right: 1%;
   }
   @media (min-width: 576px) and (max-width: 768px) {
-    margin-left: 5%;
   }
 }
 
@@ -184,7 +191,7 @@
   align-items: center;
   text-align: center;
   padding: 0.2em 0;
-  width: 8vw;
+  width: 10vw;
   font-size: var(--font-xsmall);
   background-color: var(--light-color);
   color: var(--dark-color);
@@ -200,7 +207,12 @@
     color: var(--light-color);
   }
   @media (min-width: 210px) and (max-width: 768px) {
-    width: 68%;
-    margin: 0 auto;
+    width: 24vw;
+    font-size: 0.8rem;
   }
+}
+button:disabled {
+  pointer-events: none;
+  color: rgb(155, 155, 155);
+  border: 1px solid rgb(155, 155, 155);
 }

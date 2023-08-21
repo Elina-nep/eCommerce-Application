@@ -21,8 +21,7 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
               />
             </div>
             <div className="store-title">
-              Enchant Fest
-              <br />
+              Enchant Fest <br />
               <span className="slogan">Unleash the Magic of Festivals</span>
             </div>
           </div>
@@ -33,21 +32,15 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
           </Link>
         </div>
         <div className="registration-links">
-          {ifAuth ? (
-            <button className="logout" onClick={logOut}>
-              Log out
-            </button>
-          ) : (
-            <>
-              <Link to="login" className="login">
-                Sign in
-              </Link>
-              <Link to="register" className="register">
-                Sign up
-              </Link>
-              <br />
-            </>
-          )}
+          <Link to="login" className="login">
+            Sign in
+          </Link>
+          <Link to="register" className="register">
+            Sign up
+          </Link>
+          <button className="logout" onClick={logOut} disabled={!ifAuth}>
+            Log out
+          </button>
         </div>
       </div>
     </div>
