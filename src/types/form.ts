@@ -4,6 +4,7 @@ import { FieldErrors } from 'react-hook-form';
 
 export interface TextFieldProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onFocus: () => void;
   name: keyof IRegistrationForm;
   value: string;
   label?: string;
@@ -33,6 +34,7 @@ export interface CustomCheckboxProps {
 export interface PersonalDataProps {
   control: Control<IRegistrationForm>;
   errors: FieldErrors<IRegistrationForm>;
+  onFocusInput: () => void;
 }
 
 export interface AddressesContainerProps {

@@ -22,6 +22,10 @@ export const RegisterForm: React.FC = () => {
     control,
   });
 
+  const onFocusInput = () => {
+    setErrorMessage('');
+  };
+
   const [billingAddressMatches, setBillingAddressMatches] = useState(true);
   const { createCustomer } = useContext(AuthContext);
 
@@ -80,7 +84,11 @@ export const RegisterForm: React.FC = () => {
             onSubmit={handleSubmit(onSubmit)}
             className="registration-page__form"
           >
-            <PersonalData control={control} errors={errors} />
+            <PersonalData
+              control={control}
+              errors={errors}
+              onFocusInput={onFocusInput}
+            />
             <p>Billing Address</p>
             <div className="registration-page__col-2">
               <CustomCheckbox

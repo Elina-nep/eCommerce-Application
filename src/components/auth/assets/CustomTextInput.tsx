@@ -9,8 +9,8 @@ export const CustomTextInput = (
     value = '',
     label,
     type,
-    // calendarlimit,
     onChange,
+    onFocus, // Add onFocus prop
     autocomplete,
     id,
     ...restProps
@@ -28,6 +28,7 @@ export const CustomTextInput = (
       size="small"
       margin="normal"
       onChange={onChange}
+      onFocus={onFocus}
       error={!!errors[name]?.message}
       helperText={errors[name]?.message}
       autoComplete={autoCompleteValue}

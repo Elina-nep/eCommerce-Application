@@ -13,8 +13,10 @@ import { PersonalDataProps } from '../../../types/form';
 export const PersonalData: React.FC<PersonalDataProps> = ({
   control,
   errors,
+  onFocusInput,
 }) => {
   const today = new Date().toISOString().split('T')[0];
+
   return (
     <div>
       <div className="registration-page__col-2">
@@ -24,7 +26,12 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
           rules={nameValidation}
           render={({ field }) =>
             CustomTextInput(
-              { ...field, id: 'firstName', label: 'First Name' },
+              {
+                ...field,
+                id: 'firstName',
+                label: 'First Name',
+                onFocus: onFocusInput,
+              },
               errors,
             )
           }
@@ -37,7 +44,12 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
           rules={nameValidation}
           render={({ field }) =>
             CustomTextInput(
-              { ...field, id: 'lastName', label: 'Last Name' },
+              {
+                ...field,
+                id: 'lastName',
+                label: 'Last Name',
+                onFocus: onFocusInput,
+              },
               errors,
             )
           }
@@ -50,7 +62,12 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
           rules={{ validate: emailValidation }}
           render={({ field }) =>
             CustomTextInput(
-              { ...field, id: 'registrEmail', label: 'Email' },
+              {
+                ...field,
+                id: 'registrEmail',
+                label: 'Email',
+                onFocus: onFocusInput,
+              },
               errors,
             )
           }
@@ -68,6 +85,7 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
                 id: 'registrPassword',
                 label: 'Password',
                 type: 'password',
+                onFocus: onFocusInput,
               },
               errors,
             )
