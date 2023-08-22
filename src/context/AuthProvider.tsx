@@ -6,8 +6,7 @@ import React, {
 } from 'react';
 import LoadingSpinner from '../components/loading/LoadingSpinner';
 import { ICreateCustomer, ILoginCustomer } from '../types';
-import { loginCustomerService } from '../services/auth/loginCustomerService';
-import { createCustomerService } from '../services/auth/createCustomerService';
+import { createCustomerFunc, loginCustomerFunc, logOutFunc } from '../util';
 
 interface IUserAuth {
   ifAuth: boolean;
@@ -35,50 +34,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(false);
   const [alertMessage, setAlertMessage] = useState('');
 
-  const clearAlert = () => {
-    setTimeout(() => {
-      setAlertMessage('');
-    }, 3000);
-  };
-  const loginCustomer = (data: ILoginCustomer): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      loginCustomerService(data)
-        .then((body) => {
-          setIfAuth(true);
-          setAlertMessage(
-            `Hello ${body.body.customer.firstName || 'my friend'}!`,
-          );
-          clearAlert();
-          resolve();
-        })
-        .catch((e) => {
-          const errorMessage = e.message || 'An error occurred';
-          reject(new Error(errorMessage));
-        });
-    });
-  };
+  const loginCustomer = (data: ILoginCustomer): Promise<void> =>
+    loginCustomerFunc(data, setIfAuth, setAlertMessage);
 
-  const createCustomer = (data: ICreateCustomer): Promise<void> => {
-    return new Promise((resolve, reject) => {
-      createCustomerService(data)
-        .then((body) => {
-          setIfAuth(true);
-          setAlertMessage(`User ${body.body.customer.email} is created`);
-          clearAlert();
-          loginCustomerService({ email: data.email, password: data.password });
-          resolve();
-        })
-        .catch((e) => {
-          const errorMessage = e.message || 'An error occurred';
-          reject(new Error(errorMessage));
-        });
-    });
-  };
+  const createCustomer = (data: ICreateCustomer): Promise<void> =>
+    createCustomerFunc(data, setIfAuth, setAlertMessage);
 
-  const logOut = () => {
-    setIfAuth(false);
-    localStorage.clear();
-  };
+  const logOut = () => logOutFunc(setIfAuth);
 
   return (
     <AuthContext.Provider

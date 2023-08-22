@@ -11,3 +11,4 @@ export {
 } from './validation';
 
 export { cards } from './constants';
+export { loginCustomerFunc, createCustomerFunc, logOutFunc } from './auth';
