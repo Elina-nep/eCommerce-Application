@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { ProductPagedQueryResponse } from '@commercetools/platform-sdk';
 import Button from '../../components/buttons/Button';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
@@ -22,6 +22,10 @@ export const CatalogPage = () => {
         console.log(e);
       });
   };
+
+  useEffect(() => {
+    handleGetProducts();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const formProducts = () => {
     return products.results.map((el) => {
