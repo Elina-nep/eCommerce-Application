@@ -1,6 +1,9 @@
 import { Dispatch, SetStateAction } from 'react';
-import { getProductsService } from '../services';
-import { ProductPagedQueryResponse } from '@commercetools/platform-sdk';
+import { getCategoriesService, getProductsService } from '../services';
+import {
+  CategoryPagedQueryResponse,
+  ProductPagedQueryResponse,
+} from '@commercetools/platform-sdk';
 
 export const getProductsFunc = (
   //   data: ProductPagedQueryResponse,
@@ -18,6 +21,19 @@ export const getProductsFunc = (
       })
       .finally(() => {
         setLoading(false);
+      });
+  });
+};
+
+export const getCategoriesFunc = (): Promise<CategoryPagedQueryResponse> => {
+  return new Promise((resolve, reject) => {
+    getCategoriesService()
+      .then((body) => {
+        resolve(body.body);
+      })
+      .catch((e) => {
+        const errorMessage = e.message || 'An error occurred';
+        reject(new Error(errorMessage));
       });
   });
 };
