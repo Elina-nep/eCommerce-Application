@@ -6,6 +6,7 @@ import { NotFound } from '../pages/404/NotFound';
 import { MainPage } from '../pages/main/Main';
 import { LoginPage } from '../pages/auth/Login';
 import { RegisterPage } from '../pages/auth/Register';
+import { CatalogPage } from '../pages/catalog/Catalog';
 
 export const routerObj = createRoutesFromElements(
   <>
@@ -16,6 +17,7 @@ export const routerObj = createRoutesFromElements(
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
         </Route>
+        <Route path="/catalog" element={<CatalogPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Route>

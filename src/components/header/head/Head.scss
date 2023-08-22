@@ -206,13 +206,14 @@
     border: 1px solid var(--dark-color);
     color: var(--light-color);
   }
+  &:disabled {
+    pointer-events: none;
+    color: rgb(155, 155, 155);
+    border: 1px solid rgb(155, 155, 155);
+  }
+
   @media (min-width: 210px) and (max-width: 768px) {
     width: 24vw;
     font-size: 0.8rem;
   }
-}
-button:disabled {
-  pointer-events: none;
-  color: rgb(155, 155, 155);
-  border: 1px solid rgb(155, 155, 155);
 }

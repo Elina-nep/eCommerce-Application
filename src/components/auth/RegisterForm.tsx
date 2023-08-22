@@ -77,7 +77,7 @@ export const RegisterForm: React.FC = () => {
   };
 
   return (
-    <div className="registration-page">
+    <div className="registration-page main-container">
       <ThemeProvider theme={registerTheme}>
         <div>
           <form

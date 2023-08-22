@@ -14,9 +14,9 @@ body {
   --primary-color: #fe4004;
   --primary-color-light: #ff814e;
   --secondary-color: #50a294;
+  --secondary-color-light: #b7ede4;
   --dark-color: #2a2a2a;
   --light-color: #ffffff;
-
   --font-xsmall: 1rem;
   --font-small: 1.1rem;
   --font-medium: 1.2rem;
@@ -28,4 +28,10 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
+}
+
+.main-container {
+  flex-grow: 1;
+  width: 100%;
+  background-size: cover;
 }
