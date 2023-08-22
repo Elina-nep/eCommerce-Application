@@ -2,13 +2,13 @@ import { Dispatch, SetStateAction } from 'react';
 import { getCategoriesService, getProductsService } from '../services';
 import {
   CategoryPagedQueryResponse,
-  ProductPagedQueryResponse,
+  ProductProjectionPagedQueryResponse,
 } from '@commercetools/platform-sdk';
 
 export const getProductsFunc = (
   //   data: ProductPagedQueryResponse,
   setLoading: Dispatch<SetStateAction<boolean>>,
-): Promise<ProductPagedQueryResponse> => {
+): Promise<ProductProjectionPagedQueryResponse> => {
   setLoading(true);
   return new Promise((resolve, reject) => {
     getProductsService()
