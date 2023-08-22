@@ -14,7 +14,6 @@ interface IUserAuth {
   alertMessage: string;
   setLoading: Dispatch<SetStateAction<boolean>>;
   setIfAuth: Dispatch<SetStateAction<boolean>>;
-  setAlertMessage: Dispatch<SetStateAction<string>>;
   loginCustomer: (data: ILoginCustomer) => void;
   createCustomer: (data: ICreateCustomer) => void;
   logOut: () => void;
@@ -28,7 +27,6 @@ export const AuthContext = createContext<IUserAuth>({
   loginCustomer: () => {},
   createCustomer: () => {},
   logOut: () => {},
-  setAlertMessage: () => {},
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
@@ -87,7 +85,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         ifAuth,
         alertMessage,
-        setAlertMessage,
         setLoading,
         setIfAuth,
         loginCustomer,
