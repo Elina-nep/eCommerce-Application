@@ -2,28 +2,27 @@ button:focus {
   outline: none;
 }
 
-.button-pagination {
-  font-size: var(--font-medium);
-  width: 60px;
-  height: 55px;
-  border-radius: 50%;
-  z-index: 1;
-  background-color: var(--light-color);
-  color: var(--secondary-color);
-  border: 1px solid var(--secondary-color);
-  cursor: pointer;
-  transition: background-color 0.5s ease;
-  text-align: center;
+.button {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Iceland';
-}
-
-.button-pagination:hover {
-  background-color: var(--primary-color-light);
-  color: var(--light-color);
-  border: 1px solid var(--primary-color-light);
+  font-size: var(--font-small);
+  width: 8em;
+  padding: 0.4em 0;
+  background-color: var(--light-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  text-align: center;
+  list-style-type: none;
+  text-decoration: none;
+  transition: 0.5s ease;
+  cursor: pointer;
+  &:hover {
+    background: var(--primary-color-light);
+    color: var(--light-color);
+    border-color: var(--primary-color-light);
+  }
 }
 
 .button-info {
@@ -46,11 +45,23 @@ button:focus {
   cursor: pointer;
   transition: background-color 0.5s ease;
   font-family: 'Iceland';
+  &:hover {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+  }
 }
 
-.button-info:hover {
-  background-color: var(--primary-color);
-  color: var(--light-color);
+.button-pagination {
+  font-size: var(--font-medium);
+  font-family: 'Iceland';
+  width: 60px;
+  height: 55px;
+  border-radius: 50%;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .close {
@@ -73,12 +84,11 @@ button:focus {
   justify-content: center;
   align-items: center;
   font-family: 'Iceland';
-}
-
-.close:hover {
-  background-color: var(--primary-color-light);
-  color: var(--light-color);
-  border: 1px solid var(--primary-color-light);
+  &:hover {
+    background-color: var(--primary-color-light);
+    color: var(--light-color);
+    border: 1px solid var(--primary-color-light);
+  }
 }
 
 @media screen and (max-width: 1000px) {

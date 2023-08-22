@@ -22,7 +22,7 @@ export function Navigation() {
           <div className="bar" />
         </button>
         <div className={`menu-links ${menuOpen ? 'active' : ''}`}>
-          <Link to="#">Catalog</Link>
+          <Link to="/catalog">Catalog</Link>
           <Link to="#">My room</Link>
           <Link to="#">About us</Link>
         </div>

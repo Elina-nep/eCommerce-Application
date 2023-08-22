@@ -55,7 +55,7 @@ export const LoginForm: React.FC = () => {
   };
 
   return (
-    <div className="login-page">
+    <div className="login-page main-container">
       <ThemeProvider theme={loginTheme}>
         <form onSubmit={handleSubmit(onSubmit)} className="login-page__form">
           <Controller

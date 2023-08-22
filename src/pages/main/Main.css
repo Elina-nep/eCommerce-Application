@@ -1,7 +1,4 @@
 .main-page {
-  flex-grow: 1;
-  width: 100%;
-  background-size: cover;
   background-image: url('../../assets/big-balloons.jpg');
   justify-content: space-evenly;
   display: flex;
