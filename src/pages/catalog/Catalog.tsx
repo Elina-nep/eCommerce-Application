@@ -1,17 +1,19 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ProductPagedQueryResponse } from '@commercetools/platform-sdk';
 import Button from '../../components/buttons/Button';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
-import { AuthContext } from '../../context/AuthProvider';
+import { getProductsFunc } from '../../util';
 
 export const CatalogPage = () => {
-  const { loading, getProducts } = useContext(AuthContext);
   const [products, setProducts] = useState<ProductPagedQueryResponse>({
     limit: 0,
     offset: 0,
     count: 0,
     results: [],
   });
+  const [loading, setLoading] = useState(false);
+
+  const getProducts = () => getProductsFunc(setLoading);
 
   const handleGetProducts = () => {
     getProducts()

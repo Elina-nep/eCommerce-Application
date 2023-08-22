@@ -12,3 +12,4 @@ export {
 
 export { cards } from './constants';
 export { loginCustomerFunc, createCustomerFunc, logOutFunc } from './auth';
+export { getProductsFunc } from './catalog';
