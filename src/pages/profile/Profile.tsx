@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Customer } from '@commercetools/platform-sdk';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import { getCustomerFunc } from '../../util';
+import { ProfileForm } from '../../components/ProfileForm/ProfileForm';
+import './Profile.scss';
 
 const defaultResponse: Customer = {
   id: '',
@@ -34,13 +36,12 @@ export const ProfilePage = () => {
   }, []);
 
   return (
-    <main className="main-container">
+    <main className="main-container profile-page">
       <section>
         {loading && <LoadingSpinner />}
         {
-          !loading &&
-            !!customer.id &&
-            customer.firstName /* сюда вставляем компонент с инфо о юзере) */
+          !loading && !!customer.id && <ProfileForm response={customer} />
+          // customer.firstName /* сюда вставляем компонент с инфо о юзере) */
         }
       </section>
     </main>

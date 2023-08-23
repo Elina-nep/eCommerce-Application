@@ -61,7 +61,7 @@ export const RegisterForm: React.FC = () => {
         password: data.password,
         firstName: data.firstName,
         lastName: data.lastName,
-        dateOfBirth: data.dateBirth,
+        dateOfBirth: data.dateOfBirth,
         addresses: addresses,
         defaultBillingAddress: data.isBillingAddressDefault ? 0 : undefined,
         defaultShippingAddress: defaultShippingAddress,
