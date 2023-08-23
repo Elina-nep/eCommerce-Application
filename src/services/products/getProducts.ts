@@ -1,3 +1,4 @@
+import { ProductQueryParams } from '../../types';
 import { formFlow } from '../BuildClient';
 
 type queryArgs = {
@@ -9,21 +10,27 @@ type queryArgs = {
   localeProjection?: string | string[];
   storeProjection?: string;
   expand?: string | string[];
-  sort?: string | string[];
   limit?: number;
   offset?: number;
   withTotal?: boolean;
-  where: string[];
+
+  sort: string[];
+  filter: string[];
 };
 
-export const getProductsService = (categoryId?: string) => {
+export const getProductsService = (queryParams?: ProductQueryParams) => {
   const queryArgs: queryArgs = {
     staged: false,
-    where: [],
+    filter: [],
+    sort: [],
   };
 
-  if (categoryId) {
-    queryArgs.where.push(`categories(id="${categoryId}")`);
+  if (queryParams?.categoryId) {
+    queryArgs.filter.push(`categories.id:"${queryParams.categoryId}"`);
   }
-  return formFlow().productProjections().get({ queryArgs }).execute();
+  if (queryParams?.sort) {
+    queryArgs.sort.push(queryParams.sort);
+  }
+
+  return formFlow().productProjections().search().get({ queryArgs }).execute();
 };
