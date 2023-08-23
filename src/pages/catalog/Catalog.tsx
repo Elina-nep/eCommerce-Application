@@ -6,8 +6,8 @@ import {
 import Button from '../../components/buttons/Button';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import { getCategoriesFunc, getProductsFunc } from '../../util';
-import './Catalog.scss';
 import { ProductQueryParams } from '../../types';
+import './Catalog.scss';
 
 const defaultResponse = {
   limit: 0,

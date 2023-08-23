@@ -25,6 +25,14 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
     sort: [],
   };
 
+  if (queryParams?.colors) {
+    queryArgs.filter.push(
+      `variants.attributes.color.key:"${queryParams?.colors.join(`","`)}"`,
+    );
+  }
+  if (queryParams?.available) {
+    queryArgs.filter.push(`variants.availability.isOnStock:true`);
+  }
   if (queryParams?.categoryId) {
     queryArgs.filter.push(`categories.id:"${queryParams.categoryId}"`);
   }
