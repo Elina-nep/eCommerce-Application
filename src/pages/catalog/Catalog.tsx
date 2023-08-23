@@ -7,6 +7,7 @@ import Button from '../../components/buttons/Button';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import { getCategoriesFunc, getProductsFunc } from '../../util';
 import './Catalog.scss';
+import { ProductQueryParams } from '../../types';
 
 const defaultResponse = {
   limit: 0,
@@ -22,7 +23,7 @@ export const CatalogPage = () => {
     useState<CategoryPagedQueryResponse>(defaultResponse);
   const [loading, setLoading] = useState(false);
 
-  const handleGetProducts = (queryParams?: { categoryId?: string }) => {
+  const handleGetProducts = (queryParams?: ProductQueryParams) => {
     getProductsFunc(setLoading, queryParams)
       .then((body) => {
         console.log(body);
@@ -47,7 +48,6 @@ export const CatalogPage = () => {
   const formProducts = () => {
     return products.results.map((el) => {
       const name = el.name['en'];
-      // const name = el.masterData.current.name['en'];
       return <p key={el.id}>{name}</p>;
     });
   };

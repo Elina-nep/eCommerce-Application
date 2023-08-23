@@ -28,6 +28,13 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
   if (queryParams?.categoryId) {
     queryArgs.filter.push(`categories.id:"${queryParams.categoryId}"`);
   }
+  if (queryParams?.filterPrice) {
+    queryArgs.filter.push(
+      `variants.price.centAmount:range (${
+        queryParams.filterPrice.from || '*'
+      } to ${queryParams.filterPrice.from || '*'}})`,
+    );
+  }
   if (queryParams?.sort) {
     queryArgs.sort.push(queryParams.sort);
   }
