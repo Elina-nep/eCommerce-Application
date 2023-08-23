@@ -1,31 +1,31 @@
 import { useEffect, useState } from 'react';
 import {
   CategoryPagedQueryResponse,
-  ProductPagedQueryResponse,
+  ProductProjectionPagedQueryResponse,
 } from '@commercetools/platform-sdk';
 import Button from '../../components/buttons/Button';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import { getCategoriesFunc, getProductsFunc } from '../../util';
 import './Catalog.scss';
 
+const defaultResponse = {
+  limit: 0,
+  offset: 0,
+  count: 0,
+  results: [],
+};
+
 export const CatalogPage = () => {
-  const [products, setProducts] = useState<ProductPagedQueryResponse>({
-    limit: 0,
-    offset: 0,
-    count: 0,
-    results: [],
-  });
-  const [categories, setCategories] = useState<CategoryPagedQueryResponse>({
-    limit: 0,
-    offset: 0,
-    count: 0,
-    results: [],
-  });
+  const [products, setProducts] =
+    useState<ProductProjectionPagedQueryResponse>(defaultResponse);
+  const [categories, setCategories] =
+    useState<CategoryPagedQueryResponse>(defaultResponse);
   const [loading, setLoading] = useState(false);
 
   const handleGetProducts = () => {
     getProductsFunc(setLoading)
       .then((body) => {
+        console.log(body);
         setProducts(body);
       })
       .catch((e) => {
@@ -46,7 +46,8 @@ export const CatalogPage = () => {
 
   const formProducts = () => {
     return products.results.map((el) => {
-      const name = el.masterData.current.name['en'];
+      const name = el.name['en'];
+      // const name = el.masterData.current.name['en'];
       return <p key={el.id}>{name}</p>;
     });
   };
