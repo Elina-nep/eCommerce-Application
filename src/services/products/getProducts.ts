@@ -1,28 +1,29 @@
 import { formFlow } from '../BuildClient';
 
-// export const getProductsService = async () =>
-//   formFlow().products().get().execute();
+type queryArgs = {
+  staged?: boolean;
+  priceCurrency?: string;
+  priceCountry?: string;
+  priceCustomerGroup?: string;
+  priceChannel?: string;
+  localeProjection?: string | string[];
+  storeProjection?: string;
+  expand?: string | string[];
+  sort?: string | string[];
+  limit?: number;
+  offset?: number;
+  withTotal?: boolean;
+  where: string[];
+};
 
-export const getProductsService = () =>
-  formFlow()
-    .productProjections()
-    .search()
-    .get({ queryArgs: { staged: false } })
-    .execute();
+export const getProductsService = (categoryId?: string) => {
+  const queryArgs: queryArgs = {
+    staged: false,
+    where: [],
+  };
 
-// methodArgs?: {
-//   queryArgs?: {
-//       staged?: boolean;
-//       priceCurrency?: string;
-//       priceCountry?: string;
-//       priceCustomerGroup?: string;
-//       priceChannel?: string;
-//       localeProjection?: string | string[];
-//       storeProjection?: string;
-//       expand?: string | string[];
-//       sort?: string | string[];
-//       limit?: number;
-//       offset?: number;
-//       withTotal?: boolean;
-//       where?: string | string[];
-//       [key: string]: QueryParam;
+  if (categoryId) {
+    queryArgs.where.push(`categories(id="${categoryId}")`);
+  }
+  return formFlow().productProjections().get({ queryArgs }).execute();
+};

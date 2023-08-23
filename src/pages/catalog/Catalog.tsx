@@ -22,8 +22,8 @@ export const CatalogPage = () => {
     useState<CategoryPagedQueryResponse>(defaultResponse);
   const [loading, setLoading] = useState(false);
 
-  const handleGetProducts = () => {
-    getProductsFunc(setLoading)
+  const handleGetProducts = (queryParams?: { categoryId?: string }) => {
+    getProductsFunc(setLoading, queryParams)
       .then((body) => {
         console.log(body);
         setProducts(body);
@@ -55,7 +55,14 @@ export const CatalogPage = () => {
   const formCategories = () => {
     return categories.results.map((el) => {
       const name = el.name['en'];
-      return <li key={el.id}>{name}</li>;
+      return (
+        <li
+          key={el.id}
+          onClick={() => handleGetProducts({ categoryId: el.id })}
+        >
+          {name}
+        </li>
+      );
     });
   };
 

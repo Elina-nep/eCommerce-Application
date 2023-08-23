@@ -6,12 +6,13 @@ import {
 } from '@commercetools/platform-sdk';
 
 export const getProductsFunc = (
-  //   data: ProductPagedQueryResponse,
   setLoading: Dispatch<SetStateAction<boolean>>,
+  queryParams?: { categoryId?: string },
 ): Promise<ProductProjectionPagedQueryResponse> => {
   setLoading(true);
+
   return new Promise((resolve, reject) => {
-    getProductsService()
+    getProductsService(queryParams?.categoryId)
       .then((body) => {
         resolve(body.body);
       })
