@@ -8,7 +8,7 @@ import {
   UserAuthOptions,
 } from '@commercetools/sdk-client-v2';
 import { createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
-import { getExistingToken, tokenCache } from '../util';
+import { getExistingToken, tokenCache, userTokenCache } from '../util';
 
 export const projectKey = process.env.REACT_APP_PROJECT_KEY!;
 const scopes = [process.env.REACT_APP_SCOPES!];
@@ -68,7 +68,7 @@ const formPassFlow = (user: UserAuthOptions) => {
     },
     scopes,
     fetch,
-    tokenCache,
+    tokenCache: userTokenCache,
   };
 
   const newCtpClient = new ClientBuilder()

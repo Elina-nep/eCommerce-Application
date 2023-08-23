@@ -1,5 +1,5 @@
 export { links, catalogLinks, columns } from './footerConstants';
-export { tokenCache, getExistingToken } from './tokenProcess';
+export { tokenCache, getExistingToken, userTokenCache } from './tokenProcess';
 export {
   nameValidation,
   ageValidation,
@@ -13,3 +13,4 @@ export {
 export { cards } from './constants';
 export { loginCustomerFunc, createCustomerFunc, logOutFunc } from './auth';
 export { getProductsFunc, getCategoriesFunc } from './catalog';
+export { getCustomerFunc } from './customer';
