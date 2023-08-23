@@ -9,6 +9,8 @@ import { RegisterPage } from '../pages/auth/Register';
 import { CatalogPage } from '../pages/catalog/Catalog';
 import { ProfilePage } from '../pages/profile/Profile';
 import { ProtectedNotSignRoute } from './ProtectedNotSignRoute';
+import { AboutPage } from '../pages/about/About';
+import { CartPage } from '../pages/cart/Cart';
 
 export const routerObj = createRoutesFromElements(
   <>
@@ -23,6 +25,8 @@ export const routerObj = createRoutesFromElements(
           <Route path="/me" element={<ProfilePage />} />
         </Route>
         <Route path="/catalog" element={<CatalogPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/cart" element={<CartPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Route>
