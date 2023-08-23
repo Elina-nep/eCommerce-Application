@@ -2,18 +2,10 @@ import { ProductQueryParams } from '../../types';
 import { formFlow } from '../BuildClient';
 
 type queryArgs = {
-  staged?: boolean;
-  priceCurrency?: string;
-  priceCountry?: string;
-  priceCustomerGroup?: string;
-  priceChannel?: string;
-  localeProjection?: string | string[];
-  storeProjection?: string;
-  expand?: string | string[];
-  limit?: number;
-  offset?: number;
-  withTotal?: boolean;
-
+  staged: boolean;
+  fuzzy?: boolean;
+  'text.en'?: string;
+  'text.ru'?: string;
   sort: string[];
   filter: string[];
 };
@@ -24,6 +16,12 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
     filter: [],
     sort: [],
   };
+
+  if (queryParams?.queryText) {
+    const lang = queryParams.lang ? queryParams.lang : 'en';
+    queryArgs[`text.${lang}`] = `name.${lang}="${queryParams?.queryText}"`;
+    queryArgs.fuzzy = true;
+  }
 
   if (queryParams?.colors) {
     queryArgs.filter.push(

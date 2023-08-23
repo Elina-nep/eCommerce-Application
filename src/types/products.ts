@@ -7,6 +7,8 @@ export type ProductQueryParams = {
   filterPrice?: FilterPrice;
   available?: boolean;
   colors?: Colors[];
+  lang?: 'ru' | 'en';
+  queryText?: string;
 };
 
 export type Colors =
