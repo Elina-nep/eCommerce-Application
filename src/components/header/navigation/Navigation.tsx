@@ -24,7 +24,7 @@ export function Navigation() {
         <div className={`menu-links ${menuOpen ? 'active' : ''}`}>
           <Link to="/catalog">Catalog</Link>
           <Link to="/me">My room</Link>
-          <Link to="#">About us</Link>
+          <Link to="/about">About us</Link>
         </div>
         <div className="navigation-text-field-container">
           <input

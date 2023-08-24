@@ -35,6 +35,7 @@ export const ProfilePage = () => {
 
   return (
     <main className="main-container">
+      <h2>This profile page</h2>
       <section>
         {loading && <LoadingSpinner />}
         {
