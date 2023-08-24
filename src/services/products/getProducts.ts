@@ -1,4 +1,5 @@
 import { ProductQueryParams } from '../../types';
+import { PRODUCTS_ON_PAGE } from '../../util';
 import { formFlow } from '../BuildClient';
 
 type queryArgs = {
@@ -8,6 +9,8 @@ type queryArgs = {
   'text.ru'?: string;
   sort: string[];
   filter: string[];
+  offset: number;
+  limit: number;
 };
 
 export const getProductsService = (queryParams?: ProductQueryParams) => {
@@ -15,9 +18,11 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
     staged: false,
     filter: [],
     sort: [],
+    offset: queryParams?.pageNum
+      ? queryParams?.pageNum * PRODUCTS_ON_PAGE + 1
+      : 0,
+    limit: PRODUCTS_ON_PAGE,
   };
-
-  console.log(queryParams);
 
   if (queryParams?.queryText) {
     const lang = queryParams.lang ? queryParams.lang : 'en';

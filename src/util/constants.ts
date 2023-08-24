@@ -9,6 +9,8 @@ import imageToAddSets from '../assets/sets.jpg';
 import imageToAddHats from '../assets/hats.jpg';
 import imageToAddDecoration from '../assets/decoration.jpg';
 
+export const PRODUCTS_ON_PAGE = 12;
+
 export const cards: CardData[] = [
   {
     id: 1,

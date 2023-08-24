@@ -9,6 +9,7 @@ export type ProductQueryParams = {
   colors?: Colors[];
   lang?: 'ru' | 'en';
   queryText?: string;
+  pageNum?: number;
 };
 
 export type Colors =
