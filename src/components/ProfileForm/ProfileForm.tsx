@@ -8,18 +8,15 @@ import {
   SubmitHandler,
 } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
-import {
-  nameValidation,
-  passwordValidation,
-  emailValidation,
-  ageValidation,
-} from '../../util/validation';
+import { nameValidation, ageValidation } from '../../util/validation';
 import { FormError } from '../auth/FormError';
 import { IRegistrationForm } from '../../types/registrationForm';
-import { TogglePasswordVisibility } from '../../util/ToggleVisibility';
+// import { TogglePasswordVisibility } from '../../util/ToggleVisibility';
 import { UserFormProps } from '../../types/user';
 import { ThemeProvider } from '@mui/material/styles';
 import { registerTheme } from '../auth/theme';
+import { BillAddresses } from '../auth/assets/BillAddresses';
+import { ShipAddresses } from '../auth/assets/ShipAddress';
 import './ProfileForm.scss';
 
 export const ProfileForm: React.FC<UserFormProps> = ({ response }) => {
@@ -42,11 +39,23 @@ export const ProfileForm: React.FC<UserFormProps> = ({ response }) => {
   };
 
   const [editedValues, setEditedValues] = useState(response);
-  const [visible, setVisible] = useState(false);
+  // const [visible, setVisible] = useState(false);
   const [editMode, setEditMode] = useState(false);
 
   const handleEditClick = () => {
     setEditMode(true);
+  };
+
+  const [addBillAddress, setAddBillAddress] = useState(false);
+
+  const handleAddBillClick = () => {
+    setAddBillAddress(true);
+  };
+
+  const [addShipAddress, setAddShipAddress] = useState(false);
+
+  const handleAddShipClick = () => {
+    setAddShipAddress(true);
   };
 
   const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
@@ -63,9 +72,9 @@ export const ProfileForm: React.FC<UserFormProps> = ({ response }) => {
   const today = new Date().toISOString().split('T')[0];
 
   return (
-    <div className="profile">
+    <div className={`profile ${editMode ? 'edit-mode' : ''}`}>
       <Link to="/">Home</Link>
-      <h1>Profile</h1>
+      <h1>{editMode ? '✏️' : ''} Profile</h1>
       <ThemeProvider theme={registerTheme}>
         <form onSubmit={handleSubmit(onSubmit)} className="profile__form">
           <div className="prof__col-2">
@@ -139,81 +148,42 @@ export const ProfileForm: React.FC<UserFormProps> = ({ response }) => {
                 />
               )}
             />
-          </div>
-          <div className="prof__col-2">
-            <Controller
-              control={control}
-              name="email"
-              rules={{ validate: emailValidation }}
-              render={({ field }) => (
-                <TextField
-                  id="email"
-                  label="Email"
-                  onChange={(e) => {
-                    field.onChange(e);
-                    const newValue = e.target.value;
-                    setEditedValues((prevValues) => ({
-                      ...prevValues,
-                      email: newValue,
-                    }));
-                    trigger('email');
-                  }}
-                  onBlur={() => {
-                    trigger('email');
-                  }}
-                  value={editMode ? editedValues.email : response.email}
-                  onFocus={onFocusInput}
-                  fullWidth
-                  size="small"
-                  margin="normal"
-                  type="email"
-                  error={!!errors.email?.message}
-                  helperText={errors?.email?.message}
-                  autoComplete="email"
-                  InputProps={{
-                    readOnly: !editMode,
-                  }}
-                  variant={editMode ? 'outlined' : 'standard'}
-                />
-              )}
-            />
             <div className="registration-page__spacing" />
             <Controller
               control={control}
-              name="password"
-              rules={passwordValidation}
+              name="dateOfBirth"
+              rules={ageValidation(13)}
               render={({ field }) => (
                 <TextField
-                  id="password"
-                  label="Password"
+                  id="dateOfBirth"
+                  label="Date of Birth"
+                  {...field}
+                  fullWidth={true}
                   onChange={(e) => {
                     field.onChange(e);
                     const newValue = e.target.value;
                     setEditedValues((prevValues) => ({
                       ...prevValues,
-                      password: newValue,
+                      dateOfBirth: newValue,
                     }));
-                    trigger('password');
+                    trigger('dateOfBirth');
                   }}
                   onBlur={() => {
-                    trigger('password');
+                    trigger('dateOfBirth');
                   }}
-                  value={editMode ? editedValues.password : response.password}
-                  onFocus={onFocusInput}
-                  fullWidth
+                  value={
+                    editMode ? editedValues.dateOfBirth : response.dateOfBirth
+                  }
                   size="small"
                   margin="normal"
-                  type={visible ? 'text' : 'password'}
-                  error={!!errors.password?.message}
-                  helperText={errors?.password?.message}
-                  autoComplete="password"
+                  type="date"
+                  error={!!errors?.dateOfBirth?.message}
+                  helperText={errors?.dateOfBirth?.message}
+                  inputProps={{
+                    min: '1901-01-01',
+                    max: today,
+                  }}
                   InputProps={{
-                    endAdornment: (
-                      <TogglePasswordVisibility
-                        visible={visible}
-                        setVisible={setVisible}
-                      />
-                    ),
                     readOnly: !editMode,
                   }}
                   variant={editMode ? 'outlined' : 'standard'}
@@ -221,47 +191,23 @@ export const ProfileForm: React.FC<UserFormProps> = ({ response }) => {
               )}
             />
           </div>
-          <Controller
-            control={control}
-            name="dateOfBirth"
-            rules={ageValidation(13)}
-            render={({ field }) => (
-              <TextField
-                id="dateOfBirth"
-                label="Date of Birth"
-                {...field}
-                fullWidth={true}
-                onChange={(e) => {
-                  field.onChange(e);
-                  const newValue = e.target.value;
-                  setEditedValues((prevValues) => ({
-                    ...prevValues,
-                    dateOfBirth: newValue,
-                  }));
-                  trigger('dateOfBirth');
-                }}
-                onBlur={() => {
-                  trigger('dateOfBirth');
-                }}
-                value={
-                  editMode ? editedValues.dateOfBirth : response.dateOfBirth
-                }
-                size="small"
-                margin="normal"
-                type="date"
-                error={!!errors?.dateOfBirth?.message}
-                helperText={errors?.dateOfBirth?.message}
-                inputProps={{
-                  min: '1901-01-01',
-                  max: today,
-                }}
-                InputProps={{
-                  readOnly: !editMode,
-                }}
-                variant={editMode ? 'outlined' : 'standard'}
-              />
-            )}
-          />
+
+          <h3>Billing Addresses</h3>
+          <button onClick={handleAddBillClick} className="user__add_btn">
+            +
+          </button>
+          {addBillAddress && (
+            <BillAddresses control={control} errors={errors} />
+          )}
+
+          <h3>Shipping Addresses</h3>
+          <button onClick={handleAddShipClick} className="user__add_btn">
+            +
+          </button>
+          {addShipAddress && (
+            <ShipAddresses control={control} errors={errors} />
+          )}
+
           <div className="buttons_box">
             <button
               className="user__edit_btn"

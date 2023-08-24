@@ -4,6 +4,10 @@
   border-radius: 10px;
 }
 
+.edit-mode {
+  background-color: var(--secondary-color-light);
+}
+
 .profile__form {
   width: 600px;
   @media (min-width: 210px) and (max-width: 575px) {
@@ -52,4 +56,9 @@
 .user__save_btn:disabled {
   opacity: 0.4;
   border: 1px solid var(--primary-color);
+}
+
+.user__add_btn {
+  width: 2rem;
+  background-color: none;
 }
