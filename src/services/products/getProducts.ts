@@ -17,6 +17,8 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
     sort: [],
   };
 
+  console.log(queryParams);
+
   if (queryParams?.queryText) {
     const lang = queryParams.lang ? queryParams.lang : 'en';
     queryArgs[`text.${lang}`] = `name.${lang}="${queryParams?.queryText}"`;

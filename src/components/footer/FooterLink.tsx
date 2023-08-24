@@ -7,8 +7,8 @@ interface LinkListProps {
 
 const LinkList: React.FC<LinkListProps> = ({ links }) => (
   <ul>
-    {links.map((link) => (
-      <li key={link.to}>
+    {links.map((link, id) => (
+      <li key={link.to + id}>
         <Link to={link.to}>{link.title}</Link>
       </li>
     ))}
