@@ -45,3 +45,8 @@ export type CustomerChanges = {
   setTitle?: MyCustomerSetTitleAction;
   setVatId?: MyCustomerSetVatIdAction;
 };
+
+export type Password = {
+  oldPassword: string;
+  newPassword: string;
+};
