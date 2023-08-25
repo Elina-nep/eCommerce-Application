@@ -5,6 +5,7 @@ import { Control } from 'react-hook-form';
 import { UseFormTrigger } from 'react-hook-form';
 
 export interface UserFormProps {
+  refreshCallback: () => void;
   response: Customer;
 }
 

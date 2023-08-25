@@ -58,7 +58,10 @@ const customerToFormMapper = (customer: Customer): IProfileForm => {
   };
 };
 
-export const ProfileForm: React.FC<UserFormProps> = ({ response }) => {
+export const ProfileForm: React.FC<UserFormProps> = ({
+  refreshCallback,
+  response,
+}) => {
   const profileFields = customerToFormMapper(response);
 
   const { handleSubmit, control, trigger } = useForm<IRegistrationForm>({
@@ -137,6 +140,8 @@ export const ProfileForm: React.FC<UserFormProps> = ({ response }) => {
       if (error instanceof Error) {
         setErrorMessage(error.message || 'An error occurred');
       }
+    } finally {
+      refreshCallback();
     }
   };
 

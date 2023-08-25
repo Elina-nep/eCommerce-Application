@@ -19,6 +19,7 @@ const defaultResponse: Customer = {
 export const ProfilePage = () => {
   const [customer, setCustomer] = useState<Customer>(defaultResponse);
   const [loading, setLoading] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   const handleGetProducts = () => {
     getCustomerFunc(setLoading)
@@ -33,16 +34,19 @@ export const ProfilePage = () => {
 
   useEffect(() => {
     handleGetProducts();
-  }, []);
+    setRefresh(false);
+  }, [refresh]);
 
   return (
     <main className="main-container profile-page">
       <section>
         {loading && <LoadingSpinner />}
-        {
-          !loading && !!customer.id && <ProfileForm response={customer} />
-          // customer.firstName /* сюда вставляем компонент с инфо о юзере) */
-        }
+        {!loading && !!customer.id && (
+          <ProfileForm
+            refreshCallback={() => setRefresh(true)}
+            response={customer}
+          />
+        )}
       </section>
     </main>
   );
