@@ -8,6 +8,7 @@ import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import { getCategoriesFunc, getProductsFunc } from '../../util';
 import { ProductQueryParams } from '../../types';
 import './Catalog.scss';
+import { Select } from '../../components/productselect/productselect';
 
 const defaultResponse = {
   limit: 0,
@@ -48,7 +49,31 @@ export const CatalogPage = () => {
   const formProducts = () => {
     return products.results.map((el) => {
       const name = el.name['en'];
-      return <p key={el.id}>{name}</p>;
+      const category = categories.results.find(
+        (category) => category.id === el.categories[0].id,
+      );
+      const categoryName = category ? category.name['en'] : '';
+      const image = el.masterVariant.images && el.masterVariant.images[0];
+      const price = el.masterVariant.prices && el.masterVariant.prices[0];
+      return (
+        <div className="product-card" key={el.id}>
+          <div className="product-card-image">
+            {image && typeof image === 'string' && (
+              <img src={image} alt={name} />
+            )}
+            {image && typeof image !== 'string' && (
+              <img src={image.url} alt={name} />
+            )}
+          </div>
+          <p className="product-card-category">{categoryName}</p>
+          <p className="product-card-name">{name}</p>
+          {price && (
+            <p className="product-card-price">
+              {price.value.centAmount / 100} {price.value.currencyCode}
+            </p>
+          )}
+        </div>
+      );
     });
   };
 
@@ -67,16 +92,26 @@ export const CatalogPage = () => {
   };
 
   return (
-    <main className="main-container catalog-container">
-      <aside>
-        <p>Categories</p>
-        <ul>{formCategories()}</ul>
-        <Button onClick={handleGetProducts}>get products</Button>
-      </aside>
-      <section>
-        {loading && <LoadingSpinner />}
-        {!loading && !!products.count && formProducts()}
-      </section>
+    <main className="main-container-catalog">
+      <div className="catalog-container">
+        <div className="catalog-container-sorting">
+          <div className="product-item-number">
+            Showing all {products.total} results
+          </div>
+          <Select />
+        </div>
+        <div className="catalog-container-product">
+          <aside>
+            <p>Categories</p>
+            <ul>{formCategories()}</ul>
+            <Button onClick={handleGetProducts}>get products</Button>
+          </aside>
+          <section className="product-card-wrapper">
+            {loading && <LoadingSpinner />}
+            {!loading && !!products.count && formProducts()}
+          </section>
+        </div>
+      </div>
     </main>
   );
 };
