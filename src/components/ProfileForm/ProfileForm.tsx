@@ -10,7 +10,6 @@ import {
 import TextField from '@mui/material/TextField';
 import {
   nameValidation,
-  ageValidation,
   streetValidation,
   postalCodeValidation,
   countryValidation,
@@ -34,6 +33,8 @@ import { Customer } from '@commercetools/platform-sdk';
 import './ProfileForm.scss';
 import { changeCustomerFunc } from '../../util/customer';
 import { CustomerChanges } from '../../types';
+
+import { Personal } from './assets/Personal';
 const customerToFormMapper = (customer: Customer): IProfileForm => {
   return {
     firstName: customer.firstName!,
@@ -76,9 +77,9 @@ export const ProfileForm: React.FC<UserFormProps> = ({ response }) => {
   //   }
   // };
 
-  const onFocusInput = () => {
-    setErrorMessage('');
-  };
+  // const onFocusInput = () => {
+  //   setErrorMessage('');
+  // };
 
   const [editedValues, setEditedValues] = useState(profileFields);
   // const [visible, setVisible] = useState(false);
@@ -139,130 +140,21 @@ export const ProfileForm: React.FC<UserFormProps> = ({ response }) => {
     }
   };
 
-  const today = new Date().toISOString().split('T')[0];
-
   return (
     <div className={`profile ${editMode ? 'edit-mode' : ''}`}>
       <Link to="/">Home</Link>
       <h1>{editMode ? '✏️' : ''} Profile</h1>
       <ThemeProvider theme={registerTheme}>
         <form onSubmit={handleSubmit(onSubmit)} className="profile__form">
-          <div className="prof__col-2">
-            {loading && <h1>loading</h1>}
-            <Controller
-              control={control}
-              name="firstName"
-              rules={nameValidation}
-              render={({ field }) => (
-                <TextField
-                  id="firstName"
-                  label="First name"
-                  onChange={(e) => {
-                    field.onChange(e);
-                    const newValue = e.target.value;
-                    setEditedValues((prevValues) => ({
-                      ...prevValues,
-                      firstName: newValue,
-                    }));
-                    trigger('firstName');
-                  }}
-                  onBlur={() => {
-                    trigger('firstName');
-                  }}
-                  value={editMode ? editedValues.firstName : response.firstName}
-                  fullWidth
-                  size="small"
-                  margin="normal"
-                  type="text"
-                  error={!!errors.firstName?.message}
-                  helperText={errors?.firstName?.message}
-                  InputProps={{
-                    readOnly: !editMode,
-                  }}
-                  variant={editMode ? 'outlined' : 'standard'}
-                />
-              )}
-            />
-            <div className="registration-page__spacing" />
-            <Controller
-              control={control}
-              name="lastName"
-              rules={nameValidation}
-              render={({ field }) => (
-                <TextField
-                  id="lastName"
-                  label="Last name"
-                  onChange={(e) => {
-                    field.onChange(e);
-                    const newValue = e.target.value;
-                    setEditedValues((prevValues) => ({
-                      ...prevValues,
-                      lastName: newValue,
-                    }));
-                    trigger('lastName');
-                  }}
-                  onBlur={() => {
-                    trigger('lastName');
-                  }}
-                  value={editMode ? editedValues.lastName : response.lastName}
-                  onFocus={onFocusInput}
-                  fullWidth
-                  size="small"
-                  margin="normal"
-                  type="text"
-                  error={!!errors.lastName?.message}
-                  helperText={errors?.lastName?.message}
-                  InputProps={{
-                    readOnly: !editMode,
-                  }}
-                  variant={editMode ? 'outlined' : 'standard'}
-                />
-              )}
-            />
-            <div className="registration-page__spacing" />
-            <Controller
-              control={control}
-              name="dateOfBirth"
-              rules={ageValidation(13)}
-              render={({ field }) => (
-                <TextField
-                  id="dateOfBirth"
-                  label="Date of Birth"
-                  {...field}
-                  fullWidth={true}
-                  onChange={(e) => {
-                    field.onChange(e);
-                    const newValue = e.target.value;
-                    setEditedValues((prevValues) => ({
-                      ...prevValues,
-                      dateOfBirth: newValue,
-                    }));
-                    trigger('dateOfBirth');
-                  }}
-                  onBlur={() => {
-                    trigger('dateOfBirth');
-                  }}
-                  value={
-                    editMode ? editedValues.dateOfBirth : response.dateOfBirth
-                  }
-                  size="small"
-                  margin="normal"
-                  type="date"
-                  error={!!errors?.dateOfBirth?.message}
-                  helperText={errors?.dateOfBirth?.message}
-                  inputProps={{
-                    min: '1901-01-01',
-                    max: today,
-                  }}
-                  InputProps={{
-                    readOnly: !editMode,
-                  }}
-                  variant={editMode ? 'outlined' : 'standard'}
-                />
-              )}
-            />
-          </div>
+          {loading && <h1>loading</h1>}
 
+          <Personal
+            editMode={editMode}
+            response={response}
+            control={control}
+            errors={errors}
+            trigger={trigger}
+          />
           <h3>Billing Addresses</h3>
           <p>
             {response.defaultBillingAddressId === response.addresses[0].id
@@ -445,7 +337,6 @@ export const ProfileForm: React.FC<UserFormProps> = ({ response }) => {
               )}
             />
           </div>
-
           <div className="buttons_box">
             <button
               className="user__edit_btn"
