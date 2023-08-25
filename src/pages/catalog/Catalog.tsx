@@ -53,23 +53,21 @@ export const CatalogPage = () => {
         (category) => category.id === el.categories[0].id,
       );
       const categoryName = category ? category.name['en'] : '';
-      const image = el.masterVariant.images && el.masterVariant.images[0];
-      const price = el.masterVariant.prices && el.masterVariant.prices[0];
+      const image = el.masterVariant.images?.[0]?.url ?? '';
+      const { centAmount, currencyCode } = el.masterVariant.prices?.[0]
+        ?.value || { centAmount: 0, currencyCode: '' };
+      const priceValue = centAmount / 100;
+
       return (
         <div className="product-card" key={el.id}>
           <div className="product-card-image">
-            {image && typeof image === 'string' && (
-              <img src={image} alt={name} />
-            )}
-            {image && typeof image !== 'string' && (
-              <img src={image.url} alt={name} />
-            )}
+            {image && <img src={image} alt={name} />}
           </div>
           <p className="product-card-category">{categoryName}</p>
           <p className="product-card-name">{name}</p>
-          {price && (
+          {priceValue && (
             <p className="product-card-price">
-              {price.value.centAmount / 100} {price.value.currencyCode}
+              {priceValue} {currencyCode}
             </p>
           )}
         </div>
