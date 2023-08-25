@@ -10,7 +10,7 @@ export {
   postalCodeValidation,
 } from './validation';
 
-export { cards } from './constants';
+export { cards, PRODUCTS_ON_PAGE } from './constants';
 export { loginCustomerFunc, createCustomerFunc, logOutFunc } from './auth';
 export { getProductsFunc, getCategoriesFunc } from './catalog';
 export { getCustomerFunc } from './customer';

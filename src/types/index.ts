@@ -6,3 +6,5 @@ export type { FormErrorProps } from './form';
 export type { ModalProps } from './modalWindow';
 export type { CardProps } from './cards';
 export type { HeadProps } from './cart';
+export type { Sorting, FilterPrice, ProductQueryParams } from './products';
+export type { CustomerChanges, Password } from './customer';
