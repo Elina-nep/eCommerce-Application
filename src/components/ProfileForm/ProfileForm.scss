@@ -4,6 +4,33 @@
   border-radius: 10px;
 }
 
+.profile__title {
+  margin: 1rem 0;
+}
+
+.profile__section {
+  padding: 0.3rem 0.6rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.profile__section_head {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile__section_head_btn {
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.profile__section_head h2 {
+  margin: 1rem 0;
+}
+
 .edit-mode {
   background-color: var(--secondary-color-light);
 }
@@ -26,16 +53,11 @@
   }
 }
 
-.buttons_box {
-  display: flex;
-  gap: 15px;
-}
-
 .user__edit_btn,
 .user__save_btn {
-  width: 5rem;
-  padding: 0.3rem 0;
-  margin: 1.4rem 0 1rem 0;
+  width: 3rem;
+  padding: 0.2rem 0;
+  margin: 1rem 0;
   font-family: 'Iceland';
   text-align: center;
   font-size: var(--font-medium);
