@@ -23,22 +23,22 @@ import {
 } from '@commercetools/platform-sdk';
 
 export type CustomerChanges = {
+  setFirstName?: MyCustomerSetFirstNameAction;
+  setLastName?: MyCustomerSetLastNameAction;
+  setDateOfBirth?: MyCustomerSetDateOfBirthAction;
+  setDefaultBillingAddress?: MyCustomerSetDefaultBillingAddressAction;
+  setDefaultShippingAddress?: MyCustomerSetDefaultShippingAddressAction;
   addressAction?: MyCustomerAddAddressAction;
   addBillingAddressId?: MyCustomerAddBillingAddressIdAction;
   addShippingAddressId?: MyCustomerAddShippingAddressIdAction;
   changeAddress?: MyCustomerChangeAddressAction;
-  changeEmail?: MyCustomerChangeEmailAction;
   removeAddressAction?: MyCustomerRemoveAddressAction;
   removeBillingAddressId?: MyCustomerRemoveBillingAddressIdAction;
   removeShippingAddressId?: MyCustomerRemoveShippingAddressIdAction;
+  changeEmail?: MyCustomerChangeEmailAction;
   setCompanyName?: MyCustomerSetCompanyNameAction;
   setCustomField?: MyCustomerSetCustomFieldAction;
   setCustomType?: MyCustomerSetCustomTypeAction;
-  setDateOfBirth?: MyCustomerSetDateOfBirthAction;
-  setDefaultBillingAddress?: MyCustomerSetDefaultBillingAddressAction;
-  setDefaultShippingAddress?: MyCustomerSetDefaultShippingAddressAction;
-  setFirstName?: MyCustomerSetFirstNameAction;
-  setLastName?: MyCustomerSetLastNameAction;
   setLocale?: MyCustomerSetLocaleAction;
   setMiddleName?: MyCustomerSetMiddleNameAction;
   setSalutation?: MyCustomerSetSalutationAction;
