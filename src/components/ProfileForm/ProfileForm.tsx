@@ -7,6 +7,7 @@ import { Personal } from './assets/Personal';
 import { Address } from './assets/Address';
 import { AddressType } from '../../types/user';
 import { AddAddress } from './assets/AddAddress';
+import { ChangePassword } from './assets/ChangePassword';
 import './ProfileForm.scss';
 
 export const ProfileForm: React.FC<UserFormProps> = ({
@@ -87,6 +88,11 @@ export const ProfileForm: React.FC<UserFormProps> = ({
             refreshCallback={refreshCallback}
           />
         ))}
+
+        <ChangePassword
+          version={response.version}
+          refreshCallback={refreshCallback}
+        />
       </ThemeProvider>
     </div>
   );

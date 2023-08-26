@@ -58,6 +58,27 @@ export const Address: React.FC<BillAddProps> = ({
 
   const [loading, setLoading] = useState(false);
 
+  const deleteAddress = async () => {
+    const removeAction: CustomerChanges = {
+      removeAddressAction: {
+        action: 'removeAddress',
+        addressId: address.id,
+      },
+    };
+
+    try {
+      await changeCustomerFunc(setLoading, removeAction, version);
+
+      setErrorMessage('');
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        setErrorMessage(error.message || 'An error occurred');
+      }
+    } finally {
+      refreshCallback();
+    }
+  };
+
   const onSubmit: SubmitHandler<IBillAdd> = async (data) => {
     setEditMode(false);
 
@@ -123,13 +144,16 @@ export const Address: React.FC<BillAddProps> = ({
               Edit
             </button>
             <button
+              id="saveTest"
               type="submit"
               className="user__save_btn"
               disabled={!editMode}
             >
               Save
             </button>
-            <button className="user__delete_btn">Delete</button>
+            <button className="user__delete_btn" onClick={deleteAddress}>
+              Delete
+            </button>
           </div>
         </div>
 

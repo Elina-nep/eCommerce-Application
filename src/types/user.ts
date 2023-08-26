@@ -10,6 +10,11 @@ export interface PersonalProps {
   refreshCallback: () => void;
 }
 
+export interface ChangePasswordProps {
+  version: number;
+  refreshCallback: () => void;
+}
+
 interface Default {
   isDefault: boolean;
 }
