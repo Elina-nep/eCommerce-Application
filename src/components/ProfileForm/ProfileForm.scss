@@ -1,11 +1,14 @@
 .profile {
+  width: 800px;
   background-color: var(--light-color);
   padding: 1.4rem 2rem;
   border-radius: 10px;
 }
 
 .profile__title {
-  margin: 1rem 0;
+  margin: 0.7rem 0;
+  font-size: 2rem;
+  color: var(--primary-color);
 }
 
 .profile__section {
@@ -28,21 +31,11 @@
 }
 
 .profile__section_head h2 {
-  margin: 1rem 0;
+  margin: 0.7rem 0;
 }
 
 .edit-mode {
   background-color: var(--secondary-color-light);
-}
-
-.profile__form {
-  width: 600px;
-  @media (min-width: 210px) and (max-width: 575px) {
-    width: 100%;
-  }
-  @media (min-width: 576px) and (max-width: 767px) {
-    width: 500px;
-  }
 }
 
 .prof__col-2 {
@@ -52,12 +45,18 @@
     flex-direction: column;
   }
 }
+.profile__section_edit_input {
+  display: flex;
+  align-items: baseline;
+  gap: 15px;
+}
 
 .user__edit_btn,
-.user__save_btn {
-  width: 3rem;
+.user__save_btn,
+.prof__delete_btn {
+  width: 3.7rem;
+  margin: 0.7rem 0;
   padding: 0.2rem 0;
-  margin: 1rem 0;
   font-family: 'Iceland';
   text-align: center;
   font-size: var(--font-medium);
@@ -83,4 +82,38 @@
 .user__add_btn {
   width: 2rem;
   background-color: none;
+}
+
+.profile__add_btn {
+  width: 5rem;
+  margin: 0.7rem 0;
+  padding: 0.2rem 0;
+  font-family: 'Iceland';
+  text-align: center;
+  font-size: var(--font-medium);
+  color: var(--light-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.profile__change_btn {
+  width: 7rem;
+  margin: 0.7rem 0;
+  padding: 0.2rem 0;
+  font-family: 'Iceland';
+  text-align: center;
+  font-size: var(--font-medium);
+  color: var(--light-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+  }
 }

@@ -34,4 +34,5 @@ export enum AddressType {
 export interface AddAddressProps {
   version: number;
   addressType: AddressType;
+  refreshCallback: () => void;
 }

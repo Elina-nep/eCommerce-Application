@@ -41,15 +41,18 @@ export const ProfileForm: React.FC<UserFormProps> = ({
       <ThemeProvider theme={registerTheme}>
         <Personal response={response} refreshCallback={refreshCallback} />
 
-        <h2> Billing Addresses</h2>
-        <button onClick={handleAddBillAddress}>
-          {' '}
-          {addBillAddress ? '-' : '+'}
-        </button>
+        <div className="profile__section_head">
+          <h2>Billing Addresses</h2>
+          <button onClick={handleAddBillAddress} className="profile__add_btn">
+            {addBillAddress ? 'Remove' : 'Add'}
+          </button>
+        </div>
+
         {addBillAddress && (
           <AddAddress
             version={response.version}
-            addressType={AddressType.BILL}
+            addressType={AddressType.SHIP}
+            refreshCallback={refreshCallback}
           />
         )}
         {billAddArr.map((ba) => (
@@ -65,15 +68,17 @@ export const ProfileForm: React.FC<UserFormProps> = ({
           />
         ))}
 
-        <h2> Shipping Addresses</h2>
-        <button onClick={handleAddShipAddress}>
-          {' '}
-          {addShipAddress ? '-' : '+'}
-        </button>
+        <div className="profile__section_head">
+          <h2>Shipping Addresses</h2>
+          <button onClick={handleAddShipAddress} className="profile__add_btn">
+            {addShipAddress ? 'Remove' : 'Add'}
+          </button>
+        </div>
         {addShipAddress && (
           <AddAddress
             version={response.version}
             addressType={AddressType.SHIP}
+            refreshCallback={refreshCallback}
           />
         )}
         {shipAddArr.map((sa) => (

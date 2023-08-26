@@ -38,6 +38,7 @@ export interface IAddAdress {
 
 export const AddAddress: React.FC<AddAddressProps> = ({
   version,
+  refreshCallback,
   addressType,
 }) => {
   const { handleSubmit, control, setError, trigger, setValue } =
@@ -142,11 +143,13 @@ export const AddAddress: React.FC<AddAddressProps> = ({
       if (error instanceof Error) {
         setErrorMessage(error.message || 'An error occurred');
       }
+    } finally {
+      refreshCallback();
     }
   };
 
   return (
-    <div>
+    <div className="profile__section edit-mode">
       <form onSubmit={handleSubmit(onSubmit)}>
         <p>{loading}</p>
         <FormGroup>
@@ -180,7 +183,7 @@ export const AddAddress: React.FC<AddAddressProps> = ({
             render={({ field }) => (
               <TextField
                 id="street"
-                label="street"
+                label="Street"
                 onChange={(e) => {
                   field.onChange(e);
                   onChangeInput('streetName', e.target.value);
@@ -204,7 +207,7 @@ export const AddAddress: React.FC<AddAddressProps> = ({
             render={({ field }) => (
               <TextField
                 id="city"
-                label="city"
+                label="City"
                 onChange={(e) => {
                   field.onChange(e);
                   onChangeInput('city', e.target.value);
@@ -264,7 +267,7 @@ export const AddAddress: React.FC<AddAddressProps> = ({
             render={({ field }) => (
               <TextField
                 id="postalCode"
-                label="postalCode"
+                label="Postal Code"
                 onChange={(e) => {
                   field.onChange(e);
                   onChangeInput('postalCode', e.target.value);
@@ -282,7 +285,7 @@ export const AddAddress: React.FC<AddAddressProps> = ({
           />
         </div>
 
-        <button type="submit" className="add__btn">
+        <button type="submit" className="profile__add_btn">
           Add
         </button>
         {errorMessage && <FormError message={errorMessage} />}

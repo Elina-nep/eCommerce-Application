@@ -37,15 +37,13 @@ export const ProfilePage = () => {
 
   return (
     <main className="main-container profile-page">
-      <section>
-        {loading && <LoadingSpinner />}
-        {!loading && !!customer.id && (
-          <ProfileForm
-            refreshCallback={() => handleGetCustomer()}
-            response={customer}
-          />
-        )}
-      </section>
+      {loading && <LoadingSpinner />}
+      {!loading && !!customer.id && (
+        <ProfileForm
+          refreshCallback={() => handleGetCustomer()}
+          response={customer}
+        />
+      )}
     </main>
   );
 };

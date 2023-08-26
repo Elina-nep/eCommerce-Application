@@ -26,6 +26,8 @@ import { IBillAdd } from '../../../types/registrationForm';
 import { CustomerChanges } from '../../../types';
 import { changeCustomerFunc } from '../../../util/customer';
 import { AddressType } from '../../../types/user';
+import { FormError } from '../../auth/FormError';
+import LoadingSpinner from '../../loading/LoadingSpinner';
 
 export const Address: React.FC<BillAddProps> = ({
   address,
@@ -128,13 +130,45 @@ export const Address: React.FC<BillAddProps> = ({
   };
   return (
     <div className={`profile__section ${editMode ? 'edit-mode' : ''}`}>
-      <p>
-        {loading} {errorMessage}
-      </p>
-
+      {loading && <LoadingSpinner />}
       <form onSubmit={handleSubmit(onSubmit)} className="profile__form">
         <div className="profile__section_head">
-          <h2>{editMode ? '✏️' : ''}</h2>
+          <div className="profile__section_edit_input">
+            <h2>{editMode ? '✏️' : ''}</h2>
+            <FormGroup>
+              <Controller
+                control={control}
+                name="isDefault"
+                render={({ field }) => (
+                  <FormControlLabel
+                    labelPlacement="end"
+                    control={
+                      <Checkbox
+                        id="isDefault"
+                        size="small"
+                        {...field}
+                        checked={
+                          editMode ? editedValues.isDefault : address.isDefault
+                        }
+                        inputProps={{
+                          readOnly: !editMode,
+                        }}
+                        onChange={(e) => {
+                          const newValue = e.target.checked;
+                          setEditedValues((prevValues) => ({
+                            ...prevValues,
+                            isDefault: newValue,
+                          }));
+                          field.onChange(e);
+                        }}
+                      />
+                    }
+                    label="Default"
+                  />
+                )}
+              />
+            </FormGroup>
+          </div>
           <div className="profile__section_head_btn">
             <button
               className="user__edit_btn"
@@ -151,45 +185,11 @@ export const Address: React.FC<BillAddProps> = ({
             >
               Save
             </button>
-            <button className="user__delete_btn" onClick={deleteAddress}>
+            <button className="prof__delete_btn" onClick={deleteAddress}>
               Delete
             </button>
           </div>
         </div>
-
-        <FormGroup>
-          <Controller
-            control={control}
-            name="isDefault"
-            render={({ field }) => (
-              <FormControlLabel
-                labelPlacement="end"
-                control={
-                  <Checkbox
-                    id="isDefault"
-                    size="small"
-                    {...field}
-                    checked={
-                      editMode ? editedValues.isDefault : address.isDefault
-                    }
-                    inputProps={{
-                      readOnly: !editMode,
-                    }}
-                    onChange={(e) => {
-                      const newValue = e.target.checked;
-                      setEditedValues((prevValues) => ({
-                        ...prevValues,
-                        isDefault: newValue,
-                      }));
-                      field.onChange(e);
-                    }}
-                  />
-                }
-                label="Default"
-              />
-            )}
-          />
-        </FormGroup>
 
         <div className="prof__col-2">
           <Controller
@@ -351,6 +351,7 @@ export const Address: React.FC<BillAddProps> = ({
             )}
           />
         </div>
+        {errorMessage && <FormError message={errorMessage} />}
       </form>
     </div>
   );
