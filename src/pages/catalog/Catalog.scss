@@ -1,5 +1,5 @@
 .main-container-catalog {
-  background-image: url('../../assets/big-balloons.jpg');
+  background-image: url('../../assets/background-catalog-page.jpg');
   flex-grow: 1;
   width: 100%;
   background-size: cover;
@@ -8,9 +8,9 @@
 .catalog-container {
   width: 90%;
   margin: auto;
-  padding: 4%, 0;
+  padding: 2% 0%;
   margin-top: 4%;
-  background-color: rgba(183, 237, 228, 0.5);
+  background-color: rgba(80, 162, 148, 0.5);
   opacity: 1;
 }
 
@@ -75,5 +75,10 @@
 }
 
 .catalog-container-sidebar {
-  background-color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-filter-category {
+  background: white;
 }

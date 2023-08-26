@@ -138,9 +138,16 @@ export const CatalogPage = () => {
         </div>
         <div className="catalog-container-product">
           <aside className="catalog-container-sidebar">
-            <p>Categories</p>
-            <ul>{formCategories()}</ul>
-            <Button onClick={handleGetProducts}>get products</Button>
+            <div className="sidebar-filter-category">
+              Filter by Category:
+              <p>Categories</p>
+              <ul>{formCategories()}</ul>
+              <Button onClick={handleGetProducts}>get products</Button>
+            </div>
+            <div className="sidebar-filter-price">Filter by Price:</div>
+            <div className="sidebar-filter-color">Filter by Colors:</div>
+            <div className="sidebar-filter-material">Filter by Materials:</div>
+            <div className="sidebar-filter-occasion">Filter by Occasion:</div>
           </aside>
           <section className="product-card-wrapper">
             {loading && <LoadingSpinner />}
