@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { passwordValidation } from '../../../util';
-import { ChangePasswordProps } from '../../../types/user';
+import { IChangePasswordProps } from '../../../types/profileFrom';
 import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
 import { TogglePasswordVisibility } from '../../../util/ToggleVisibility';
 import { Password } from '../../../types';
@@ -10,12 +10,10 @@ import { changeCustomerPasswordFunc } from '../../../util/customer';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
 
-export const ChangePassword: React.FC<ChangePasswordProps> = ({
+export const ChangePassword: React.FC<IChangePasswordProps> = ({
   version,
   refreshCallback,
 }) => {
-  // const profileFields = customerToFormMapper(response);
-
   const { handleSubmit, control, setError, trigger, setValue } =
     useForm<Password>({
       mode: 'onBlur',

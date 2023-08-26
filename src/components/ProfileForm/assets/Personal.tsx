@@ -1,23 +1,27 @@
 import React, { useState } from 'react';
-import { Controller } from 'react-hook-form';
+import {
+  useForm,
+  useFormState,
+  SubmitHandler,
+  Controller,
+} from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { nameValidation, ageValidation } from '../../../util';
-import { PersonalProps } from '../../../types/user';
-import { IRegistrationForm } from '../../../types';
-import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
+import { IPersonalProps } from '../../../types/profileFrom';
+import { IProfileForm } from '../../../types/profileFrom';
 import { customerToFormMapper } from '../../../util/user';
 import { CustomerChanges } from '../../../types';
 import { changeCustomerFunc } from '../../../util/customer';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
 
-export const Personal: React.FC<PersonalProps> = ({
+export const Personal: React.FC<IPersonalProps> = ({
   response,
   refreshCallback,
 }) => {
   const profileFields = customerToFormMapper(response);
 
-  const { handleSubmit, control, trigger } = useForm<IRegistrationForm>({
+  const { handleSubmit, control, trigger } = useForm<IProfileForm>({
     mode: 'onBlur',
     defaultValues: profileFields,
   });
@@ -36,7 +40,7 @@ export const Personal: React.FC<PersonalProps> = ({
 
   const [loading, setLoading] = useState(false);
 
-  const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
+  const onSubmit: SubmitHandler<IProfileForm> = async (data) => {
     setEditMode(false);
 
     const customerChanges: CustomerChanges = {

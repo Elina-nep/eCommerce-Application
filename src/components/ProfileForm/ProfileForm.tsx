@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { UserFormProps } from '../../types/user';
+import { IProfileFormProps } from '../../types/profileFrom';
 import { ThemeProvider } from '@mui/material/styles';
 import { registerTheme } from '../auth/theme';
 import { Personal } from './assets/Personal';
 import { Address } from './assets/Address';
-import { AddressType } from '../../types/user';
+import { AddressType } from '../../types/profileFrom';
 import { AddAddress } from './assets/AddAddress';
 import { ChangePassword } from './assets/ChangePassword';
 import './ProfileForm.scss';
 
-export const ProfileForm: React.FC<UserFormProps> = ({
+export const ProfileForm: React.FC<IProfileFormProps> = ({
   refreshCallback,
   response,
 }) => {
@@ -51,7 +51,7 @@ export const ProfileForm: React.FC<UserFormProps> = ({
         {addBillAddress && (
           <AddAddress
             version={response.version}
-            addressType={AddressType.SHIP}
+            addressType={AddressType.BILL}
             refreshCallback={refreshCallback}
           />
         )}

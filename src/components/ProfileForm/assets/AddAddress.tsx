@@ -17,26 +17,18 @@ import { FormControlLabel } from '@mui/material';
 import { Checkbox } from '@mui/material';
 import { CustomerChanges } from '../../../types';
 import { changeCustomerFunc } from '../../../util/customer';
-import { AddAddressProps } from '../../../types/user';
-import { AddressType } from '../../../types/user';
-
+import { IAddAddressProps } from '../../../types/profileFrom';
+import { AddressType } from '../../../types/profileFrom';
 import {
   nameValidation,
   streetValidation,
   countryValidation,
   postalCodeValidation,
 } from '../../../util';
+import { IAddAdress } from '../../../types/profileFrom';
 import { FormError } from '../../auth/FormError';
 
-export interface IAddAdress {
-  streetName: string;
-  city: string;
-  country: string;
-  postalCode: string;
-  isDefault: boolean;
-}
-
-export const AddAddress: React.FC<AddAddressProps> = ({
+export const AddAddress: React.FC<IAddAddressProps> = ({
   version,
   refreshCallback,
   addressType,

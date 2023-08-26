@@ -16,11 +16,3 @@ export interface IRegistrationForm {
   isBillingAddressDefault: boolean;
   isShippingAddressDefault: boolean;
 }
-
-export interface IBillAdd {
-  streetName: string;
-  city: string;
-  postalCode: string;
-  country: string;
-  isDefault: boolean;
-}

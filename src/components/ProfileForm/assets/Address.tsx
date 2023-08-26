@@ -1,5 +1,11 @@
 import React, { useState } from 'react';
-import { Controller } from 'react-hook-form';
+import {
+  useWatch,
+  useForm,
+  useFormState,
+  SubmitHandler,
+  Controller,
+} from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
@@ -15,27 +21,22 @@ import {
   postalCodeValidation,
   countryValidation,
 } from '../../../util';
-import { BillAddProps } from '../../../types/user';
-import {
-  useWatch,
-  useForm,
-  useFormState,
-  SubmitHandler,
-} from 'react-hook-form';
-import { IBillAdd } from '../../../types/registrationForm';
+import { IAddressProps } from '../../../types/profileFrom';
+
+import { IAddress } from '../../../types/profileFrom';
 import { CustomerChanges } from '../../../types';
 import { changeCustomerFunc } from '../../../util/customer';
-import { AddressType } from '../../../types/user';
+import { AddressType } from '../../../types/profileFrom';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
 
-export const Address: React.FC<BillAddProps> = ({
+export const Address: React.FC<IAddressProps> = ({
   address,
   version,
   addressType,
   refreshCallback,
 }) => {
-  const { handleSubmit, control, trigger } = useForm<IBillAdd>({
+  const { handleSubmit, control, trigger } = useForm<IAddress>({
     mode: 'onBlur',
     defaultValues: address,
   });
@@ -81,7 +82,7 @@ export const Address: React.FC<BillAddProps> = ({
     }
   };
 
-  const onSubmit: SubmitHandler<IBillAdd> = async (data) => {
+  const onSubmit: SubmitHandler<IAddress> = async (data) => {
     setEditMode(false);
 
     const defaultAddressId = data.isDefault
@@ -268,7 +269,7 @@ export const Address: React.FC<BillAddProps> = ({
             margin="normal"
             fullWidth
             size="small"
-            error={!!errors[`country` as keyof IBillAdd]?.message}
+            error={!!errors.country?.message}
           >
             <InputLabel id="billcountry-select-label">Country</InputLabel>
             <Controller
@@ -305,10 +306,8 @@ export const Address: React.FC<BillAddProps> = ({
                 </Select>
               )}
             />
-            {errors[`country` as keyof IBillAdd]?.message && (
-              <FormHelperText>
-                {errors[`country` as keyof IBillAdd]?.message}
-              </FormHelperText>
+            {errors.country?.message && (
+              <FormHelperText>{errors.country?.message}</FormHelperText>
             )}
           </FormControl>
           <div className="registration-page__spacing" />
