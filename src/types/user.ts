@@ -25,3 +25,8 @@ export enum AddressType {
   BILL = 'Billing',
   SHIP = 'Shipping',
 }
+
+export interface AddAddressProps {
+  version: number;
+  addressType: AddressType;
+}

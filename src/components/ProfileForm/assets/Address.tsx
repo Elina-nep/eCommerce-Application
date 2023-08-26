@@ -129,6 +129,7 @@ export const Address: React.FC<BillAddProps> = ({
             >
               Save
             </button>
+            <button className="user__delete_btn">Delete</button>
           </div>
         </div>
 

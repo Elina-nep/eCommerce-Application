@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { UserFormProps } from '../../types/user';
 import { ThemeProvider } from '@mui/material/styles';
@@ -6,6 +6,7 @@ import { registerTheme } from '../auth/theme';
 import { Personal } from './assets/Personal';
 import { Address } from './assets/Address';
 import { AddressType } from '../../types/user';
+import { AddAddress } from './assets/AddAddress';
 import './ProfileForm.scss';
 
 export const ProfileForm: React.FC<UserFormProps> = ({
@@ -20,6 +21,18 @@ export const ProfileForm: React.FC<UserFormProps> = ({
     (a) => response.shippingAddressIds?.includes(a.id!),
   );
 
+  const [addBillAddress, setAddBillAdress] = useState(false);
+
+  const handleAddBillAddress = () => {
+    setAddBillAdress(!addBillAddress);
+  };
+
+  const [addShipAddress, setAddShipAdress] = useState(false);
+
+  const handleAddShipAddress = () => {
+    setAddShipAdress(!addShipAddress);
+  };
+
   return (
     <div className="profile">
       <Link to="/">Home</Link>
@@ -28,6 +41,16 @@ export const ProfileForm: React.FC<UserFormProps> = ({
         <Personal response={response} refreshCallback={refreshCallback} />
 
         <h2> Billing Addresses</h2>
+        <button onClick={handleAddBillAddress}>
+          {' '}
+          {addBillAddress ? '-' : '+'}
+        </button>
+        {addBillAddress && (
+          <AddAddress
+            version={response.version}
+            addressType={AddressType.BILL}
+          />
+        )}
         {billAddArr.map((ba) => (
           <Address
             key={ba.id}
@@ -42,6 +65,16 @@ export const ProfileForm: React.FC<UserFormProps> = ({
         ))}
 
         <h2> Shipping Addresses</h2>
+        <button onClick={handleAddShipAddress}>
+          {' '}
+          {addShipAddress ? '-' : '+'}
+        </button>
+        {addShipAddress && (
+          <AddAddress
+            version={response.version}
+            addressType={AddressType.SHIP}
+          />
+        )}
         {shipAddArr.map((sa) => (
           <Address
             key={sa.id}
