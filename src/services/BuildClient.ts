@@ -3,12 +3,13 @@ import {
   ClientBuilder,
   type AuthMiddlewareOptions,
   type HttpMiddlewareOptions,
-  ExistingTokenMiddlewareOptions,
+  // ExistingTokenMiddlewareOptions,
   PasswordAuthMiddlewareOptions,
   UserAuthOptions,
+  // RefreshAuthMiddlewareOptions,
 } from '@commercetools/sdk-client-v2';
 import { createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
-import { getExistingToken, tokenCache, userTokenCache } from '../util';
+import { getExistingToken, tokenCache } from '../util';
 
 export const projectKey = process.env.REACT_APP_PROJECT_KEY!;
 const scopes = [process.env.REACT_APP_SCOPES!];
@@ -28,9 +29,20 @@ const authAnonMiddlewareOptions: AuthMiddlewareOptions = {
   tokenCache,
 };
 
-const existingAuthMiddlewareOptions: ExistingTokenMiddlewareOptions = {
-  force: true,
-};
+// const refreshMiddlewareOptions: RefreshAuthMiddlewareOptions = {
+//   host: process.env.REACT_APP_AUTH_URL!,
+//   projectKey: projectKey,
+//   credentials: {
+//     clientId: clientId!,
+//     clientSecret: clientSecret!,
+//   },
+//   fetch,
+//   tokenCache,
+// };
+
+// const existingAuthMiddlewareOptions: ExistingTokenMiddlewareOptions = {
+//   force: true,
+// };
 
 // Configure httpMiddlewareOptions
 const httpMiddlewareOptions: HttpMiddlewareOptions = {
@@ -43,7 +55,11 @@ const formAnonFlow = () => {
 
   const ctpClient = currentToken
     ? new ClientBuilder()
-        .withExistingTokenFlow(currentToken, existingAuthMiddlewareOptions)
+        .withRefreshTokenFlow({
+          ...authAnonMiddlewareOptions,
+          refreshToken: currentToken,
+        })
+        // .withExistingTokenFlow(currentToken, existingAuthMiddlewareOptions)
         .withHttpMiddleware(httpMiddlewareOptions)
         .build()
     : new ClientBuilder()
@@ -68,13 +84,16 @@ const formPassFlow = (user: UserAuthOptions) => {
     },
     scopes,
     fetch,
-    tokenCache: userTokenCache,
+    tokenCache,
   };
 
   const newCtpClient = new ClientBuilder()
     .withPasswordFlow(passwordAuthMiddlewareOptions)
     .withHttpMiddleware(httpMiddlewareOptions)
     .build();
+
+  localStorage.setItem('user', 'true');
+
   return createApiBuilderFromCtpClient(newCtpClient).withProjectKey({
     projectKey: projectKey,
   });
