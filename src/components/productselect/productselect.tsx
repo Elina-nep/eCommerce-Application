@@ -1,5 +1,5 @@
-import { ChangeEvent } from 'react';
-
+import React, { ChangeEvent } from 'react';
+import PropTypes from 'prop-types';
 interface Option {
   value: string;
   label: string;
@@ -7,15 +7,20 @@ interface Option {
 
 export const options: Option[] = [
   { value: 'Default sorting', label: 'Default sorting' },
-  { value: 'Sort by name from a to z', label: 'Sort by name from a to z' },
-  { value: 'Sort by name from z to a', label: 'Sort by name from z to a' },
-  { value: 'Sort by price: low to high', label: 'Sort by price: low to high' },
-  { value: 'Sort by: high to low', label: 'Sort by: high to low' },
+  { value: 'price asc', label: 'Sort by price: low to high' },
+  { value: 'price desc', label: 'Sort by price: high to low' },
+  { value: 'name.en asc', label: 'Sort by name: a to z' },
+  { value: 'name.en desc', label: 'Sort by name: z to a' },
 ];
-export const Select: React.FC = () => {
+interface SelectProps {
+  onSortChange: (sort: string, category?: string) => void;
+  category?: string;
+}
+export const Select: React.FC<SelectProps> = ({ onSortChange, category }) => {
   const handleChange = (event: ChangeEvent<HTMLSelectElement>) => {
     const selectedValue = event.target.value;
     console.log(selectedValue);
+    onSortChange(selectedValue, category);
   };
 
   return (
@@ -31,4 +36,8 @@ export const Select: React.FC = () => {
       ))}
     </select>
   );
+};
+Select.propTypes = {
+  onSortChange: PropTypes.func.isRequired,
+  category: PropTypes.string.isRequired,
 };

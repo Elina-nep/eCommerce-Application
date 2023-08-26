@@ -1,12 +1,17 @@
 .main-container-catalog {
+  background-image: url('../../assets/big-balloons.jpg');
   flex-grow: 1;
   width: 100%;
+  background-size: cover;
 }
 
 .catalog-container {
   width: 90%;
   margin: auto;
-  padding: 4% 0;
+  padding: 4%, 0;
+  margin-top: 4%;
+  background-color: rgba(183, 237, 228, 0.5);
+  opacity: 1;
 }
 
 .catalog-container-product {
@@ -23,6 +28,7 @@
 }
 
 .product-card {
+  background: white;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -53,6 +59,11 @@
   position: relative;
   bottom: 1%;
 }
+
+.product-item-number {
+  margin-left: 5%;
+}
+
 .catalog-container-sorting {
   display: flex;
   flex-direction: row;
@@ -61,4 +72,8 @@
 
 .product-select {
   margin-left: 3vw;
+}
+
+.catalog-container-sidebar {
+  background-color: white;
 }

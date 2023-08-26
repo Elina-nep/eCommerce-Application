@@ -6,7 +6,7 @@ import {
 import Button from '../../components/buttons/Button';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import { getCategoriesFunc, getProductsFunc } from '../../util';
-import { ProductQueryParams } from '../../types';
+import { ProductQueryParams, Sorting } from '../../types';
 import './Catalog.scss';
 import { Select } from '../../components/productselect/productselect';
 
@@ -23,8 +23,25 @@ export const CatalogPage = () => {
   const [categories, setCategories] =
     useState<CategoryPagedQueryResponse>(defaultResponse);
   const [loading, setLoading] = useState(false);
+  const defaultCategoryName = 'All Products';
+  const [selectedCategoryName, setSelectedCategoryName] =
+    useState<string>(defaultCategoryName);
+  const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
+  const handleSortChange = (sort: string, category?: string) => {
+    const categoryId = category !== undefined ? category : selectedCategoryId;
+    if (sort === 'Default sorting') {
+      handleGetProducts({ sort: undefined, categoryId });
+    } else {
+      handleGetProducts({ sort: sort as Sorting, categoryId });
+    }
+  };
 
   const handleGetProducts = (queryParams?: ProductQueryParams) => {
+    if (queryParams && queryParams.categoryId) {
+      setSelectedCategoryId(queryParams.categoryId);
+    } else {
+      setSelectedCategoryId('');
+    }
     getProductsFunc(setLoading, queryParams)
       .then((body) => {
         console.log(body);
@@ -76,30 +93,51 @@ export const CatalogPage = () => {
   };
 
   const formCategories = () => {
-    return categories.results.map((el) => {
-      const name = el.name['en'];
-      return (
-        <li
-          key={el.id}
-          onClick={() => handleGetProducts({ categoryId: el.id })}
-        >
-          {name}
-        </li>
-      );
-    });
+    return [
+      <li
+        key="all-products"
+        onClick={() => {
+          handleGetProducts({ categoryId: '' });
+          setSelectedCategoryName(defaultCategoryName);
+        }}
+      >
+        {defaultCategoryName}
+      </li>,
+      ...categories.results.map((el) => {
+        const name = el.name['en'];
+        return (
+          <li
+            key={el.id}
+            onClick={() => {
+              handleGetProducts({ categoryId: el.id });
+              setSelectedCategoryName(name);
+            }}
+          >
+            {name}
+          </li>
+        );
+      }),
+    ];
   };
 
   return (
     <main className="main-container-catalog">
       <div className="catalog-container">
         <div className="catalog-container-sorting">
+          <div>
+            {selectedCategoryName ? `Showing ${selectedCategoryName}` : ''}
+            {/*DELETE*/}
+          </div>
           <div className="product-item-number">
             Showing all {products.total} results
           </div>
-          <Select />
+          <Select
+            onSortChange={handleSortChange}
+            category={selectedCategoryId}
+          />
         </div>
         <div className="catalog-container-product">
-          <aside>
+          <aside className="catalog-container-sidebar">
             <p>Categories</p>
             <ul>{formCategories()}</ul>
             <Button onClick={handleGetProducts}>get products</Button>
