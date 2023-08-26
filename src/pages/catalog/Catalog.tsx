@@ -5,10 +5,15 @@ import {
 } from '@commercetools/platform-sdk';
 import Button from '../../components/buttons/Button';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
-import { getCategoriesFunc, getProductsFunc } from '../../util';
+import {
+  getCategoriesFunc,
+  getProductsFunc,
+  PRODUCTS_ON_PAGE,
+} from '../../util';
 import { ProductQueryParams, Sorting } from '../../types';
 import './Catalog.scss';
 import { Select } from '../../components/productselect/productselect';
+import Pagination from '../../components/pagination/Pagination';
 
 const defaultResponse = {
   limit: 0,
@@ -29,13 +34,13 @@ export const CatalogPage = () => {
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
   const handleSortChange = (sort: string, category?: string) => {
     const categoryId = category !== undefined ? category : selectedCategoryId;
-    if (sort === 'Default sorting') {
-      handleGetProducts({ sort: undefined, categoryId });
-    } else {
-      handleGetProducts({ sort: sort as Sorting, categoryId });
-    }
+    const newSorting =
+      sort === 'Default sorting' ? undefined : (sort as Sorting);
+    setSorting(newSorting);
+    handleGetProducts({ sort: newSorting, categoryId });
   };
-
+  const [currentPage, setCurrentPage] = useState(1);
+  const [sorting, setSorting] = useState<Sorting | undefined>(undefined);
   const handleGetProducts = (queryParams?: ProductQueryParams) => {
     if (queryParams && queryParams.categoryId) {
       setSelectedCategoryId(queryParams.categoryId);
@@ -123,6 +128,20 @@ export const CatalogPage = () => {
   return (
     <main className="main-container-catalog">
       <div className="catalog-container">
+        {products.total !== undefined && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={Math.ceil(products.total / PRODUCTS_ON_PAGE)}
+            onPageChange={(newPage) => {
+              setCurrentPage(newPage);
+              handleGetProducts({
+                sort: sorting,
+                categoryId: selectedCategoryId,
+                pageNum: newPage - 1,
+              });
+            }}
+          />
+        )}
         <div className="catalog-container-sorting">
           <div>
             {selectedCategoryName ? `Showing ${selectedCategoryName}` : ''}
