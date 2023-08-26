@@ -4,25 +4,56 @@ import { UserFormProps } from '../../types/user';
 import { ThemeProvider } from '@mui/material/styles';
 import { registerTheme } from '../auth/theme';
 import { Personal } from './assets/Personal';
-import { BillingAddress } from './assets/BillingAddress';
-import { ShippingAddress } from './assets/ShippingAddress';
+import { Address } from './assets/Address';
+import { AddressType } from '../../types/user';
 import './ProfileForm.scss';
 
 export const ProfileForm: React.FC<UserFormProps> = ({
   refreshCallback,
   response,
 }) => {
+  const billAddArr = response.addresses.filter(
+    (a) => response.billingAddressIds?.includes(a.id!),
+  );
+
+  const shipAddArr = response.addresses.filter(
+    (a) => response.shippingAddressIds?.includes(a.id!),
+  );
+
   return (
     <div className="profile">
       <Link to="/">Home</Link>
       <h1 className="profile__title"> Profile</h1>
       <ThemeProvider theme={registerTheme}>
         <Personal response={response} refreshCallback={refreshCallback} />
-        <BillingAddress response={response} refreshCallback={refreshCallback} />
-        <ShippingAddress
-          response={response}
-          refreshCallback={refreshCallback}
-        />
+
+        <h2> Billing Addresses</h2>
+        {billAddArr.map((ba) => (
+          <Address
+            key={ba.id}
+            address={{
+              ...ba,
+              isDefault: response.defaultBillingAddressId == ba.id,
+            }}
+            addressType={AddressType.BILL}
+            version={response.version}
+            refreshCallback={refreshCallback}
+          />
+        ))}
+
+        <h2> Shipping Addresses</h2>
+        {shipAddArr.map((sa) => (
+          <Address
+            key={sa.id}
+            address={{
+              ...sa,
+              isDefault: response.defaultShippingAddressId == sa.id,
+            }}
+            addressType={AddressType.SHIP}
+            version={response.version}
+            refreshCallback={refreshCallback}
+          />
+        ))}
       </ThemeProvider>
     </div>
   );

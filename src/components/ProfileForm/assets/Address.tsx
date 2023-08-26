@@ -15,36 +15,32 @@ import {
   postalCodeValidation,
   countryValidation,
 } from '../../../util';
-import { PersonalProps } from '../../../types/user';
-import { IProfileForm } from '../../../types/profileFrom';
+import { BillAddProps } from '../../../types/user';
 import {
   useWatch,
   useForm,
   useFormState,
   SubmitHandler,
 } from 'react-hook-form';
-
-import { customerToFormMapper } from '../../../util/user';
-import { IRegistrationForm } from '../../../types';
+import { IBillAdd } from '../../../types/registrationForm';
 import { CustomerChanges } from '../../../types';
 import { changeCustomerFunc } from '../../../util/customer';
+import { AddressType } from '../../../types/user';
 
-export const BillingAddress: React.FC<PersonalProps> = ({
-  response,
+export const Address: React.FC<BillAddProps> = ({
+  address,
+  version,
+  addressType,
   refreshCallback,
 }) => {
-  const profileFields = customerToFormMapper(response);
-
-  const { handleSubmit, control, trigger } = useForm<IRegistrationForm>({
+  const { handleSubmit, control, trigger } = useForm<IBillAdd>({
     mode: 'onBlur',
-    defaultValues: profileFields,
+    defaultValues: address,
   });
 
   const { errors } = useFormState({ control });
-
   const [errorMessage, setErrorMessage] = useState<string>('');
-
-  const [editedValues, setEditedValues] = useState(profileFields);
+  const [editedValues, setEditedValues] = useState(address);
 
   const [editMode, setEditMode] = useState(false);
   const handleEditClick = () => {
@@ -53,8 +49,8 @@ export const BillingAddress: React.FC<PersonalProps> = ({
 
   const watchedBillCountry = useWatch({
     control,
-    name: 'billCountry',
-    defaultValue: response.addresses[0].country,
+    name: 'country',
+    defaultValue: address.country,
   });
 
   const postalCodeValidate = (value: string): string =>
@@ -62,32 +58,43 @@ export const BillingAddress: React.FC<PersonalProps> = ({
 
   const [loading, setLoading] = useState(false);
 
-  const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
+  const onSubmit: SubmitHandler<IBillAdd> = async (data) => {
     setEditMode(false);
 
-    const defaultAddressId = data.isBillingAddressDefault
-      ? { addressId: response.addresses[0].id }
+    const defaultAddressId = data.isDefault
+      ? { addressId: address.id }
       : undefined;
 
+    const setDefaultAction: CustomerChanges =
+      addressType === AddressType.BILL
+        ? {
+            setDefaultBillingAddress: {
+              action: 'setDefaultBillingAddress',
+              ...defaultAddressId,
+            },
+          }
+        : {
+            setDefaultShippingAddress: {
+              action: 'setDefaultShippingAddress',
+              ...defaultAddressId,
+            },
+          };
     const customerChanges: CustomerChanges = {
       changeAddress: {
         action: 'changeAddress',
-        addressId: response.addresses[0].id,
+        addressId: address.id,
         address: {
-          streetName: data.billStreet,
-          postalCode: data.billPostalCode,
-          country: data.billCountry,
-          city: data.billCity,
+          streetName: data.streetName,
+          postalCode: data.postalCode,
+          country: data.country,
+          city: data.city,
         },
       },
-      setDefaultBillingAddress: {
-        action: 'setDefaultBillingAddress',
-        ...defaultAddressId,
-      },
+      ...setDefaultAction,
     };
 
     try {
-      await changeCustomerFunc(setLoading, customerChanges, response.version);
+      await changeCustomerFunc(setLoading, customerChanges, version);
 
       setErrorMessage('');
     } catch (error: unknown) {
@@ -103,9 +110,10 @@ export const BillingAddress: React.FC<PersonalProps> = ({
       <p>
         {loading} {errorMessage}
       </p>
+
       <form onSubmit={handleSubmit(onSubmit)} className="profile__form">
         <div className="profile__section_head">
-          <h2>{editMode ? '✏️' : ''} Billing Address</h2>
+          <h2>{editMode ? '✏️' : ''}</h2>
           <div className="profile__section_head_btn">
             <button
               className="user__edit_btn"
@@ -127,19 +135,17 @@ export const BillingAddress: React.FC<PersonalProps> = ({
         <FormGroup>
           <Controller
             control={control}
-            name="isBillingAddressDefault"
+            name="isDefault"
             render={({ field }) => (
               <FormControlLabel
                 labelPlacement="end"
                 control={
                   <Checkbox
-                    id="isBillingAddressDefault"
+                    id="isDefault"
                     size="small"
                     {...field}
                     checked={
-                      editMode
-                        ? editedValues.isBillingAddressDefault
-                        : profileFields.isBillingAddressDefault
+                      editMode ? editedValues.isDefault : address.isDefault
                     }
                     inputProps={{
                       readOnly: !editMode,
@@ -148,7 +154,7 @@ export const BillingAddress: React.FC<PersonalProps> = ({
                       const newValue = e.target.checked;
                       setEditedValues((prevValues) => ({
                         ...prevValues,
-                        isBillingAddressDefault: newValue,
+                        isDefault: newValue,
                       }));
                       field.onChange(e);
                     }}
@@ -163,33 +169,31 @@ export const BillingAddress: React.FC<PersonalProps> = ({
         <div className="prof__col-2">
           <Controller
             control={control}
-            name="billStreet"
+            name="streetName"
             rules={streetValidation}
             render={({ field }) => (
               <TextField
-                id="billStreet"
+                id="streetName"
                 label="Street"
                 onChange={(e) => {
                   field.onChange(e);
                   const newValue = e.target.value;
                   setEditedValues((prevValues) => ({
                     ...prevValues,
-                    billStreet: newValue,
+                    streetName: newValue,
                   }));
-                  trigger('billStreet');
+                  trigger('streetName');
                 }}
                 onBlur={() => {
-                  trigger('billStreet');
+                  trigger('streetName');
                 }}
-                value={
-                  editMode ? editedValues.billStreet : profileFields.billStreet
-                }
+                value={editMode ? editedValues.streetName : address.streetName}
                 fullWidth
                 size="small"
                 margin="normal"
                 type="text"
-                error={!!errors.billStreet?.message}
-                helperText={errors?.billStreet?.message}
+                error={!!errors.streetName?.message}
+                helperText={errors?.streetName?.message}
                 InputProps={{
                   readOnly: !editMode,
                 }}
@@ -200,33 +204,31 @@ export const BillingAddress: React.FC<PersonalProps> = ({
           <div className="registration-page__spacing" />
           <Controller
             control={control}
-            name="billCity"
+            name="city"
             rules={nameValidation}
             render={({ field }) => (
               <TextField
-                id="billCity"
+                id="city"
                 label="City"
                 onChange={(e) => {
                   field.onChange(e);
                   const newValue = e.target.value;
                   setEditedValues((prevValues) => ({
                     ...prevValues,
-                    billCity: newValue,
+                    city: newValue,
                   }));
-                  trigger('billCity');
+                  trigger('city');
                 }}
                 onBlur={() => {
-                  trigger('billCity');
+                  trigger('city');
                 }}
-                value={
-                  editMode ? editedValues.billCity : profileFields.billCity
-                }
+                value={editMode ? editedValues.city : address.city}
                 fullWidth
                 size="small"
                 margin="normal"
                 type="text"
-                error={!!errors.billCity?.message}
-                helperText={errors?.billCity?.message}
+                error={!!errors.city?.message}
+                helperText={errors?.city?.message}
                 InputProps={{
                   readOnly: !editMode,
                 }}
@@ -241,12 +243,12 @@ export const BillingAddress: React.FC<PersonalProps> = ({
             margin="normal"
             fullWidth
             size="small"
-            error={!!errors[`billCountry` as keyof IProfileForm]?.message}
+            error={!!errors[`country` as keyof IBillAdd]?.message}
           >
             <InputLabel id="billcountry-select-label">Country</InputLabel>
             <Controller
               control={control}
-              name="billCountry"
+              name="country"
               rules={{ validate: countryValidation.validate }}
               render={({ field }) => (
                 <Select
@@ -259,18 +261,14 @@ export const BillingAddress: React.FC<PersonalProps> = ({
                     const newValue = e.target.value;
                     setEditedValues((prevValues) => ({
                       ...prevValues,
-                      billCountry: newValue,
+                      country: newValue,
                     }));
-                    trigger('billCountry');
+                    trigger('country');
                   }}
                   onBlur={() => {
-                    trigger('billCountry');
+                    trigger('country');
                   }}
-                  value={
-                    editMode
-                      ? editedValues.billCountry
-                      : profileFields.billCountry
-                  }
+                  value={editMode ? editedValues.country : address.country}
                   inputProps={{
                     readOnly: !editMode,
                   }}
@@ -282,16 +280,16 @@ export const BillingAddress: React.FC<PersonalProps> = ({
                 </Select>
               )}
             />
-            {errors[`billCountry` as keyof IProfileForm]?.message && (
+            {errors[`country` as keyof IBillAdd]?.message && (
               <FormHelperText>
-                {errors[`billCountry` as keyof IProfileForm]?.message}
+                {errors[`country` as keyof IBillAdd]?.message}
               </FormHelperText>
             )}
           </FormControl>
           <div className="registration-page__spacing" />
           <Controller
             control={control}
-            name="billPostalCode"
+            name="postalCode"
             rules={{
               ...postalCodeValidation,
               required: 'This field is required',
@@ -299,31 +297,27 @@ export const BillingAddress: React.FC<PersonalProps> = ({
             }}
             render={({ field }) => (
               <TextField
-                id="billPostalCode"
+                id="postalCode"
                 label="Postal Code"
                 onChange={(e) => {
                   field.onChange(e);
                   const newValue = e.target.value;
                   setEditedValues((prevValues) => ({
                     ...prevValues,
-                    billPostalCode: newValue,
+                    postalCode: newValue,
                   }));
-                  trigger('billPostalCode');
+                  trigger('postalCode');
                 }}
                 onBlur={() => {
-                  trigger('billPostalCode');
+                  trigger('postalCode');
                 }}
-                value={
-                  editMode
-                    ? editedValues.billPostalCode
-                    : profileFields.billPostalCode
-                }
+                value={editMode ? editedValues.postalCode : address.postalCode}
                 fullWidth
                 size="small"
                 margin="normal"
                 type="text"
-                error={!!errors.billPostalCode?.message}
-                helperText={errors?.billPostalCode?.message}
+                error={!!errors.postalCode?.message}
+                helperText={errors?.postalCode?.message}
                 InputProps={{
                   readOnly: !editMode,
                 }}
