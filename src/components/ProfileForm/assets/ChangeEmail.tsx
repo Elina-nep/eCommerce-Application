@@ -35,6 +35,8 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
     setEditMode(true);
   };
 
+  const [submitted, setSubmitted] = useState(false);
+
   const [editedValues, setEditedValues] = useState(profileFields);
 
   const [loading, setLoading] = useState(false);
@@ -58,6 +60,7 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
       );
 
       setErrorMessage('');
+      setSubmitted(true);
     } catch (error: unknown) {
       if (error instanceof Error) {
         setErrorMessage(error.message || 'An error occurred');
@@ -93,6 +96,24 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
                 disabled={!editMode}
               >
                 Save
+              </button>
+            ) : (
+              ''
+            )}
+            {editMode ? (
+              <button
+                className="user__exit_btn"
+                disabled={!editMode}
+                onClick={() => {
+                  if (submitted) {
+                    setEditMode(false);
+                  } else {
+                    setEditMode(false);
+                    setSubmitted(true);
+                  }
+                }}
+              >
+                Exit
               </button>
             ) : (
               ''

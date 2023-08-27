@@ -44,6 +44,8 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({
     setEditMode(true);
   };
 
+  const [submitted, setSubmitted] = useState(false);
+
   const [loading, setLoading] = useState(false);
 
   const [visible, setVisible] = useState(false);
@@ -59,6 +61,7 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({
       );
 
       setErrorMessage('');
+      setSubmitted(true);
     } catch (error: unknown) {
       if (error instanceof Error) {
         setErrorMessage(error.message || 'An error occurred');
@@ -94,6 +97,25 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({
                 disabled={!editMode}
               >
                 Save
+              </button>
+            ) : (
+              ''
+            )}
+
+            {editMode ? (
+              <button
+                className="user__exit_btn"
+                disabled={!editMode}
+                onClick={() => {
+                  if (submitted) {
+                    setEditMode(false);
+                  } else {
+                    setEditMode(false);
+                    setSubmitted(true);
+                  }
+                }}
+              >
+                Exit
               </button>
             ) : (
               ''
