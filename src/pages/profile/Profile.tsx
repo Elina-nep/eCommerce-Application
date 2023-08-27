@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react';
 import { Customer } from '@commercetools/platform-sdk';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import { getCustomerFunc } from '../../util';
+import { ProfileForm } from '../../components/ProfileForm/ProfileForm';
+import './Profile.scss';
 
 const defaultResponse: Customer = {
   id: '',
@@ -18,10 +20,10 @@ export const ProfilePage = () => {
   const [customer, setCustomer] = useState<Customer>(defaultResponse);
   const [loading, setLoading] = useState(false);
 
-  const handleGetProducts = () => {
+  const handleGetCustomer = () => {
     getCustomerFunc(setLoading)
       .then((body) => {
-        console.log(body);
+        console.log('Customer: ', body);
         setCustomer(body);
       })
       .catch((e) => {
@@ -30,20 +32,18 @@ export const ProfilePage = () => {
   };
 
   useEffect(() => {
-    handleGetProducts();
+    handleGetCustomer();
   }, []);
 
   return (
-    <main className="main-container">
-      <h2>This profile page</h2>
-      <section>
-        {loading && <LoadingSpinner />}
-        {
-          !loading &&
-            !!customer.id &&
-            customer.firstName /* сюда вставляем компонент с инфо о юзере) */
-        }
-      </section>
+    <main className="main-container profile-page">
+      {loading && <LoadingSpinner />}
+      {!loading && !!customer.id && (
+        <ProfileForm
+          refreshCallback={() => handleGetCustomer()}
+          response={customer}
+        />
+      )}
     </main>
   );
 };

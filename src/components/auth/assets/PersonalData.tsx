@@ -94,7 +94,7 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
       </div>
       <Controller
         control={control}
-        name="dateBirth"
+        name="dateOfBirth"
         rules={ageValidation(13)}
         render={({ field }) => (
           <TextField
@@ -106,8 +106,8 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
             margin="normal"
             type="date"
             value={field.value || ''}
-            error={!!errors?.dateBirth?.message}
-            helperText={errors?.dateBirth?.message}
+            error={!!errors?.dateOfBirth?.message}
+            helperText={errors?.dateOfBirth?.message}
             inputProps={{
               min: '1901-01-01',
               max: today,

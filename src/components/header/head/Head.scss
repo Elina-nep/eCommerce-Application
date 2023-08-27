@@ -40,13 +40,13 @@
 .logo-img {
   width: 20px;
   @media (min-width: 210px) and (max-width: 576px) {
-    width: 68%;
+    width: 48%;
   }
   @media (min-width: 576px) and (max-width: 768px) {
-    width: 70%;
+    width: 40%;
   }
   @media (min-width: 768px) and (max-width: 991px) {
-    width: 61%;
+    width: 59%;
   }
   @media (min-width: 992px) and (max-width: 1200px) {
     width: 61%;

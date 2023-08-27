@@ -3,7 +3,7 @@ export interface IRegistrationForm {
   lastName: string;
   email: string;
   password: string;
-  dateBirth: string;
+  dateOfBirth: string;
   billStreet: string;
   billCity: string;
   billPostalCode: string;

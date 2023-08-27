@@ -2,7 +2,9 @@ import { Dispatch, SetStateAction } from 'react';
 import { ICreateCustomer, ILoginCustomer } from '../types';
 import { createCustomerService, loginCustomerService } from '../services';
 
-const clearAlert = (setAlertMessage: Dispatch<SetStateAction<string>>) => {
+export const clearAlert = (
+  setAlertMessage: Dispatch<SetStateAction<string>>,
+) => {
   setTimeout(() => {
     setAlertMessage('');
   }, 3000);
