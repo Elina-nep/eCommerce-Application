@@ -10,6 +10,7 @@ import { createCustomerFunc, loginCustomerFunc, logOutFunc } from '../util';
 interface IUserAuth {
   ifAuth: boolean;
   alertMessage: string;
+  setAlertMessage: Dispatch<SetStateAction<string>>;
   setIfAuth: Dispatch<SetStateAction<boolean>>;
   loginCustomer: (data: ILoginCustomer) => void;
   createCustomer: (data: ICreateCustomer) => void;
@@ -19,6 +20,7 @@ interface IUserAuth {
 export const AuthContext = createContext<IUserAuth>({
   ifAuth: false,
   alertMessage: '',
+  setAlertMessage: () => {},
   setIfAuth: () => {},
   loginCustomer: () => {},
   createCustomer: () => {},
@@ -43,6 +45,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         ifAuth,
         alertMessage,
+        setAlertMessage,
         setIfAuth,
         loginCustomer,
         createCustomer,
