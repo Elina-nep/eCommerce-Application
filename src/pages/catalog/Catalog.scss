@@ -4,12 +4,12 @@
   width: 100%;
   background-size: cover;
   font-size: var(--font-small);
+  color: #2a2a2a;
 }
 
 .catalog-container {
   width: 90%;
   margin: auto;
-  margin-top: 4%;
   background-color: rgba(80, 162, 148, 0.5);
   opacity: 1;
 }
@@ -109,4 +109,8 @@
 
 .sidebar-filter-color {
   background-color: white;
+}
+
+.product-count {
+  font-weight: 600;
 }

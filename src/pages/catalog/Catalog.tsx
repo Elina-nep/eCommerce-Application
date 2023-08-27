@@ -189,7 +189,7 @@ export const CatalogPage = () => {
               setCategoriesExpanded(true);
             }}
           >
-            All Categories
+            &#8592; All Categories
           </button>
         </li>,
       ];
@@ -201,7 +201,8 @@ export const CatalogPage = () => {
       <div className="catalog-container">
         <div className="catalog-container-sorting">
           <div className="product-item-number">
-            Showing all {products.total} results
+            Showing all <span className="product-count">{products.total}</span>{' '}
+            results
           </div>
           <Select
             key={selectedCategoryId}
