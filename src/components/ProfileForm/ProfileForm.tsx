@@ -8,6 +8,7 @@ import { Address } from './assets/Address';
 import { AddressType } from '../../types/profileFrom';
 import { AddAddress } from './assets/AddAddress';
 import { ChangePassword } from './assets/ChangePassword';
+import { ChangeEmail } from './assets/ChangeEmail';
 import './ProfileForm.scss';
 
 export const ProfileForm: React.FC<IProfileFormProps> = ({
@@ -93,6 +94,8 @@ export const ProfileForm: React.FC<IProfileFormProps> = ({
             refreshCallback={refreshCallback}
           />
         ))}
+
+        <ChangeEmail response={response} refreshCallback={refreshCallback} />
 
         <ChangePassword
           version={response.version}
