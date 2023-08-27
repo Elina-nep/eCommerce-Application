@@ -32,7 +32,7 @@
 }
 
 .profile__section_head h2 {
-  margin: 0.7rem 0;
+  margin: 0.7rem 0.4rem 0 0;
 }
 
 .edit-mode {
@@ -49,7 +49,6 @@
 .profile__section_edit_input {
   display: flex;
   align-items: baseline;
-  gap: 15px;
 }
 
 .user__edit_btn,
@@ -136,4 +135,11 @@
   &:hover {
     cursor: pointer;
   }
+}
+
+.profile__add_status {
+  font-weight: 400;
+  border-radius: 5px;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid var(--secondary-color);
 }

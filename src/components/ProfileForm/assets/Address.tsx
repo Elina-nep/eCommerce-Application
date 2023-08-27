@@ -99,6 +99,8 @@ export const Address: React.FC<IAddressProps> = ({
     }
   };
 
+  console.log(address);
+
   const onSubmit: SubmitHandler<IAddress> = async (data) => {
     setEditMode(false);
 
@@ -158,39 +160,47 @@ export const Address: React.FC<IAddressProps> = ({
         <div className="profile__section_head">
           <div className="profile__section_edit_input">
             <h2>{editMode ? '✏️' : ''}</h2>
-            <FormGroup>
-              <Controller
-                control={control}
-                name="isDefault"
-                render={({ field }) => (
-                  <FormControlLabel
-                    labelPlacement="end"
-                    control={
-                      <Checkbox
-                        id="isDefault"
-                        size="small"
-                        {...field}
-                        checked={
-                          editMode ? editedValues.isDefault : address.isDefault
-                        }
-                        inputProps={{
-                          readOnly: !editMode,
-                        }}
-                        onChange={(e) => {
-                          const newValue = e.target.checked;
-                          setEditedValues((prevValues) => ({
-                            ...prevValues,
-                            isDefault: newValue,
-                          }));
-                          field.onChange(e);
-                        }}
-                      />
-                    }
-                    label="Default"
-                  />
-                )}
-              />
-            </FormGroup>
+            {editMode ? (
+              <FormGroup>
+                <Controller
+                  control={control}
+                  name="isDefault"
+                  render={({ field }) => (
+                    <FormControlLabel
+                      labelPlacement="end"
+                      control={
+                        <Checkbox
+                          id="isDefault"
+                          size="small"
+                          {...field}
+                          checked={
+                            editMode
+                              ? editedValues.isDefault
+                              : address.isDefault
+                          }
+                          inputProps={{
+                            readOnly: !editMode,
+                          }}
+                          onChange={(e) => {
+                            const newValue = e.target.checked;
+                            setEditedValues((prevValues) => ({
+                              ...prevValues,
+                              isDefault: newValue,
+                            }));
+                            field.onChange(newValue); // Pass newValue to field.onChange
+                          }}
+                        />
+                      }
+                      label="Default"
+                    />
+                  )}
+                />
+              </FormGroup>
+            ) : address.isDefault ? (
+              <h3 className="profile__add_status">Default</h3>
+            ) : (
+              ''
+            )}
           </div>
           <div className="profile__section_head_btn">
             {editMode ? (

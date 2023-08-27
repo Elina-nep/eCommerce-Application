@@ -16,6 +16,7 @@ export const loginTheme = createTheme({
 
 export const registerTheme = createTheme({
   typography: {
+    fontSize: 18,
     fontFamily: ['Iceland', 'sans-serif'].join(','),
   },
   palette: {
