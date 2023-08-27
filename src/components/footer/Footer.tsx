@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Footer.css';
-import { columns } from '../../util/index';
+import { links } from '../../util/index';
 import LinkList from './FooterLink';
+import { AuthContext } from '../../context/AuthProvider';
+import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
+  const { categories } = useContext(AuthContext);
   return (
     <footer className="footer">
-      {columns.map((column) => (
-        <div className="footer__column" key={column.id}>
-          <h3>{column.title}</h3>
-          <LinkList links={column.links} />
-        </div>
-      ))}
+      <div className="footer__column">
+        <h3>Information</h3>
+        <LinkList links={links} />
+      </div>
+
+      <div className="footer__column">
+        <h3>Catalog</h3>
+        <ul>
+          {categories.map((el) => (
+            <li key={el.id}>
+              <Link to={'/catalog'}>{el.name['en']}</Link>
+            </li>
+          ))}
+        </ul>
+      </div>
+
       <div className="footer__column">
         <h3>Contacts</h3>
         <p className="footer__column-address">
