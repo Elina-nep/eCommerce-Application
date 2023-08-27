@@ -3,7 +3,6 @@ import {
   CategoryPagedQueryResponse,
   ProductProjectionPagedQueryResponse,
 } from '@commercetools/platform-sdk';
-import Button from '../../components/buttons/Button';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import {
   getCategoriesFunc,
@@ -41,6 +40,7 @@ export const CatalogPage = () => {
     setCurrentPage(1);
     handleGetProducts({ sort: newSorting, categoryId, pageNum: 0 });
   };
+  const [categoriesExpanded, setCategoriesExpanded] = useState(true);
   const [selectedColors, setSelectedColors] = useState<Colors[]>([]);
   const handleColorChange = (selectedColor: Colors) => {
     setSelectedColors((prevSelectedColors) => {
@@ -145,54 +145,61 @@ export const CatalogPage = () => {
   };
 
   const formCategories = () => {
-    return [
-      <li
-        key="all-products"
-        onClick={() => {
-          setSelectedCategoryName(defaultCategoryName);
-          handleSortChange('Default sorting', '');
-        }}
-      >
-        {defaultCategoryName}
-      </li>,
-      ...categories.results.map((el) => {
-        const name = el.name['en'];
-        return (
-          <li
-            key={el.id}
+    if (categoriesExpanded) {
+      return [
+        <li
+          key="all-products"
+          onClick={() => {
+            setSelectedCategoryName(defaultCategoryName);
+            handleSortChange('Default sorting', '');
+          }}
+        >
+          {defaultCategoryName}
+        </li>,
+        ...categories.results.map((el) => {
+          const name = el.name['en'];
+          return (
+            <li
+              key={el.id}
+              onClick={() => {
+                setSelectedCategoryName(name);
+                handleSortChange('Default sorting', el.id);
+                setCategoriesExpanded(false);
+              }}
+            >
+              {name}
+            </li>
+          );
+        }),
+      ];
+    } else {
+      return [
+        <li
+          key="select-category"
+          onClick={() => {
+            setCategoriesExpanded(true);
+          }}
+        >
+          {selectedCategoryName}
+          <button
+            className="select-category-list"
             onClick={() => {
-              setSelectedCategoryName(name);
-              handleSortChange('Default sorting', el.id);
+              setSelectedCategoryName(defaultCategoryName);
+              handleSortChange('Default sorting', '');
+              setCategoriesExpanded(true);
             }}
           >
-            {name}
-          </li>
-        );
-      }),
-    ];
+            All Categories
+          </button>
+        </li>,
+      ];
+    }
   };
 
   return (
     <main className="main-container-catalog">
       <div className="catalog-container">
-        {products.total !== undefined && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={Math.ceil(products.total / PRODUCTS_ON_PAGE)}
-            onPageChange={(newPage) => {
-              setCurrentPage(newPage);
-              handleGetProducts({
-                sort: sorting,
-                categoryId: selectedCategoryId,
-                pageNum: newPage - 1,
-              });
-            }}
-          />
-        )}
         <div className="catalog-container-sorting">
-          <div>
-            {selectedCategoryName ? `Showing ${selectedCategoryName}` : ''}
-          </div>
           <div className="product-item-number">
             Showing all {products.total} results
           </div>
@@ -206,9 +213,7 @@ export const CatalogPage = () => {
           <aside className="catalog-container-sidebar">
             <div className="sidebar-filter-category">
               Filter by Category:
-              <p>Categories</p>
               <ul>{formCategories()}</ul>
-              <Button onClick={handleGetProducts}>get products</Button>
             </div>
             <div className="sidebar-filter-price">Filter by Price:</div>
             <div className="sidebar-filter-color">
@@ -218,10 +223,26 @@ export const CatalogPage = () => {
             <div className="sidebar-filter-material">Filter by Materials:</div>
             <div className="sidebar-filter-occasion">Filter by Occasion:</div>
           </aside>
-          <section className="product-card-wrapper">
-            {loading && <LoadingSpinner />}
-            {!loading && !!products.count && formProducts()}
-          </section>
+          <div className="catalog-container-right-side">
+            <section className="product-card-wrapper">
+              {loading && <LoadingSpinner />}
+              {!loading && !!products.count && formProducts()}
+            </section>
+            {products.total !== undefined && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={Math.ceil(products.total / PRODUCTS_ON_PAGE)}
+                onPageChange={(newPage) => {
+                  setCurrentPage(newPage);
+                  handleGetProducts({
+                    sort: sorting,
+                    categoryId: selectedCategoryId,
+                    pageNum: newPage - 1,
+                  });
+                }}
+              />
+            )}
+          </div>
         </div>
       </div>
     </main>
