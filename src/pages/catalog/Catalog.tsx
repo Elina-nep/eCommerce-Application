@@ -14,6 +14,7 @@ import { ProductQueryParams, Sorting } from '../../types';
 import './Catalog.scss';
 import { Select } from '../../components/productselect/productselect';
 import Pagination from '../../components/pagination/Pagination';
+import { Colors } from '../../types/products';
 
 const defaultResponse = {
   limit: 0,
@@ -38,6 +39,53 @@ export const CatalogPage = () => {
       sort === 'Default sorting' ? undefined : (sort as Sorting);
     setSorting(newSorting);
     handleGetProducts({ sort: newSorting, categoryId });
+  };
+  const [selectedColors, setSelectedColors] = useState<Colors[]>([]);
+  const handleColorChange = (selectedColor: Colors) => {
+    if (selectedColors.includes(selectedColor)) {
+      setSelectedColors(
+        selectedColors.filter((color) => color !== selectedColor),
+      );
+    } else {
+      setSelectedColors([...selectedColors, selectedColor]);
+    }
+
+    handleGetProducts({
+      sort: sorting,
+      categoryId: selectedCategoryId,
+      colors: selectedColors,
+      pageNum: currentPage - 1,
+    });
+  };
+
+  const formColors = () => {
+    return [
+      'black',
+      'grey',
+      'beige',
+      'white',
+      'blue',
+      'brown',
+      'green',
+      'red',
+      'purple',
+      'pink',
+      'orange',
+      'yellow',
+      'gold',
+      'silver',
+      'multicolored',
+    ].map((color) => (
+      <li
+        key={color}
+        className={`color-item${
+          selectedColors.includes(color as Colors) ? ' selected' : ''
+        }`}
+        onClick={() => handleColorChange(color as Colors)}
+      >
+        {color}
+      </li>
+    ));
   };
   const [currentPage, setCurrentPage] = useState(1);
   const [sorting, setSorting] = useState<Sorting | undefined>(undefined);
@@ -164,7 +212,10 @@ export const CatalogPage = () => {
               <Button onClick={handleGetProducts}>get products</Button>
             </div>
             <div className="sidebar-filter-price">Filter by Price:</div>
-            <div className="sidebar-filter-color">Filter by Colors:</div>
+            <div className="sidebar-filter-color">
+              Filter by Colors:
+              <ul className="color-list">{formColors()}</ul>
+            </div>
             <div className="sidebar-filter-material">Filter by Materials:</div>
             <div className="sidebar-filter-occasion">Filter by Occasion:</div>
           </aside>
