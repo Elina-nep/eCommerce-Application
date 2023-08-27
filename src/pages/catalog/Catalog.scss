@@ -3,12 +3,12 @@
   flex-grow: 1;
   width: 100%;
   background-size: cover;
+  font-size: var(--font-small);
 }
 
 .catalog-container {
   width: 90%;
   margin: auto;
-  padding: 2% 0%;
   margin-top: 4%;
   background-color: rgba(80, 162, 148, 0.5);
   opacity: 1;
@@ -22,7 +22,7 @@
 
 .product-card-wrapper {
   display: grid;
-  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-gap: 2vw;
 }
@@ -35,8 +35,13 @@
   justify-content: space-evenly;
   text-align: center;
   height: 40vh;
-  border: 1px solid black;
   align-items: center;
+}
+
+.product-card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  /*transform: scale(1.05);
+  transition: all 1s ease-in-out;*/
 }
 
 .product-card-image {
@@ -67,6 +72,7 @@
 }
 
 .catalog-container-sorting {
+  padding: 2% 0;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -74,11 +80,15 @@
 
 .product-select {
   margin-left: 3vw;
+  font-size: var(--font-small);
+  font-family: 'Iceland';
+  padding: 0.1%;
 }
 
 .catalog-container-sidebar {
   display: flex;
   flex-direction: column;
+  width: 20%;
 }
 
 .sidebar-filter-category {
@@ -88,4 +98,15 @@
 .selected {
   background-color: #ff814e;
   color: white;
+}
+
+.select-category-list {
+  background-color: #ff814e;
+  color: #2a2a2a;
+  border: none;
+  cursor: pointer;
+}
+
+.sidebar-filter-color {
+  background-color: white;
 }
