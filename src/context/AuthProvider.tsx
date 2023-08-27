@@ -2,14 +2,24 @@ import React, {
   createContext,
   Dispatch,
   SetStateAction,
+  useEffect,
   useState,
 } from 'react';
 import { ICreateCustomer, ILoginCustomer } from '../types';
-import { createCustomerFunc, loginCustomerFunc, logOutFunc } from '../util';
+import {
+  createCustomerFunc,
+  getCategoriesFunc,
+  getCustomerFunc,
+  loginCustomerFunc,
+  logOutFunc,
+} from '../util';
+import { Category } from '@commercetools/platform-sdk';
 
 interface IUserAuth {
   ifAuth: boolean;
   alertMessage: string;
+  categories: Category[];
+  setAlertMessage: Dispatch<SetStateAction<string>>;
   setIfAuth: Dispatch<SetStateAction<boolean>>;
   loginCustomer: (data: ILoginCustomer) => void;
   createCustomer: (data: ICreateCustomer) => void;
@@ -19,6 +29,8 @@ interface IUserAuth {
 export const AuthContext = createContext<IUserAuth>({
   ifAuth: false,
   alertMessage: '',
+  categories: [],
+  setAlertMessage: () => {},
   setIfAuth: () => {},
   loginCustomer: () => {},
   createCustomer: () => {},
@@ -26,8 +38,29 @@ export const AuthContext = createContext<IUserAuth>({
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const token = localStorage.getItem('user');
-  const [ifAuth, setIfAuth] = useState(!!token);
+  const [loading, setLoading] = useState(false);
+  const [ifAuth, setIfAuth] = useState(false);
+  const [categories, setCategories] = useState<Category[]>([]);
+
+  useEffect(() => {
+    getCustomerFunc(setLoading)
+      .then(() => {
+        setIfAuth(true);
+      })
+      .catch(() => {
+        getCategoriesFunc()
+          .then((res) => {
+            setCategories(res.results);
+          })
+          .catch(() => {
+            localStorage.clear();
+            getCategoriesFunc().then((res) => {
+              setCategories(res.results);
+            });
+          });
+      });
+  }, []);
+
   const [alertMessage, setAlertMessage] = useState('');
 
   const loginCustomer = (data: ILoginCustomer): Promise<void> =>
@@ -43,13 +76,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       value={{
         ifAuth,
         alertMessage,
+        categories,
+        setAlertMessage,
         setIfAuth,
         loginCustomer,
         createCustomer,
         logOut,
       }}
     >
-      {children}
+      {!loading && children}
     </AuthContext.Provider>
   );
 };
