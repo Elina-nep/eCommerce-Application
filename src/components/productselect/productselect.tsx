@@ -38,7 +38,7 @@ export const Select: React.FC<SelectProps> = ({ onSortChange, category }) => {
   );
 };
 Select.defaultProps = {
-  category: 'All Products', // Замените 'defaultCategoryValue' значением по умолчанию, которое вы хотите использовать.
+  category: 'All Products',
 };
 Select.propTypes = {
   onSortChange: PropTypes.func.isRequired,

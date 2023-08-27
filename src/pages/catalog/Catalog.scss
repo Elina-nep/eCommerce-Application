@@ -39,10 +39,12 @@
   align-items: center;
 }
 
-.product-card-image img {
-  position: relative;
-  width: 50%;
-  top: 10%;
+.product-card-image {
+  width: 70%;
+  height: 50%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .product-card-category {

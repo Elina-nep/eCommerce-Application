@@ -38,23 +38,24 @@ export const CatalogPage = () => {
     const newSorting =
       sort === 'Default sorting' ? undefined : (sort as Sorting);
     setSorting(newSorting);
-    handleGetProducts({ sort: newSorting, categoryId });
+    setCurrentPage(1);
+    handleGetProducts({ sort: newSorting, categoryId, pageNum: 0 });
   };
   const [selectedColors, setSelectedColors] = useState<Colors[]>([]);
   const handleColorChange = (selectedColor: Colors) => {
-    if (selectedColors.includes(selectedColor)) {
-      setSelectedColors(
-        selectedColors.filter((color) => color !== selectedColor),
-      );
-    } else {
-      setSelectedColors([...selectedColors, selectedColor]);
-    }
+    setSelectedColors((prevSelectedColors) => {
+      const newSelectedColors = prevSelectedColors.includes(selectedColor)
+        ? prevSelectedColors.filter((color) => color !== selectedColor)
+        : [...prevSelectedColors, selectedColor];
 
-    handleGetProducts({
-      sort: sorting,
-      categoryId: selectedCategoryId,
-      colors: selectedColors,
-      pageNum: currentPage - 1,
+      handleGetProducts({
+        sort: sorting,
+        categoryId: selectedCategoryId,
+        colors: newSelectedColors,
+        pageNum: currentPage - 1,
+      });
+
+      return newSelectedColors;
     });
   };
 
@@ -119,21 +120,19 @@ export const CatalogPage = () => {
   const formProducts = () => {
     return products.results.map((el) => {
       const name = el.name['en'];
-      const category = categories.results.find(
-        (category) => category.id === el.categories[0].id,
-      );
-      const categoryName = category ? category.name['en'] : '';
       const image = el.masterVariant.images?.[0]?.url ?? '';
       const { centAmount, currencyCode } = el.masterVariant.prices?.[0]
         ?.value || { centAmount: 0, currencyCode: '' };
       const priceValue = centAmount / 100;
-
+      const productCardImageStyle = {
+        backgroundImage: `url("${image}")`,
+      };
       return (
         <div className="product-card" key={el.id}>
-          <div className="product-card-image">
-            {image && <img src={image} alt={name} />}
-          </div>
-          <p className="product-card-category">{categoryName}</p>
+          <div
+            className="product-card-image"
+            style={productCardImageStyle}
+          ></div>
           <p className="product-card-name">{name}</p>
           {priceValue && (
             <p className="product-card-price">
@@ -150,8 +149,8 @@ export const CatalogPage = () => {
       <li
         key="all-products"
         onClick={() => {
-          handleGetProducts({ categoryId: '' });
           setSelectedCategoryName(defaultCategoryName);
+          handleSortChange('Default sorting', '');
         }}
       >
         {defaultCategoryName}
@@ -162,8 +161,8 @@ export const CatalogPage = () => {
           <li
             key={el.id}
             onClick={() => {
-              handleGetProducts({ categoryId: el.id });
               setSelectedCategoryName(name);
+              handleSortChange('Default sorting', el.id);
             }}
           >
             {name}
@@ -193,12 +192,12 @@ export const CatalogPage = () => {
         <div className="catalog-container-sorting">
           <div>
             {selectedCategoryName ? `Showing ${selectedCategoryName}` : ''}
-            {/*DELETE*/}
           </div>
           <div className="product-item-number">
             Showing all {products.total} results
           </div>
           <Select
+            key={selectedCategoryId}
             onSortChange={handleSortChange}
             category={selectedCategoryId}
           />
