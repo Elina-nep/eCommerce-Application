@@ -25,6 +25,6 @@ export const userTokenCache = {
 export const getExistingToken = () => {
   const cache =
     localStorage.getItem('user_token') || localStorage.getItem('token');
-  const token = cache ? `Bearer ${JSON.parse(cache)?.token}` : '';
+  const token = cache ? `Bearer ${JSON.parse(cache)?.refreshToken}` : '';
   return token;
 };

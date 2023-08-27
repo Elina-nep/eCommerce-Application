@@ -14,10 +14,11 @@ type queryArgs = {
 };
 
 export const getProductsService = (queryParams?: ProductQueryParams) => {
+  const lang = queryParams?.lang ? queryParams.lang : 'en';
   const queryArgs: queryArgs = {
     staged: false,
     filter: [],
-    sort: [],
+    sort: [`name.${lang} asc`],
     offset: queryParams?.pageNum
       ? queryParams?.pageNum * PRODUCTS_ON_PAGE + 1
       : 0,
@@ -25,7 +26,6 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
   };
 
   if (queryParams?.queryText) {
-    const lang = queryParams.lang ? queryParams.lang : 'en';
     queryArgs[`text.${lang}`] = `name.${lang}="${queryParams?.queryText}"`;
     queryArgs.fuzzy = true;
   }
@@ -49,7 +49,7 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
     );
   }
   if (queryParams?.sort) {
-    queryArgs.sort.push(queryParams.sort);
+    queryArgs.sort[0] = queryParams.sort;
   }
 
   return formFlow().productProjections().search().get({ queryArgs }).execute();

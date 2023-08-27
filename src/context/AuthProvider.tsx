@@ -26,7 +26,7 @@ export const AuthContext = createContext<IUserAuth>({
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-  const token = localStorage.getItem('user_token');
+  const token = localStorage.getItem('user');
   const [ifAuth, setIfAuth] = useState(!!token);
   const [alertMessage, setAlertMessage] = useState('');
 

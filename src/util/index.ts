@@ -11,6 +11,11 @@ export {
 } from './validation';
 
 export { cards, PRODUCTS_ON_PAGE } from './constants';
-export { loginCustomerFunc, createCustomerFunc, logOutFunc } from './auth';
+export {
+  loginCustomerFunc,
+  createCustomerFunc,
+  logOutFunc,
+  clearAlert,
+} from './auth';
 export { getProductsFunc, getCategoriesFunc } from './catalog';
 export { getCustomerFunc } from './customer';
