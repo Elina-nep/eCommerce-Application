@@ -23,7 +23,6 @@ export const ProfilePage = () => {
   const handleGetCustomer = () => {
     getCustomerFunc(setLoading)
       .then((body) => {
-        console.log(body);
         setCustomer(body);
       })
       .catch((e) => {

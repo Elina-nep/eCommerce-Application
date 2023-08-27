@@ -78,20 +78,29 @@ export const Personal: React.FC<IPersonalProps> = ({
         <div className="profile__section_head">
           <h2>{editMode ? '✏️ ' : ''}Personal</h2>
           <div className="profile__section_head_btn">
-            <button
-              className="user__edit_btn"
-              onClick={handleEditClick}
-              disabled={editMode}
-            >
-              Edit
-            </button>
-            <button
-              type="submit"
-              className="user__save_btn"
-              disabled={!editMode}
-            >
-              Save
-            </button>
+            {editMode ? (
+              ''
+            ) : (
+              <button
+                className="user__edit_btn"
+                onClick={handleEditClick}
+                disabled={editMode}
+              >
+                Edit
+              </button>
+            )}
+
+            {editMode ? (
+              <button
+                type="submit"
+                className="user__save_btn"
+                disabled={!editMode}
+              >
+                Save
+              </button>
+            ) : (
+              ''
+            )}
           </div>
         </div>
         <div className="prof__col-2">

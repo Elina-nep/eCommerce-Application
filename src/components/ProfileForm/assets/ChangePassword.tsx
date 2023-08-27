@@ -70,92 +70,105 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({
         <div className="profile__section_head">
           <h2>{editMode ? '✏️' : ''} Password</h2>
           <div className="profile__section_head_btn">
-            <button
-              className="profile__change_btn"
-              onClick={handleEditClick}
-              disabled={editMode}
-            >
-              Change Password
-            </button>
-            <button
-              type="submit"
-              className="user__save_btn"
-              disabled={!editMode}
-            >
-              Save
-            </button>
+            {editMode ? (
+              ''
+            ) : (
+              <button
+                className="user__edit_pass_btn"
+                onClick={handleEditClick}
+                disabled={editMode}
+              >
+                Change Password
+              </button>
+            )}
+
+            {editMode ? (
+              <button
+                type="submit"
+                className="user__save_btn"
+                disabled={!editMode}
+              >
+                Save
+              </button>
+            ) : (
+              ''
+            )}
           </div>
         </div>
-        <div className="prof__col-2">
-          <Controller
-            control={control}
-            name="oldPassword"
-            rules={passwordValidation}
-            render={({ field }) => (
-              <TextField
-                id="oldPassword"
-                label="Old Password"
-                onChange={(e) => {
-                  field.onChange(e);
-                  onChangeInput('oldPassword', e.target.value);
-                }}
-                onFocus={onFocusInput}
-                value={field.value || ''}
-                fullWidth
-                size="small"
-                margin="normal"
-                type={visible ? 'text' : 'password'}
-                error={!!errors.oldPassword?.message}
-                helperText={errors?.oldPassword?.message}
-                variant={editMode ? 'outlined' : 'standard'}
-                InputProps={{
-                  readOnly: !editMode,
-                  endAdornment: (
-                    <TogglePasswordVisibility
-                      visible={visible}
-                      setVisible={setVisible}
-                    />
-                  ),
-                }}
-              />
-            )}
-          />
+        {editMode ? (
+          <div className="prof__col-2">
+            <Controller
+              control={control}
+              name="oldPassword"
+              rules={passwordValidation}
+              render={({ field }) => (
+                <TextField
+                  id="oldPassword"
+                  label="Old Password"
+                  onChange={(e) => {
+                    field.onChange(e);
+                    onChangeInput('oldPassword', e.target.value);
+                  }}
+                  onFocus={onFocusInput}
+                  value={field.value || ''}
+                  fullWidth
+                  size="small"
+                  margin="normal"
+                  type={visible ? 'text' : 'password'}
+                  error={!!errors.oldPassword?.message}
+                  helperText={errors?.oldPassword?.message}
+                  variant={editMode ? 'outlined' : 'standard'}
+                  InputProps={{
+                    readOnly: !editMode,
+                    endAdornment: (
+                      <TogglePasswordVisibility
+                        visible={visible}
+                        setVisible={setVisible}
+                      />
+                    ),
+                  }}
+                />
+              )}
+            />
 
-          <div className="registration-page__spacing" />
-          <Controller
-            control={control}
-            name="newPassword"
-            rules={passwordValidation}
-            render={({ field }) => (
-              <TextField
-                id="newPassword"
-                label="New Password"
-                onChange={(e) => {
-                  field.onChange(e);
-                  onChangeInput('newPassword', e.target.value);
-                }}
-                onFocus={onFocusInput}
-                value={field.value || ''}
-                fullWidth
-                size="small"
-                margin="normal"
-                type={visible ? 'text' : 'password'}
-                error={!!errors.newPassword?.message}
-                helperText={errors?.newPassword?.message}
-                variant={editMode ? 'outlined' : 'standard'}
-                InputProps={{
-                  readOnly: !editMode,
-                  endAdornment: (
-                    <TogglePasswordVisibility
-                      visible={visible}
-                      setVisible={setVisible}
-                    />
-                  ),
-                }}
-              />
-            )}
-          />
-        </div>
+            <div className="registration-page__spacing" />
+            <Controller
+              control={control}
+              name="newPassword"
+              rules={passwordValidation}
+              render={({ field }) => (
+                <TextField
+                  id="newPassword"
+                  label="New Password"
+                  onChange={(e) => {
+                    field.onChange(e);
+                    onChangeInput('newPassword', e.target.value);
+                  }}
+                  onFocus={onFocusInput}
+                  value={field.value || ''}
+                  fullWidth
+                  size="small"
+                  margin="normal"
+                  type={visible ? 'text' : 'password'}
+                  error={!!errors.newPassword?.message}
+                  helperText={errors?.newPassword?.message}
+                  variant={editMode ? 'outlined' : 'standard'}
+                  InputProps={{
+                    readOnly: !editMode,
+                    endAdornment: (
+                      <TogglePasswordVisibility
+                        visible={visible}
+                        setVisible={setVisible}
+                      />
+                    ),
+                  }}
+                />
+              )}
+            />
+          </div>
+        ) : (
+          ''
+        )}
         {errorMessage && <FormError message={errorMessage} />}
       </form>
     </div>

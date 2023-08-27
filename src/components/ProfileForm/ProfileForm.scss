@@ -2,6 +2,7 @@
   width: 800px;
   background-color: var(--light-color);
   padding: 1.4rem 2rem;
+  margin: 2rem 0;
   border-radius: 10px;
 }
 
@@ -92,6 +93,25 @@
   text-align: center;
   font-size: var(--font-medium);
   color: var(--light-color);
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+
+  &:hover {
+    cursor: pointer;
+    background-color: var(--light-color);
+    color: var(--secondary-color);
+  }
+}
+
+.profile__change_btn {
+  width: 7rem;
+  margin: 0.7rem 0;
+  padding: 0.2rem 0;
+  font-family: 'Iceland';
+  text-align: center;
+  font-size: var(--font-medium);
+  color: var(--light-color);
   background-color: var(--primary-color);
   border: 1px solid var(--primary-color);
   border-radius: 5px;
@@ -101,8 +121,8 @@
   }
 }
 
-.profile__change_btn {
-  width: 7rem;
+.user__edit_pass_btn {
+  width: 10rem;
   margin: 0.7rem 0;
   padding: 0.2rem 0;
   font-family: 'Iceland';

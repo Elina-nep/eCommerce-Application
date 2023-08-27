@@ -61,12 +61,24 @@ export const Address: React.FC<IAddressProps> = ({
 
   const [loading, setLoading] = useState(false);
 
+  const removeAddressId: CustomerChanges =
+    addressType === AddressType.BILL
+      ? {
+          removeBillingAddressId: {
+            action: 'removeBillingAddressId',
+            addressId: address.id,
+          },
+        }
+      : {
+          removeShippingAddressId: {
+            action: 'removeShippingAddressId',
+            addressId: address.id,
+          },
+        };
+
   const deleteAddress = async () => {
     const removeAction: CustomerChanges = {
-      removeAddressAction: {
-        action: 'removeAddress',
-        addressId: address.id,
-      },
+      ...removeAddressId,
     };
 
     try {
@@ -171,21 +183,29 @@ export const Address: React.FC<IAddressProps> = ({
             </FormGroup>
           </div>
           <div className="profile__section_head_btn">
-            <button
-              className="user__edit_btn"
-              onClick={handleEditClick}
-              disabled={editMode}
-            >
-              Edit
-            </button>
-            <button
-              id="saveTest"
-              type="submit"
-              className="user__save_btn"
-              disabled={!editMode}
-            >
-              Save
-            </button>
+            {editMode ? (
+              ''
+            ) : (
+              <button
+                className="user__edit_btn"
+                onClick={handleEditClick}
+                disabled={editMode}
+              >
+                Edit
+              </button>
+            )}
+
+            {editMode ? (
+              <button
+                type="submit"
+                className="user__save_btn"
+                disabled={!editMode}
+              >
+                Save
+              </button>
+            ) : (
+              ''
+            )}
             <button className="prof__delete_btn" onClick={deleteAddress}>
               Delete
             </button>
@@ -199,7 +219,7 @@ export const Address: React.FC<IAddressProps> = ({
             rules={streetValidation}
             render={({ field }) => (
               <TextField
-                id="streetName"
+                id={`streetName-${address.id}`}
                 label="Street"
                 onChange={(e) => {
                   field.onChange(e);
@@ -234,7 +254,7 @@ export const Address: React.FC<IAddressProps> = ({
             rules={nameValidation}
             render={({ field }) => (
               <TextField
-                id="city"
+                id={`city-${address.id}`}
                 label="City"
                 onChange={(e) => {
                   field.onChange(e);
@@ -281,7 +301,7 @@ export const Address: React.FC<IAddressProps> = ({
                   {...field}
                   labelId="billcountry-select-label"
                   label="Country"
-                  id="billcountry-select"
+                  id={`country-select-${address.id}`}
                   onChange={(e) => {
                     field.onChange(e);
                     const newValue = e.target.value;
@@ -321,7 +341,7 @@ export const Address: React.FC<IAddressProps> = ({
             }}
             render={({ field }) => (
               <TextField
-                id="postalCode"
+                id={`postalCode-${address.id}`}
                 label="Postal Code"
                 onChange={(e) => {
                   field.onChange(e);
