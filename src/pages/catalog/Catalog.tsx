@@ -15,6 +15,7 @@ import './Catalog.scss';
 import { Select } from '../../components/productselect/productselect';
 import Pagination from '../../components/pagination/Pagination';
 import { Colors } from '../../types/products';
+import { Link } from 'react-router-dom';
 
 const defaultResponse = {
   limit: 0,
@@ -175,6 +176,10 @@ export const CatalogPage = () => {
 
   return (
     <main className="main-container-catalog">
+      <Link to="/product" className="product">
+        PRODUCT
+      </Link>
+
       <div className="catalog-container">
         {products.total !== undefined && (
           <Pagination
