@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   useForm,
   useFormState,
@@ -14,12 +14,14 @@ import { CustomerChanges } from '../../../types';
 import { changeCustomerFunc } from '../../../util/customer';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
+import { AuthContext } from '../../../context/AuthProvider';
 
 export const Personal: React.FC<IPersonalProps> = ({
   response,
   refreshCallback,
 }) => {
   const profileFields = customerToFormMapper(response);
+  const { setAlertMessage } = useContext(AuthContext);
 
   const { handleSubmit, control, trigger } = useForm<IProfileForm>({
     mode: 'onBlur',
@@ -63,16 +65,15 @@ export const Personal: React.FC<IPersonalProps> = ({
         setLoading,
         customerChanges,
         response.version,
-        setErrorMessage,
+        setAlertMessage,
       );
 
       setErrorMessage('');
+      refreshCallback();
     } catch (error: unknown) {
       if (error instanceof Error) {
         setErrorMessage(error.message || 'An error occurred');
       }
-    } finally {
-      refreshCallback();
     }
   };
 

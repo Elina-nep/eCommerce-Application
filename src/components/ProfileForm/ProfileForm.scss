@@ -98,3 +98,15 @@
 .profile__change_btn {
   width: 10rem;
 }
+
+.profile__tip {
+  width: fit-content;
+  padding: 0.4rem 0.6rem;
+  margin: 1rem auto;
+  border-radius: 5px;
+  color: var(--light-color);
+  background-color: var(--secondary-color);
+  font-size: var(--font-large);
+  font-weight: 400;
+  text-align: center;
+}

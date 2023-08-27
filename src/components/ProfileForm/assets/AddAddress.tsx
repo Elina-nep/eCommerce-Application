@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Controller,
   useForm,
@@ -27,6 +27,7 @@ import {
 } from '../../../util';
 import { IAddAdress } from '../../../types/profileFrom';
 import { FormError } from '../../auth/FormError';
+import { AuthContext } from '../../../context/AuthProvider';
 
 export const AddAddress: React.FC<IAddAddressProps> = ({
   customer,
@@ -39,6 +40,8 @@ export const AddAddress: React.FC<IAddAddressProps> = ({
   const { errors } = useFormState({
     control,
   });
+
+  const { setAlertMessage } = useContext(AuthContext);
 
   const watchedCountry = useWatch({
     control,
@@ -83,7 +86,7 @@ export const AddAddress: React.FC<IAddAddressProps> = ({
         setLoading,
         addressCreation,
         version,
-        setErrorMessage,
+        setAlertMessage,
       );
 
       const createdAddress =
@@ -140,16 +143,15 @@ export const AddAddress: React.FC<IAddAddressProps> = ({
         setLoading,
         addressTypeAndDefault,
         updatedCustomer.version,
-        setErrorMessage,
+        setAlertMessage,
       );
 
       setErrorMessage('');
+      refreshCallback();
     } catch (error: unknown) {
       if (error instanceof Error) {
         setErrorMessage(error.message || 'An error occurred');
       }
-    } finally {
-      refreshCallback();
     }
   };
 

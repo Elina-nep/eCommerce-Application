@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   useForm,
   useFormState,
@@ -14,11 +14,14 @@ import { CustomerChanges } from '../../../types';
 import { changeCustomerFunc } from '../../../util/customer';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
+import { AuthContext } from '../../../context/AuthProvider';
 
 export const ChangeEmail: React.FC<IPersonalProps> = ({
   response,
   refreshCallback,
 }) => {
+  const { setAlertMessage } = useContext(AuthContext);
+
   const profileFields = customerToFormMapper(response);
 
   const { handleSubmit, control, trigger } = useForm<IProfileForm>({
@@ -56,7 +59,7 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
         setLoading,
         customerChanges,
         response.version,
-        setErrorMessage,
+        setAlertMessage,
       );
 
       setErrorMessage('');

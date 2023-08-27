@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   useWatch,
   useForm,
@@ -22,13 +22,13 @@ import {
   countryValidation,
 } from '../../../util';
 import { IAddressProps } from '../../../types/profileFrom';
-
 import { IAddress } from '../../../types/profileFrom';
 import { CustomerChanges } from '../../../types';
 import { changeCustomerFunc } from '../../../util/customer';
 import { AddressType } from '../../../types/profileFrom';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
+import { AuthContext } from '../../../context/AuthProvider';
 
 export const Address: React.FC<IAddressProps> = ({
   customer,
@@ -41,6 +41,8 @@ export const Address: React.FC<IAddressProps> = ({
     mode: 'onBlur',
     defaultValues: address,
   });
+
+  const { setAlertMessage } = useContext(AuthContext);
 
   const { errors } = useFormState({ control });
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -80,7 +82,6 @@ export const Address: React.FC<IAddressProps> = ({
   const deleteAddress = async (event: MouseEvent) => {
     event.stopPropagation();
     event.preventDefault();
-    console.log('DELETE');
     const removeAction: CustomerChanges = {
       ...removeAddressId,
     };
@@ -90,7 +91,7 @@ export const Address: React.FC<IAddressProps> = ({
         setLoading,
         removeAction,
         version,
-        setErrorMessage,
+        setAlertMessage,
       );
 
       setErrorMessage('');
@@ -103,7 +104,6 @@ export const Address: React.FC<IAddressProps> = ({
   };
 
   const onSubmit: SubmitHandler<IAddress> = async (data) => {
-    console.log('SUBNIT');
     setEditMode(false);
 
     let defaultAddressId;
@@ -148,7 +148,7 @@ export const Address: React.FC<IAddressProps> = ({
         setLoading,
         customerChanges,
         version,
-        setErrorMessage,
+        setAlertMessage,
       );
 
       setErrorMessage('');
