@@ -81,7 +81,7 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
               ''
             ) : (
               <button
-                className="user__edit_pass_btn"
+                className="profile__change_btn"
                 onClick={handleEditClick}
                 disabled={editMode}
               >
@@ -92,7 +92,7 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
             {editMode ? (
               <button
                 type="submit"
-                className="user__save_btn"
+                className="profile__save_btn"
                 disabled={!editMode}
               >
                 Save
@@ -102,7 +102,7 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
             )}
             {editMode ? (
               <button
-                className="user__exit_btn"
+                className="profile__exit_btn"
                 disabled={!editMode}
                 onClick={() => {
                   if (submitted) {

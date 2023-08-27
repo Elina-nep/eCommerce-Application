@@ -207,7 +207,7 @@ export const Address: React.FC<IAddressProps> = ({
               ''
             ) : (
               <button
-                className="user__edit_btn"
+                className="profile__edit_btn"
                 onClick={handleEditClick}
                 disabled={editMode}
               >
@@ -218,7 +218,7 @@ export const Address: React.FC<IAddressProps> = ({
             {editMode ? (
               <button
                 type="submit"
-                className="user__save_btn"
+                className="profile__save_btn"
                 disabled={!editMode}
               >
                 Save
@@ -226,7 +226,7 @@ export const Address: React.FC<IAddressProps> = ({
             ) : (
               ''
             )}
-            <button className="prof__delete_btn" onClick={deleteAddress}>
+            <button className="profile__delete_btn" onClick={deleteAddress}>
               Delete
             </button>
           </div>

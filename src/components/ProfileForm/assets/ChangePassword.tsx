@@ -82,7 +82,7 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({
               ''
             ) : (
               <button
-                className="user__edit_pass_btn"
+                className="profile__change_btn"
                 onClick={handleEditClick}
                 disabled={editMode}
               >
@@ -93,7 +93,7 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({
             {editMode ? (
               <button
                 type="submit"
-                className="user__save_btn"
+                className="profile__save_btn"
                 disabled={!editMode}
               >
                 Save
@@ -104,7 +104,7 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({
 
             {editMode ? (
               <button
-                className="user__exit_btn"
+                className="profile__exit_btn"
                 disabled={!editMode}
                 onClick={() => {
                   if (submitted) {
