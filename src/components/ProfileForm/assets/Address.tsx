@@ -31,6 +31,7 @@ import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
 
 export const Address: React.FC<IAddressProps> = ({
+  customer,
   address,
   version,
   addressType,
@@ -76,7 +77,10 @@ export const Address: React.FC<IAddressProps> = ({
           },
         };
 
-  const deleteAddress = async () => {
+  const deleteAddress = async (event: MouseEvent) => {
+    event.stopPropagation();
+    event.preventDefault();
+    console.log('DELETE');
     const removeAction: CustomerChanges = {
       ...removeAddressId,
     };
@@ -90,23 +94,26 @@ export const Address: React.FC<IAddressProps> = ({
       );
 
       setErrorMessage('');
+      refreshCallback();
     } catch (error: unknown) {
       if (error instanceof Error) {
         setErrorMessage(error.message || 'An error occurred');
       }
-    } finally {
-      refreshCallback();
     }
   };
 
-  console.log(address);
-
   const onSubmit: SubmitHandler<IAddress> = async (data) => {
+    console.log('SUBNIT');
     setEditMode(false);
 
-    const defaultAddressId = data.isDefault
-      ? { addressId: address.id }
-      : undefined;
+    let defaultAddressId;
+    if (data.isDefault) {
+      defaultAddressId = { addressId: address.id };
+    } else if (addressType === AddressType.BILL && customer.billingAddressIds) {
+      defaultAddressId = { addressId: customer.defaultBillingAddressId };
+    } else {
+      defaultAddressId = { addressId: customer.defaultShippingAddressId };
+    }
 
     const setDefaultAction: CustomerChanges =
       addressType === AddressType.BILL
@@ -145,12 +152,11 @@ export const Address: React.FC<IAddressProps> = ({
       );
 
       setErrorMessage('');
+      refreshCallback();
     } catch (error: unknown) {
       if (error instanceof Error) {
         setErrorMessage(error.message || 'An error occurred');
       }
-    } finally {
-      refreshCallback();
     }
   };
   return (
@@ -187,7 +193,7 @@ export const Address: React.FC<IAddressProps> = ({
                               ...prevValues,
                               isDefault: newValue,
                             }));
-                            field.onChange(newValue); // Pass newValue to field.onChange
+                            field.onChange(newValue);
                           }}
                         />
                       }
@@ -226,7 +232,10 @@ export const Address: React.FC<IAddressProps> = ({
             ) : (
               ''
             )}
-            <button className="profile__delete_btn" onClick={deleteAddress}>
+            <button
+              className="profile__delete_btn"
+              onClick={(e) => deleteAddress(e.nativeEvent)}
+            >
               Delete
             </button>
           </div>
@@ -239,7 +248,7 @@ export const Address: React.FC<IAddressProps> = ({
             rules={streetValidation}
             render={({ field }) => (
               <TextField
-                id={`streetName-${address.id}`}
+                id={`streetName-${address.id}-${addressType}`}
                 label="Street"
                 onChange={(e) => {
                   field.onChange(e);
@@ -274,7 +283,7 @@ export const Address: React.FC<IAddressProps> = ({
             rules={nameValidation}
             render={({ field }) => (
               <TextField
-                id={`city-${address.id}`}
+                id={`city-${address.id}-${addressType}`}
                 label="City"
                 onChange={(e) => {
                   field.onChange(e);
@@ -321,7 +330,7 @@ export const Address: React.FC<IAddressProps> = ({
                   {...field}
                   labelId="billcountry-select-label"
                   label="Country"
-                  id={`country-select-${address.id}`}
+                  id={`country-select-${address.id}-${addressType}`}
                   onChange={(e) => {
                     field.onChange(e);
                     const newValue = e.target.value;
@@ -361,7 +370,7 @@ export const Address: React.FC<IAddressProps> = ({
             }}
             render={({ field }) => (
               <TextField
-                id={`postalCode-${address.id}`}
+                id={`postalCode-${address.id}-${addressType}`}
                 label="Postal Code"
                 onChange={(e) => {
                   field.onChange(e);

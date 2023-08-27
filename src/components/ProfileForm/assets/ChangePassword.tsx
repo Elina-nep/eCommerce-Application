@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
 import { passwordValidation } from '../../../util';
@@ -9,11 +10,11 @@ import { Password } from '../../../types';
 import { changeCustomerPasswordFunc } from '../../../util/customer';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
+import { AuthContext } from '../../../context/AuthProvider';
 
-export const ChangePassword: React.FC<IChangePasswordProps> = ({
-  version,
-  refreshCallback,
-}) => {
+export const ChangePassword: React.FC<IChangePasswordProps> = ({ version }) => {
+  const navigate = useNavigate();
+  const { logOut } = useContext(AuthContext);
   const { handleSubmit, control, setError, trigger, setValue } =
     useForm<Password>({
       mode: 'onBlur',
@@ -45,10 +46,9 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({
   };
 
   const [submitted, setSubmitted] = useState(false);
-
   const [loading, setLoading] = useState(false);
-
   const [visible, setVisible] = useState(false);
+
   const onSubmit: SubmitHandler<Password> = async (data) => {
     setEditMode(false);
 
@@ -62,12 +62,12 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({
 
       setErrorMessage('');
       setSubmitted(true);
+      logOut();
+      navigate('/');
     } catch (error: unknown) {
       if (error instanceof Error) {
         setErrorMessage(error.message || 'An error occurred');
       }
-    } finally {
-      refreshCallback();
     }
   };
 

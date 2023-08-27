@@ -36,6 +36,7 @@ export enum AddressType {
 }
 
 export interface IAddressProps {
+  customer: Customer;
   address: BaseAddress & Default;
   version: number;
   addressType: AddressType;
@@ -43,6 +44,7 @@ export interface IAddressProps {
 }
 
 export interface IAddAddressProps {
+  customer: Customer;
   version: number;
   addressType: AddressType;
   refreshCallback: () => void;
@@ -58,5 +60,4 @@ export interface IAddAdress {
 
 export interface IChangePasswordProps {
   version: number;
-  refreshCallback: () => void;
 }

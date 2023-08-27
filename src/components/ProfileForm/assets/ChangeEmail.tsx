@@ -61,12 +61,11 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
 
       setErrorMessage('');
       setSubmitted(true);
+      refreshCallback();
     } catch (error: unknown) {
       if (error instanceof Error) {
         setErrorMessage(error.message || 'An error occurred');
       }
-    } finally {
-      refreshCallback();
     }
   };
 

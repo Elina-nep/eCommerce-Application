@@ -51,6 +51,7 @@ export const ProfileForm: React.FC<IProfileFormProps> = ({
 
         {addBillAddress && (
           <AddAddress
+            customer={response}
             version={response.version}
             addressType={AddressType.BILL}
             refreshCallback={refreshCallback}
@@ -58,6 +59,7 @@ export const ProfileForm: React.FC<IProfileFormProps> = ({
         )}
         {billAddArr.map((ba) => (
           <Address
+            customer={response}
             key={ba.id}
             address={{
               ...ba,
@@ -77,6 +79,7 @@ export const ProfileForm: React.FC<IProfileFormProps> = ({
         </div>
         {addShipAddress && (
           <AddAddress
+            customer={response}
             version={response.version}
             addressType={AddressType.SHIP}
             refreshCallback={refreshCallback}
@@ -84,6 +87,7 @@ export const ProfileForm: React.FC<IProfileFormProps> = ({
         )}
         {shipAddArr.map((sa) => (
           <Address
+            customer={response}
             key={sa.id}
             address={{
               ...sa,
@@ -97,10 +101,7 @@ export const ProfileForm: React.FC<IProfileFormProps> = ({
 
         <ChangeEmail response={response} refreshCallback={refreshCallback} />
 
-        <ChangePassword
-          version={response.version}
-          refreshCallback={refreshCallback}
-        />
+        <ChangePassword version={response.version} />
       </ThemeProvider>
     </div>
   );

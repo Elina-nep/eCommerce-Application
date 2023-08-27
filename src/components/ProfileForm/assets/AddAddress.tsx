@@ -29,6 +29,7 @@ import { IAddAdress } from '../../../types/profileFrom';
 import { FormError } from '../../auth/FormError';
 
 export const AddAddress: React.FC<IAddAddressProps> = ({
+  customer,
   version,
   refreshCallback,
   addressType,
@@ -68,6 +69,8 @@ export const AddAddress: React.FC<IAddAddressProps> = ({
   };
 
   const onSubmit: SubmitHandler<IAddAdress> = async (data) => {
+    console.log('CREATE ADDRESS');
+
     const addressCreation: CustomerChanges = {
       addressAction: {
         action: 'addAddress',
@@ -86,9 +89,17 @@ export const AddAddress: React.FC<IAddAddressProps> = ({
       const createdAddress =
         updatedCustomer.addresses[updatedCustomer.addresses.length - 1];
 
-      const defaultAddressId = data.isDefault
-        ? { addressId: createdAddress.id }
-        : undefined;
+      let defaultAddressId;
+      if (data.isDefault) {
+        defaultAddressId = { addressId: createdAddress.id };
+      } else if (
+        addressType === AddressType.BILL &&
+        customer.billingAddressIds
+      ) {
+        defaultAddressId = { addressId: customer.defaultBillingAddressId };
+      } else {
+        defaultAddressId = { addressId: customer.defaultShippingAddressId };
+      }
 
       const setDefaultAction: CustomerChanges =
         addressType === AddressType.BILL
