@@ -50,7 +50,12 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
     };
 
     try {
-      await changeCustomerFunc(setLoading, customerChanges, response.version);
+      await changeCustomerFunc(
+        setLoading,
+        customerChanges,
+        response.version,
+        setErrorMessage,
+      );
 
       setErrorMessage('');
     } catch (error: unknown) {

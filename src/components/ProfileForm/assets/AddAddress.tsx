@@ -80,6 +80,7 @@ export const AddAddress: React.FC<IAddAddressProps> = ({
         setLoading,
         addressCreation,
         version,
+        setErrorMessage,
       );
 
       const createdAddress =
@@ -128,6 +129,7 @@ export const AddAddress: React.FC<IAddAddressProps> = ({
         setLoading,
         addressTypeAndDefault,
         updatedCustomer.version,
+        setErrorMessage,
       );
 
       setErrorMessage('');

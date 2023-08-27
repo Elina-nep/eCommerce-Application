@@ -82,7 +82,12 @@ export const Address: React.FC<IAddressProps> = ({
     };
 
     try {
-      await changeCustomerFunc(setLoading, removeAction, version);
+      await changeCustomerFunc(
+        setLoading,
+        removeAction,
+        version,
+        setErrorMessage,
+      );
 
       setErrorMessage('');
     } catch (error: unknown) {
@@ -130,7 +135,12 @@ export const Address: React.FC<IAddressProps> = ({
     };
 
     try {
-      await changeCustomerFunc(setLoading, customerChanges, version);
+      await changeCustomerFunc(
+        setLoading,
+        customerChanges,
+        version,
+        setErrorMessage,
+      );
 
       setErrorMessage('');
     } catch (error: unknown) {

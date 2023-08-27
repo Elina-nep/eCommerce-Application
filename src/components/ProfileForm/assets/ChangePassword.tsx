@@ -51,7 +51,12 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({
     setEditMode(false);
 
     try {
-      await changeCustomerPasswordFunc(setLoading, data, version);
+      await changeCustomerPasswordFunc(
+        setLoading,
+        data,
+        version,
+        setErrorMessage,
+      );
 
       setErrorMessage('');
     } catch (error: unknown) {

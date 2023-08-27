@@ -55,11 +55,14 @@ export const changeCustomerPasswordFunc = (
   setLoading: Dispatch<SetStateAction<boolean>>,
   passwords: Password,
   version: number,
+  setAlertMessage: Dispatch<SetStateAction<string>>,
 ): Promise<Customer> => {
   setLoading(true);
   return new Promise((resolve, reject) => {
     changeCustomerPasswordService(passwords, version)
       .then((body) => {
+        setAlertMessage(`Changes saved successfully`);
+        clearAlert(setAlertMessage);
         resolve(body.body);
       })
       .catch((e) => {
