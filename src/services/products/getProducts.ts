@@ -18,7 +18,7 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
   const queryArgs: queryArgs = {
     staged: false,
     filter: [],
-    sort: [`name.${lang} asc`],
+    sort: [`id asc`],
     offset: queryParams?.pageNum
       ? queryParams?.pageNum * PRODUCTS_ON_PAGE + 1
       : 0,
@@ -49,7 +49,7 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
     );
   }
   if (queryParams?.sort) {
-    queryArgs.sort[0] = queryParams.sort;
+    queryArgs.sort.unshift(queryParams.sort);
   }
 
   return formFlow().productProjections().search().get({ queryArgs }).execute();
