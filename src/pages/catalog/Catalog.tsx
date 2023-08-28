@@ -62,8 +62,6 @@ export const CatalogPage = () => {
   const formColors = () => {
     return [
       'black',
-      'grey',
-      'beige',
       'white',
       'blue',
       'brown',

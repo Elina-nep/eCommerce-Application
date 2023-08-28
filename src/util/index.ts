@@ -17,5 +17,9 @@ export {
   logOutFunc,
   clearAlert,
 } from './auth';
-export { getProductsFunc, getCategoriesFunc } from './catalog';
+export {
+  getProductsFunc,
+  getCategoriesFunc,
+  getOneProductFunc,
+} from './catalog';
 export { getCustomerFunc } from './customer';
