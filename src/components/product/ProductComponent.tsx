@@ -1,11 +1,12 @@
 import React from 'react';
 import { IProductComponentProps } from '../../types/product';
 import { Link } from 'react-router-dom';
-import { getProductAttribute } from '../../util/product';
+import { getProductAttribute, getProductCategories } from '../../util/product';
 import './ProductComponent.scss';
 
 export const ProductComponent: React.FC<IProductComponentProps> = ({
   product,
+  categories,
 }) => {
   const title = product.current.name['en'] || '';
   const description = product.current.description?.en || '';
@@ -20,6 +21,8 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
     currencyCode: '',
   };
   const priceValue = centAmount / 100;
+  const productCategories = getProductCategories(product, categories);
+
   return (
     <div className="product">
       <Link to="/catalog">Back to Catalog</Link>
@@ -32,6 +35,11 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
           {priceValue} {currencyCode}
         </p>
       )}
+      <div className="product__categories">
+        {productCategories.map((category, index) => (
+          <p key={index}>{category}</p>
+        ))}
+      </div>
       {description && <p className="product__description">{description}</p>}
       <div className="product__attributes">
         {material && <p>Material: {material}</p>}

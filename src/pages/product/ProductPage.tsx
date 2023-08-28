@@ -4,6 +4,8 @@ import { useParams } from 'react-router-dom';
 import { getOneProductFunc } from '../../util';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import { ProductComponent } from '../../components/product/ProductComponent';
+import { CategoryPagedQueryResponse } from '@commercetools/platform-sdk';
+import { getCategoriesFunc } from '../../util';
 import './ProductPage.scss';
 
 const defaultData: Product = {
@@ -34,13 +36,35 @@ const defaultData: Product = {
   },
 };
 
+const defaultCatalogeResponse = {
+  limit: 0,
+  offset: 0,
+  count: 0,
+  results: [],
+};
+
 export const ProductPage = () => {
   const params = useParams();
   const [product, setProduct] = useState<Product>(defaultData);
+  const [categories, setCategories] = useState<CategoryPagedQueryResponse>(
+    defaultCatalogeResponse,
+  );
   const [loading, setLoading] = useState(false);
+
+  const handleCategory = () => {
+    getCategoriesFunc()
+      .then((body) => {
+        setCategories(body);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
+  };
+
   useEffect(() => {
     if (params.id) {
       setLoading(true);
+      handleCategory();
       getOneProductFunc(params.id)
         .then((res) => {
           setProduct(res);
@@ -58,7 +82,10 @@ export const ProductPage = () => {
       {loading && <LoadingSpinner />}
       {!loading && (
         <div>
-          <ProductComponent product={product.masterData} />
+          <ProductComponent
+            product={product.masterData}
+            categories={categories}
+          />
         </div>
       )}
     </main>

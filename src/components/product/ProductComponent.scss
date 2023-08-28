@@ -66,3 +66,19 @@
     color: var(--primary-color);
   }
 }
+
+.product__categories {
+  align-self: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.product__categories p {
+  font-size: var(--font-medium);
+  padding: 1px 4px;
+  color: var(--light-color);
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+}

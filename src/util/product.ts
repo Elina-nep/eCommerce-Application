@@ -1,5 +1,7 @@
-import { ProductCatalogData } from '@commercetools/platform-sdk';
-
+import {
+  CategoryPagedQueryResponse,
+  ProductCatalogData,
+} from '@commercetools/platform-sdk';
 export const getProductAttribute = (
   product: ProductCatalogData,
   attName: string,
@@ -13,4 +15,16 @@ export const getProductAttribute = (
   } else {
     return '';
   }
+};
+
+export const getProductCategories = (
+  product: ProductCatalogData,
+  categories: CategoryPagedQueryResponse,
+) => {
+  const currentCategoriesIDs = product.current.categories.map((cat) => cat.id);
+
+  return categories.results
+    .filter((cat) => currentCategoriesIDs.includes(cat.id))
+    .map((cat) => cat.name)
+    .map((cat) => cat['en']);
 };
