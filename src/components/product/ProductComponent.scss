@@ -91,3 +91,50 @@
   border: 1px solid var(--secondary-color);
   border-radius: 5px;
 }
+
+//MODAL
+
+.product-modal__wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 1;
+  position: relative;
+  padding: 1rem;
+  color: var(--dark-color);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  background-color: white;
+  border-radius: 2%;
+  font-size: 1.4em;
+  height: 70%;
+  width: 70%;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.product_modal__content {
+  display: flex;
+  width: 100%;
+}
+
+.product_modal__slider {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product_modal__img {
+  height: fit-content;
+  max-width: 80%;
+  max-height: 80%;
+  margin: auto;
+  overflow: hidden;
+}
+
+.product_modal__img img {
+  max-width: 90%;
+  max-height: 90%;
+  display: block;
+  padding: 1rem;
+}

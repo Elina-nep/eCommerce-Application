@@ -7,6 +7,7 @@ import {
   getProductImages,
 } from '../../util/product';
 import { ProductModal } from './assets/ProductModal';
+import Button from '../buttons/Button';
 import './ProductComponent.scss';
 
 export const ProductComponent: React.FC<IProductComponentProps> = ({
@@ -64,9 +65,9 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
         />
       )}
       <div className="product__slider">
-        <button onClick={showPreviousImage} className="product__silder_btn">
+        <Button onClick={showPreviousImage} className="button-pagination">
           {'<'}
-        </button>
+        </Button>
         {productImages && (
           <img
             onClick={handleImageClick}
@@ -74,9 +75,9 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
             alt={alt}
           />
         )}
-        <button onClick={showNextImage} className="product__silder_btn">
+        <Button onClick={showNextImage} className="button-pagination">
           {'>'}
-        </button>
+        </Button>
       </div>
       <h1 className="product__title">{title}</h1>
       {priceValue && (

@@ -59,22 +59,23 @@ export const ProductModal: React.FC<IProductModalProps> = ({
     <div className="modal" onClick={closeModal}>
       <div
         ref={modalContentRef}
-        className="modal-wrapper"
+        className="product-modal__wrapper"
         onClick={handleModalClick}
       >
-        {' '}
         <Button onClick={handleCloseButtonClick} className="close">
           {'x'}
         </Button>
-        <div className="modal-content">
-          <div className="product__slider">
-            <button onClick={showPreviousImage} className="product__silder_btn">
+        <div className="product_modal__content">
+          <div className="product_modal__slider">
+            <Button onClick={showPreviousImage} className="button-pagination">
               {'<'}
-            </button>
-            {images && <img src={images[currentImageIndex]} alt={alt} />}
-            <button onClick={showNextImage} className="product__silder_btn">
+            </Button>
+            <div className="product_modal__img">
+              {images && <img src={images[currentImageIndex]} alt={alt} />}
+            </div>
+            <Button onClick={showNextImage} className="button-pagination">
               {'>'}
-            </button>
+            </Button>
           </div>
         </div>
       </div>
