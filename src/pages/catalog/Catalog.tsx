@@ -15,6 +15,7 @@ import './Catalog.scss';
 import { Select } from '../../components/productselect/productselect';
 import Pagination from '../../components/pagination/Pagination';
 import { Colors } from '../../types/products';
+import { Link } from 'react-router-dom';
 
 const defaultResponse = {
   limit: 0,
@@ -140,6 +141,14 @@ export const CatalogPage = () => {
               {priceValue} {currencyCode}
             </p>
           )}
+          <Link
+            to={{
+              pathname: `/product/${el.id}`,
+              // search: '?sort=name',
+            }}
+          >
+            More information
+          </Link>
         </div>
       );
     });
@@ -174,7 +183,7 @@ export const CatalogPage = () => {
   };
 
   return (
-    <main className="main-container-catalog">
+    <main className="main-container main-container-catalog">
       <div className="catalog-container">
         {products.total !== undefined && (
           <Pagination

@@ -1,3 +1,9 @@
+import { useParams } from 'react-router-dom';
+
 export const ProductPage = () => {
-  return <div> This is product page </div>;
+  const params = useParams();
+  console.log(params.id);
+  return (
+    <main className="main-container"> This is product page {params.id}</main>
+  );
 };
