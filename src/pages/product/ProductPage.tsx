@@ -1,10 +1,20 @@
+import React, { useState, useEffect } from 'react';
 import { Product } from '../../components/product/Product';
-import './ProductPage.scss';
+import { useParams } from 'react-router-dom';
 
-export const ProductPage = () => {
+export const ProductPage: React.FC = () => {
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+
+  useEffect(() => {
+    console.log('HERE');
+    console.log(setProduct);
+    // getProductInfo(id).then((data) => setProduct(data));
+  }, [id]);
+
   return (
     <main className="main-container product-page">
-      <Product />
+      {product && <Product product={product} />}
     </main>
   );
 };

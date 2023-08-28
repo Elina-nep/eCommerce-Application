@@ -29,7 +29,7 @@ export const routerObj = createRoutesFromElements(
         <Route path="/about" element={<AboutPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="*" element={<NotFound />} />
-        <Route path="/product" element={<ProductPage />} />
+        <Route path="/product/id" element={<ProductPage />} />
       </Route>
     </Route>
   </>,

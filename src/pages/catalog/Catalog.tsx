@@ -16,6 +16,7 @@ import { Select } from '../../components/productselect/productselect';
 import Pagination from '../../components/pagination/Pagination';
 import { Colors } from '../../types/products';
 import { Link } from 'react-router-dom';
+import { ProductCard } from '../../components/product/ProductCard';
 
 const defaultResponse = {
   limit: 0,
@@ -118,32 +119,9 @@ export const CatalogPage = () => {
   }, []);
 
   const formProducts = () => {
-    return products.results.map((el) => {
-      const name = el.name['en'];
-      const category = categories.results.find(
-        (category) => category.id === el.categories[0].id,
-      );
-      const categoryName = category ? category.name['en'] : '';
-      const image = el.masterVariant.images?.[0]?.url ?? '';
-      const { centAmount, currencyCode } = el.masterVariant.prices?.[0]
-        ?.value || { centAmount: 0, currencyCode: '' };
-      const priceValue = centAmount / 100;
-
-      return (
-        <div className="product-card" key={el.id}>
-          <div className="product-card-image">
-            {image && <img src={image} alt={name} />}
-          </div>
-          <p className="product-card-category">{categoryName}</p>
-          <p className="product-card-name">{name}</p>
-          {priceValue && (
-            <p className="product-card-price">
-              {priceValue} {currencyCode}
-            </p>
-          )}
-        </div>
-      );
-    });
+    return products.results.map((el) => (
+      <ProductCard key={el.id} product={el} categories={categories} />
+    ));
   };
 
   const formCategories = () => {
