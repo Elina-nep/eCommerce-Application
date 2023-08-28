@@ -28,3 +28,12 @@ export const getProductCategories = (
     .map((cat) => cat.name)
     .map((cat) => cat['en']);
 };
+
+export const getProductImages = (product: ProductCatalogData) => {
+  const imageArray = product.current.masterVariant.images?.map(
+    (image) => image.url,
+  );
+  if (imageArray) {
+    return imageArray;
+  }
+};

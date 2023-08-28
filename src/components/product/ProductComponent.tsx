@@ -1,7 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { IProductComponentProps } from '../../types/product';
 import { Link } from 'react-router-dom';
-import { getProductAttribute, getProductCategories } from '../../util/product';
+import {
+  getProductAttribute,
+  getProductCategories,
+  getProductImages,
+} from '../../util/product';
+import { ProductModal } from './assets/ProductModal';
 import './ProductComponent.scss';
 
 export const ProductComponent: React.FC<IProductComponentProps> = ({
@@ -10,7 +15,6 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
 }) => {
   const title = product.current.name['en'] || '';
   const description = product.current.description?.en || '';
-  const image = product.current.masterVariant.images?.[0]?.url || '';
   const alt = product.current.name['en'];
   const material = getProductAttribute(product, 'material');
   const color = getProductAttribute(product, 'color');
@@ -22,12 +26,57 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   };
   const priceValue = centAmount / 100;
   const productCategories = getProductCategories(product, categories);
+  const productImages = getProductImages(product);
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  const showNextImage = () => {
+    productImages &&
+      setCurrentImageIndex(
+        (prevIndex) => (prevIndex + 1) % productImages.length,
+      );
+  };
+
+  const showPreviousImage = () => {
+    productImages &&
+      setCurrentImageIndex((prevIndex) =>
+        prevIndex === 0 ? productImages.length - 1 : prevIndex - 1,
+      );
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleImageClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div className="product">
       <Link to="/catalog">Back to Catalog</Link>
-      <div className="product__img">
-        {image && <img src={image} alt={alt} />}
+      {isModalOpen && productImages && (
+        <ProductModal
+          images={productImages}
+          closeModal={closeModal}
+          alt={alt}
+        />
+      )}
+      <div className="product__slider">
+        <button onClick={showPreviousImage} className="product__silder_btn">
+          {'<'}
+        </button>
+        {productImages && (
+          <img
+            onClick={handleImageClick}
+            src={productImages[currentImageIndex]}
+            alt={alt}
+          />
+        )}
+        <button onClick={showNextImage} className="product__silder_btn">
+          {'>'}
+        </button>
       </div>
       <h1 className="product__title">{title}</h1>
       {priceValue && (

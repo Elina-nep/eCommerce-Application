@@ -17,3 +17,9 @@ export interface IProductComponentProps {
   product: ProductCatalogData;
   categories: CategoryPagedQueryResponse;
 }
+
+export interface IProductModalProps {
+  images: string[];
+  alt: string;
+  closeModal: () => void;
+}

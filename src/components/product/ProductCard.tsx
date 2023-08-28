@@ -6,7 +6,6 @@ export const ProductCard: React.FC<IProductCardProps> = ({
   product,
   categories,
 }) => {
-  console.log('CARD', product);
   const { id, name, categories: categoryIds, masterVariant } = product;
   const categoryName =
     categories.results.find((category) => category.id === categoryIds[0].id)
