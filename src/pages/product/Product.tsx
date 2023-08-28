@@ -47,6 +47,7 @@ export const ProductPage = () => {
       setLoading(true);
       getOneProductFunc(params.id)
         .then((res) => {
+          console.log(res);
           setProduct(res);
         })
         .catch((e) => {

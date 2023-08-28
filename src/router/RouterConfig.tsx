@@ -25,7 +25,7 @@ export const routerObj = createRoutesFromElements(
         <Route element={<ProtectedNotSignRoute />}>
           <Route path="/me" element={<ProfilePage />} />
         </Route>
-        <Route path="/catalog" element={<CatalogPage />} />
+        <Route path="/catalog/:category" element={<CatalogPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/product/:id" element={<ProductPage />} />

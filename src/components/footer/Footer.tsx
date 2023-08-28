@@ -19,7 +19,7 @@ export const Footer: React.FC = () => {
         <ul>
           {categories.map((el) => (
             <li key={el.id}>
-              <Link to={'/catalog'}>{el.name['en']}</Link>
+              <Link to={`/catalog/${el.name['en']}`}>{el.name['en']}</Link>
             </li>
           ))}
         </ul>

@@ -22,7 +22,14 @@ export function Navigation() {
           <div className="bar" />
         </button>
         <div className={`menu-links ${menuOpen ? 'active' : ''}`}>
-          <Link to="/catalog">Catalog</Link>
+          <Link
+            to={{
+              pathname: `/catalog/all`,
+              // search: '?sort=name',
+            }}
+          >
+            Catalog
+          </Link>
           <Link to="/me">My room</Link>
           <Link to="/about">About us</Link>
         </div>

@@ -1,4 +1,4 @@
-export { links, catalogLinks, columns } from './footerConstants';
+export { links, columns } from './footerConstants';
 export { tokenCache, getExistingToken, userTokenCache } from './tokenProcess';
 export {
   nameValidation,

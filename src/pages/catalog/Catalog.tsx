@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import {
   CategoryPagedQueryResponse,
   ProductProjectionPagedQueryResponse,
@@ -15,7 +16,6 @@ import './Catalog.scss';
 import { Select } from '../../components/productselect/productselect';
 import Pagination from '../../components/pagination/Pagination';
 import { Colors } from '../../types/products';
-import { Link } from 'react-router-dom';
 
 const defaultResponse = {
   limit: 0,
@@ -25,14 +25,17 @@ const defaultResponse = {
 };
 
 export const CatalogPage = () => {
+  const params = useParams();
+  console.log(params);
   const [products, setProducts] =
     useState<ProductProjectionPagedQueryResponse>(defaultResponse);
   const [categories, setCategories] =
     useState<CategoryPagedQueryResponse>(defaultResponse);
   const [loading, setLoading] = useState(false);
   const defaultCategoryName = 'All Products';
-  const [selectedCategoryName, setSelectedCategoryName] =
-    useState<string>(defaultCategoryName);
+  const [selectedCategoryName, setSelectedCategoryName] = useState<string>(
+    params.category || defaultCategoryName,
+  );
   const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
   const handleSortChange = (sort: string, category?: string) => {
     const categoryId = category !== undefined ? category : selectedCategoryId;
@@ -105,15 +108,21 @@ export const CatalogPage = () => {
   };
 
   useEffect(() => {
-    handleGetProducts();
+    setSelectedCategoryName(params.category || '');
     getCategoriesFunc()
       .then((body) => {
         setCategories(body);
+        console.log(selectedCategoryName);
+        const currentCategory = body.results.find(
+          (element) => element.name['en'] === selectedCategoryName,
+        )?.id;
+        console.log(currentCategory);
+        handleGetProducts({ categoryId: currentCategory || '' });
       })
       .catch((e) => {
         console.log(e);
       });
-  }, []);
+  }, [params, selectedCategoryName]);
 
   const formProducts = () => {
     return products.results.map((el) => {
@@ -154,26 +163,15 @@ export const CatalogPage = () => {
 
   const formCategories = () => {
     return [
-      <li
-        key="all-products"
-        onClick={() => {
-          handleGetProducts({ categoryId: '' });
-          setSelectedCategoryName(defaultCategoryName);
-        }}
-      >
-        {defaultCategoryName}
+      <li key="all">
+        <Link to={`/catalog/all`}>{defaultCategoryName}</Link>
       </li>,
+
       ...categories.results.map((el) => {
         const name = el.name['en'];
         return (
-          <li
-            key={el.id}
-            onClick={() => {
-              handleGetProducts({ categoryId: el.id });
-              setSelectedCategoryName(name);
-            }}
-          >
-            {name}
+          <li key={el.id}>
+            <Link to={`/catalog/${name}`}>{name}</Link>
           </li>
         );
       }),
