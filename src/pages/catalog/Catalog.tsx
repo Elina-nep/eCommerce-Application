@@ -151,7 +151,6 @@ export const CatalogPage = () => {
           <Link
             to={{
               pathname: `/product/${el.id}`,
-              // search: '?sort=name',
             }}
           >
             More information

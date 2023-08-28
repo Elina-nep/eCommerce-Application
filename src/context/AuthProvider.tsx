@@ -61,6 +61,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
               setCategories(res.results);
             });
           });
+      })
+      .finally(() => {
+        setLoading(false);
       });
   }, []);
 
