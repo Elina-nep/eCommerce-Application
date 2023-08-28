@@ -17,11 +17,16 @@ export const Footer: React.FC = () => {
       <div className="footer__column">
         <h3>Catalog</h3>
         <ul>
-          {categories.map((el) => (
-            <li key={el.id}>
-              <Link to={`/catalog/${el.name['en']}`}>{el.name['en']}</Link>
-            </li>
-          ))}
+          {categories.map((el) => {
+            if (!el.parent) {
+              return (
+                <li key={el.id}>
+                  <Link to={`/catalog/${el.name['en']}`}>{el.name['en']}</Link>
+                </li>
+              );
+            }
+            return;
+          })}
         </ul>
       </div>
 

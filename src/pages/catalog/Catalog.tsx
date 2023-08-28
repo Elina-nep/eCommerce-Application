@@ -26,7 +26,6 @@ const defaultResponse = {
 
 export const CatalogPage = () => {
   const params = useParams();
-  console.log(params);
   const [products, setProducts] =
     useState<ProductProjectionPagedQueryResponse>(defaultResponse);
   const [categories, setCategories] =
@@ -111,12 +110,11 @@ export const CatalogPage = () => {
     setSelectedCategoryName(params.category || '');
     getCategoriesFunc()
       .then((body) => {
+        console.log(body);
         setCategories(body);
-        console.log(selectedCategoryName);
         const currentCategory = body.results.find(
           (element) => element.name['en'] === selectedCategoryName,
         )?.id;
-        console.log(currentCategory);
         handleGetProducts({ categoryId: currentCategory || '' });
       })
       .catch((e) => {
@@ -168,11 +166,14 @@ export const CatalogPage = () => {
 
       ...categories.results.map((el) => {
         const name = el.name['en'];
-        return (
-          <li key={el.id}>
-            <Link to={`/catalog/${name}`}>{name}</Link>
-          </li>
-        );
+        if (!el.parent) {
+          return (
+            <li key={el.id}>
+              <Link to={`/catalog/${name}`}>{name}</Link>
+            </li>
+          );
+        }
+        return;
       }),
     ];
   };
