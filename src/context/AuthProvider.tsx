@@ -46,6 +46,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     getCustomerFunc(setLoading)
       .then(() => {
         setIfAuth(true);
+        getCategoriesFunc().then((res) => {
+          setCategories(res.results);
+        });
       })
       .catch(() => {
         getCategoriesFunc()
