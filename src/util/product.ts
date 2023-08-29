@@ -2,20 +2,6 @@ import {
   CategoryPagedQueryResponse,
   ProductCatalogData,
 } from '@commercetools/platform-sdk';
-export const getProductAttribute = (
-  product: ProductCatalogData,
-  attName: string,
-) => {
-  const att = product.current.masterVariant.attributes?.find(
-    (att) => att.name === attName,
-  )?.value;
-
-  if (att) {
-    return att['label']['en'];
-  } else {
-    return '';
-  }
-};
 
 export const getProductCategories = (
   product: ProductCatalogData,
@@ -35,20 +21,51 @@ export const getProductCategories = (
 };
 
 export const getProductImages = (product: ProductCatalogData) => {
-  const imageMasterVariantArray = product.current.masterVariant.images?.map(
+  const imageMasterVariant = product.current.masterVariant.images?.map(
     (image) => image.url,
   );
 
-  const imageVariantsArray =
+  const imageVariants =
     product.current.variants?.map(
       (variant) => variant.images?.map((image) => image.url) || [],
     ) || [];
 
-  if (imageMasterVariantArray) {
-    const combinedImageArray = [
-      ...imageMasterVariantArray,
-      ...imageVariantsArray.flat(),
-    ];
+  if (imageMasterVariant) {
+    const combinedImageArray = [...imageMasterVariant, ...imageVariants.flat()];
     return combinedImageArray;
   }
 };
+
+export const getProductAttribute = (
+  product: ProductCatalogData,
+  attName: string,
+) => {
+  const attMasterVariant = product.current.masterVariant.attributes?.find(
+    (att) => att.name === attName,
+  )?.value;
+
+  const attVariants =
+    product.current.variants?.map(
+      (variant) =>
+        variant.attributes?.find((att) => att.name === attName)?.value,
+    ) || [];
+
+  const allAttributeValues = attMasterVariant
+    ? [attMasterVariant, ...attVariants]
+    : attVariants;
+
+  if (allAttributeValues.length > 0) {
+    return allAttributeValues.map((attValue) => attValue['label']['en']);
+  } else {
+    return '';
+  }
+};
+
+export function formatAttributes(attributes: string[] | string) {
+  if (Array.isArray(attributes)) {
+    const uniqueAttributes = Array.from(new Set(attributes));
+    return uniqueAttributes.join(', ');
+  } else {
+    return attributes;
+  }
+}

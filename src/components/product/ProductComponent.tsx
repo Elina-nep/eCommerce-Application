@@ -5,6 +5,7 @@ import {
   getProductAttribute,
   getProductCategories,
   getProductImages,
+  formatAttributes,
 } from '../../util/product';
 import { ProductModal } from './assets/ProductModal';
 import Button from '../buttons/Button';
@@ -14,9 +15,6 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   product,
   categories,
 }) => {
-  console.log('product', product);
-  console.log('categories', categories);
-
   const title = product.current.name['en'] || '';
   const description = product.current.description?.en || '';
   const alt = product.current.name['en'];
@@ -31,7 +29,6 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   const priceValue = centAmount / 100;
   const productCategories = getProductCategories(product, categories);
   const productImages = getProductImages(product);
-  console.log('HERE', productImages);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -96,9 +93,9 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
       </div>
       {description && <p className="product__description">{description}</p>}
       <div className="product__attributes">
-        {material && <p>Material: {material}</p>}
-        {color && <p>Color: {color}</p>}
-        {occasions && <p>Occasions: {occasions}</p>}
+        <p>Material: {formatAttributes(material)}</p>
+        <p>Color: {formatAttributes(color)}</p>
+        <p>Occasions: {formatAttributes(occasions)}</p>
       </div>
     </div>
   );
