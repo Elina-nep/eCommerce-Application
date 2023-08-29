@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import {
   CategoryPagedQueryResponse,
   ProductProjectionPagedQueryResponse,
@@ -25,6 +25,8 @@ const defaultResponse = {
 };
 
 export const CatalogPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+  console.log(searchParams.getAll('sort'), searchParams.get('sort'));
   const params = useParams();
   const [products, setProducts] =
     useState<ProductProjectionPagedQueryResponse>(defaultResponse);
@@ -52,7 +54,12 @@ export const CatalogPage = () => {
     } else {
       setSelectedColors([...selectedColors, selectedColor]);
     }
-
+    console.log(searchParams);
+    setSearchParams({
+      // ...searchParams,
+      sort: searchParams.getAll('sort'),
+      color: selectedColor,
+    });
     handleGetProducts({
       sort: sorting,
       categoryId: selectedCategoryId,

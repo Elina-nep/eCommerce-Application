@@ -1,4 +1,4 @@
-import { createRoutesFromElements, Route } from 'react-router-dom';
+import { createRoutesFromElements, Navigate, Route } from 'react-router-dom';
 import { AuthLayout } from './AuthLayout';
 import { ProtectedRoute } from './ProtectedRoute';
 import { App } from '../pages/App';
@@ -26,6 +26,7 @@ export const routerObj = createRoutesFromElements(
           <Route path="/me" element={<ProfilePage />} />
         </Route>
         <Route path="/catalog/:category" element={<CatalogPage />} />
+        <Route path="/catalog/*" element={<Navigate to="/catalog/all" />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/product/:id" element={<ProductPage />} />
