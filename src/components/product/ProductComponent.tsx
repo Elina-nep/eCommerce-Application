@@ -14,6 +14,9 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   product,
   categories,
 }) => {
+  console.log('product', product);
+  console.log('categories', categories);
+
   const title = product.current.name['en'] || '';
   const description = product.current.description?.en || '';
   const alt = product.current.name['en'];
@@ -28,6 +31,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   const priceValue = centAmount / 100;
   const productCategories = getProductCategories(product, categories);
   const productImages = getProductImages(product);
+  console.log('HERE', productImages);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 

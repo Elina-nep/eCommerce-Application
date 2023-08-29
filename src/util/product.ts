@@ -24,16 +24,31 @@ export const getProductCategories = (
   const currentCategoriesIDs = product.current.categories.map((cat) => cat.id);
 
   return categories.results
-    .filter((cat) => currentCategoriesIDs.includes(cat.id))
+    .filter(
+      (cat) =>
+        currentCategoriesIDs.includes(cat.id) &&
+        cat.parent &&
+        currentCategoriesIDs.includes(cat.parent.id),
+    )
     .map((cat) => cat.name)
     .map((cat) => cat['en']);
 };
 
 export const getProductImages = (product: ProductCatalogData) => {
-  const imageArray = product.current.masterVariant.images?.map(
+  const imageMasterVariantArray = product.current.masterVariant.images?.map(
     (image) => image.url,
   );
-  if (imageArray) {
-    return imageArray;
+
+  const imageVariantsArray =
+    product.current.variants?.map(
+      (variant) => variant.images?.map((image) => image.url) || [],
+    ) || [];
+
+  if (imageMasterVariantArray) {
+    const combinedImageArray = [
+      ...imageMasterVariantArray,
+      ...imageVariantsArray.flat(),
+    ];
+    return combinedImageArray;
   }
 };
