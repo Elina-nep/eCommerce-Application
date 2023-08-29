@@ -38,7 +38,13 @@ export const CatalogPage = () => {
       sort === 'Default sorting' ? undefined : (sort as Sorting);
     setSorting(newSorting);
     setCurrentPage(1);
-    handleGetProducts({ sort: newSorting, categoryId, pageNum: 0 });
+
+    handleGetProducts({
+      sort: newSorting,
+      categoryId,
+      pageNum: 0,
+      colors: selectedColors.length ? selectedColors : undefined,
+    });
   };
   const [categoriesExpanded, setCategoriesExpanded] = useState(true);
   const [selectedColors, setSelectedColors] = useState<Colors[]>([]);
@@ -48,19 +54,32 @@ export const CatalogPage = () => {
         ? prevSelectedColors.filter((color) => color !== selectedColor)
         : [...prevSelectedColors, selectedColor];
 
+      const colorsQueryParam = newSelectedColors.length
+        ? newSelectedColors
+        : undefined;
+
       handleGetProducts({
         sort: sorting,
         categoryId: selectedCategoryId,
-        colors: newSelectedColors,
+        colors: colorsQueryParam,
         pageNum: currentPage - 1,
       });
 
       return newSelectedColors;
     });
   };
-
+  const handleResetColors = () => {
+    setSelectedColors([]);
+    handleGetProducts({
+      sort: sorting,
+      categoryId: selectedCategoryId,
+      pageNum: currentPage - 1,
+      colors: undefined,
+    });
+  };
+  const [showAllColors, setShowAllColors] = useState(false);
   const formColors = () => {
-    return [
+    const allColors = [
       'black',
       'grey',
       'beige',
@@ -76,17 +95,44 @@ export const CatalogPage = () => {
       'gold',
       'silver',
       'multicolored',
-    ].map((color) => (
-      <li
-        key={color}
-        className={`color-item${
-          selectedColors.includes(color as Colors) ? ' selected' : ''
-        }`}
-        onClick={() => handleColorChange(color as Colors)}
-      >
-        {color}
-      </li>
-    ));
+    ];
+    const visibleColors = showAllColors ? allColors : allColors.slice(0, 6);
+
+    return (
+      <>
+        {visibleColors.map((color) => (
+          <div key={color} className="colors-checkbox">
+            <input
+              type="checkbox"
+              id={`color-${color}`}
+              name="color"
+              value={color}
+              checked={selectedColors.includes(color as Colors)}
+              onChange={() => handleColorChange(color as Colors)}
+            />
+            <label htmlFor={`color-${color}`}>{color}</label>
+          </div>
+        ))}
+        <div>
+          {showAllColors && (
+            <div>
+              <button
+                className="colors-button-reset"
+                onClick={handleResetColors}
+              >
+                Reset
+              </button>
+            </div>
+          )}
+          <button
+            className="colors-button-show-all"
+            onClick={() => setShowAllColors(!showAllColors)}
+          >
+            {showAllColors ? 'Hide' : 'Show all'}
+          </button>
+        </div>
+      </>
+    );
   };
   const [currentPage, setCurrentPage] = useState(1);
   const [sorting, setSorting] = useState<Sorting | undefined>(undefined);
@@ -96,6 +142,11 @@ export const CatalogPage = () => {
     } else {
       setSelectedCategoryId('');
     }
+
+    if (queryParams && queryParams.pageNum !== undefined) {
+      setCurrentPage(queryParams.pageNum + 1);
+    }
+
     getProductsFunc(setLoading, queryParams)
       .then((body) => {
         console.log(body);
@@ -162,9 +213,11 @@ export const CatalogPage = () => {
             <li
               key={el.id}
               onClick={() => {
-                setSelectedCategoryName(name);
-                handleSortChange('Default sorting', el.id);
-                setCategoriesExpanded(false);
+                if (selectedCategoryId !== el.id) {
+                  setSelectedCategoryName(name);
+                  handleSortChange('Default sorting', el.id);
+                  setCategoriesExpanded(false);
+                }
               }}
             >
               {name}
@@ -177,6 +230,9 @@ export const CatalogPage = () => {
         <li
           key="select-category"
           onClick={() => {
+            if (selectedCategoryName !== defaultCategoryName) {
+              return;
+            }
             setCategoriesExpanded(true);
           }}
         >
@@ -201,7 +257,7 @@ export const CatalogPage = () => {
       <div className="catalog-container">
         <div className="catalog-container-sorting">
           <div className="product-item-number">
-            Showing all <span className="product-count">{products.total}</span>{' '}
+            Showing all <span className="product-count">{products.total}</span>
             results
           </div>
           <Select
@@ -234,11 +290,11 @@ export const CatalogPage = () => {
                 currentPage={currentPage}
                 totalPages={Math.ceil(products.total / PRODUCTS_ON_PAGE)}
                 onPageChange={(newPage) => {
-                  setCurrentPage(newPage);
                   handleGetProducts({
                     sort: sorting,
                     categoryId: selectedCategoryId,
                     pageNum: newPage - 1,
+                    colors: selectedColors.length ? selectedColors : undefined,
                   });
                 }}
               />
