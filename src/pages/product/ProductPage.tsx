@@ -5,8 +5,8 @@ import {
   CategoryPagedQueryResponse,
 } from '@commercetools/platform-sdk';
 import {
-  getOneProductFunc,
-  getCategoriesFunc,
+  getOneProduct,
+  getCategories,
   defaultProductData,
   defaultCatalogeResponse,
 } from '../../util';
@@ -22,8 +22,8 @@ export const ProductPage = () => {
   );
   const [loading, setLoading] = useState(false);
 
-  const getCategories = () => {
-    getCategoriesFunc()
+  const getCategoriesForProduct = () => {
+    getCategories()
       .then((body) => {
         setCategories(body);
       })
@@ -35,8 +35,8 @@ export const ProductPage = () => {
   useEffect(() => {
     if (params.id) {
       setLoading(true);
-      getCategories();
-      getOneProductFunc(params.id)
+      getCategoriesForProduct();
+      getOneProduct(params.id)
         .then((res) => {
           setProduct(res);
         })

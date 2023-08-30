@@ -24,39 +24,6 @@
   grid-gap: 2vw;
 }
 
-.product-card {
-  background: white;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  text-align: center;
-  height: 40vh;
-  border: 1px solid black;
-  align-items: center;
-}
-
-.product-card-image img {
-  position: relative;
-  width: 50%;
-  top: 10%;
-}
-
-.product-card-category {
-  text-transform: uppercase;
-}
-
-.product-card-name {
-  width: 80%;
-  max-height: 60%;
-}
-
-.product-card-price {
-  font-weight: 900;
-  position: relative;
-  bottom: 1%;
-}
-
 .product-item-number {
   margin-left: 5%;
 }

@@ -5,11 +5,7 @@ import {
 } from '@commercetools/platform-sdk';
 import Button from '../../components/buttons/Button';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
-import {
-  getCategoriesFunc,
-  getProductsFunc,
-  PRODUCTS_ON_PAGE,
-} from '../../util';
+import { getCategories, getProducts, PRODUCTS_ON_PAGE } from '../../util';
 import { ProductQueryParams, Sorting } from '../../types';
 import './Catalog.scss';
 import { Select } from '../../components/productselect/productselect';
@@ -94,7 +90,7 @@ export const CatalogPage = () => {
     } else {
       setSelectedCategoryId('');
     }
-    getProductsFunc(setLoading, queryParams)
+    getProducts(setLoading, queryParams)
       .then((body) => {
         console.log(body);
         setProducts(body);
@@ -106,7 +102,7 @@ export const CatalogPage = () => {
 
   useEffect(() => {
     handleGetProducts();
-    getCategoriesFunc()
+    getCategories()
       .then((body) => {
         setCategories(body);
       })
@@ -117,7 +113,7 @@ export const CatalogPage = () => {
 
   const formProducts = () => {
     return products.results.map((el) => (
-      <ProductCard key={el.id} product={el} categories={categories} />
+      <ProductCard key={el.id} product={el} />
     ));
   };
 

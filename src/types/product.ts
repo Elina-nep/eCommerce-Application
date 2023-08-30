@@ -6,7 +6,6 @@ import {
 
 export interface IProductCardProps {
   product: ProductProjection;
-  categories: CategoryPagedQueryResponse;
 }
 
 export interface IProductProps {

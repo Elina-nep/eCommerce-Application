@@ -20,7 +20,6 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
 }) => {
   const title = product.current.name[LANGUAGE.EN] || '';
   const description = product.current.description?.en || '';
-  const alt = product.current.name[LANGUAGE.EN];
   const material = getProductAttribute(product, 'material', LANGUAGE.EN);
   const color = getProductAttribute(product, 'color', LANGUAGE.EN);
   const occasions = getProductAttribute(product, 'occasions', LANGUAGE.EN);
@@ -31,7 +30,6 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
     LANGUAGE.EN,
   );
   const productImages = getProductImages(product);
-
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const showNextImage = () => {
     productImages &&
@@ -63,7 +61,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
         <ProductModal
           images={productImages}
           closeModal={closeModal}
-          alt={alt}
+          alt={title}
         />
       )}
       <div className="product__slider">
@@ -74,7 +72,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
           <img
             onClick={handleOpenModal}
             src={productImages[currentImageIndex]}
-            alt={alt}
+            alt={title}
           />
         )}
         <Button onClick={showNextImage} className="button-pagination">

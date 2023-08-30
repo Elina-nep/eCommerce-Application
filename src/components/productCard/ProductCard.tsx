@@ -1,33 +1,29 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { IProductCardProps } from '../../types';
+import {
+  getProductCardPrice,
+  getProductCardImage,
+  LANGUAGE,
+  CURRENCY,
+} from '../../util';
+import './ProductCard.scss';
 
-export const ProductCard: React.FC<IProductCardProps> = ({
-  product,
-  categories,
-}) => {
-  const { id, name, categories: categoryIds, masterVariant } = product;
-  const categoryName =
-    categories.results.find((category) => category.id === categoryIds[0].id)
-      ?.name['en'] || '';
-  const image = masterVariant.images?.[0]?.url || '';
-  const { centAmount, currencyCode } = masterVariant.prices?.[0]?.value || {
-    centAmount: 0,
-    currencyCode: '',
-  };
-  const priceValue = centAmount / 100;
+export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
+  const title = product.name[LANGUAGE.EN];
+  const price = getProductCardPrice(product, CURRENCY.EUR);
+  const image = getProductCardImage(product);
 
   return (
-    <Link to={`/product/${product.id}`} className="product-link">
-      <div className="product-card" key={id}>
-        <div className="product-card-image">
-          {image && <img src={image} alt={name['en']} />}
+    <Link to={`/product/${product.id}`} className="product_card__link">
+      <div className="product_card" key={product.id}>
+        <div className="product_card__image">
+          {image && <img src={image} alt={title} />}
         </div>
-        <p className="product-card-category">{categoryName}</p>
-        <p className="product-card-name">{name['en']}</p>
-        {priceValue && (
-          <p className="product-card-price">
-            {priceValue} {currencyCode}
+        <p className="product_card__name">{title}</p>
+        {price && (
+          <p className="product_card__price">
+            {price} {CURRENCY.EUR}
           </p>
         )}
       </div>

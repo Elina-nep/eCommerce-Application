@@ -10,6 +10,13 @@ export const getProductCategories = (
 ) => {
   const currentCategoriesIDs = product.current.categories.map((cat) => cat.id);
 
+  if (currentCategoriesIDs.length === 0) {
+    return categories.results
+      .filter((cat) => currentCategoriesIDs.includes(cat.id))
+      .map((cat) => cat.name)
+      .map((cat) => cat[language]);
+  }
+
   return categories.results
     .filter(
       (cat) =>
