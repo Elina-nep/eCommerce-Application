@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import Button from '../../buttons/Button';
 import { IProductModalProps } from '../../../types/product';
-import '../../modalwindow/ModalWindow.css';
+import './ProductModal.scss';
 
 export const ProductModal: React.FC<IProductModalProps> = ({
   images,

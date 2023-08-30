@@ -56,7 +56,9 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
 
   return (
     <div className="product">
-      <Link to="/catalog">Back to Catalog</Link>
+      <Link to="/catalog" className="product__link">
+        Back to Catalog
+      </Link>
       {isModalOpen && productImages?.length && (
         <ProductModal
           images={productImages}
@@ -68,13 +70,16 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
         <Button onClick={showPreviousImage} className="button-pagination">
           {'<'}
         </Button>
-        {productImages?.length && (
-          <img
-            onClick={handleOpenModal}
-            src={productImages[currentImageIndex]}
-            alt={title}
-          />
-        )}
+        <div className="product__image">
+          {productImages?.length && (
+            <img
+              onClick={handleOpenModal}
+              src={productImages[currentImageIndex]}
+              alt={title}
+            />
+          )}
+        </div>
+
         <Button onClick={showNextImage} className="button-pagination">
           {'>'}
         </Button>
@@ -90,11 +95,13 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
           <p key={index}>{category}</p>
         ))}
       </div>
-      {description && <p className="product__description">{description}</p>}
-      <div className="product__attributes">
-        {material && <p>Material: {formatAttributes(material)}</p>}
-        {color && <p>Color: {formatAttributes(color)}</p>}
-        {occasions && <p>Occasions: {formatAttributes(occasions)}</p>}
+      <div className="product__details">
+        {description && <p className="product__description">{description}</p>}
+        <div className="product__attributes">
+          {material && <p>Material: {formatAttributes(material)}</p>}
+          {color && <p>Color: {formatAttributes(color)}</p>}
+          {occasions && <p>Occasions: {formatAttributes(occasions)}</p>}
+        </div>
       </div>
     </div>
   );
