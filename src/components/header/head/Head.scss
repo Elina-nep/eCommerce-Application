@@ -131,7 +131,7 @@
   justify-content: center;
   align-items: center;
   text-align: center;
-  width: 10vw;
+  width: 8vw;
   padding: 0.2em 0;
   font-size: var(--font-xsmall);
   color: var(--light-color);
@@ -148,13 +148,14 @@
     color: var(--primary-color);
   }
   @media (min-width: 210px) and (max-width: 768px) {
-    width: 24vw;
+    width: 14vw;
     font-size: 0.8rem;
     margin-right: 1%;
   }
 }
 
 .register {
+  margin-left: 2%;
   margin-right: 1%;
   display: flex;
   justify-content: center;
@@ -163,7 +164,7 @@
   color: var(--secondary-color);
   border: 1px solid var(--secondary-color);
   padding: 0.2em 0;
-  width: 10vw;
+  width: 8vw;
   font-size: var(--font-xsmall);
   list-style-type: none;
   text-decoration: none;
@@ -176,7 +177,7 @@
     color: var(--light-color);
   }
   @media (min-width: 210px) and (max-width: 768px) {
-    width: 24vw;
+    width: 14vw;
     font-size: 0.8rem;
     margin-right: 1%;
   }
@@ -185,13 +186,15 @@
 }
 
 .logout {
+  position: relative;
+  left: 4vw;
   font-family: 'Iceland';
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   padding: 0.2em 0;
-  width: 10vw;
+  width: 8vw;
   font-size: var(--font-xsmall);
   background-color: var(--light-color);
   color: var(--dark-color);
@@ -213,7 +216,7 @@
   }
 
   @media (min-width: 210px) and (max-width: 768px) {
-    width: 24vw;
+    width: 14vw;
     font-size: 0.8rem;
   }
 }

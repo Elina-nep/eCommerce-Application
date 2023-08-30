@@ -1,5 +1,13 @@
 export type Sorting = 'price asc' | 'price desc' | 'name asc' | 'name desc';
-
+export type Material =
+  | 'fabric'
+  | 'foil'
+  | 'latex'
+  | 'mixed'
+  | 'paper'
+  | 'plastic'
+  | 'wood'
+  | 'metal';
 export type FilterPrice = {
   from?: number;
   to?: number;
@@ -14,6 +22,7 @@ export type ProductQueryParams = {
   lang?: 'ru' | 'en';
   queryText?: string;
   pageNum?: number;
+  materials?: Material[];
 };
 
 export type Colors =

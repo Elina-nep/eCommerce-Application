@@ -4,15 +4,14 @@ import {
   CategoryPagedQueryResponse,
   ProductProjectionPagedQueryResponse,
 } from '@commercetools/platform-sdk';
-import Button from '../../components/buttons/Button';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import { getCategories, getProducts, PRODUCTS_ON_PAGE } from '../../util';
 import { ProductQueryParams, Sorting } from '../../types';
 import './Catalog.scss';
-import { Select } from '../../components/productselect/productselect';
-import Pagination from '../../components/pagination/Pagination';
-import { Colors } from '../../types/products';
-import { ProductCard } from '../../components/productCard/ProductCard';
+import { Select } from '../../components/catalog/productselect/productselect';
+import Pagination from '../../components/catalog/pagination/Pagination';
+import { ProductCard } from '../../components/catalog/productCard/ProductCard';
+import { Colors, Material } from '../../types/products';
 
 const defaultResponse = {
   limit: 0,
@@ -40,33 +39,132 @@ export const CatalogPage = () => {
     const newSorting =
       sort === 'Default sorting' ? undefined : (sort as Sorting);
     setSorting(newSorting);
-    handleGetProducts({ sort: newSorting, categoryId });
-  };
-  const [selectedColors, setSelectedColors] = useState<Colors[]>([]);
-  const handleColorChange = (selectedColor: Colors) => {
-    if (selectedColors.includes(selectedColor)) {
-      setSelectedColors(
-        selectedColors.filter((color) => color !== selectedColor),
-      );
-    } else {
-      setSelectedColors([...selectedColors, selectedColor]);
-    }
-    console.log(searchParams);
-    setSearchParams({
-      // ...searchParams,
-      sort: searchParams.getAll('sort'),
-      color: selectedColor,
+    setCurrentPage(1);
+    handleGetProducts({
+      sort: newSorting,
+      categoryId,
+      pageNum: 0,
+      colors: selectedColors.length ? selectedColors : undefined,
+      materials: selectedMaterials.length ? selectedMaterials : undefined,
     });
+  };
+  const [categoriesExpanded, setCategoriesExpanded] = useState(true);
+  const [selectedMaterials, setSelectedMaterials] = useState<Material[]>([]);
+  const handleMaterialChange = (selectedMaterial: Material) => {
+    setSelectedMaterials((prevSelectedMaterials) => {
+      const newSelectedMaterials = prevSelectedMaterials.includes(
+        selectedMaterial,
+      )
+        ? prevSelectedMaterials.filter(
+            (material) => material !== selectedMaterial,
+          )
+        : [...prevSelectedMaterials, selectedMaterial];
+      const materialsQueryParam = newSelectedMaterials.length
+        ? newSelectedMaterials
+        : undefined;
+      handleGetProducts({
+        sort: sorting,
+        categoryId: selectedCategoryId,
+        pageNum: currentPage - 1,
+        colors: selectedColors.length ? selectedColors : undefined,
+        materials: materialsQueryParam,
+      });
+      return newSelectedMaterials;
+    });
+  };
+  const handleResetMaterials = () => {
+    setSelectedMaterials([]);
     handleGetProducts({
       sort: sorting,
       categoryId: selectedCategoryId,
-      colors: selectedColors,
       pageNum: currentPage - 1,
+      colors: undefined,
+      materials: undefined,
     });
   };
+  const [showAllMaterials, setShowAllMaterials] = useState(false);
+  const formMaterials = () => {
+    const allMaterials = [
+      'latex',
+      'foil',
+      'paper',
+      'fabric',
+      'wood',
+      'plastic',
+      'metal',
+      'mixed',
+    ];
+    const visibleMaterials = showAllMaterials
+      ? allMaterials
+      : allMaterials.slice(0, 6);
 
+    return (
+      <>
+        {visibleMaterials.map((material) => (
+          <div key={material} className="colors-checkbox">
+            <input
+              type="checkbox"
+              id={`material-${material}`}
+              name="material"
+              value={material}
+              checked={selectedMaterials.includes(material as Material)}
+              onChange={() => handleMaterialChange(material as Material)}
+            />
+            <label htmlFor={`material-${material}`}>{material}</label>
+          </div>
+        ))}
+        <div>
+          {showAllMaterials && (
+            <div>
+              <button
+                className="colors-button-reset"
+                onClick={handleResetMaterials}
+              >
+                Reset
+              </button>
+            </div>
+          )}
+          <button
+            className="colors-button-show-all"
+            onClick={() => setShowAllMaterials(!showAllMaterials)}
+          >
+            {showAllMaterials ? 'Hide' : 'Show all'}
+          </button>
+        </div>
+      </>
+    );
+  };
+  const [selectedColors, setSelectedColors] = useState<Colors[]>([]);
+  const handleColorChange = (selectedColor: Colors) => {
+    setSelectedColors((prevSelectedColors) => {
+      const newSelectedColors = prevSelectedColors.includes(selectedColor)
+        ? prevSelectedColors.filter((color) => color !== selectedColor)
+        : [...prevSelectedColors, selectedColor];
+      const colorsQueryParam = newSelectedColors.length
+        ? newSelectedColors
+        : undefined;
+      handleGetProducts({
+        sort: sorting,
+        categoryId: selectedCategoryId,
+        pageNum: currentPage - 1,
+        colors: colorsQueryParam,
+        materials: selectedMaterials.length ? selectedMaterials : undefined,
+      });
+      return newSelectedColors;
+    });
+  };
+  const handleResetColors = () => {
+    setSelectedColors([]);
+    handleGetProducts({
+      sort: sorting,
+      categoryId: selectedCategoryId,
+      pageNum: currentPage - 1,
+      colors: undefined,
+    });
+  };
+  const [showAllColors, setShowAllColors] = useState(false);
   const formColors = () => {
-    return [
+    const allColors = [
       'black',
       'white',
       'blue',
@@ -80,17 +178,44 @@ export const CatalogPage = () => {
       'gold',
       'silver',
       'multicolored',
-    ].map((color) => (
-      <li
-        key={color}
-        className={`color-item${
-          selectedColors.includes(color as Colors) ? ' selected' : ''
-        }`}
-        onClick={() => handleColorChange(color as Colors)}
-      >
-        {color}
-      </li>
-    ));
+    ];
+    const visibleColors = showAllColors ? allColors : allColors.slice(0, 6);
+
+    return (
+      <>
+        {visibleColors.map((color) => (
+          <div key={color} className="colors-checkbox">
+            <input
+              type="checkbox"
+              id={`color-${color}`}
+              name="color"
+              value={color}
+              checked={selectedColors.includes(color as Colors)}
+              onChange={() => handleColorChange(color as Colors)}
+            />
+            <label htmlFor={`color-${color}`}>{color}</label>
+          </div>
+        ))}
+        <div>
+          {showAllColors && (
+            <div>
+              <button
+                className="colors-button-reset"
+                onClick={handleResetColors}
+              >
+                Reset
+              </button>
+            </div>
+          )}
+          <button
+            className="colors-button-show-all"
+            onClick={() => setShowAllColors(!showAllColors)}
+          >
+            {showAllColors ? 'Hide' : 'Show all'}
+          </button>
+        </div>
+      </>
+    );
   };
   const [currentPage, setCurrentPage] = useState(1);
   const [sorting, setSorting] = useState<Sorting | undefined>(undefined);
@@ -100,6 +225,12 @@ export const CatalogPage = () => {
     } else {
       setSelectedCategoryId('');
     }
+    getProducts(setLoading, queryParams);
+
+    if (queryParams && queryParams.pageNum !== undefined) {
+      setCurrentPage(queryParams.pageNum + 1);
+    }
+
     getProducts(setLoading, queryParams)
       .then((body) => {
         console.log(body);
@@ -114,7 +245,6 @@ export const CatalogPage = () => {
     setSelectedCategoryName(params.category || '');
     getCategories()
       .then((body) => {
-        console.log(body);
         setCategories(body);
         const currentCategory = body.results.find(
           (element) => element.name['en'] === selectedCategoryName,
@@ -127,57 +257,122 @@ export const CatalogPage = () => {
   }, [params, selectedCategoryName]);
 
   const formProducts = () => {
+    return products.results.map((el) => {
+      const name = el.name['en'];
+      const image = el.masterVariant.images?.[0]?.url ?? '';
+      const { centAmount, currencyCode } = el.masterVariant.prices?.[0]
+        ?.value || { centAmount: 0, currencyCode: '' };
+      const priceValue = centAmount / 100;
+      const productCardImageStyle = {
+        backgroundImage: `url("${image}")`,
+      };
+      return (
+        <div className="product-card" key={el.id}>
+          <div
+            className="product-card-image"
+            style={productCardImageStyle}
+          ></div>
+          <p className="product-card-name">{name}</p>
+          {priceValue && (
+            <p className="product-card-price">
+              {priceValue} {currencyCode}
+            </p>
+          )}
+        </div>
+      );
+    });
+  };
+
+  const formCategories = () => {
+    if (categoriesExpanded) {
+      return [
+        <li
+          key="all-products"
+          onClick={() => {
+            setSelectedCategoryName(defaultCategoryName);
+            handleSortChange('Default sorting', '');
+          }}
+        >
+          {defaultCategoryName}
+        </li>,
+        ...categories.results.map((el) => {
+          const name = el.name['en'];
+          return (
+            <li
+              key={el.id}
+              onClick={() => {
+                if (selectedCategoryId !== el.id) {
+                  setSelectedCategoryName(name);
+                  handleSortChange('Default sorting', el.id);
+                  setCategoriesExpanded(false);
+                }
+              }}
+            >
+              {name}
+            </li>
+          );
+        }),
+      ];
+    } else {
+      return [
+        <li
+          key="select-category"
+          onClick={() => {
+            if (selectedCategoryName !== defaultCategoryName) {
+              return;
+            }
+            setCategoriesExpanded(true);
+          }}
+        >
+          {selectedCategoryName}
+          <button
+            className="select-category-list"
+            onClick={() => {
+              setSelectedCategoryName(defaultCategoryName);
+              handleSortChange('Default sorting', '');
+              setCategoriesExpanded(true);
+            }}
+          >
+            &#8592; All Categories
+          </button>
+        </li>,
+      ];
+    }
     return products.results.map((el) => (
       <ProductCard key={el.id} product={el} />
     ));
   };
 
-  const formCategories = () => {
-    return [
-      <li key="all">
-        <Link to={`/catalog/all`}>{defaultCategoryName}</Link>
-      </li>,
+  // const formCategories = () => {
+  //   return [
+  //     <li key="all">
+  //       <Link to={`/catalog/all`}>{defaultCategoryName}</Link>
+  //     </li>,
 
-      ...categories.results.map((el) => {
-        const name = el.name['en'];
-        if (!el.parent) {
-          return (
-            <li key={el.id}>
-              <Link to={`/catalog/${name}`}>{name}</Link>
-            </li>
-          );
-        }
-        return;
-      }),
-    ];
-  };
+  //     ...categories.results.map((el) => {
+  //       const name = el.name['en'];
+  //       if (!el.parent) {
+  //         return (
+  //           <li key={el.id}>
+  //             <Link to={`/catalog/${name}`}>{name}</Link>
+  //           </li>
+  //         );
+  //       }
+  //       return;
+  //     }),
+  //   ];
+  // };
 
   return (
     <main className="main-container main-container-catalog">
       <div className="catalog-container">
-        {products.total !== undefined && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={Math.ceil(products.total / PRODUCTS_ON_PAGE)}
-            onPageChange={(newPage) => {
-              setCurrentPage(newPage);
-              handleGetProducts({
-                sort: sorting,
-                categoryId: selectedCategoryId,
-                pageNum: newPage - 1,
-              });
-            }}
-          />
-        )}
         <div className="catalog-container-sorting">
-          <div>
-            {selectedCategoryName ? `Showing ${selectedCategoryName}` : ''}
-            {/*DELETE*/}
-          </div>
           <div className="product-item-number">
-            Showing all {products.total} results
+            Showing all <span className="product-count">{products.total}</span>
+            results
           </div>
           <Select
+            key={selectedCategoryId}
             onSortChange={handleSortChange}
             category={selectedCategoryId}
           />
@@ -186,22 +381,39 @@ export const CatalogPage = () => {
           <aside className="catalog-container-sidebar">
             <div className="sidebar-filter-category">
               Filter by Category:
-              <p>Categories</p>
               <ul>{formCategories()}</ul>
-              <Button onClick={handleGetProducts}>get products</Button>
             </div>
             <div className="sidebar-filter-price">Filter by Price:</div>
             <div className="sidebar-filter-color">
               Filter by Colors:
               <ul className="color-list">{formColors()}</ul>
             </div>
-            <div className="sidebar-filter-material">Filter by Materials:</div>
+            <div className="sidebar-filter-material">
+              {' '}
+              Filter by Materials: {formMaterials()}{' '}
+            </div>
             <div className="sidebar-filter-occasion">Filter by Occasion:</div>
           </aside>
-          <section className="product-card-wrapper">
-            {loading && <LoadingSpinner />}
-            {!loading && !!products.count && formProducts()}
-          </section>
+          <div className="catalog-container-right-side">
+            <section className="product-card-wrapper">
+              {loading && <LoadingSpinner />}
+              {!loading && !!products.count && formProducts()}
+            </section>
+            {products.total !== undefined && (
+              <Pagination
+                currentPage={currentPage}
+                totalPages={Math.ceil(products.total / PRODUCTS_ON_PAGE)}
+                onPageChange={(newPage) => {
+                  handleGetProducts({
+                    sort: sorting,
+                    categoryId: selectedCategoryId,
+                    pageNum: newPage - 1,
+                    colors: selectedColors.length ? selectedColors : undefined,
+                  });
+                }}
+              />
+            )}
+          </div>
         </div>
       </div>
     </main>
