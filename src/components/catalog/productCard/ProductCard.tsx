@@ -1,12 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IProductCardProps } from '../../types';
+import { IProductCardProps } from '../../../types';
 import {
   getProductCardPrice,
   getProductCardImage,
   LANGUAGE,
   CURRENCY,
-} from '../../util';
+} from '../../../util';
 import './ProductCard.scss';
 
 export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {

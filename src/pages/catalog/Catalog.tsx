@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams, useSearchParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import {
   CategoryPagedQueryResponse,
   ProductProjectionPagedQueryResponse,
@@ -21,8 +21,8 @@ const defaultResponse = {
 };
 
 export const CatalogPage = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams.getAll('sort'), searchParams.get('sort'));
+  // const [searchParams, setSearchParams] = useSearchParams();
+  // console.log(searchParams.getAll('sort'), searchParams.get('sort'));
   const params = useParams();
   const [products, setProducts] =
     useState<ProductProjectionPagedQueryResponse>(defaultResponse);

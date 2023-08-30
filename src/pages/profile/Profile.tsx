@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Customer } from '@commercetools/platform-sdk';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import { getCustomerFunc } from '../../util';
-import { ProfileForm } from '../../components/ProfileForm/ProfileForm';
+import { ProfileForm } from '../../components/profile/ProfileForm';
 import './Profile.scss';
 
 const defaultResponse: Customer = {
