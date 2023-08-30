@@ -11,7 +11,7 @@ import {
 } from '@commercetools/platform-sdk';
 import { ProductQueryParams } from '../types';
 
-export const getProductsFunc = (
+export const getProducts = (
   setLoading: Dispatch<SetStateAction<boolean>>,
   queryParams?: ProductQueryParams,
 ): Promise<ProductProjectionPagedQueryResponse> => {
@@ -32,7 +32,7 @@ export const getProductsFunc = (
   });
 };
 
-export const getCategoriesFunc = (): Promise<CategoryPagedQueryResponse> => {
+export const getCategories = (): Promise<CategoryPagedQueryResponse> => {
   return new Promise((resolve, reject) => {
     getCategoriesService()
       .then((body) => {
@@ -45,7 +45,7 @@ export const getCategoriesFunc = (): Promise<CategoryPagedQueryResponse> => {
   });
 };
 
-export const getOneProductFunc = (id: string): Promise<Product> => {
+export const getOneProduct = (id: string): Promise<Product> => {
   return new Promise((resolve, reject) => {
     getOneProductService(id)
       .then((body) => {

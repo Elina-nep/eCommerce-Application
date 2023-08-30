@@ -6,16 +6,13 @@ import {
 } from '@commercetools/platform-sdk';
 import Button from '../../components/buttons/Button';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
-import {
-  getCategoriesFunc,
-  getProductsFunc,
-  PRODUCTS_ON_PAGE,
-} from '../../util';
+import { getCategories, getProducts, PRODUCTS_ON_PAGE } from '../../util';
 import { ProductQueryParams, Sorting } from '../../types';
 import './Catalog.scss';
 import { Select } from '../../components/productselect/productselect';
 import Pagination from '../../components/pagination/Pagination';
 import { Colors } from '../../types/products';
+import { ProductCard } from '../../components/productCard/ProductCard';
 
 const defaultResponse = {
   limit: 0,
@@ -103,7 +100,7 @@ export const CatalogPage = () => {
     } else {
       setSelectedCategoryId('');
     }
-    getProductsFunc(setLoading, queryParams)
+    getProducts(setLoading, queryParams)
       .then((body) => {
         console.log(body);
         setProducts(body);
@@ -115,7 +112,7 @@ export const CatalogPage = () => {
 
   useEffect(() => {
     setSelectedCategoryName(params.category || '');
-    getCategoriesFunc()
+    getCategories()
       .then((body) => {
         console.log(body);
         setCategories(body);
@@ -130,39 +127,9 @@ export const CatalogPage = () => {
   }, [params, selectedCategoryName]);
 
   const formProducts = () => {
-    return products.results.map((el) => {
-      const name = el.name['en'];
-      const category = categories.results.find(
-        (category) => category.id === el.categories[0].id,
-      );
-      const categoryName = category ? category.name['en'] : '';
-      const image = el.masterVariant.images?.[0]?.url ?? '';
-      const { centAmount, currencyCode } = el.masterVariant.prices?.[0]
-        ?.value || { centAmount: 0, currencyCode: '' };
-      const priceValue = centAmount / 100;
-
-      return (
-        <div className="product-card" key={el.id}>
-          <div className="product-card-image">
-            {image && <img src={image} alt={name} />}
-          </div>
-          <p className="product-card-category">{categoryName}</p>
-          <p className="product-card-name">{name}</p>
-          {priceValue && (
-            <p className="product-card-price">
-              {priceValue} {currencyCode}
-            </p>
-          )}
-          <Link
-            to={{
-              pathname: `/product/${el.id}`,
-            }}
-          >
-            More information
-          </Link>
-        </div>
-      );
-    });
+    return products.results.map((el) => (
+      <ProductCard key={el.id} product={el} />
+    ));
   };
 
   const formCategories = () => {

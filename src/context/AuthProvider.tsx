@@ -8,7 +8,7 @@ import React, {
 import { ICreateCustomer, ILoginCustomer } from '../types';
 import {
   createCustomerFunc,
-  getCategoriesFunc,
+  getCategories,
   getCustomerFunc,
   loginCustomerFunc,
   logOutFunc,
@@ -46,18 +46,18 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     getCustomerFunc(setLoading)
       .then(() => {
         setIfAuth(true);
-        getCategoriesFunc().then((res) => {
+        getCategories().then((res) => {
           setCategories(res.results);
         });
       })
       .catch(() => {
-        getCategoriesFunc()
+        getCategories()
           .then((res) => {
             setCategories(res.results);
           })
           .catch(() => {
             localStorage.clear();
-            getCategoriesFunc().then((res) => {
+            getCategories().then((res) => {
               setCategories(res.results);
             });
           });

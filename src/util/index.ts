@@ -9,7 +9,6 @@ export {
   countryValidation,
   postalCodeValidation,
 } from './validation';
-
 export { cards, PRODUCTS_ON_PAGE } from './constants';
 export {
   loginCustomerFunc,
@@ -17,9 +16,15 @@ export {
   logOutFunc,
   clearAlert,
 } from './auth';
-export {
-  getProductsFunc,
-  getCategoriesFunc,
-  getOneProductFunc,
-} from './catalog';
+export { getProducts, getCategories, getOneProduct } from './catalog';
 export { getCustomerFunc } from './customer';
+export {
+  getProductCategories,
+  getProductImages,
+  getProductAttribute,
+  formatAttributes,
+  getProductPrice,
+} from './product';
+export { defaultProductData, defaultCatalogeResponse } from './productConstans';
+export { LANGUAGE, CURRENCY } from './productConstans';
+export { getProductCardPrice, getProductCardImage } from './productCard';

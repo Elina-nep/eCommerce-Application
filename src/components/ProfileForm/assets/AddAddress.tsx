@@ -72,8 +72,6 @@ export const AddAddress: React.FC<IAddAddressProps> = ({
   };
 
   const onSubmit: SubmitHandler<IAddAdress> = async (data) => {
-    console.log('CREATE ADDRESS');
-
     const addressCreation: CustomerChanges = {
       addressAction: {
         action: 'addAddress',

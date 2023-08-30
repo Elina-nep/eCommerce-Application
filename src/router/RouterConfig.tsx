@@ -11,7 +11,7 @@ import { ProfilePage } from '../pages/profile/Profile';
 import { ProtectedNotSignRoute } from './ProtectedNotSignRoute';
 import { AboutPage } from '../pages/about/About';
 import { CartPage } from '../pages/cart/Cart';
-import { ProductPage } from '../pages/product/Product';
+import { ProductPage } from '../pages/product/ProductPage';
 
 export const routerObj = createRoutesFromElements(
   <>
