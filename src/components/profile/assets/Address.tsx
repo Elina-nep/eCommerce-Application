@@ -1,34 +1,35 @@
-import React, { useState, useContext } from 'react';
+import Checkbox from '@mui/material/Checkbox';
+import FormControl from '@mui/material/FormControl';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import FormHelperText from '@mui/material/FormHelperText';
+import InputLabel from '@mui/material/InputLabel';
+import MenuItem from '@mui/material/MenuItem';
+import Select from '@mui/material/Select';
+import TextField from '@mui/material/TextField';
+import React, { useContext, useState } from 'react';
 import {
-  useWatch,
+  Controller,
+  SubmitHandler,
   useForm,
   useFormState,
-  SubmitHandler,
-  Controller,
+  useWatch,
 } from 'react-hook-form';
-import TextField from '@mui/material/TextField';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import InputLabel from '@mui/material/InputLabel';
-import FormHelperText from '@mui/material/FormHelperText';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
-import {
-  nameValidation,
-  streetValidation,
-  postalCodeValidation,
-  countryValidation,
-} from '../../../util';
+
+import { AuthContext } from '../../../context/AuthProvider';
+import { CustomerChanges } from '../../../types';
 import { IAddressProps } from '../../../types/profileFrom';
 import { IAddress } from '../../../types/profileFrom';
-import { CustomerChanges } from '../../../types';
-import { changeCustomerFunc } from '../../../util/customer';
 import { AddressType } from '../../../types/profileFrom';
+import {
+  countryValidation,
+  nameValidation,
+  postalCodeValidation,
+  streetValidation,
+} from '../../../util';
+import { changeCustomerFunc } from '../../../util/customer';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
-import { AuthContext } from '../../../context/AuthProvider';
 
 export const Address: React.FC<IAddressProps> = ({
   customer,

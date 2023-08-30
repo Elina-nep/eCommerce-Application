@@ -1,17 +1,18 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import './Catalog.scss';
+
 import {
   CategoryPagedQueryResponse,
   ProductProjectionPagedQueryResponse,
 } from '@commercetools/platform-sdk';
-import LoadingSpinner from '../../components/loading/LoadingSpinner';
-import { getCategories, getProducts, PRODUCTS_ON_PAGE } from '../../util';
-import { ProductQueryParams, Sorting } from '../../types';
-import './Catalog.scss';
-import { Select } from '../../components/catalog/productselect/productselect';
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
 import Pagination from '../../components/catalog/pagination/Pagination';
 import { ProductCard } from '../../components/catalog/productCard/ProductCard';
-import { Colors, Material } from '../../types/products';
+import { Select } from '../../components/catalog/selectProduct/SelectProduct';
+import LoadingSpinner from '../../components/loading/LoadingSpinner';
+import { Colors, Material, ProductQueryParams, Sorting } from '../../types';
+import { getCategories, getProducts, PRODUCTS_ON_PAGE } from '../../util';
 
 const defaultResponse = {
   limit: 0,

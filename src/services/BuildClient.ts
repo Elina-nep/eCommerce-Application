@@ -1,14 +1,15 @@
-import fetch from 'node-fetch';
+import { createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
 import {
-  ClientBuilder,
   type AuthMiddlewareOptions,
+  ClientBuilder,
   type HttpMiddlewareOptions,
   // ExistingTokenMiddlewareOptions,
   PasswordAuthMiddlewareOptions,
   UserAuthOptions,
   // RefreshAuthMiddlewareOptions,
 } from '@commercetools/sdk-client-v2';
-import { createApiBuilderFromCtpClient } from '@commercetools/platform-sdk';
+import fetch from 'node-fetch';
+
 import { getExistingToken, tokenCache } from '../util';
 
 export const projectKey = process.env.REACT_APP_PROJECT_KEY!;

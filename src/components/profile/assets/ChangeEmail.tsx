@@ -1,20 +1,21 @@
-import React, { useState, useContext } from 'react';
+import TextField from '@mui/material/TextField';
+import React, { useContext, useState } from 'react';
 import {
+  Controller,
+  SubmitHandler,
   useForm,
   useFormState,
-  SubmitHandler,
-  Controller,
 } from 'react-hook-form';
-import TextField from '@mui/material/TextField';
-import { emailValidation } from '../../../util';
+
+import { AuthContext } from '../../../context/AuthProvider';
+import { CustomerChanges } from '../../../types';
 import { IPersonalProps } from '../../../types/profileFrom';
 import { IProfileForm } from '../../../types/profileFrom';
-import { customerToFormMapper } from '../../../util/user';
-import { CustomerChanges } from '../../../types';
+import { emailValidation } from '../../../util';
 import { changeCustomerFunc } from '../../../util/customer';
+import { customerToFormMapper } from '../../../util/user';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
-import { AuthContext } from '../../../context/AuthProvider';
 
 export const ChangeEmail: React.FC<IPersonalProps> = ({
   response,

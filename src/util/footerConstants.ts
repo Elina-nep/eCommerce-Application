@@ -1,4 +1,4 @@
-import { LinkItem, ColumnItem } from '../types/footer';
+import { ColumnItem, LinkItem } from '../types/footer';
 
 export const links: LinkItem[] = [
   { title: 'Home', to: '/' },

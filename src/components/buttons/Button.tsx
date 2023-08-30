@@ -1,5 +1,6 @@
-import React from 'react';
 import './Button.scss';
+
+import React from 'react';
 
 type ButtonProps = {
   onClick?: () => void;

@@ -1,9 +1,10 @@
-import { Dispatch, SetStateAction } from 'react';
 import { Customer } from '@commercetools/platform-sdk';
+import { Dispatch, SetStateAction } from 'react';
+
 import {
-  getCustomerService,
-  changeCustomerService,
   changeCustomerPasswordService,
+  changeCustomerService,
+  getCustomerService,
 } from '../services';
 import { CustomerChanges, Password } from '../types';
 import { clearAlert } from '.';

@@ -1,12 +1,13 @@
+import './Slider.css';
+
 import { useEffect, useState } from 'react';
+
 import Button from '../../components/buttons/Button';
-import { cards } from '../../util/index';
 import { ModalProps } from '../../types';
 import { CardData } from '../../types/sliderCard';
+import { cards } from '../../util/index';
 import Card from '../card/CouponCard';
 import Modal from '../modalwindow/ModalWindow';
-
-import './Slider.css';
 import SliderIndicator from './SliderIndicator';
 
 const Slider = () => {

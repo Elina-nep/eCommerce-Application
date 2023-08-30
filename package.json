@@ -37,6 +37,7 @@
     "@types/tapable": "2.2.3",
     "bonjour": "3.5.0",
     "date-fns": "2.30.0",
+    "eslint-plugin-simple-import-sort": "^10.0.0",
     "jest-css-modules": "2.1.0",
     "jest-transformer-svg": "2.0.1",
     "node-fetch": "2.6.12",

@@ -1,6 +1,8 @@
-import React from 'react';
-import { FormErrorProps } from '../../types';
 import './FormError.scss';
+
+import React from 'react';
+
+import { FormErrorProps } from '../../types';
 
 export const FormError: React.FC<FormErrorProps> = (props) => {
   return (

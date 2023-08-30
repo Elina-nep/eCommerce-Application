@@ -1,7 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import Button from '../buttons/Button';
-import { ModalProps } from '../../types';
 import './ModalWindow.css';
+
+import React, { useEffect, useRef } from 'react';
+
+import { ModalProps } from '../../types';
+import Button from '../buttons/Button';
 
 export const Modal: React.FC<ModalProps> = ({
   description,

@@ -1,4 +1,5 @@
 import { useOutlet } from 'react-router-dom';
+
 import { AuthProvider } from '../context/AuthProvider';
 
 export const AuthLayout = () => {

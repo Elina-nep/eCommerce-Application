@@ -1,16 +1,17 @@
-import React, { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Controller } from 'react-hook-form';
 import TextField from '@mui/material/TextField';
-import { passwordValidation } from '../../../util';
-import { IChangePasswordProps } from '../../../types/profileFrom';
-import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
-import { TogglePasswordVisibility } from '../../../util/ToggleVisibility';
+import React, { useContext, useState } from 'react';
+import { Controller } from 'react-hook-form';
+import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
+import { useNavigate } from 'react-router-dom';
+
+import { AuthContext } from '../../../context/AuthProvider';
 import { Password } from '../../../types';
+import { IChangePasswordProps } from '../../../types/profileFrom';
+import { passwordValidation } from '../../../util';
 import { changeCustomerPasswordFunc } from '../../../util/customer';
+import { TogglePasswordVisibility } from '../../../util/ToggleVisibility';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
-import { AuthContext } from '../../../context/AuthProvider';
 
 export const ChangePassword: React.FC<IChangePasswordProps> = ({ version }) => {
   const navigate = useNavigate();

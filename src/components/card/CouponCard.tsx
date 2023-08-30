@@ -1,7 +1,9 @@
-import React from 'react';
-import Button from '../buttons/Button';
-import { CardProps } from '../../types';
 import './CouponCard.css';
+
+import React from 'react';
+
+import { CardProps } from '../../types';
+import Button from '../buttons/Button';
 
 const Card: React.FC<CardProps> = ({ card, handleLearnMoreClick }) => {
   return (

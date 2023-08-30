@@ -1,8 +1,9 @@
-import React from 'react';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormGroup from '@mui/material/FormGroup';
+import React from 'react';
 import { Controller } from 'react-hook-form';
+
 import { CustomCheckboxProps } from '../../../types/form';
 
 export const CustomCheckbox: React.FC<CustomCheckboxProps> = ({

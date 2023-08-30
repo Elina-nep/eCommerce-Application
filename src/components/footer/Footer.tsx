@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
 import './Footer.css';
+
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+import { AuthContext } from '../../context/AuthProvider';
 import { links } from '../../util/index';
 import LinkList from './FooterLink';
-import { AuthContext } from '../../context/AuthProvider';
-import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
   const { categories } = useContext(AuthContext);

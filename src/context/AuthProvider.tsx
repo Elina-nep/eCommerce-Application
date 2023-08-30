@@ -1,3 +1,4 @@
+import { Category } from '@commercetools/platform-sdk';
 import React, {
   createContext,
   Dispatch,
@@ -5,6 +6,7 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+
 import { ICreateCustomer, ILoginCustomer } from '../types';
 import {
   createCustomerFunc,
@@ -13,7 +15,6 @@ import {
   loginCustomerFunc,
   logOutFunc,
 } from '../util';
-import { Category } from '@commercetools/platform-sdk';
 
 interface IUserAuth {
   ifAuth: boolean;

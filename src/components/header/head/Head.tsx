@@ -1,9 +1,11 @@
+import './Head.scss';
+
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../context/AuthProvider';
+
 import imageToAddCottoncandy from '../../../assets/cotton-candy.png';
+import { AuthContext } from '../../../context/AuthProvider';
 import { HeadProps } from '../../../types/index';
-import './Head.scss';
 
 const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
   const { ifAuth, logOut } = useContext(AuthContext);

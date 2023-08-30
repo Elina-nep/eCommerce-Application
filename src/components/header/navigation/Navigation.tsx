@@ -1,7 +1,9 @@
+import './Navigation.scss';
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { ReactComponent as InputIcon } from '../../../assets/inputIcon.svg';
-import './Navigation.scss';
 
 export function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);

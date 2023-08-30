@@ -1,18 +1,20 @@
+import './ProductComponent.scss';
+
 import React, { useState } from 'react';
-import { IProductComponentProps } from '../../types';
 import { Link } from 'react-router-dom';
+
+import { IProductComponentProps } from '../../types';
 import {
+  CURRENCY,
+  formatAttributes,
   getProductAttribute,
   getProductCategories,
   getProductImages,
-  formatAttributes,
-  LANGUAGE,
-  CURRENCY,
   getProductPrice,
+  LANGUAGE,
 } from '../../util';
-import { ProductModal } from './assets/ProductModal';
 import Button from '../buttons/Button';
-import './ProductComponent.scss';
+import { ProductModal } from './assets/ProductModal';
 
 export const ProductComponent: React.FC<IProductComponentProps> = ({
   product,

@@ -1,30 +1,30 @@
-export { links, columns } from './footerConstants';
-export { tokenCache, getExistingToken, userTokenCache } from './tokenProcess';
 export {
-  nameValidation,
-  ageValidation,
-  passwordValidation,
-  emailValidation,
-  streetValidation,
-  countryValidation,
-  postalCodeValidation,
-} from './validation';
-export { cards, PRODUCTS_ON_PAGE } from './constants';
-export {
-  loginCustomerFunc,
-  createCustomerFunc,
-  logOutFunc,
   clearAlert,
+  createCustomerFunc,
+  loginCustomerFunc,
+  logOutFunc,
 } from './auth';
-export { getProducts, getCategories, getOneProduct } from './catalog';
+export { getCategories, getOneProduct, getProducts } from './catalog';
+export { cards, PRODUCTS_ON_PAGE } from './constants';
 export { getCustomerFunc } from './customer';
+export { columns, links } from './footerConstants';
 export {
+  formatAttributes,
+  getProductAttribute,
   getProductCategories,
   getProductImages,
-  getProductAttribute,
-  formatAttributes,
   getProductPrice,
 } from './product';
-export { defaultProductData, defaultCatalogeResponse } from './productConstans';
-export { LANGUAGE, CURRENCY } from './productConstans';
-export { getProductCardPrice, getProductCardImage } from './productCard';
+export { getProductCardImage, getProductCardPrice } from './productCard';
+export { defaultCatalogeResponse, defaultProductData } from './productConstans';
+export { CURRENCY, LANGUAGE } from './productConstans';
+export { getExistingToken, tokenCache, userTokenCache } from './tokenProcess';
+export {
+  ageValidation,
+  countryValidation,
+  emailValidation,
+  nameValidation,
+  passwordValidation,
+  postalCodeValidation,
+  streetValidation,
+} from './validation';

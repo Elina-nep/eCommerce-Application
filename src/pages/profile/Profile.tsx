@@ -1,9 +1,11 @@
-import { useEffect, useState } from 'react';
-import { Customer } from '@commercetools/platform-sdk';
-import LoadingSpinner from '../../components/loading/LoadingSpinner';
-import { getCustomerFunc } from '../../util';
-import { ProfileForm } from '../../components/profile/ProfileForm';
 import './Profile.scss';
+
+import { Customer } from '@commercetools/platform-sdk';
+import { useEffect, useState } from 'react';
+
+import LoadingSpinner from '../../components/loading/LoadingSpinner';
+import { ProfileForm } from '../../components/profile/ProfileForm';
+import { getCustomerFunc } from '../../util';
 
 const defaultResponse: Customer = {
   id: '',

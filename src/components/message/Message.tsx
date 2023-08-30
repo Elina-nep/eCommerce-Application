@@ -1,6 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
 // import { FormErrorProps } from '../../types';
 import './Message.scss';
+
+import React, { useContext, useEffect, useState } from 'react';
+
 import { AuthContext } from '../../context/AuthProvider';
 
 export const Message = () => {
