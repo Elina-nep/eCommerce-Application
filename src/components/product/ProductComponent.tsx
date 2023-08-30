@@ -85,11 +85,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
         </Button>
       </div>
       <h1 className="product__title">{title}</h1>
-      {price && (
-        <p className="product__price">
-          {price} {CURRENCY.EUR}
-        </p>
-      )}
+      {price && <p className="product__price">{price}</p>}
       <div className="product__categories">
         {productCategories.map((category, index) => (
           <p key={index}>{category}</p>
