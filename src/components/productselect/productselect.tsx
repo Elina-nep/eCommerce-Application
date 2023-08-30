@@ -28,6 +28,8 @@ export const Select: React.FC<SelectProps> = ({ onSortChange, category }) => {
       className="product-select"
       defaultValue="Default sorting"
       onChange={handleChange}
+      id="product-sorting"
+      name="product-sorting"
     >
       {options.map((option) => (
         <option key={option.value} value={option.value}>

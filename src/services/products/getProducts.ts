@@ -35,6 +35,13 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
       `variants.attributes.color.key:"${queryParams?.colors.join(`","`)}"`,
     );
   }
+  if (queryParams?.materials) {
+    queryArgs.filter.push(
+      `variants.attributes.material.key:"${queryParams?.materials.join(
+        `","`,
+      )}"`,
+    );
+  }
   if (queryParams?.available) {
     queryArgs.filter.push(`variants.availability.isOnStock:true`);
   }

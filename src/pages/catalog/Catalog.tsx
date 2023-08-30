@@ -13,7 +13,7 @@ import { ProductQueryParams, Sorting } from '../../types';
 import './Catalog.scss';
 import { Select } from '../../components/productselect/productselect';
 import Pagination from '../../components/pagination/Pagination';
-import { Colors } from '../../types/products';
+import { Colors, Material } from '../../types/products';
 
 const defaultResponse = {
   limit: 0,
@@ -38,33 +38,116 @@ export const CatalogPage = () => {
       sort === 'Default sorting' ? undefined : (sort as Sorting);
     setSorting(newSorting);
     setCurrentPage(1);
-
     handleGetProducts({
       sort: newSorting,
       categoryId,
       pageNum: 0,
       colors: selectedColors.length ? selectedColors : undefined,
+      materials: selectedMaterials.length ? selectedMaterials : undefined,
     });
   };
   const [categoriesExpanded, setCategoriesExpanded] = useState(true);
+  const [selectedMaterials, setSelectedMaterials] = useState<Material[]>([]);
+  const handleMaterialChange = (selectedMaterial: Material) => {
+    setSelectedMaterials((prevSelectedMaterials) => {
+      const newSelectedMaterials = prevSelectedMaterials.includes(
+        selectedMaterial,
+      )
+        ? prevSelectedMaterials.filter(
+            (material) => material !== selectedMaterial,
+          )
+        : [...prevSelectedMaterials, selectedMaterial];
+      const materialsQueryParam = newSelectedMaterials.length
+        ? newSelectedMaterials
+        : undefined;
+      handleGetProducts({
+        sort: sorting,
+        categoryId: selectedCategoryId,
+        pageNum: currentPage - 1,
+        colors: selectedColors.length ? selectedColors : undefined,
+        materials: materialsQueryParam,
+      });
+      return newSelectedMaterials;
+    });
+  };
+  const handleResetMaterials = () => {
+    setSelectedMaterials([]);
+    handleGetProducts({
+      sort: sorting,
+      categoryId: selectedCategoryId,
+      pageNum: currentPage - 1,
+      colors: undefined,
+      materials: undefined,
+    });
+  };
+  const [showAllMaterials, setShowAllMaterials] = useState(false);
+  const formMaterials = () => {
+    const allMaterials = [
+      'latex',
+      'foil',
+      'paper',
+      'fabric',
+      'wood',
+      'plastic',
+      'metal',
+      'mixed',
+    ];
+    const visibleMaterials = showAllMaterials
+      ? allMaterials
+      : allMaterials.slice(0, 6);
+
+    return (
+      <>
+        {visibleMaterials.map((material) => (
+          <div key={material} className="colors-checkbox">
+            <input
+              type="checkbox"
+              id={`material-${material}`}
+              name="material"
+              value={material}
+              checked={selectedMaterials.includes(material as Material)}
+              onChange={() => handleMaterialChange(material as Material)}
+            />
+            <label htmlFor={`material-${material}`}>{material}</label>
+          </div>
+        ))}
+        <div>
+          {showAllMaterials && (
+            <div>
+              <button
+                className="colors-button-reset"
+                onClick={handleResetMaterials}
+              >
+                Reset
+              </button>
+            </div>
+          )}
+          <button
+            className="colors-button-show-all"
+            onClick={() => setShowAllMaterials(!showAllMaterials)}
+          >
+            {showAllMaterials ? 'Hide' : 'Show all'}
+          </button>
+        </div>
+      </>
+    );
+  };
   const [selectedColors, setSelectedColors] = useState<Colors[]>([]);
   const handleColorChange = (selectedColor: Colors) => {
     setSelectedColors((prevSelectedColors) => {
       const newSelectedColors = prevSelectedColors.includes(selectedColor)
         ? prevSelectedColors.filter((color) => color !== selectedColor)
         : [...prevSelectedColors, selectedColor];
-
       const colorsQueryParam = newSelectedColors.length
         ? newSelectedColors
         : undefined;
-
       handleGetProducts({
         sort: sorting,
         categoryId: selectedCategoryId,
-        colors: colorsQueryParam,
         pageNum: currentPage - 1,
+        colors: colorsQueryParam,
+        materials: selectedMaterials.length ? selectedMaterials : undefined,
       });
-
       return newSelectedColors;
     });
   };
@@ -277,7 +360,10 @@ export const CatalogPage = () => {
               Filter by Colors:
               <ul className="color-list">{formColors()}</ul>
             </div>
-            <div className="sidebar-filter-material">Filter by Materials:</div>
+            <div className="sidebar-filter-material">
+              {' '}
+              Filter by Materials: {formMaterials()}{' '}
+            </div>
             <div className="sidebar-filter-occasion">Filter by Occasion:</div>
           </aside>
           <div className="catalog-container-right-side">
