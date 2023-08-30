@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
-import { IProductComponentProps } from '../../types/product';
+import { IProductComponentProps } from '../../types';
 import { Link } from 'react-router-dom';
 import {
   getProductAttribute,
   getProductCategories,
   getProductImages,
   formatAttributes,
-} from '../../util/product';
+  LANGUAGE,
+  CURRENCY,
+  getProductPrice,
+} from '../../util';
 import { ProductModal } from './assets/ProductModal';
 import Button from '../buttons/Button';
 import './ProductComponent.scss';
@@ -15,23 +18,21 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   product,
   categories,
 }) => {
-  const title = product.current.name['en'] || '';
+  const title = product.current.name[LANGUAGE.EN] || '';
   const description = product.current.description?.en || '';
-  const alt = product.current.name['en'];
-  const material = getProductAttribute(product, 'material');
-  const color = getProductAttribute(product, 'color');
-  const occasions = getProductAttribute(product, 'occasions');
-  const { centAmount, currencyCode } = product.current.masterVariant.prices?.[0]
-    ?.value || {
-    centAmount: 0,
-    currencyCode: '',
-  };
-  const priceValue = centAmount / 100;
-  const productCategories = getProductCategories(product, categories);
+  const alt = product.current.name[LANGUAGE.EN];
+  const material = getProductAttribute(product, 'material', LANGUAGE.EN);
+  const color = getProductAttribute(product, 'color', LANGUAGE.EN);
+  const occasions = getProductAttribute(product, 'occasions', LANGUAGE.EN);
+  const price = getProductPrice(product, CURRENCY.EUR);
+  const productCategories = getProductCategories(
+    product,
+    categories,
+    LANGUAGE.EN,
+  );
   const productImages = getProductImages(product);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
   const showNextImage = () => {
     productImages &&
       setCurrentImageIndex(
@@ -47,7 +48,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleImageClick = () => {
+  const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
@@ -58,7 +59,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   return (
     <div className="product">
       <Link to="/catalog">Back to Catalog</Link>
-      {isModalOpen && productImages && (
+      {isModalOpen && productImages?.length && (
         <ProductModal
           images={productImages}
           closeModal={closeModal}
@@ -69,9 +70,9 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
         <Button onClick={showPreviousImage} className="button-pagination">
           {'<'}
         </Button>
-        {productImages && (
+        {productImages?.length && (
           <img
-            onClick={handleImageClick}
+            onClick={handleOpenModal}
             src={productImages[currentImageIndex]}
             alt={alt}
           />
@@ -81,9 +82,9 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
         </Button>
       </div>
       <h1 className="product__title">{title}</h1>
-      {priceValue && (
+      {price && (
         <p className="product__price">
-          {priceValue} {currencyCode}
+          {price} {CURRENCY.EUR}
         </p>
       )}
       <div className="product__categories">
@@ -93,9 +94,9 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
       </div>
       {description && <p className="product__description">{description}</p>}
       <div className="product__attributes">
-        <p>Material: {formatAttributes(material)}</p>
-        <p>Color: {formatAttributes(color)}</p>
-        <p>Occasions: {formatAttributes(occasions)}</p>
+        {material && <p>Material: {formatAttributes(material)}</p>}
+        {color && <p>Color: {formatAttributes(color)}</p>}
+        {occasions && <p>Occasions: {formatAttributes(occasions)}</p>}
       </div>
     </div>
   );

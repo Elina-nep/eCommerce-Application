@@ -6,6 +6,7 @@ import {
 export const getProductCategories = (
   product: ProductCatalogData,
   categories: CategoryPagedQueryResponse,
+  language: string,
 ) => {
   const currentCategoriesIDs = product.current.categories.map((cat) => cat.id);
 
@@ -17,7 +18,7 @@ export const getProductCategories = (
         currentCategoriesIDs.includes(cat.parent.id),
     )
     .map((cat) => cat.name)
-    .map((cat) => cat['en']);
+    .map((cat) => cat[language]);
 };
 
 export const getProductImages = (product: ProductCatalogData) => {
@@ -32,13 +33,22 @@ export const getProductImages = (product: ProductCatalogData) => {
 
   if (imageMasterVariant) {
     const combinedImageArray = [...imageMasterVariant, ...imageVariants.flat()];
-    return combinedImageArray;
+    return formatImages(combinedImageArray);
   }
 };
+
+export function formatImages(images: string[] | string) {
+  if (Array.isArray(images)) {
+    return Array.from(new Set(images));
+  } else {
+    return images;
+  }
+}
 
 export const getProductAttribute = (
   product: ProductCatalogData,
   attName: string,
+  language: string,
 ) => {
   const attMasterVariant = product.current.masterVariant.attributes?.find(
     (att) => att.name === attName,
@@ -55,7 +65,7 @@ export const getProductAttribute = (
     : attVariants;
 
   if (allAttributeValues.length > 0) {
-    return allAttributeValues.map((attValue) => attValue['label']['en']);
+    return allAttributeValues.map((attValue) => attValue['label'][language]);
   } else {
     return '';
   }
@@ -63,9 +73,21 @@ export const getProductAttribute = (
 
 export function formatAttributes(attributes: string[] | string) {
   if (Array.isArray(attributes)) {
-    const uniqueAttributes = Array.from(new Set(attributes));
-    return uniqueAttributes.join(', ');
+    return Array.from(new Set(attributes)).join(', ');
   } else {
     return attributes;
   }
+}
+
+export function getProductPrice(
+  product: ProductCatalogData,
+  currency: string,
+): string | number {
+  const prices = product.current.masterVariant.prices || [];
+  for (const price of prices) {
+    if (price.value.currencyCode === currency) {
+      return price.value.centAmount / 100;
+    }
+  }
+  return 'Not Available';
 }

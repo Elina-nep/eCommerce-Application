@@ -1,57 +1,28 @@
-import { Product } from '@commercetools/platform-sdk';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getOneProductFunc } from '../../util';
+import {
+  Product,
+  CategoryPagedQueryResponse,
+} from '@commercetools/platform-sdk';
+import {
+  getOneProductFunc,
+  getCategoriesFunc,
+  defaultProductData,
+  defaultCatalogeResponse,
+} from '../../util';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import { ProductComponent } from '../../components/product/ProductComponent';
-import { CategoryPagedQueryResponse } from '@commercetools/platform-sdk';
-import { getCategoriesFunc } from '../../util';
 import './ProductPage.scss';
-
-const defaultData: Product = {
-  id: '',
-  version: 0,
-  createdAt: '',
-  lastModifiedAt: '',
-  productType: { typeId: 'product-type', id: '' },
-  masterData: {
-    published: true,
-    current: {
-      name: { en: '' },
-      categories: [],
-      slug: { en: '' },
-      masterVariant: { id: 0 },
-      variants: [],
-      searchKeywords: {},
-    },
-    staged: {
-      name: { en: '' },
-      categories: [],
-      slug: { en: '' },
-      masterVariant: { id: 0 },
-      variants: [],
-      searchKeywords: {},
-    },
-    hasStagedChanges: false,
-  },
-};
-
-const defaultCatalogeResponse = {
-  limit: 0,
-  offset: 0,
-  count: 0,
-  results: [],
-};
 
 export const ProductPage = () => {
   const params = useParams();
-  const [product, setProduct] = useState<Product>(defaultData);
+  const [product, setProduct] = useState<Product>(defaultProductData);
   const [categories, setCategories] = useState<CategoryPagedQueryResponse>(
     defaultCatalogeResponse,
   );
   const [loading, setLoading] = useState(false);
 
-  const handleCategory = () => {
+  const getCategories = () => {
     getCategoriesFunc()
       .then((body) => {
         setCategories(body);
@@ -64,7 +35,7 @@ export const ProductPage = () => {
   useEffect(() => {
     if (params.id) {
       setLoading(true);
-      handleCategory();
+      getCategories();
       getOneProductFunc(params.id)
         .then((res) => {
           setProduct(res);
@@ -81,12 +52,10 @@ export const ProductPage = () => {
     <main className="main-container product-page">
       {loading && <LoadingSpinner />}
       {!loading && (
-        <div>
-          <ProductComponent
-            product={product.masterData}
-            categories={categories}
-          />
-        </div>
+        <ProductComponent
+          product={product.masterData}
+          categories={categories}
+        />
       )}
     </main>
   );

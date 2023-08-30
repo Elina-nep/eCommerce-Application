@@ -15,7 +15,7 @@ import './Catalog.scss';
 import { Select } from '../../components/productselect/productselect';
 import Pagination from '../../components/pagination/Pagination';
 import { Colors } from '../../types/products';
-import { ProductCard } from '../../components/product/ProductCard';
+import { ProductCard } from '../../components/productCard/ProductCard';
 
 const defaultResponse = {
   limit: 0,

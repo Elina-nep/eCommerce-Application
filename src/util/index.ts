@@ -9,7 +9,6 @@ export {
   countryValidation,
   postalCodeValidation,
 } from './validation';
-
 export { cards, PRODUCTS_ON_PAGE } from './constants';
 export {
   loginCustomerFunc,
@@ -23,3 +22,12 @@ export {
   getOneProductFunc,
 } from './catalog';
 export { getCustomerFunc } from './customer';
+export {
+  getProductCategories,
+  getProductImages,
+  getProductAttribute,
+  formatAttributes,
+  getProductPrice,
+} from './product';
+export { defaultProductData, defaultCatalogeResponse } from './productConstans';
+export { LANGUAGE, CURRENCY } from './productConstans';

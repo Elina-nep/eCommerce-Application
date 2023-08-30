@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { IProductCardProps } from '../../types/product';
+import { IProductCardProps } from '../../types';
 
 export const ProductCard: React.FC<IProductCardProps> = ({
   product,
