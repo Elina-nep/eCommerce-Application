@@ -23,7 +23,14 @@ export const Footer: React.FC = () => {
             if (!el.parent) {
               return (
                 <li key={el.id}>
-                  <Link to={`/catalog/${el.name['en']}`}>{el.name['en']}</Link>
+                  <Link
+                    to={{
+                      pathname: '/catalog',
+                      search: `?${el.name['en']}`,
+                    }}
+                  >
+                    {el.name['en']}
+                  </Link>
                 </li>
               );
             }

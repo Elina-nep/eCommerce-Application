@@ -1,6 +1,6 @@
 import './QueryFilter.scss';
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { FilterComponentT } from '../../../../types';
 import Button from '../../../buttons/Button';
@@ -16,6 +16,10 @@ export const QueryFilter = <T,>({
   const [selectedItems, setSelectedItems] = useState<T[]>(
     searchParams.getAll(queryType) as T[],
   );
+
+  useEffect(() => {
+    setSelectedItems(searchParams.getAll(queryType) as T[]);
+  }, [queryType, searchParams]);
 
   const handleResetItems = () => {
     searchParams.delete(queryType);
