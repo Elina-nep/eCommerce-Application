@@ -12,6 +12,11 @@ export const CatalogFilters = ({
   searchParams,
   setSearchParams,
 }: FiltersT) => {
+  const queryFilterVariants = [
+    { allItems: ALL_COLORS, queryType: 'color' },
+    { allItems: ALL_MATERIALS, queryType: 'material' },
+    { allItems: ALL_OCCASIONS, queryType: 'occasions' },
+  ];
   return (
     <aside className="catalog-container-sidebar">
       <Categories
@@ -20,24 +25,16 @@ export const CatalogFilters = ({
         setSearchParams={setSearchParams}
       />
       <div className="sidebar-filter-price">Filter by Price:</div>
-      <QueryFilter
-        searchParams={searchParams}
-        setSearchParams={setSearchParams}
-        allItems={ALL_COLORS}
-        queryType={'color'}
-      />
-      <QueryFilter
-        searchParams={searchParams}
-        setSearchParams={setSearchParams}
-        allItems={ALL_MATERIALS}
-        queryType={'material'}
-      />
-      <QueryFilter
-        searchParams={searchParams}
-        setSearchParams={setSearchParams}
-        allItems={ALL_OCCASIONS}
-        queryType={'occasions'}
-      />
+      {queryFilterVariants.map((queryFilterVariant) => (
+        <QueryFilter
+          key={queryFilterVariant.queryType}
+          searchParams={searchParams}
+          setSearchParams={setSearchParams}
+          allItems={queryFilterVariant.allItems}
+          queryType={queryFilterVariant.queryType}
+        />
+      ))}
+
       <div className="sidebar-filter-occasion">Filter by Occasion:</div>
     </aside>
   );

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 
 import { FilterComponentT } from '../../../../types';
 import Button from '../../../buttons/Button';
-import { FilterItem } from '../filterItem/FilterItem';
+import { FilterItem } from './filterItem/FilterItem';
 
 export const QueryFilter = <T,>({
   searchParams,
