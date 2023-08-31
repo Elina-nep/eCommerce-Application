@@ -27,6 +27,7 @@ export function Navigation() {
           <Link
             to={{
               pathname: `/catalog`,
+              search: 'category=all',
             }}
           >
             Catalog

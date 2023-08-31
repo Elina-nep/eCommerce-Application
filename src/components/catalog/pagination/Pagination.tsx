@@ -34,7 +34,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           setSearchParams(searchParams);
         }}
       >
-        &#60; PREV
+        &#8592;
       </Button>
 
       <div className="pagination-button-container-number">
@@ -61,7 +61,7 @@ export const Pagination: React.FC<PaginationProps> = ({
           setSearchParams(searchParams);
         }}
       >
-        NEXT &#8594;
+        &#8594;
       </Button>
     </div>
   );

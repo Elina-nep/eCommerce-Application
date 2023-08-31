@@ -1,16 +1,11 @@
-import { Category } from '@commercetools/platform-sdk';
-import { SetURLSearchParams } from 'react-router-dom';
-
-type CategoryT = {
-  category: Category;
-  searchParams: URLSearchParams;
-  setSearchParams: SetURLSearchParams;
-};
+import { CategoryT } from '../../../../../types';
 
 export const CategoryItem = ({
   category,
   searchParams,
   setSearchParams,
+  isChild,
+  hasChildren,
 }: CategoryT) => {
   return (
     <div
@@ -20,7 +15,9 @@ export const CategoryItem = ({
         searchParams.set('category', `${category.name['en']}`);
         setSearchParams(searchParams);
       }}
-      className="categories-list-item"
+      className={`categories-list-item ${isChild && 'categories-child-item'}  ${
+        hasChildren && 'categories-parent-item'
+      }`}
     >
       {category.name['en']}
     </div>

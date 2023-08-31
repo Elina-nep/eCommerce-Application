@@ -2,12 +2,12 @@ import './Button.scss';
 
 import React from 'react';
 
-type ButtonProps = {
+interface ButtonProps {
   onClick?: () => void;
   children: React.ReactNode;
   className?: string;
   disabled?: boolean;
-};
+}
 
 const Button: React.FC<ButtonProps> = ({
   onClick,

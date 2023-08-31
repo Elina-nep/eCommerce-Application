@@ -1,27 +1,18 @@
 import './SelectSortProperty.scss';
 
 import React, { useState } from 'react';
-import { SetURLSearchParams } from 'react-router-dom';
 
-const options = [
-  { value: '', label: 'default' },
-  { value: 'price asc', label: 'price: low to high' },
-  { value: 'price desc', label: 'price: high to low' },
-  { value: 'name.en asc', label: 'name: a to z' },
-  { value: 'name.en desc', label: 'name: z to a' },
-];
+import {
+  AVAILABLE_SORT_OPTIONS,
+  FilterStandardComponent,
+} from '../../../../types';
 
-type SelectSortPropertyT = {
-  searchParams: URLSearchParams;
-  setSearchParams: SetURLSearchParams;
-};
-
-export const SelectSortProperty: React.FC<SelectSortPropertyT> = ({
+export const SelectSortProperty: React.FC<FilterStandardComponent> = ({
   searchParams,
   setSearchParams,
 }) => {
   const [showSelect, setShowSelect] = useState(false);
-  const currentSort = options.filter(
+  const currentSort = AVAILABLE_SORT_OPTIONS.filter(
     (el) => searchParams.get('sort') === el.value,
   );
 
@@ -40,7 +31,7 @@ export const SelectSortProperty: React.FC<SelectSortPropertyT> = ({
       </div>
       {showSelect && (
         <div className="sort-select-container">
-          {options.map((option) => (
+          {AVAILABLE_SORT_OPTIONS.map((option) => (
             <div
               className="sort-select-item"
               key={option.value}

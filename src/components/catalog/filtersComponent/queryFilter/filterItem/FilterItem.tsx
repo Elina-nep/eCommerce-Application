@@ -1,10 +1,10 @@
 import './FilterItem.scss';
 
-type FilterItemT<T> = {
+interface FilterItemT<T> {
   item: T;
   selectedItems: T[];
   handleItemChange: (item: T) => void;
-};
+}
 
 export const FilterItem = <T,>({
   item,
