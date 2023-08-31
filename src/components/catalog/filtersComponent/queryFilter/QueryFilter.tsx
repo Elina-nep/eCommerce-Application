@@ -2,7 +2,7 @@ import './QueryFilter.scss';
 
 import React, { useEffect, useState } from 'react';
 
-import { FilterComponentT } from '../../../../types';
+import { FilterComponentT, NUMBER_OF_VISIBLE_FILTERS } from '../../../../types';
 import Button from '../../../buttons/Button';
 import { FilterItem } from './filterItem/FilterItem';
 
@@ -43,7 +43,9 @@ export const QueryFilter = <T,>({
   };
 
   const formItems = () => {
-    const visibleMaterials = showAllItems ? allItems : allItems.slice(0, 3);
+    const visibleMaterials = showAllItems
+      ? allItems
+      : allItems.slice(0, NUMBER_OF_VISIBLE_FILTERS);
 
     return (
       <div className="material-list">

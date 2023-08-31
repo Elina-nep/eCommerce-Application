@@ -1,5 +1,7 @@
 import './Categories.scss';
 
+import { useEffect, useState } from 'react';
+
 import { FiltersT } from '../../../../types';
 import { CategoryItem } from './CategoryItem/CategoryItem';
 
@@ -9,38 +11,16 @@ export const Categories = ({
   setSearchParams,
 }: FiltersT) => {
   const defaultCategoryName = 'All Products';
+  const [currentCategory, setCurrentCategory] = useState(
+    searchParams.get('category'),
+  );
+  useEffect(() => {
+    setCurrentCategory(searchParams.get('category'));
+  }, [searchParams]);
+
   const formCategories = () => {
-    // if (categoriesExpanded) {
-    return [
-      //   <Link
-      //     key="all-products"
-      //     className="categories-list-item"
-      //     to={{
-      //       pathname: '/catalog/all',
-      //       //   search: searchParams.toString(),
-      //     }}
-      //     onClick={() => {
-      //       setSearchParams({ ...searchParams, page: '1' });
-      //     }}
-      //   >
-      //     {defaultCategoryName}
-      //   </Link>,
-      <div
-        key="all-products"
-        onClick={() => {
-          searchParams.set('page', `1`);
-          searchParams.set('category', `all`);
-          setSearchParams(searchParams);
-        }}
-        // to={{
-        //   pathname: `/catalog/${category.name['en']}`,
-        //   search: '',
-        // }}
-        className="categories-list-item"
-      >
-        {defaultCategoryName}
-      </div>,
-      ...categories.results.map((el) => {
+    if (currentCategory === 'all') {
+      return categories.results.map((el) => {
         if (!el.parent) {
           return (
             <CategoryItem
@@ -48,35 +28,82 @@ export const Categories = ({
               category={el}
               searchParams={searchParams}
               setSearchParams={setSearchParams}
+              isChild={false}
+              hasChildren={false}
             />
           );
         }
-      }),
-    ];
-    // } else {
-    //   return [
-    //     <li
-    //       key="select-category"
-    //       onClick={() => {
-    //         if (selectedCategory.name !== defaultCategoryName) {
-    //           return;
-    //         }
-    //         setCategoriesExpanded(true);
-    //       }}
-    //     >
-    //       {selectedCategory.name}
-    //       <button
-    //         className="select-category-list"
-    //         onClick={() => {
-    //           handleSortChange('Default sorting', '');
-    //           setCategoriesExpanded(true);
-    //         }}
-    //       >
-    //         &#8592; All Categories
-    //       </button>
-    //     </li>,
-    //   ];
-    // }
+      });
+    } else {
+      return [
+        <div
+          key="all-products"
+          onClick={() => {
+            searchParams.set('page', `1`);
+            searchParams.set('category', `all`);
+            setSearchParams(searchParams);
+          }}
+          className="categories-list-item"
+        >
+          {defaultCategoryName}
+        </div>,
+        categories.results.map((category) => {
+          if (category.name['en'] === currentCategory && !category.parent) {
+            const parentId = category.id;
+            return [
+              <CategoryItem
+                key={parentId}
+                category={category}
+                searchParams={searchParams}
+                setSearchParams={setSearchParams}
+                isChild={true}
+                hasChildren={true}
+              />,
+              categories.results.map((child) => {
+                if (child.parent && child.parent.id === parentId) {
+                  return (
+                    <CategoryItem
+                      key={child.id}
+                      category={child}
+                      searchParams={searchParams}
+                      setSearchParams={setSearchParams}
+                      isChild={true}
+                      hasChildren={false}
+                    />
+                  );
+                }
+              }),
+            ];
+          }
+          if (category.name['en'] === currentCategory && category.parent) {
+            return [
+              categories.results.map((child) => {
+                if (category.parent && category.parent.id === child.id) {
+                  return (
+                    <CategoryItem
+                      key={child.id}
+                      category={child}
+                      searchParams={searchParams}
+                      setSearchParams={setSearchParams}
+                      isChild={true}
+                      hasChildren={true}
+                    />
+                  );
+                }
+              }),
+              <CategoryItem
+                key={category.id}
+                category={category}
+                searchParams={searchParams}
+                setSearchParams={setSearchParams}
+                isChild={true}
+                hasChildren={false}
+              />,
+            ];
+          }
+        }),
+      ];
+    }
   };
 
   return (

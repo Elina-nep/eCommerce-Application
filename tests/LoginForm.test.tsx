@@ -3,12 +3,13 @@ import fetch from 'jest-fetch-mock';
 enableFetchMocks();
 
 import {
+  act,
   fireEvent,
   render,
-  waitFor,
   screen,
-  act,
+  waitFor,
 } from '@testing-library/react';
+
 import { LoginForm } from '../src/components/auth/LoginForm';
 import { AuthProvider } from '../src/context/AuthProvider';
 

@@ -1,14 +1,7 @@
 import './ProductTopInfo.scss';
 
-import { SetURLSearchParams } from 'react-router-dom';
-
+import { ProductTopInfoT } from '../../../types';
 import { SelectSortProperty } from './selectProduct/SelectSortProperty';
-
-type ProductTopInfoT = {
-  searchParams: URLSearchParams;
-  setSearchParams: SetURLSearchParams;
-  productsTotal?: number;
-};
 
 export const ProductTopInfo = ({
   searchParams,
