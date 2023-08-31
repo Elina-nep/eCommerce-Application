@@ -1,12 +1,17 @@
 import { Dispatch, SetStateAction } from 'react';
-import { getCategoriesService, getProductsService } from '../services';
+import {
+  getCategoriesService,
+  getOneProductService,
+  getProductsService,
+} from '../services';
 import {
   CategoryPagedQueryResponse,
+  Product,
   ProductProjectionPagedQueryResponse,
 } from '@commercetools/platform-sdk';
 import { ProductQueryParams } from '../types';
 
-export const getProductsFunc = (
+export const getProducts = (
   setLoading: Dispatch<SetStateAction<boolean>>,
   queryParams?: ProductQueryParams,
 ): Promise<ProductProjectionPagedQueryResponse> => {
@@ -27,9 +32,22 @@ export const getProductsFunc = (
   });
 };
 
-export const getCategoriesFunc = (): Promise<CategoryPagedQueryResponse> => {
+export const getCategories = (): Promise<CategoryPagedQueryResponse> => {
   return new Promise((resolve, reject) => {
     getCategoriesService()
+      .then((body) => {
+        resolve(body.body);
+      })
+      .catch((e) => {
+        const errorMessage = e.message || 'An error occurred';
+        reject(new Error(errorMessage));
+      });
+  });
+};
+
+export const getOneProduct = (id: string): Promise<Product> => {
+  return new Promise((resolve, reject) => {
+    getOneProductService(id)
       .then((body) => {
         resolve(body.body);
       })

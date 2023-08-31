@@ -11,6 +11,7 @@ import { ProfilePage } from '../pages/profile/Profile';
 import { ProtectedNotSignRoute } from './ProtectedNotSignRoute';
 import { AboutPage } from '../pages/about/About';
 import { CartPage } from '../pages/cart/Cart';
+import { ProductPage } from '../pages/product/ProductPage';
 
 export const routerObj = createRoutesFromElements(
   <>
@@ -27,6 +28,7 @@ export const routerObj = createRoutesFromElements(
         <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/product/:id" element={<ProductPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Route>
