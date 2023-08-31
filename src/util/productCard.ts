@@ -7,7 +7,8 @@ export function getProductCardPrice(
   const prices = product.masterVariant.prices || [];
   for (const price of prices) {
     if (price.value.currencyCode === currency) {
-      return price.value.centAmount / 100;
+      const formattedPrice = (price.value.centAmount / 100).toFixed(2);
+      return `${formattedPrice} ${currency}`;
     }
   }
   return 'Not Available';
@@ -21,4 +22,17 @@ export const getProductCardImage = (product: ProductProjection) => {
   if (imageMasterVariant) {
     return imageMasterVariant[0];
   }
+};
+
+export const getProductCardDescription = (
+  product: ProductProjection,
+  language: string,
+) => {
+  const description = product.description![language];
+
+  if (description.length > 40) {
+    return description.slice(0, 40) + '...';
+  }
+
+  return description;
 };

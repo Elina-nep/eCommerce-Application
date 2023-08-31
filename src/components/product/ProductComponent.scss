@@ -53,6 +53,9 @@
   height: 100%;
   position: relative;
   overflow: hidden;
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .product__image img {

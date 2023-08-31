@@ -20,7 +20,11 @@ export {
   getProductImages,
   getProductPrice,
 } from './product';
-export { getProductCardImage, getProductCardPrice } from './productCard';
+export {
+  getProductCardDescription,
+  getProductCardImage,
+  getProductCardPrice,
+} from './productCard';
 export { defaultCatalogeResponse, defaultProductData } from './productConstans';
 export { CURRENCY, LANGUAGE } from './productConstans';
 export { getExistingToken, tokenCache, userTokenCache } from './tokenProcess';

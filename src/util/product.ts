@@ -86,11 +86,15 @@ export function formatAttributes(attributes: string[] | string) {
   }
 }
 
-export function getProductPrice(product: ProductCatalogData, currency: string) {
+export function getProductPrice(
+  product: ProductCatalogData,
+  currency: string,
+): string {
   const prices = product.current.masterVariant.prices || [];
   for (const price of prices) {
     if (price.value.currencyCode === currency) {
-      return `${price.value.centAmount / 100} ${currency}`;
+      const formattedPrice = (price.value.centAmount / 100).toFixed(2);
+      return `${formattedPrice} ${currency}`;
     }
   }
   return 'Not Available';
