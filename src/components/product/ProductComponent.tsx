@@ -48,7 +48,8 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleOpenModal = () => {
+  const handleOpenModal = (index: number) => {
+    setCurrentImageIndex(index);
     setIsModalOpen(true);
   };
 
@@ -66,6 +67,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
           images={productImages}
           closeModal={closeModal}
           alt={title}
+          modalImageIndex={currentImageIndex}
         />
       )}
       <div className="product__slider">
@@ -75,7 +77,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
         <div className="product__image">
           {productImages?.length && (
             <img
-              onClick={handleOpenModal}
+              onClick={() => handleOpenModal(currentImageIndex)}
               src={productImages[currentImageIndex]}
               alt={title}
             />

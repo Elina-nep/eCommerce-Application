@@ -8,6 +8,7 @@ import Button from '../../buttons/Button';
 export const ProductModal: React.FC<IProductModalProps> = ({
   images,
   alt,
+  modalImageIndex,
   closeModal,
 }) => {
   const modalContentRef = useRef<HTMLDivElement>(null);
@@ -17,17 +18,21 @@ export const ProductModal: React.FC<IProductModalProps> = ({
   ) => {
     e.stopPropagation();
   };
+  const [currentImageIndexModal, setCurrentImageIndexModal] =
+    useState(modalImageIndex);
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  useEffect(() => {
+    setCurrentImageIndexModal(modalImageIndex);
+  }, [modalImageIndex]);
 
   const showNextImage = () => {
     images &&
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+      setCurrentImageIndexModal((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   const showPreviousImage = () => {
     images &&
-      setCurrentImageIndex((prevIndex) =>
+      setCurrentImageIndexModal((prevIndex) =>
         prevIndex === 0 ? images.length - 1 : prevIndex - 1,
       );
   };
@@ -73,7 +78,7 @@ export const ProductModal: React.FC<IProductModalProps> = ({
             {'<'}
           </Button>
           <div className="product_modal__image">
-            {images && <img src={images[currentImageIndex]} alt={alt} />}
+            {images && <img src={images[currentImageIndexModal]} alt={alt} />}
           </div>
 
           <Button onClick={showNextImage} className="button-pagination">
