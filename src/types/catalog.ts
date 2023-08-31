@@ -37,3 +37,5 @@ export const AVAILABLE_SORT_OPTIONS = [
   { value: 'name.en asc', label: 'name: a to z' },
   { value: 'name.en desc', label: 'name: z to a' },
 ];
+
+export const NUMBER_OF_VISIBLE_FILTERS = 4;

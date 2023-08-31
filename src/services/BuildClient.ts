@@ -17,8 +17,6 @@ const scopes = [process.env.REACT_APP_SCOPES!];
 const clientId = process.env.REACT_APP_CLIENT_ID;
 const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
 
-console.log(tokenCache);
-
 // Configure authMiddlewareOptions
 const authAnonMiddlewareOptions: AuthMiddlewareOptions = {
   host: process.env.REACT_APP_AUTH_URL!,

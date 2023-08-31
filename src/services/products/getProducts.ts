@@ -14,7 +14,6 @@ type queryArgs = {
 };
 
 export const getProductsService = (queryParams?: ProductQueryParams) => {
-  console.log(queryParams);
   const lang = queryParams?.lang ? queryParams.lang : 'en';
   const queryArgs: queryArgs = {
     staged: false,
@@ -67,6 +66,5 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
   if (queryParams?.sort) {
     queryArgs.sort.unshift(queryParams.sort);
   }
-  console.log(queryArgs);
   return formFlow().productProjections().search().get({ queryArgs }).execute();
 };

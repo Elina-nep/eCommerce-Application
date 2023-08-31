@@ -14,7 +14,6 @@ export const Categories = ({
   const [currentCategory, setCurrentCategory] = useState(
     searchParams.get('category'),
   );
-  console.log(categories);
   useEffect(() => {
     setCurrentCategory(searchParams.get('category'));
   }, [searchParams]);

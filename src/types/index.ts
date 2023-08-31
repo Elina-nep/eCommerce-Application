@@ -7,7 +7,7 @@ export type {
   FilterStandardComponent,
   ProductTopInfoT,
 } from './catalog';
-export { AVAILABLE_SORT_OPTIONS } from './catalog';
+export { AVAILABLE_SORT_OPTIONS, NUMBER_OF_VISIBLE_FILTERS } from './catalog';
 export type { CustomerChanges, Password } from './customer';
 export type { FormErrorProps } from './form';
 export type { ILoginCustomer } from './login';
