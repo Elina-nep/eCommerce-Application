@@ -1,6 +1,10 @@
 export type { CardProps } from './cards';
 export type { HeadProps } from './cart';
-export type { FilterComponentT, FiltersT } from './catalog';
+export type {
+  FilterComponentT,
+  FiltersT,
+  FilterStandardComponent,
+} from './catalog';
 export type { CustomerChanges, Password } from './customer';
 export type { FormErrorProps } from './form';
 export type { ILoginCustomer } from './login';

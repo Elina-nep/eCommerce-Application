@@ -21,8 +21,8 @@ export const ALL_MATERIALS: Material[] = [
 ];
 
 export type FilterPrice = {
-  from?: number;
-  to?: number;
+  from?: string;
+  to?: string;
 };
 export type ProductQueryParams = {
   categoryId?: string;

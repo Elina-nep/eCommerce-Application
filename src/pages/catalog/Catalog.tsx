@@ -73,6 +73,10 @@ export const CatalogPage = () => {
           occasions: searchParams.getAll('occasions') || undefined,
           categoryName: searchParams.get('category') || 'all',
           categoryId: currentCategoryId,
+          filterPrice: {
+            to: searchParams.get('priceTo') || undefined,
+            from: searchParams.get('priceFrom') || undefined,
+          },
         });
         setLoaded(true);
       })
@@ -96,6 +100,10 @@ export const CatalogPage = () => {
       colors: searchParams.getAll('color'),
       materials: searchParams.getAll('material'),
       occasions: searchParams.getAll('occasions'),
+      filterPrice: {
+        to: searchParams.get('priceTo') || undefined,
+        from: searchParams.get('priceFrom') || undefined,
+      },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);

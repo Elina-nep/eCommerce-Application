@@ -1,3 +1,5 @@
+import './CatalogFilters.scss';
+
 import {
   ALL_COLORS,
   ALL_MATERIALS,
@@ -5,6 +7,7 @@ import {
   FiltersT,
 } from '../../../types';
 import { Categories } from './categories/Categories';
+import { PriceFilter } from './priceFilter/PriceFilter';
 import { QueryFilter } from './queryFilter/QueryFilter';
 
 export const CatalogFilters = ({
@@ -24,7 +27,6 @@ export const CatalogFilters = ({
         searchParams={searchParams}
         setSearchParams={setSearchParams}
       />
-      <div className="sidebar-filter-price">Filter by Price:</div>
       {queryFilterVariants.map((queryFilterVariant) => (
         <QueryFilter
           key={queryFilterVariant.queryType}
@@ -34,8 +36,10 @@ export const CatalogFilters = ({
           queryType={queryFilterVariant.queryType}
         />
       ))}
-
-      <div className="sidebar-filter-occasion">Filter by Occasion:</div>
+      <PriceFilter
+        searchParams={searchParams}
+        setSearchParams={setSearchParams}
+      />
     </aside>
   );
 };
