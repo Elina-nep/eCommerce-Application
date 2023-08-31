@@ -1,4 +1,4 @@
-import { createRoutesFromElements, Navigate, Route } from 'react-router-dom';
+import { createRoutesFromElements, Route } from 'react-router-dom';
 
 import { NotFound } from '../pages/404/NotFound';
 import { AboutPage } from '../pages/about/About';
@@ -26,8 +26,7 @@ export const routerObj = createRoutesFromElements(
         <Route element={<ProtectedNotSignRoute />}>
           <Route path="/me" element={<ProfilePage />} />
         </Route>
-        <Route path="/catalog/:category" element={<CatalogPage />} />
-        <Route path="/catalog/*" element={<Navigate to="/catalog/all" />} />
+        <Route path="/catalog" element={<CatalogPage />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/cart" element={<CartPage />} />
         <Route path="/product/:id" element={<ProductPage />} />

@@ -1,18 +1,20 @@
 import './Pagination.scss';
 
-import { Button } from '@mui/material';
 import React from 'react';
+import { SetURLSearchParams } from 'react-router-dom';
+
+import Button from '../../buttons/Button';
 
 type PaginationProps = {
-  currentPage: number;
   totalPages: number | undefined;
-  onPageChange: (pageNumber: number) => void;
+  searchParams: URLSearchParams;
+  setSearchParams: SetURLSearchParams;
 };
 
-const Pagination: React.FC<PaginationProps> = ({
-  currentPage,
-  totalPages = 0,
-  onPageChange,
+export const Pagination: React.FC<PaginationProps> = ({
+  totalPages = 1,
+  searchParams,
+  setSearchParams,
 }) => {
   const pageNumbers = [];
 
@@ -20,40 +22,47 @@ const Pagination: React.FC<PaginationProps> = ({
     pageNumbers.push(i);
   }
 
+  const currentPage = Number(searchParams.get('page') || 1);
+
   return (
     <div className="pagination">
       <Button
         className="pagination-button"
-        disabled={currentPage === 1}
-        onClick={() => currentPage > 1 && onPageChange(currentPage - 1)}
+        disabled={currentPage <= 1}
+        onClick={() => {
+          searchParams.set('page', `${currentPage - 1}`);
+          setSearchParams(searchParams);
+        }}
       >
         &#60; PREV
       </Button>
+
       <div className="pagination-button-container-number">
         {pageNumbers.map((page) => (
-          <button
+          <Button
             key={page}
             className={`pagination-button-number ${
               currentPage === page ? 'active' : ''
             }`}
-            onClick={() => onPageChange(page)}
+            onClick={() => {
+              searchParams.set('page', `${page}`);
+              setSearchParams(searchParams);
+            }}
           >
             {page}
-          </button>
+          </Button>
         ))}
       </div>
-
-      <button
+      <Button
         className="pagination-button"
-        disabled={currentPage === totalPages}
-        onClick={() =>
-          currentPage < totalPages && onPageChange(currentPage + 1)
-        }
+        disabled={currentPage >= totalPages}
+        onClick={() => {
+          searchParams.set('page', `${currentPage + 1}`);
+          setSearchParams(searchParams);
+        }}
       >
         NEXT &#8594;
-      </button>
+      </Button>
     </div>
   );
 };
-
-export default Pagination;

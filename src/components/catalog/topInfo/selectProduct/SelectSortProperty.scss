@@ -1,0 +1,47 @@
+.sort-select {
+  position: relative;
+}
+
+.sort-select-title {
+  cursor: pointer;
+  padding: 0.5rem;
+  background-color: var(--secondary-color-light);
+  border-radius: 2px;
+  width: 300px;
+  transition: all 0.5s;
+  &:hover {
+    background-color: var(--primary-color-light);
+    color: var(--light-color);
+    .current-sort {
+      color: var(--light-color);
+    }
+  }
+}
+
+.current-sort {
+  color: var(--primary-color-light);
+  transition: all 0.5s;
+}
+
+.sort-select-container {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: absolute;
+  background-color: var(--light-color);
+  padding: 0.5rem;
+  width: 300px;
+  z-index: 10;
+}
+
+.sort-select-item {
+  flex: 1;
+  display: block;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--secondary-color);
+  transition: all 0.5s;
+  &:hover {
+    color: var(--primary-color-light);
+  }
+}

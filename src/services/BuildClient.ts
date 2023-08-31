@@ -10,12 +10,14 @@ import {
 } from '@commercetools/sdk-client-v2';
 import fetch from 'node-fetch';
 
-import { getExistingToken, tokenCache } from '../util';
+import { getExistingToken, tokenCache } from '../util/tokenProcess';
 
 export const projectKey = process.env.REACT_APP_PROJECT_KEY!;
 const scopes = [process.env.REACT_APP_SCOPES!];
 const clientId = process.env.REACT_APP_CLIENT_ID;
 const clientSecret = process.env.REACT_APP_CLIENT_SECRET;
+
+console.log(tokenCache);
 
 // Configure authMiddlewareOptions
 const authAnonMiddlewareOptions: AuthMiddlewareOptions = {

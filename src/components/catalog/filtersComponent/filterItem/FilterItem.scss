@@ -1,0 +1,19 @@
+.filter-checkbox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-item {
+  width: 100%;
+  cursor: pointer;
+  &:hover {
+    background-color: var(--secondary-color-light);
+  }
+  &.active {
+    background-color: var(--primary-color-light);
+  }
+  &.active:hover {
+    background-color: var(--secondary-color);
+  }
+}

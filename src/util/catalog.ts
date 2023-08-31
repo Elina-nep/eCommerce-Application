@@ -58,3 +58,12 @@ export const getOneProduct = (id: string): Promise<Product> => {
       });
   });
 };
+
+export const findCurrentCategoryId = (
+  categories: CategoryPagedQueryResponse,
+  name: string,
+) => {
+  return (
+    categories.results.find((element) => element.name['en'] === name)?.id || ''
+  );
+};

@@ -8,27 +8,39 @@ export type Material =
   | 'plastic'
   | 'wood'
   | 'metal';
+
+export const ALL_MATERIALS: Material[] = [
+  'latex',
+  'foil',
+  'paper',
+  'fabric',
+  'wood',
+  'plastic',
+  'metal',
+  'mixed',
+];
+
 export type FilterPrice = {
   from?: number;
   to?: number;
 };
 export type ProductQueryParams = {
   categoryId?: string;
-  sort?: Sorting;
+  categoryName?: string;
+  sort?: string;
   filter?: string;
   filterPrice?: FilterPrice;
   available?: boolean;
-  colors?: Colors[];
+  colors?: string[];
   lang?: 'ru' | 'en';
   queryText?: string;
   pageNum?: number;
-  materials?: Material[];
+  materials?: string[];
+  occasions?: string[];
 };
 
 export type Colors =
   | 'black'
-  | 'grey'
-  | 'beige'
   | 'white'
   | 'blue'
   | 'brown'
@@ -41,3 +53,33 @@ export type Colors =
   | 'gold'
   | 'silver'
   | 'multicolored';
+
+export const ALL_COLORS: Colors[] = [
+  'black',
+  'white',
+  'blue',
+  'brown',
+  'green',
+  'red',
+  'purple',
+  'pink',
+  'orange',
+  'yellow',
+  'gold',
+  'silver',
+  'multicolored',
+];
+export type Occasions =
+  | 'birthday'
+  | 'love'
+  | 'other holidays'
+  | 'christmas'
+  | 'children';
+
+export const ALL_OCCASIONS: Occasions[] = [
+  'birthday',
+  'love',
+  'other holidays',
+  'christmas',
+  'children',
+];

@@ -1,0 +1,74 @@
+import './QueryFilter.scss';
+
+import React, { useState } from 'react';
+
+import { FilterComponentT } from '../../../../types';
+import Button from '../../../buttons/Button';
+import { FilterItem } from '../filterItem/FilterItem';
+
+export const QueryFilter = <T,>({
+  searchParams,
+  setSearchParams,
+  allItems,
+  queryType,
+}: React.PropsWithChildren<FilterComponentT<T>>): React.ReactElement => {
+  const [showAllItems, setShowAllItems] = useState(false);
+  const [selectedItems, setSelectedItems] = useState<T[]>(
+    searchParams.getAll(queryType) as T[],
+  );
+
+  const handleResetItems = () => {
+    searchParams.delete(queryType);
+    setSearchParams(searchParams);
+    setSelectedItems([]);
+  };
+
+  const handleItemsChange = (selectedItem: T) => {
+    setSelectedItems((prevSelectedItems) => {
+      const newSelectedItems = prevSelectedItems.includes(selectedItem)
+        ? prevSelectedItems.filter((item) => item !== selectedItem)
+        : [...prevSelectedItems, selectedItem];
+      searchParams.delete(queryType);
+      newSelectedItems.forEach((el) => {
+        searchParams.append(queryType, el as string);
+      });
+      setSearchParams(searchParams);
+
+      return newSelectedItems;
+    });
+  };
+
+  const formItems = () => {
+    const visibleMaterials = showAllItems ? allItems : allItems.slice(0, 3);
+
+    return (
+      <div className="material-list">
+        {visibleMaterials.map((item) => (
+          <FilterItem
+            key={item as string}
+            item={item}
+            selectedItems={selectedItems}
+            handleItemChange={handleItemsChange}
+          />
+        ))}
+      </div>
+    );
+  };
+
+  return (
+    <div className="sidebar-filter-material">
+      Filter by {queryType}: {formItems()}
+      <div>
+        <Button
+          className="colors-button-show-all"
+          onClick={() => setShowAllItems(!showAllItems)}
+        >
+          {showAllItems ? 'Hide' : 'Show all'}
+        </Button>
+        <Button className="colors-button-reset" onClick={handleResetItems}>
+          Reset
+        </Button>
+      </div>
+    </div>
+  );
+};

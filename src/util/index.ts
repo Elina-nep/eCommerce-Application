@@ -4,7 +4,12 @@ export {
   loginCustomerFunc,
   logOutFunc,
 } from './auth';
-export { getCategories, getOneProduct, getProducts } from './catalog';
+export {
+  findCurrentCategoryId,
+  getCategories,
+  getOneProduct,
+  getProducts,
+} from './catalog';
 export { cards, PRODUCTS_ON_PAGE } from './constants';
 export { getCustomerFunc } from './customer';
 export { columns, links } from './footerConstants';

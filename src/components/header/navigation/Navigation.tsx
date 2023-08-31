@@ -26,8 +26,7 @@ export function Navigation() {
         <div className={`menu-links ${menuOpen ? 'active' : ''}`}>
           <Link
             to={{
-              pathname: `/catalog/all`,
-              search: '?sort=name asc',
+              pathname: `/catalog`,
             }}
           >
             Catalog
