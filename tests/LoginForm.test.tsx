@@ -3,12 +3,13 @@ import fetch from 'jest-fetch-mock';
 enableFetchMocks();
 
 import {
+  act,
   fireEvent,
   render,
-  waitFor,
   screen,
-  act,
+  waitFor,
 } from '@testing-library/react';
+
 import { LoginForm } from '../src/components/auth/LoginForm';
 import { AuthProvider } from '../src/context/AuthProvider';
 
@@ -32,6 +33,8 @@ test('checks wrong email', async () => {
       <LoginForm />
     </AuthProvider>,
   );
+
+  await waitFor(() => expect(fetch).toHaveBeenCalledTimes(4));
   expect(wrapper).toBeTruthy();
 
   const inputs = {
@@ -39,25 +42,28 @@ test('checks wrong email', async () => {
     password: wrapper.container.querySelector('#loginPassword'),
   };
 
-  fireEvent.change(inputs.email!, {
-    target: {
-      value: 'email@email',
-    },
-  });
+  console.log(wrapper.container);
+  await act(async () => {
+    fireEvent.change(inputs.email!, {
+      target: {
+        value: 'email@email',
+      },
+    });
 
-  fireEvent.change(inputs.password!, {
-    target: {
-      value: 'aaAA11!!',
-    },
-  });
+    fireEvent.change(inputs.password!, {
+      target: {
+        value: 'aaAA11!!',
+      },
+    });
 
-  fireEvent(
-    wrapper.container.querySelector('.login-page__btn')!,
-    new MouseEvent('click', {
-      bubbles: true,
-      cancelable: true,
-    }),
-  );
+    fireEvent(
+      wrapper.container.querySelector('.login-page__btn')!,
+      new MouseEvent('click', {
+        bubbles: true,
+        cancelable: true,
+      }),
+    );
+  });
 
   await waitFor(() => {
     const error = wrapper.container.querySelector('.Mui-error');

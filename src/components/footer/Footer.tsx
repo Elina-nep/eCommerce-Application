@@ -1,9 +1,11 @@
-import React, { useContext } from 'react';
 import './Footer.css';
+
+import React, { useContext } from 'react';
+import { Link } from 'react-router-dom';
+
+import { AuthContext } from '../../context/AuthProvider';
 import { links } from '../../util/index';
 import LinkList from './FooterLink';
-import { AuthContext } from '../../context/AuthProvider';
-import { Link } from 'react-router-dom';
 
 export const Footer: React.FC = () => {
   const { categories } = useContext(AuthContext);
@@ -17,11 +19,23 @@ export const Footer: React.FC = () => {
       <div className="footer__column">
         <h3>Catalog</h3>
         <ul>
-          {categories.map((el) => (
-            <li key={el.id}>
-              <Link to={'/catalog'}>{el.name['en']}</Link>
-            </li>
-          ))}
+          {categories.map((el) => {
+            if (!el.parent) {
+              return (
+                <li key={el.id}>
+                  <Link
+                    to={{
+                      pathname: '/catalog',
+                      search: `?${el.name['en']}`,
+                    }}
+                  >
+                    {el.name['en']}
+                  </Link>
+                </li>
+              );
+            }
+            return;
+          })}
         </ul>
       </div>
 

@@ -1,0 +1,16 @@
+.product-info-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.product-item-number {
+  display: flex;
+  justify-content: end;
+  padding: 1rem 0;
+  gap: 3px;
+}
+
+.product-count {
+  font-weight: 600;
+}

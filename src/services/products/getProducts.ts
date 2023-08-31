@@ -18,10 +18,11 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
   const queryArgs: queryArgs = {
     staged: false,
     filter: [],
-    sort: [`name.${lang} asc`],
-    offset: queryParams?.pageNum
-      ? queryParams?.pageNum * PRODUCTS_ON_PAGE + 1
-      : 0,
+    sort: [`id asc`],
+    offset:
+      queryParams?.pageNum && queryParams?.pageNum - 1
+        ? (queryParams?.pageNum - 1) * PRODUCTS_ON_PAGE + 1
+        : 0,
     limit: PRODUCTS_ON_PAGE,
   };
 
@@ -30,9 +31,23 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
     queryArgs.fuzzy = true;
   }
 
-  if (queryParams?.colors) {
+  if (queryParams?.colors?.length && queryParams?.colors?.length > 0) {
     queryArgs.filter.push(
       `variants.attributes.color.key:"${queryParams?.colors.join(`","`)}"`,
+    );
+  }
+  if (queryParams?.materials?.length && queryParams?.materials?.length > 0) {
+    queryArgs.filter.push(
+      `variants.attributes.material.key:"${queryParams?.materials.join(
+        `","`,
+      )}"`,
+    );
+  }
+  if (queryParams?.occasions?.length && queryParams?.occasions?.length > 0) {
+    queryArgs.filter.push(
+      `variants.attributes.occasions.key:"${queryParams?.occasions.join(
+        `","`,
+      )}"`,
     );
   }
   if (queryParams?.available) {
@@ -41,16 +56,15 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
   if (queryParams?.categoryId) {
     queryArgs.filter.push(`categories.id:"${queryParams.categoryId}"`);
   }
-  if (queryParams?.filterPrice) {
+  if (queryParams?.filterPrice?.from || queryParams?.filterPrice?.to) {
     queryArgs.filter.push(
       `variants.price.centAmount:range (${
         queryParams.filterPrice.from || '*'
-      } to ${queryParams.filterPrice.from || '*'}})`,
+      } to ${queryParams.filterPrice.to || '*'})`,
     );
   }
   if (queryParams?.sort) {
-    queryArgs.sort[0] = queryParams.sort;
+    queryArgs.sort.unshift(queryParams.sort);
   }
-
   return formFlow().productProjections().search().get({ queryArgs }).execute();
 };

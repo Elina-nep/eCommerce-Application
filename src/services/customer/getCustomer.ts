@@ -1,6 +1,7 @@
 import { MyCustomerUpdate } from '@commercetools/platform-sdk';
-import { formFlow } from '../BuildClient';
+
 import { CustomerChanges, Password } from '../../types';
+import { formFlow } from '../BuildClient';
 
 export const getCustomerService = async () => formFlow().me().get().execute();
 

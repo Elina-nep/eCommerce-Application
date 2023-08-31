@@ -1,18 +1,20 @@
+import './ProductPage.scss';
+
+import {
+  CategoryPagedQueryResponse,
+  Product,
+} from '@commercetools/platform-sdk';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import {
-  Product,
-  CategoryPagedQueryResponse,
-} from '@commercetools/platform-sdk';
-import {
-  getOneProduct,
-  getCategories,
-  defaultProductData,
-  defaultCatalogeResponse,
-} from '../../util';
+
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
 import { ProductComponent } from '../../components/product/ProductComponent';
-import './ProductPage.scss';
+import {
+  defaultCatalogeResponse,
+  defaultProductData,
+  getCategories,
+  getOneProduct,
+} from '../../util';
 
 export const ProductPage = () => {
   const params = useParams();

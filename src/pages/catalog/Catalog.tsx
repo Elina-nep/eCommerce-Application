@@ -1,17 +1,24 @@
-import { useEffect, useState } from 'react';
+import './Catalog.scss';
+
 import {
   CategoryPagedQueryResponse,
   ProductProjectionPagedQueryResponse,
 } from '@commercetools/platform-sdk';
-import Button from '../../components/buttons/Button';
+import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
+
+import { CatalogFilters } from '../../components/catalog/filtersComponent/CatalogFilters';
+import { Pagination } from '../../components/catalog/pagination/Pagination';
+import { ProductCard } from '../../components/catalog/productCard/ProductCard';
+import { ProductTopInfo } from '../../components/catalog/topInfo/ProductTopInfo';
 import LoadingSpinner from '../../components/loading/LoadingSpinner';
-import { getCategories, getProducts, PRODUCTS_ON_PAGE } from '../../util';
-import { ProductQueryParams, Sorting } from '../../types';
-import './Catalog.scss';
-import { Select } from '../../components/productselect/productselect';
-import Pagination from '../../components/pagination/Pagination';
-import { Colors } from '../../types/products';
-import { ProductCard } from '../../components/productCard/ProductCard';
+import { ProductQueryParams } from '../../types';
+import {
+  findCurrentCategoryId,
+  getCategories,
+  getProducts,
+  PRODUCTS_ON_PAGE,
+} from '../../util';
 
 const defaultResponse = {
   limit: 0,
@@ -21,78 +28,20 @@ const defaultResponse = {
 };
 
 export const CatalogPage = () => {
+  const [searchParams, setSearchParams] = useSearchParams();
+
   const [products, setProducts] =
     useState<ProductProjectionPagedQueryResponse>(defaultResponse);
   const [categories, setCategories] =
     useState<CategoryPagedQueryResponse>(defaultResponse);
   const [loading, setLoading] = useState(false);
-  const defaultCategoryName = 'All Products';
-  const [selectedCategoryName, setSelectedCategoryName] =
-    useState<string>(defaultCategoryName);
-  const [selectedCategoryId, setSelectedCategoryId] = useState<string>('');
-  const handleSortChange = (sort: string, category?: string) => {
-    const categoryId = category !== undefined ? category : selectedCategoryId;
-    const newSorting =
-      sort === 'Default sorting' ? undefined : (sort as Sorting);
-    setSorting(newSorting);
-    handleGetProducts({ sort: newSorting, categoryId });
-  };
-  const [selectedColors, setSelectedColors] = useState<Colors[]>([]);
-  const handleColorChange = (selectedColor: Colors) => {
-    if (selectedColors.includes(selectedColor)) {
-      setSelectedColors(
-        selectedColors.filter((color) => color !== selectedColor),
-      );
-    } else {
-      setSelectedColors([...selectedColors, selectedColor]);
-    }
+  const [loaded, setLoaded] = useState(false);
 
-    handleGetProducts({
-      sort: sorting,
-      categoryId: selectedCategoryId,
-      colors: selectedColors,
-      pageNum: currentPage - 1,
-    });
-  };
+  const [queryParams, setQueryParams] = useState<ProductQueryParams>({});
 
-  const formColors = () => {
-    return [
-      'black',
-      'white',
-      'blue',
-      'brown',
-      'green',
-      'red',
-      'purple',
-      'pink',
-      'orange',
-      'yellow',
-      'gold',
-      'silver',
-      'multicolored',
-    ].map((color) => (
-      <li
-        key={color}
-        className={`color-item${
-          selectedColors.includes(color as Colors) ? ' selected' : ''
-        }`}
-        onClick={() => handleColorChange(color as Colors)}
-      >
-        {color}
-      </li>
-    ));
-  };
-  const [currentPage, setCurrentPage] = useState(1);
-  const [sorting, setSorting] = useState<Sorting | undefined>(undefined);
-  const handleGetProducts = (queryParams?: ProductQueryParams) => {
-    if (queryParams && queryParams.categoryId) {
-      setSelectedCategoryId(queryParams.categoryId);
-    } else {
-      setSelectedCategoryId('');
-    }
+  const handleGetProducts = (queryParams: ProductQueryParams) => {
     getProducts(setLoading, queryParams)
       .then((body) => {
-        console.log(body);
         setProducts(body);
       })
       .catch((e) => {
@@ -101,100 +50,97 @@ export const CatalogPage = () => {
   };
 
   useEffect(() => {
-    handleGetProducts();
+    if (loaded) {
+      handleGetProducts(queryParams);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [queryParams]);
+
+  useEffect(() => {
     getCategories()
       .then((body) => {
         setCategories(body);
+        const currentCategoryId = findCurrentCategoryId(
+          body,
+          searchParams.get('category') || '',
+        );
+        setQueryParams({
+          ...queryParams,
+          sort: searchParams.get('sort') || undefined,
+          pageNum: Number(searchParams.get('number')) || 1,
+          colors: searchParams.getAll('color') || undefined,
+          materials: searchParams.getAll('material') || undefined,
+          occasions: searchParams.getAll('occasions') || undefined,
+          categoryName: searchParams.get('category') || 'all',
+          categoryId: currentCategoryId,
+          filterPrice: {
+            to: searchParams.get('priceTo') || undefined,
+            from: searchParams.get('priceFrom') || undefined,
+          },
+        });
+        setLoaded(true);
       })
       .catch((e) => {
         console.log(e);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const formProducts = () => {
-    return products.results.map((el) => (
-      <ProductCard key={el.id} product={el} />
-    ));
-  };
-
-  const formCategories = () => {
-    return [
-      <li
-        key="all-products"
-        onClick={() => {
-          handleGetProducts({ categoryId: '' });
-          setSelectedCategoryName(defaultCategoryName);
-        }}
-      >
-        {defaultCategoryName}
-      </li>,
-      ...categories.results.map((el) => {
-        const name = el.name['en'];
-        return (
-          <li
-            key={el.id}
-            onClick={() => {
-              handleGetProducts({ categoryId: el.id });
-              setSelectedCategoryName(name);
-            }}
-          >
-            {name}
-          </li>
-        );
-      }),
-    ];
-  };
+  useEffect(() => {
+    const currentCategoryId = findCurrentCategoryId(
+      categories,
+      searchParams.get('category') || '',
+    );
+    setQueryParams({
+      ...queryParams,
+      sort: searchParams.get('sort') || undefined,
+      pageNum: searchParams.get('page') ? Number(searchParams.get('page')) : 0,
+      categoryName: searchParams.get('category') || 'all',
+      categoryId: currentCategoryId,
+      colors: searchParams.getAll('color'),
+      materials: searchParams.getAll('material'),
+      occasions: searchParams.getAll('occasions'),
+      filterPrice: {
+        to: searchParams.get('priceTo') || undefined,
+        from: searchParams.get('priceFrom') || undefined,
+      },
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   return (
-    <main className="main-container-catalog">
+    <main className="main-container main-container-catalog">
       <div className="catalog-container">
-        {products.total !== undefined && (
-          <Pagination
-            currentPage={currentPage}
-            totalPages={Math.ceil(products.total / PRODUCTS_ON_PAGE)}
-            onPageChange={(newPage) => {
-              setCurrentPage(newPage);
-              handleGetProducts({
-                sort: sorting,
-                categoryId: selectedCategoryId,
-                pageNum: newPage - 1,
-              });
-            }}
-          />
-        )}
-        <div className="catalog-container-sorting">
-          <div>
-            {selectedCategoryName ? `Showing ${selectedCategoryName}` : ''}
-            {/*DELETE*/}
-          </div>
-          <div className="product-item-number">
-            Showing all {products.total} results
-          </div>
-          <Select
-            onSortChange={handleSortChange}
-            category={selectedCategoryId}
-          />
-        </div>
+        <ProductTopInfo
+          searchParams={searchParams}
+          setSearchParams={setSearchParams}
+          productsTotal={products.total}
+        />
+
         <div className="catalog-container-product">
-          <aside className="catalog-container-sidebar">
-            <div className="sidebar-filter-category">
-              Filter by Category:
-              <p>Categories</p>
-              <ul>{formCategories()}</ul>
-              <Button onClick={handleGetProducts}>get products</Button>
-            </div>
-            <div className="sidebar-filter-price">Filter by Price:</div>
-            <div className="sidebar-filter-color">
-              Filter by Colors:
-              <ul className="color-list">{formColors()}</ul>
-            </div>
-            <div className="sidebar-filter-material">Filter by Materials:</div>
-            <div className="sidebar-filter-occasion">Filter by Occasion:</div>
-          </aside>
-          <section className="product-card-wrapper">
-            {loading && <LoadingSpinner />}
-            {!loading && !!products.count && formProducts()}
-          </section>
+          <CatalogFilters
+            categories={categories}
+            searchParams={searchParams}
+            setSearchParams={setSearchParams}
+          />
+
+          <div className="catalog-container-right-side">
+            <section className="product-card-wrapper">
+              {loading && <LoadingSpinner />}
+              {!loading &&
+                !!products.total &&
+                products.results.map((product) => (
+                  <ProductCard product={product} key={product.id} />
+                ))}
+            </section>
+            {!!products.total && !loading && (
+              <Pagination
+                totalPages={Math.ceil(products.total / PRODUCTS_ON_PAGE)}
+                searchParams={searchParams}
+                setSearchParams={setSearchParams}
+              />
+            )}
+          </div>
         </div>
       </div>
     </main>

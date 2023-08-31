@@ -1,14 +1,15 @@
-import { Dispatch, SetStateAction } from 'react';
-import {
-  getCategoriesService,
-  getOneProductService,
-  getProductsService,
-} from '../services';
 import {
   CategoryPagedQueryResponse,
   Product,
   ProductProjectionPagedQueryResponse,
 } from '@commercetools/platform-sdk';
+import { Dispatch, SetStateAction } from 'react';
+
+import {
+  getCategoriesService,
+  getOneProductService,
+  getProductsService,
+} from '../services';
 import { ProductQueryParams } from '../types';
 
 export const getProducts = (
@@ -56,4 +57,13 @@ export const getOneProduct = (id: string): Promise<Product> => {
         reject(new Error(errorMessage));
       });
   });
+};
+
+export const findCurrentCategoryId = (
+  categories: CategoryPagedQueryResponse,
+  name: string,
+) => {
+  return (
+    categories.results.find((element) => element.name['en'] === name)?.id || ''
+  );
 };

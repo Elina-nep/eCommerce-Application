@@ -1,9 +1,11 @@
+import './Head.scss';
+
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { AuthContext } from '../../../context/AuthProvider';
+
 import imageToAddCottoncandy from '../../../assets/cotton-candy.png';
+import { AuthContext } from '../../../context/AuthProvider';
 import { HeadProps } from '../../../types/index';
-import './Head.scss';
 
 const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
   const { ifAuth, logOut } = useContext(AuthContext);
@@ -33,22 +35,27 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
           </Link>
         </div>
         <div className="registration-links">
-          <Link to="login" className="login">
-            Sign in
-          </Link>
-          <Link to="register" className="register">
-            Sign up
-          </Link>
-          <button
-            className="logout"
-            onClick={() => {
-              logOut();
-              navigate('/');
-            }}
-            disabled={!ifAuth}
-          >
-            Log out
-          </button>
+          {ifAuth ? (
+            <button
+              className="logout"
+              onClick={() => {
+                logOut();
+                navigate('/');
+              }}
+            >
+              Log out
+            </button>
+          ) : (
+            <>
+              <Link to="login" className="login">
+                Sign in
+              </Link>
+              <Link to="register" className="register">
+                Sign up
+              </Link>
+              <br />
+            </>
+          )}
         </div>
       </div>
     </div>

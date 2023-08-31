@@ -1,5 +1,7 @@
-import { Link } from 'react-router-dom';
 import './NotFound.css';
+
+import { Link } from 'react-router-dom';
+
 import imageToAddError from '../../assets/swinging.gif';
 
 export const NotFound = () => {

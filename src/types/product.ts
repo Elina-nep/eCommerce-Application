@@ -1,7 +1,7 @@
 import {
-  ProductProjection,
   CategoryPagedQueryResponse,
   ProductCatalogData,
+  ProductProjection,
 } from '@commercetools/platform-sdk';
 
 export interface IProductCardProps {

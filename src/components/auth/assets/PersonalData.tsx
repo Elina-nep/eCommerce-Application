@@ -1,14 +1,15 @@
+import TextField from '@mui/material/TextField';
 import React from 'react';
 import { Controller } from 'react-hook-form';
-import {
-  nameValidation,
-  emailValidation,
-  passwordValidation,
-  ageValidation,
-} from '../../../util/validation';
-import TextField from '@mui/material/TextField';
-import { CustomTextInput } from './CustomTextInput';
+
 import { PersonalDataProps } from '../../../types/form';
+import {
+  ageValidation,
+  emailValidation,
+  nameValidation,
+  passwordValidation,
+} from '../../../util/validation';
+import { CustomTextInput } from './CustomTextInput';
 
 export const PersonalData: React.FC<PersonalDataProps> = ({
   control,

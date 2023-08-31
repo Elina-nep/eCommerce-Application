@@ -1,6 +1,7 @@
 import { Dispatch, SetStateAction } from 'react';
-import { ICreateCustomer, ILoginCustomer } from '../types';
+
 import { createCustomerService, loginCustomerService } from '../services';
+import { ICreateCustomer, ILoginCustomer } from '../types';
 
 export const clearAlert = (
   setAlertMessage: Dispatch<SetStateAction<string>>,

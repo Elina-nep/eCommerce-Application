@@ -1,4 +1,5 @@
 import { Customer } from '@commercetools/platform-sdk';
+
 import { IProfileForm } from '../types/profileFrom';
 
 export const customerToFormMapper = (customer: Customer): IProfileForm => {

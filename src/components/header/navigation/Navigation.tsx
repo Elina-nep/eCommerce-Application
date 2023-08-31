@@ -1,7 +1,9 @@
+import './Navigation.scss';
+
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { ReactComponent as InputIcon } from '../../../assets/inputIcon.svg';
-import './Navigation.scss';
 
 export function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -22,7 +24,14 @@ export function Navigation() {
           <div className="bar" />
         </button>
         <div className={`menu-links ${menuOpen ? 'active' : ''}`}>
-          <Link to="/catalog">Catalog</Link>
+          <Link
+            to={{
+              pathname: `/catalog`,
+              search: 'category=all',
+            }}
+          >
+            Catalog
+          </Link>
           <Link to="/me">My room</Link>
           <Link to="/about">About us</Link>
         </div>

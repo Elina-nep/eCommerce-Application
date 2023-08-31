@@ -1,20 +1,20 @@
-import { AddressesContainerProps } from '../../../types/form';
-import { Controller } from 'react-hook-form';
-import TextField from '@mui/material/TextField';
+import FormControl from '@mui/material/FormControl';
+import FormHelperText from '@mui/material/FormHelperText';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import FormHelperText from '@mui/material/FormHelperText';
+import TextField from '@mui/material/TextField';
+import { Controller } from 'react-hook-form';
+import { useWatch } from 'react-hook-form';
+
+import { IRegistrationForm } from '../../../types';
+import { AddressesContainerProps } from '../../../types/form';
 import {
-  streetValidation,
+  countryValidation,
   nameValidation,
   postalCodeValidation,
-  countryValidation,
+  streetValidation,
 } from '../../../util/validation';
-import { IRegistrationForm } from '../../../types';
-
-import { useWatch } from 'react-hook-form';
 
 export const ShipAddresses: React.FC<AddressesContainerProps> = ({
   control,

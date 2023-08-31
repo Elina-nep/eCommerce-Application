@@ -1,15 +1,17 @@
-import React, { useContext, useState } from 'react';
-import { useForm, useFormState, SubmitHandler } from 'react-hook-form';
-import { ThemeProvider } from '@mui/material/styles';
-import { registerTheme } from './theme';
-import { IRegistrationForm } from '../../types/registrationForm';
-import { PersonalData } from './assets/PersonalData';
-import { CustomCheckbox } from './assets/CustomCheckbox';
-import { AuthContext } from '../../context/AuthProvider';
-import { FormError } from './FormError';
-import { BillAddresses } from './assets/BillAddresses';
-import { ShipAddresses } from './assets/ShipAddress';
 import './RegisterForm.scss';
+
+import { ThemeProvider } from '@mui/material/styles';
+import React, { useContext, useState } from 'react';
+import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
+
+import { AuthContext } from '../../context/AuthProvider';
+import { IRegistrationForm } from '../../types/registrationForm';
+import { BillAddresses } from './assets/BillAddresses';
+import { CustomCheckbox } from './assets/CustomCheckbox';
+import { PersonalData } from './assets/PersonalData';
+import { ShipAddresses } from './assets/ShipAddress';
+import { FormError } from './FormError';
+import { registerTheme } from './theme';
 
 export const RegisterForm: React.FC = () => {
   const { handleSubmit, control } = useForm<IRegistrationForm>({

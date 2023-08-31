@@ -1,7 +1,8 @@
 import TextField from '@mui/material/TextField';
+import { FieldErrors } from 'react-hook-form';
+
 import { TextFieldProps } from '../../../types/form';
 import { IRegistrationForm } from '../../../types/registrationForm';
-import { FieldErrors } from 'react-hook-form';
 
 export const CustomTextInput = (
   {

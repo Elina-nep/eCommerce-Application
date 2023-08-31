@@ -1,19 +1,21 @@
-import {
-  Controller,
-  useForm,
-  useFormState,
-  SubmitHandler,
-} from 'react-hook-form';
+import './LoginForm.scss';
+
+import { ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
 import { useContext, useState } from 'react';
-import { passwordValidation, emailValidation } from '../../util/validation';
-import { ILoginForm } from '../../types/loginForm';
-import { ThemeProvider } from '@mui/material/styles';
-import { loginTheme } from './theme';
+import {
+  Controller,
+  SubmitHandler,
+  useForm,
+  useFormState,
+} from 'react-hook-form';
+
 import { AuthContext } from '../../context/AuthProvider';
-import { FormError } from './FormError';
+import { ILoginForm } from '../../types/loginForm';
 import { TogglePasswordVisibility } from '../../util/ToggleVisibility';
-import './LoginForm.scss';
+import { emailValidation, passwordValidation } from '../../util/validation';
+import { FormError } from './FormError';
+import { loginTheme } from './theme';
 
 export const LoginForm: React.FC = () => {
   const [visible, setVisible] = useState(false);

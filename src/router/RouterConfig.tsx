@@ -1,17 +1,18 @@
 import { createRoutesFromElements, Route } from 'react-router-dom';
-import { AuthLayout } from './AuthLayout';
-import { ProtectedRoute } from './ProtectedRoute';
-import { App } from '../pages/App';
+
 import { NotFound } from '../pages/404/NotFound';
-import { MainPage } from '../pages/main/Main';
+import { AboutPage } from '../pages/about/About';
+import { App } from '../pages/App';
 import { LoginPage } from '../pages/auth/Login';
 import { RegisterPage } from '../pages/auth/Register';
-import { CatalogPage } from '../pages/catalog/Catalog';
-import { ProfilePage } from '../pages/profile/Profile';
-import { ProtectedNotSignRoute } from './ProtectedNotSignRoute';
-import { AboutPage } from '../pages/about/About';
 import { CartPage } from '../pages/cart/Cart';
+import { CatalogPage } from '../pages/catalog/Catalog';
+import { MainPage } from '../pages/main/Main';
 import { ProductPage } from '../pages/product/ProductPage';
+import { ProfilePage } from '../pages/profile/Profile';
+import { AuthLayout } from './AuthLayout';
+import { ProtectedNotSignRoute } from './ProtectedNotSignRoute';
+import { ProtectedRoute } from './ProtectedRoute';
 
 export const routerObj = createRoutesFromElements(
   <>

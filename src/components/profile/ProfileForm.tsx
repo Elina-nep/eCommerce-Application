@@ -1,15 +1,17 @@
+import './ProfileForm.scss';
+
+import { ThemeProvider } from '@mui/material/styles';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+
 import { IProfileFormProps } from '../../types/profileFrom';
-import { ThemeProvider } from '@mui/material/styles';
-import { registerTheme } from '../auth/theme';
-import { Personal } from './assets/Personal';
-import { Address } from './assets/Address';
 import { AddressType } from '../../types/profileFrom';
+import { registerTheme } from '../auth/theme';
 import { AddAddress } from './assets/AddAddress';
-import { ChangePassword } from './assets/ChangePassword';
+import { Address } from './assets/Address';
 import { ChangeEmail } from './assets/ChangeEmail';
-import './ProfileForm.scss';
+import { ChangePassword } from './assets/ChangePassword';
+import { Personal } from './assets/Personal';
 
 export const ProfileForm: React.FC<IProfileFormProps> = ({
   refreshCallback,

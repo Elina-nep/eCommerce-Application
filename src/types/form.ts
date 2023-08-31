@@ -1,6 +1,7 @@
-import { IRegistrationForm } from './registrationForm';
 import { Control } from 'react-hook-form';
 import { FieldErrors } from 'react-hook-form';
+
+import { IRegistrationForm } from './registrationForm';
 
 export interface TextFieldProps {
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;

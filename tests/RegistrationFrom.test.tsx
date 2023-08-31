@@ -29,6 +29,8 @@ test('checks Registration form render with correct inputs', async () => {
   );
   expect(wrapper).toBeTruthy();
 
+  await waitFor(() => expect(fetch).toHaveBeenCalledTimes(4));
+
   const inputs = {
     firstName: wrapper.container.querySelector('#firstName'),
     lastName: wrapper.container.querySelector('#lastName'),

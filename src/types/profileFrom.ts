@@ -1,4 +1,4 @@
-import { Customer, BaseAddress } from '@commercetools/platform-sdk';
+import { BaseAddress, Customer } from '@commercetools/platform-sdk';
 
 export interface IProfileForm {
   firstName: string;

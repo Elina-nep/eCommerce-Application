@@ -1,5 +1,5 @@
+import { differenceInYears, isValid, parse } from 'date-fns';
 import { RegisterOptions } from 'react-hook-form';
-import { parse, differenceInYears, isValid } from 'date-fns';
 
 const REQUIRED_FIELD = 'This field is required';
 

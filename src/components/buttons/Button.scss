@@ -6,9 +6,9 @@ button:focus {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: var(--font-small);
-  width: 8em;
-  padding: 0.4em 0;
+  font-size: var(--font-xsmall);
+
+  padding: 0.5rem 0.5rem;
   background-color: var(--light-color);
   color: var(--secondary-color);
   border: 1px solid var(--secondary-color);
@@ -23,6 +23,17 @@ button:focus {
     color: var(--light-color);
     border-color: var(--primary-color-light);
   }
+}
+
+.button-main {
+  width: 8em;
+}
+
+.button:disabled {
+  color: rgba(0, 0, 0, 0.26);
+  pointer-events: none;
+  cursor: default;
+  border: 1px solid rgb(155, 155, 155);
 }
 
 .button-info {
