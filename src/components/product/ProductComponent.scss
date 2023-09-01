@@ -75,27 +75,65 @@
   }
 }
 
-.product__price {
-  width: 8rem;
-  margin: 0.5rem auto;
+.product__with_discount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  margin: 0 auto;
   padding: 0.2rem 0.7rem;
-  font-family: 'Iceland';
-  font-weight: 800;
-  text-align: center;
-  font-size: var(--font-large);
-  color: var(--light-color);
-  background-color: var(--primary-color-light);
-  border: 1px solid var(--primary-color-light);
   border-radius: 5px;
-  @media (min-width: 210px) and (max-width: 575px) {
-    width: 6rem;
+  font-family: 'Iceland';
+
+  p {
+    margin: 0.2rem;
+  }
+
+  .product__offer {
+    font-size: var(--font-large);
+    color: var(--light-color);
+    background-color: var(--primary-color);
+    padding: 0.2rem 0.7rem;
+    border-radius: 5px;
+  }
+
+  .product__price {
     font-size: var(--font-medium);
+    color: var(--secondary-color);
+    text-decoration: line-through 1px var(--primary-color);
+  }
+
+  .product__dicounted_price {
+    font-size: var(--font-large);
+    font-weight: 800;
+    color: var(--primary-color);
   }
 }
 
-.product__dicounted_price {
-  text-align: center;
-  background-color: var(--secondary-color);
+.product__no_discount {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  .product__price {
+    width: 8rem;
+    margin: 0.5rem auto;
+    padding: 0.2rem 0.7rem;
+    font-family: 'Iceland';
+    font-weight: 800;
+    text-align: center;
+    font-size: var(--font-large);
+    color: var(--light-color);
+    background-color: var(--primary-color-light);
+    border: 1px solid var(--primary-color-light);
+    border-radius: 5px;
+    @media (min-width: 210px) and (max-width: 575px) {
+      width: 6rem;
+      font-size: var(--font-medium);
+    }
+  }
 }
 
 .product__categories {

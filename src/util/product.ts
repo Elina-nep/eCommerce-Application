@@ -72,7 +72,13 @@ export const getProductAttribute = (
     : attVariants;
 
   if (allAttributeValues.length > 0) {
-    return allAttributeValues.map((attValue) => attValue['label'][language]);
+    return allAttributeValues.map((attValue) => {
+      if (attValue && attValue['label'] && attValue['label'][language]) {
+        return attValue['label'][language];
+      } else {
+        return '';
+      }
+    });
   } else {
     return '';
   }

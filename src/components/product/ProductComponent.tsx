@@ -36,6 +36,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   const productImages = getProductImages(product);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
+  console.log(color);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -94,10 +95,17 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
         </Button>
       </div>
       <h1 className="product__title">{title}</h1>
-      {discountedPrice && (
-        <p className="product__dicounted_price">{discountedPrice}</p>
+      {discountedPrice ? (
+        <div className="product__with_discount">
+          <p className="product__offer">Special Offer</p>
+          {price && <p className="product__price">{price}</p>}
+          {<p className="product__dicounted_price">{discountedPrice}</p>}
+        </div>
+      ) : (
+        <div className="product__no_discount">
+          {price && <p className="product__price">{price}</p>}
+        </div>
       )}
-      {price && <p className="product__price">{price}</p>}
       <div className="product__categories">
         {productCategories.map((category, index) => (
           <p key={index}>{category}</p>
@@ -106,9 +114,11 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
       <div className="product__details">
         {description && <p className="product__description">{description}</p>}
         <div className="product__attributes">
-          {material && <p>Material: {formatAttributes(material)}</p>}
-          {color && <p>Color: {formatAttributes(color)}</p>}
-          {occasions && <p>Occasions: {formatAttributes(occasions)}</p>}
+          {material.length > 1 && <p>Material: {formatAttributes(material)}</p>}
+          {color.length > 1 && <p>Color: {formatAttributes(color)}</p>}
+          {occasions.length > 1 && (
+            <p>Occasions: {formatAttributes(occasions)}</p>
+          )}
         </div>
       </div>
     </div>
