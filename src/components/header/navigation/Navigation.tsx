@@ -3,7 +3,7 @@ import './Navigation.scss';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { ReactComponent as InputIcon } from '../../../assets/inputIcon.svg';
+import { Search } from './search/Search';
 
 export function Navigation() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -25,6 +25,7 @@ export function Navigation() {
         </button>
         <div className={`menu-links ${menuOpen ? 'active' : ''}`}>
           <Link
+            className="menu-links-item"
             to={{
               pathname: `/catalog`,
               search: 'category=all',
@@ -32,20 +33,15 @@ export function Navigation() {
           >
             Catalog
           </Link>
-          <Link to="/me">My room</Link>
-          <Link to="/about">About us</Link>
+          <Link className="menu-links-item" to="/me">
+            My room
+          </Link>
+          <Link className="menu-links-item" to="/about">
+            About us
+          </Link>
         </div>
         <div className="navigation-text-field-container">
-          <input
-            className="navigation-text-field__input"
-            type="search"
-            name="find"
-            id="find"
-            placeholder="Search"
-          />
-          <span className="navigation-text-field__aicon">
-            <InputIcon />
-          </span>
+          <Search />
         </div>
       </div>
     </nav>

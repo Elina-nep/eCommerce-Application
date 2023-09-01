@@ -77,6 +77,7 @@ export const CatalogPage = () => {
             to: searchParams.get('priceTo') || undefined,
             from: searchParams.get('priceFrom') || undefined,
           },
+          queryText: searchParams.get('search') || undefined,
         });
         setLoaded(true);
       })
@@ -104,6 +105,7 @@ export const CatalogPage = () => {
         to: searchParams.get('priceTo') || undefined,
         from: searchParams.get('priceFrom') || undefined,
       },
+      queryText: searchParams.get('search') || undefined,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
