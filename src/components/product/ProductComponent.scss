@@ -93,6 +93,11 @@
   }
 }
 
+.product__dicounted_price {
+  text-align: center;
+  background-color: var(--secondary-color);
+}
+
 .product__categories {
   align-self: center;
   display: flex;

@@ -99,3 +99,21 @@ export function getProductPrice(
   }
   return 'Not Available';
 }
+
+export function getProductPriceDiscounted(
+  product: ProductCatalogData,
+  currency: string,
+): string {
+  const prices = product.current.masterVariant.prices || [];
+  for (const price of prices) {
+    if (price.value.currencyCode === currency) {
+      if (price.discounted && price.discounted.value) {
+        const formattedPrice = (
+          price.discounted.value.centAmount / 100
+        ).toFixed(2);
+        return `${formattedPrice} ${currency}`;
+      }
+    }
+  }
+  return '';
+}

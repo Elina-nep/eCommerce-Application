@@ -19,11 +19,13 @@ export {
   getProductCategories,
   getProductImages,
   getProductPrice,
+  getProductPriceDiscounted,
 } from './product';
 export {
   getProductCardDescription,
   getProductCardImage,
   getProductCardPrice,
+  getProductCardPriceDiscounted,
 } from './productCard';
 export { defaultCatalogeResponse, defaultProductData } from './productConstans';
 export { CURRENCY, LANGUAGE } from './productConstans';

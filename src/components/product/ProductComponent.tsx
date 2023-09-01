@@ -11,6 +11,7 @@ import {
   getProductCategories,
   getProductImages,
   getProductPrice,
+  getProductPriceDiscounted,
   LANGUAGE,
 } from '../../util';
 import Button from '../buttons/Button';
@@ -26,6 +27,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   const color = getProductAttribute(product, 'color', LANGUAGE.EN);
   const occasions = getProductAttribute(product, 'occasions', LANGUAGE.EN);
   const price = getProductPrice(product, CURRENCY.EUR);
+  const discountedPrice = getProductPriceDiscounted(product, CURRENCY.EUR);
   const productCategories = getProductCategories(
     product,
     categories,
@@ -92,6 +94,9 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
         </Button>
       </div>
       <h1 className="product__title">{title}</h1>
+      {discountedPrice && (
+        <p className="product__dicounted_price">{discountedPrice}</p>
+      )}
       {price && <p className="product__price">{price}</p>}
       <div className="product__categories">
         {productCategories.map((category, index) => (
