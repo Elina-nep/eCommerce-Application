@@ -18,23 +18,23 @@ export const ProductModal: React.FC<IProductModalProps> = ({
   ) => {
     e.stopPropagation();
   };
-  const [currentImageIndexModal, setCurrentImageIndexModal] =
-    useState(modalImageIndex);
 
-  useEffect(() => {
-    setCurrentImageIndexModal(modalImageIndex);
-  }, [modalImageIndex]);
+  const [currentImageIndex, setCurrentImageIndex] = useState(modalImageIndex);
 
   const showNextImage = () => {
     images &&
-      setCurrentImageIndexModal((prevIndex) => (prevIndex + 1) % images.length);
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
   const showPreviousImage = () => {
     images &&
-      setCurrentImageIndexModal((prevIndex) =>
+      setCurrentImageIndex((prevIndex) =>
         prevIndex === 0 ? images.length - 1 : prevIndex - 1,
       );
+  };
+
+  const handleCloseModal = () => {
+    closeModal();
   };
 
   useEffect(() => {
@@ -58,10 +58,6 @@ export const ProductModal: React.FC<IProductModalProps> = ({
     }
   }, []);
 
-  const handleCloseModal = () => {
-    closeModal();
-  };
-
   return (
     <div className="product_modal" onClick={closeModal}>
       <div
@@ -78,7 +74,7 @@ export const ProductModal: React.FC<IProductModalProps> = ({
             {'<'}
           </Button>
           <div className="product_modal__image">
-            {images && <img src={images[currentImageIndexModal]} alt={alt} />}
+            {images && <img src={images[currentImageIndex]} alt={alt} />}
           </div>
 
           <Button onClick={showNextImage} className="button-pagination">

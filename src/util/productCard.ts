@@ -1,4 +1,5 @@
 import { ProductProjection } from '@commercetools/platform-sdk';
+const DESCRIPTION_LIMIT = 40;
 
 export function getProductCardPrice(
   product: ProductProjection,
@@ -30,8 +31,8 @@ export const getProductCardDescription = (
 ) => {
   const description = product.description![language];
 
-  if (description.length > 40) {
-    return description.slice(0, 40) + '...';
+  if (description.length > DESCRIPTION_LIMIT) {
+    return description.slice(0, DESCRIPTION_LIMIT) + '...';
   }
 
   return description;

@@ -33,28 +33,31 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   );
   const productImages = getProductImages(product);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const showNextImage = () => {
-    productImages &&
-      setCurrentImageIndex(
-        (prevIndex) => (prevIndex + 1) % productImages.length,
-      );
-  };
-
-  const showPreviousImage = () => {
-    productImages &&
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === 0 ? productImages.length - 1 : prevIndex - 1,
-      );
-  };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleOpenModal = (index: number) => {
-    setCurrentImageIndex(index);
+  const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const showNextImage = () => {
+    if (productImages) {
+      const nextIndex = (currentImageIndex + 1) % productImages.length;
+      setCurrentImageIndex(nextIndex);
+    }
+  };
+
+  const showPreviousImage = () => {
+    if (productImages) {
+      const prevIndex =
+        currentImageIndex === 0
+          ? productImages.length - 1
+          : currentImageIndex - 1;
+      setCurrentImageIndex(prevIndex);
+    }
   };
 
   return (
@@ -77,7 +80,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
         <div className="product__image">
           {productImages?.length && (
             <img
-              onClick={() => handleOpenModal(currentImageIndex)}
+              onClick={handleOpenModal}
               src={productImages[currentImageIndex]}
               alt={title}
             />
