@@ -33,19 +33,6 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   );
   const productImages = getProductImages(product);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const showNextImage = () => {
-    productImages &&
-      setCurrentImageIndex(
-        (prevIndex) => (prevIndex + 1) % productImages.length,
-      );
-  };
-
-  const showPreviousImage = () => {
-    productImages &&
-      setCurrentImageIndex((prevIndex) =>
-        prevIndex === 0 ? productImages.length - 1 : prevIndex - 1,
-      );
-  };
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => {
@@ -54,6 +41,23 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
 
   const closeModal = () => {
     setIsModalOpen(false);
+  };
+
+  const showNextImage = () => {
+    if (productImages) {
+      const nextIndex = (currentImageIndex + 1) % productImages.length;
+      setCurrentImageIndex(nextIndex);
+    }
+  };
+
+  const showPreviousImage = () => {
+    if (productImages) {
+      const prevIndex =
+        currentImageIndex === 0
+          ? productImages.length - 1
+          : currentImageIndex - 1;
+      setCurrentImageIndex(prevIndex);
+    }
   };
 
   return (
@@ -66,6 +70,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
           images={productImages}
           closeModal={closeModal}
           alt={title}
+          modalImageIndex={currentImageIndex}
         />
       )}
       <div className="product__slider">

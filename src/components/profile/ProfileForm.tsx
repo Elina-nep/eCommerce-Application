@@ -39,7 +39,9 @@ export const ProfileForm: React.FC<IProfileFormProps> = ({
 
   return (
     <div className="profile">
-      <Link to="/">Home</Link>
+      <Link to="/" className="profile__link">
+        Home
+      </Link>
       <h1 className="profile__title"> Profile</h1>
       <ThemeProvider theme={registerTheme}>
         <Personal response={response} refreshCallback={refreshCallback} />

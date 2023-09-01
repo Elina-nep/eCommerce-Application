@@ -20,5 +20,6 @@ export interface IProductComponentProps {
 export interface IProductModalProps {
   images: string | string[];
   alt: string;
+  modalImageIndex: number;
   closeModal: () => void;
 }

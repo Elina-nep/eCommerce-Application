@@ -8,6 +8,7 @@ import Button from '../../buttons/Button';
 export const ProductModal: React.FC<IProductModalProps> = ({
   images,
   alt,
+  modalImageIndex,
   closeModal,
 }) => {
   const modalContentRef = useRef<HTMLDivElement>(null);
@@ -18,7 +19,7 @@ export const ProductModal: React.FC<IProductModalProps> = ({
     e.stopPropagation();
   };
 
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(modalImageIndex);
 
   const showNextImage = () => {
     images &&
@@ -30,6 +31,10 @@ export const ProductModal: React.FC<IProductModalProps> = ({
       setCurrentImageIndex((prevIndex) =>
         prevIndex === 0 ? images.length - 1 : prevIndex - 1,
       );
+  };
+
+  const handleCloseModal = () => {
+    closeModal();
   };
 
   useEffect(() => {
@@ -52,10 +57,6 @@ export const ProductModal: React.FC<IProductModalProps> = ({
       };
     }
   }, []);
-
-  const handleCloseModal = () => {
-    closeModal();
-  };
 
   return (
     <div className="product_modal" onClick={closeModal}>
