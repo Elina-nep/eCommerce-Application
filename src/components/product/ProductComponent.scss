@@ -204,3 +204,25 @@
   margin: 0;
   padding-bottom: 0.6rem;
 }
+
+.product__categories {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+  gap: 2rem;
+}
+
+.product__categories a {
+  padding: 0.2rem 0.6rem;
+  font-size: var(--font-medium);
+  color: var(--light-color);
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 10px;
+  text-decoration: none;
+  &:hover {
+    cursor: pointer;
+    font-weight: 800;
+  }
+}

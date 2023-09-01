@@ -8,7 +8,7 @@ import {
   CURRENCY,
   formatAttributes,
   getProductAttribute,
-  // getProductCategories,
+  getProductCategories,
   getProductImages,
   getProductPrice,
   getProductPriceDiscounted,
@@ -19,7 +19,7 @@ import { ProductModal } from './assets/ProductModal';
 
 export const ProductComponent: React.FC<IProductComponentProps> = ({
   product,
-  // categories,
+  categories,
 }) => {
   const title = product.current.name[LANGUAGE.EN] || '';
   const description = product.current.description?.en || '';
@@ -28,15 +28,14 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   const occasions = getProductAttribute(product, 'occasions', LANGUAGE.EN);
   const price = getProductPrice(product, CURRENCY.EUR);
   const discountedPrice = getProductPriceDiscounted(product, CURRENCY.EUR);
-  // const productCategories = getProductCategories(
-  //   product,
-  //   categories,
-  //   LANGUAGE.EN,
-  // );
+  const productCategories = getProductCategories(
+    product,
+    categories,
+    LANGUAGE.EN,
+  );
   const productImages = getProductImages(product);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  console.log(color);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -111,11 +110,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
               {price && <p className="product__price">{price}</p>}
             </div>
           )}
-          {/* <div className="product__categories">
-            {productCategories.map((category, index) => (
-              <p key={index}>{category}</p>
-            ))}
-          </div> */}
+
           <div className="product__details">
             {description && (
               <p className="product__description">{description}</p>
@@ -125,6 +120,19 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
               {color && <p>Color: {formatAttributes(color)}</p>}
               {occasions && <p>Occasions: {formatAttributes(occasions)}</p>}
             </div>
+          </div>
+          <div className="product__categories">
+            {productCategories.map((category, index) => (
+              <Link
+                to={{
+                  pathname: '/catalog',
+                  search: `category=${category}`,
+                }}
+                key={index}
+              >
+                {category}
+              </Link>
+            ))}
           </div>
         </div>
       </div>

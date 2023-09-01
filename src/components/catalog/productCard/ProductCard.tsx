@@ -20,8 +20,6 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
   const image = getProductCardImage(product);
   const description = getProductCardDescription(product, LANGUAGE.EN);
 
-  console.log('here', title, product);
-
   return (
     <Link to={`/product/${product.id}`} className="product_card__link">
       <div className="product_card" key={product.id}>
