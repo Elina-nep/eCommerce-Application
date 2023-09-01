@@ -62,7 +62,10 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
 
   return (
     <div className="product">
-      <Link to="/catalog" className="product__link">
+      <Link
+        to={{ pathname: '/catalog', search: 'category=all' }}
+        className="product__link"
+      >
         Back to Catalog
       </Link>
       {isModalOpen && productImages?.length && (
