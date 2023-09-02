@@ -1,28 +1,69 @@
+.product_card__link {
+  list-style-type: none;
+  text-decoration: none;
+}
+
 .product_card {
-  background: white;
+  background: var(--light-color);
   width: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   text-align: center;
-  height: 24vh;
-  border: 1px solid black;
+  height: 40vh;
   align-items: center;
+  border-radius: 5px;
 }
 
-.product_card__image img {
+.product_card:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  /*transform: scale(1.05);*/
+  transition: all 1s ease-in-out;
+}
+
+.product_card__image {
+  width: 90%;
+  height: 80%;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   position: relative;
-  width: 50%;
-  top: 10%;
+  top: 2%;
 }
 
 .product_card__name {
+  font-weight: 600;
   width: 80%;
   max-height: 60%;
+  color: var(--secondary-color);
+  font-size: var(--font-small);
+  margin: 0.5rem auto;
 }
 
 .product_card__price {
-  font-weight: 900;
+  width: 6rem;
+  margin: 0.5rem auto;
+  padding: 0.2rem 0.7rem;
+  font-family: 'Iceland';
+  text-align: center;
+  font-size: var(--font-small);
+  color: var(--light-color);
+  background-color: var(--primary-color-light);
+  border: 1px solid var(--primary-color-light);
+  border-radius: 5px;
+}
+
+.product_card__description {
   position: relative;
   bottom: 1%;
+  color: var(--dark-color);
+  margin: 0.5rem auto;
+  width: 90%;
+}
+
+.product_card__dicounted_price {
+  font-size: var(--font-medium);
+  font-weight: 800;
+  color: var(--primary-color);
+  margin: 0;
 }

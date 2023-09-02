@@ -19,19 +19,32 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
   const discountedPrice = getProductCardPriceDiscounted(product, CURRENCY.EUR);
   const image = getProductCardImage(product);
   const description = getProductCardDescription(product, LANGUAGE.EN);
+  const productCardImageStyle = {
+    backgroundImage: `url(${image})`,
+  };
+  const priceStyle = discountedPrice
+    ? { textDecoration: 'line-through 1px var(--primary-color)' }
+    : {};
 
   return (
     <Link to={`/product/${product.id}`} className="product_card__link">
       <div className="product_card" key={product.id}>
-        <div className="product_card__image">
-          {image && <img src={image} alt={title} />}
-        </div>
+        <div
+          className="product_card__image"
+          style={productCardImageStyle}
+        ></div>
         <p className="product_card__name">{title}</p>
+        {description && (
+          <p className="product_card__description">{description}</p>
+        )}
         {discountedPrice && (
           <p className="product_card__dicounted_price">{discountedPrice}</p>
         )}
-        {price && <p className="product_card__price">{price}</p>}
-        {description && <p>{description}</p>}
+        {price && (
+          <p className="product_card__price" style={priceStyle}>
+            {price}
+          </p>
+        )}
       </div>
     </Link>
   );

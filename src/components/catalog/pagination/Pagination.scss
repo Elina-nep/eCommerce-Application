@@ -12,23 +12,23 @@
 // }
 
 .pagination-button {
-  background-color: #ffffff;
-  border: 1px solid #50a294;
+  background-color: var(--light-color);
+  border: 1px solid var(--secondary-color);
   border-radius: 5px;
-  color: #50a294;
+  color: var(--secondary-color);
   cursor: pointer;
   padding: 8px 16px;
   text-decoration: none;
 
   &:hover:not(.active) {
-    background-color: #ff814e;
-    color: white;
-    border: 1px solid #ff814e;
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border: 1px solid var(--primary-color);
   }
 
   &.active {
-    background-color: #ff814e;
-    color: white;
+    background-color: var(--primary-color);
+    color: var(--light-color);
   }
   &:disabled {
     pointer-events: none;
@@ -51,13 +51,13 @@
   &:hover:not(.active) {
     box-shadow: 0 0 10px var(--secondary-color);
     color: var(--secondary-color);
-    background-color: #ffffff;
+    background-color: var(--light-color);
     border-color: var(--secondary-color);
   }
 
   &.active {
     background-color: var(--primary-color-light);
-    color: white;
+    color: var(--light-color);
     border-color: var(--primary-color-light);
   }
 }
