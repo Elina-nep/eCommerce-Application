@@ -1,9 +1,10 @@
 import './PriceFilter.scss';
 
-import { Slider } from '@mui/material';
+import { Slider, ThemeProvider } from '@mui/material';
 import React, { useState } from 'react';
 
 import { FilterStandardComponent } from '../../../../types';
+import { priceTheme } from './theme';
 
 export const PriceFilter = ({
   searchParams,
@@ -31,16 +32,18 @@ export const PriceFilter = ({
 
   return (
     <div className="sidebar-filter-material">
-      Filter by price:
+      <p className="sidebar-filter-material-title">Filter by price:</p>
       <div>
-        <Slider
-          getAriaLabel={() => 'Price range'}
-          value={[priceFrom, priceTo]}
-          max={200}
-          onChange={handlePriceChange}
-          valueLabelDisplay="auto"
-          onChangeCommitted={setPrices}
-        />
+        <ThemeProvider theme={priceTheme}>
+          <Slider
+            getAriaLabel={() => 'Price range'}
+            value={[priceFrom, priceTo]}
+            max={200}
+            onChange={handlePriceChange}
+            valueLabelDisplay="auto"
+            onChangeCommitted={setPrices}
+          />
+        </ThemeProvider>
       </div>
     </div>
   );

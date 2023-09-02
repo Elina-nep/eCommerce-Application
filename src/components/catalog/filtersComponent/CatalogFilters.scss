@@ -1,7 +1,8 @@
 .catalog-container-sidebar {
-  overflow-y: scroll;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  width: 100%;
+  width: 20%;
   min-width: 200px;
+  background: var(--light-color);
 }

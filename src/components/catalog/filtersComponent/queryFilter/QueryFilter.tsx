@@ -63,7 +63,8 @@ export const QueryFilter = <T,>({
 
   return (
     <div className="sidebar-filter-material">
-      Filter by {queryType}: {formItems()}
+      <p className="sidebar-filter-material-title">Filter by {queryType}:</p>{' '}
+      {formItems()}
       <div>
         <Button
           className="colors-button-show-all"

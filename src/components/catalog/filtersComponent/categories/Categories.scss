@@ -4,7 +4,15 @@
 }
 
 .sidebar-filter-category {
-  background: white;
+  padding: 0 2rem 1rem 2rem;
+}
+
+.sidebar-filter-category-title {
+  border-bottom: 1px solid var(--secondary-color);
+  padding-bottom: 8px;
+  color: var(--secondary-color);
+  font-weight: 600;
+  font-size: var(--font-small);
 }
 
 .categories-child-item {

@@ -1,5 +1,12 @@
 .sidebar-filter-material {
-  background: var(--light-color);
+  border-top: 1px solid var(--secondary-color-light);
+  padding: 0 2rem 1rem 2rem;
+}
+
+.sidebar-filter-material-title {
   border-bottom: 1px solid var(--secondary-color);
   padding-bottom: 8px;
+  color: var(--secondary-color);
+  font-weight: 600;
+  font-size: var(--font-small);
 }

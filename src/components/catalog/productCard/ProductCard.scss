@@ -13,6 +13,7 @@
   height: 40vh;
   align-items: center;
   border-radius: 5px;
+  padding: 0.4rem 0;
 }
 
 .product_card:hover {
@@ -62,7 +63,7 @@
 }
 
 .product_card__dicounted_price {
-  font-size: var(--font-medium);
+  font-size: var(--font-small);
   font-weight: 800;
   color: var(--primary-color);
   margin: 0;
