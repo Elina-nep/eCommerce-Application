@@ -69,7 +69,7 @@ button:focus {
 .button-pagination {
   font-size: var(--font-medium);
   font-family: 'Iceland';
-  width: 60px;
+  width: 55px;
   height: 55px;
   border-radius: 50%;
   z-index: 1;
@@ -77,6 +77,7 @@ button:focus {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 0;
 }
 
 .close {
@@ -118,8 +119,9 @@ button:focus {
 @media screen and (max-width: 768px) {
   .button-pagination {
     font-size: var(--font-small);
-    width: 7vw;
-    height: 6.5vw;
+    width: 50px;
+    height: 50px;
+    margin: 0;
   }
 
   .button-info {
@@ -135,14 +137,14 @@ button:focus {
 @media screen and (max-width: 576px) {
   .button-info {
     margin: 0 0 0.7rem 0;
-    width: 30vw;
+    width: 25vw;
   }
 }
 
 @media screen and (max-width: 485px) {
   .button-pagination {
-    width: 9vw;
-    height: 8.5vw;
+    width: 45px;
+    height: 45px;
   }
 
   .button-info {
