@@ -21,7 +21,7 @@ export const getProductsService = (queryParams?: ProductQueryParams) => {
     sort: [`id asc`],
     offset:
       queryParams?.pageNum && queryParams?.pageNum - 1
-        ? (queryParams?.pageNum - 1) * PRODUCTS_ON_PAGE + 1
+        ? (queryParams?.pageNum - 1) * PRODUCTS_ON_PAGE
         : 0,
     limit: PRODUCTS_ON_PAGE,
   };

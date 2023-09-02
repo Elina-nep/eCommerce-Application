@@ -86,11 +86,11 @@ export const cards: CardData[] = [
   },
   {
     id: 9,
-    discountText: 'Get 15% off on Decoration.',
+    discountText: 'Get 15% off on Big Decorations',
     image: imageToAddDecoration,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/31/2023 Online exclusive!',
-    couponCode: 'All products from this category are on sale.',
+    couponCode: 'All products from Big Decoration category are on sale.',
     description: `Transform your venue into a festive wonderland with our party decorations! Create a picture-perfect setting for your celebrations. Don't miss this opportunity to save!`,
   },
 ];
