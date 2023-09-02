@@ -15,6 +15,24 @@ export function getProductCardPrice(
   return 'Not Available';
 }
 
+export function getProductCardPriceDiscounted(
+  product: ProductProjection,
+  currency: string,
+): string | number {
+  const prices = product.masterVariant.prices || [];
+  for (const price of prices) {
+    if (price.value.currencyCode === currency) {
+      if (price.discounted && price.discounted.value) {
+        const formattedPrice = (
+          price.discounted.value.centAmount / 100
+        ).toFixed(2);
+        return `${formattedPrice} ${currency}`;
+      }
+    }
+  }
+  return '';
+}
+
 export const getProductCardImage = (product: ProductProjection) => {
   const imageMasterVariant = product.masterVariant.images?.map(
     (image) => image.url,

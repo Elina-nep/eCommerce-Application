@@ -72,7 +72,13 @@ export const getProductAttribute = (
     : attVariants;
 
   if (allAttributeValues.length > 0) {
-    return allAttributeValues.map((attValue) => attValue['label'][language]);
+    return allAttributeValues.map((attValue) => {
+      if (attValue && attValue['label'] && attValue['label'][language]) {
+        return attValue['label'][language];
+      } else {
+        return '';
+      }
+    });
   } else {
     return '';
   }
@@ -98,4 +104,22 @@ export function getProductPrice(
     }
   }
   return 'Not Available';
+}
+
+export function getProductPriceDiscounted(
+  product: ProductCatalogData,
+  currency: string,
+): string {
+  const prices = product.current.masterVariant.prices || [];
+  for (const price of prices) {
+    if (price.value.currencyCode === currency) {
+      if (price.discounted && price.discounted.value) {
+        const formattedPrice = (
+          price.discounted.value.centAmount / 100
+        ).toFixed(2);
+        return `${formattedPrice} ${currency}`;
+      }
+    }
+  }
+  return '';
 }
