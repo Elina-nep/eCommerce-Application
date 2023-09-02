@@ -36,6 +36,7 @@ export const PriceFilter = ({
       <div>
         <ThemeProvider theme={priceTheme}>
           <Slider
+            sx={{ marginTop: '1rem' }}
             getAriaLabel={() => 'Price range'}
             value={[priceFrom, priceTo]}
             max={200}

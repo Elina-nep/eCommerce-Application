@@ -12,14 +12,14 @@
   text-align: center;
   height: 40vh;
   align-items: center;
-  border-radius: 5px;
   padding: 0.4rem 0;
+  border: 1px solid var(--secondary-color-light);
 }
 
 .product_card:hover {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  /*transform: scale(1.05);*/
   transition: all 1s ease-in-out;
+  border: 1px solid var(--light-color);
 }
 
 .product_card__image {
