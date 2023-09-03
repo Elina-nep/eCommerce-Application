@@ -28,6 +28,7 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
 
   return (
     <Link to={`/product/${product.id}`} className="product_card__link">
+      {discountedPrice ? <p className="sale-icon">%</p> : null}
       <div className="product_card" key={product.id}>
         <div
           className="product_card__image"

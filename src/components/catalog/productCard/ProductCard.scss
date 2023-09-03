@@ -1,6 +1,7 @@
 .product_card__link {
   list-style-type: none;
   text-decoration: none;
+  position: relative;
 }
 
 .product_card {
@@ -67,4 +68,45 @@
   font-weight: 800;
   color: var(--primary-color);
   margin: 0;
+}
+
+.sale-icon {
+  top: -6%;
+  right: -4%;
+  z-index: 1;
+  position: absolute;
+  display: inline-block;
+  background: #fe4004;
+  color: white;
+  height: 1.5rem;
+  width: 1.5rem;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 1.5rem;
+  transform: rotate(-20deg);
+  animation: beat 1s ease infinite alternate;
+  &:before,
+  &:after {
+    content: '';
+    position: absolute;
+    background: inherit;
+    height: inherit;
+    width: inherit;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    transform: rotate(30deg);
+  }
+  &:after {
+    transform: rotate(60deg);
+  }
+}
+
+@keyframes beat {
+  from {
+    transform: rotate(-20deg) scale(1);
+  }
+  to {
+    transform: rotate(-20deg) scale(1.1);
+  }
 }
