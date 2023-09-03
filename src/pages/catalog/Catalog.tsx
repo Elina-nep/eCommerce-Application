@@ -29,7 +29,6 @@ const defaultResponse = {
 
 export const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
   const [products, setProducts] =
     useState<ProductProjectionPagedQueryResponse>(defaultResponse);
   const [categories, setCategories] =
@@ -109,11 +108,23 @@ export const CatalogPage = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
+  const initialCategoryState = 'all';
 
+  useEffect(() => {
+    const updateCurrentCategory = () => {
+      setCurrentCategory(searchParams.get('category') || initialCategoryState);
+    };
+    updateCurrentCategory();
+    setSearchParams((prev: URLSearchParams) => prev);
+  }, [searchParams, setSearchParams]);
+
+  const [currentCategory, setCurrentCategory] =
+    useState<string>(initialCategoryState);
   return (
     <main className="main-container main-container-catalog">
       <div className="catalog-container">
         <ProductTopInfo
+          currentCategory={currentCategory}
           searchParams={searchParams}
           setSearchParams={setSearchParams}
           productsTotal={products.total}

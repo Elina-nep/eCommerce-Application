@@ -4,6 +4,7 @@ import { ProductTopInfoT } from '../../../types';
 import { SelectSortProperty } from './selectProduct/SelectSortProperty';
 
 export const ProductTopInfo = ({
+  currentCategory,
   searchParams,
   setSearchParams,
   productsTotal,
@@ -14,9 +15,11 @@ export const ProductTopInfo = ({
         searchParams={searchParams}
         setSearchParams={setSearchParams}
       />
-
+      <div>
+        Category: <span className="selected-category">{currentCategory}</span>
+      </div>
       <div className="product-item-number">
-        Found <span className="product-count"> {productsTotal} </span>
+        Found <span className="product-count">{productsTotal} </span>
         {productsTotal && productsTotal > 1 ? 'products' : 'product'}
       </div>
     </div>
