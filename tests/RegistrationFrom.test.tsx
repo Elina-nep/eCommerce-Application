@@ -2,9 +2,10 @@ import { enableFetchMocks } from 'jest-fetch-mock';
 import fetch from 'jest-fetch-mock';
 enableFetchMocks();
 
-import { fireEvent, render, waitFor, act } from '@testing-library/react';
-import { RegisterForm } from '../src/components/auth/RegisterForm';
+import { act, fireEvent, render, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+
+import { RegisterForm } from '../src/components/auth/RegisterForm';
 import { AuthProvider } from '../src/context/AuthProvider';
 
 fetch.mockResponse(() =>
