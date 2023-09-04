@@ -29,7 +29,6 @@ const defaultResponse = {
 
 export const CatalogPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
-
   const [products, setProducts] =
     useState<ProductProjectionPagedQueryResponse>(defaultResponse);
   const [categories, setCategories] =
@@ -114,6 +113,7 @@ export const CatalogPage = () => {
     <main className="main-container main-container-catalog">
       <div className="catalog-container">
         <ProductTopInfo
+          currentCategory={queryParams.categoryName || 'all'}
           searchParams={searchParams}
           setSearchParams={setSearchParams}
           productsTotal={products.total}

@@ -11,6 +11,7 @@ export interface FilterStandardComponent {
 
 export interface ProductTopInfoT extends FilterStandardComponent {
   productsTotal?: number;
+  currentCategory: string;
 }
 
 export interface FilterComponentT<T> extends FilterStandardComponent {

@@ -16,14 +16,18 @@ export const CatalogFilters = ({
   setSearchParams,
 }: FiltersT) => {
   const queryFilterVariants = [
+    { allItems: ALL_OCCASIONS, queryType: 'occasions' },
     { allItems: ALL_COLORS, queryType: 'color' },
     { allItems: ALL_MATERIALS, queryType: 'material' },
-    { allItems: ALL_OCCASIONS, queryType: 'occasions' },
   ];
   return (
     <aside className="catalog-container-sidebar">
       <Categories
         categories={categories}
+        searchParams={searchParams}
+        setSearchParams={setSearchParams}
+      />
+      <PriceFilter
         searchParams={searchParams}
         setSearchParams={setSearchParams}
       />
@@ -36,10 +40,6 @@ export const CatalogFilters = ({
           queryType={queryFilterVariant.queryType}
         />
       ))}
-      <PriceFilter
-        searchParams={searchParams}
-        setSearchParams={setSearchParams}
-      />
     </aside>
   );
 };

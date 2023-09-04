@@ -4,7 +4,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 2%;
   margin-top: 2%;
 }
 
@@ -13,7 +12,7 @@
   overflow: hidden;
   position: relative;
   height: 100%;
-  width: 100%;
+  width: 82%;
 }
 
 .slide-container-cards {
@@ -41,12 +40,8 @@
 }
 
 @media screen and (max-width: 768px) {
-  .slider {
-    gap: 1%;
-  }
-
   .slide-container {
-    width: 100%;
+    width: 82%;
   }
 
   .slider__indicator-dot {
@@ -59,7 +54,7 @@
 
 @media screen and (max-width: 576px) {
   .slide-container {
-    width: 80%;
+    width: 72%;
   }
 
   .slider__indicator-dot {

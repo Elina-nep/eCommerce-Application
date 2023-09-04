@@ -2,15 +2,30 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background: var(--secondary-color-light);
 }
 
 .product-item-number {
   display: flex;
   justify-content: flex-end;
-  padding: 1rem 0;
+  padding: 0.5rem;
   gap: 3px;
 }
 
 .product-count {
   font-weight: 600;
+}
+
+.selected-category {
+  font-weight: 600;
+}
+
+@media (max-width: 485px) {
+  .product-item-category {
+    justify-content: center;
+    width: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
 }

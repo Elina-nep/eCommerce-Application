@@ -108,7 +108,7 @@ export const Categories = ({
 
   return (
     <div className="sidebar-filter-category">
-      <p>Filter by Category:</p>
+      <p className="sidebar-filter-category-title">Filter by Category:</p>
       {formCategories()}
     </div>
   );
