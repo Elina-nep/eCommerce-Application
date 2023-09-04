@@ -151,4 +151,18 @@ button:focus {
     margin: 0 0 0.5rem 0;
     font-size: var(--font-small);
   }
+
+  .colors-button-show-all.button {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+    margin-top: 0.4em;
+    width: 4.5rem;
+  }
+
+  .colors-button-reset.button {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+    margin-top: 0.4em;
+    width: 4.5rem;
+  }
 }

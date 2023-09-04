@@ -15,7 +15,7 @@ export const ProductTopInfo = ({
         searchParams={searchParams}
         setSearchParams={setSearchParams}
       />
-      <div>
+      <div className="product-item-category">
         Category: <span className="selected-category">{currentCategory}</span>
       </div>
       <div className="product-item-number">

@@ -17,3 +17,9 @@
     background-color: var(--secondary-color);
   }
 }
+
+@media (max-width: 485px) {
+  .filter-item {
+    font-size: 0.9rem;
+  }
+}

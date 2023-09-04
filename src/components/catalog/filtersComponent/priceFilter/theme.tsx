@@ -12,6 +12,13 @@ export const priceTheme = createTheme({
   components: {
     MuiSlider: {
       styleOverrides: {
+        root: {
+          width: '90%',
+          '@media (max-width: 850px)': {
+            width: '70%',
+            margin: '1rem',
+          },
+        },
         thumb: {
           '&:hover': {
             '& .MuiSlider-valueLabel': {

@@ -22,3 +22,38 @@
 .categories-parent-item {
   margin-left: 1rem;
 }
+
+@media (max-width: 850px) {
+  .sidebar-filter-category {
+    padding: 0 0.6rem 1rem 0.6rem;
+  }
+
+  .sidebar-filter-category-title {
+    padding-bottom: 9px;
+    font-size: var(--font-small);
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar-filter-category {
+    padding: 0 0.5rem 1rem 0.5rem;
+  }
+
+  .sidebar-filter-category-title {
+    font-size: var(--font-small);
+  }
+}
+
+@media (max-width: 485px) {
+  .sidebar-filter-category {
+    padding: 0 0.5rem 1rem 0.5rem;
+  }
+
+  .sidebar-filter-category-title {
+    padding-bottom: 8px;
+    font-size: var(--font-xsmall);
+  }
+  .categories-list-item {
+    font-size: 0.9rem;
+  }
+}

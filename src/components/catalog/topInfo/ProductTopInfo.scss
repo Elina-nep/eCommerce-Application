@@ -19,3 +19,13 @@
 .selected-category {
   font-weight: 600;
 }
+
+@media (max-width: 485px) {
+  .product-item-category {
+    justify-content: center;
+    width: 20%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+}

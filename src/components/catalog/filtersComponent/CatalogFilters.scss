@@ -7,3 +7,21 @@
   background: var(--light-color);
   border-right: 1px solid var(--secondary-color-light);
 }
+
+@media (max-width: 850px) {
+  .catalog-container-sidebar {
+    min-width: 170px;
+  }
+}
+
+@media (max-width: 576px) {
+  .catalog-container-sidebar {
+    min-width: 150px;
+  }
+}
+
+@media (max-width: 485px) {
+  .catalog-container-sidebar {
+    min-width: 120px;
+  }
+}
