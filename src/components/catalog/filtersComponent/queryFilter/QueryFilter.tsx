@@ -28,18 +28,15 @@ export const QueryFilter = <T,>({
   };
 
   const handleItemsChange = (selectedItem: T) => {
-    setSelectedItems((prevSelectedItems) => {
-      const newSelectedItems = prevSelectedItems.includes(selectedItem)
-        ? prevSelectedItems.filter((item) => item !== selectedItem)
-        : [...prevSelectedItems, selectedItem];
-      searchParams.delete(queryType);
-      newSelectedItems.forEach((el) => {
-        searchParams.append(queryType, el as string);
-      });
-      setSearchParams(searchParams);
-
-      return newSelectedItems;
+    const newSelectedItems = selectedItems.includes(selectedItem)
+      ? selectedItems.filter((item) => item !== selectedItem)
+      : [...selectedItems, selectedItem];
+    searchParams.delete(queryType);
+    newSelectedItems.forEach((el) => {
+      searchParams.append(queryType, el as string);
     });
+    setSearchParams(searchParams);
+    setSelectedItems(newSelectedItems);
   };
 
   const formItems = () => {
