@@ -42,7 +42,6 @@ test('checks wrong email', async () => {
     password: wrapper.container.querySelector('#loginPassword'),
   };
 
-  console.log(wrapper.container);
   await act(async () => {
     fireEvent.change(inputs.email!, {
       target: {
