@@ -47,7 +47,7 @@ export const Pagination: React.FC<PaginationProps> = ({
 
       <div className="pagination-button-container-number">
         {pageNumbers.map((page) => {
-          if (windowWidth > 768 && windowWidth < 484) {
+          if (windowWidth < 484 || windowWidth > 768) {
             return (
               <Button
                 key={page}
@@ -67,8 +67,7 @@ export const Pagination: React.FC<PaginationProps> = ({
             const isLastPage = page === totalPages;
             const isCurrentPage = page === currentPage;
             const isAdjacentPage =
-              (windowWidth > 630 && Math.abs(currentPage - page) <= 1) ||
-              (windowWidth <= 630 && (isFirstPage || isLastPage));
+              windowWidth <= 768 && (isFirstPage || isLastPage);
             const shouldShowLeftEllipsis = isCurrentPage && currentPage > 2;
             const shouldShowRightEllipsis =
               isCurrentPage && currentPage < totalPages - 1;

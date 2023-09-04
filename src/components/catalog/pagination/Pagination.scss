@@ -80,15 +80,6 @@
     padding: 0;
     width: 5em;
   }
-  @media (max-width: 576px) {
-    justify-content: center;
-    width: 2.5rem;
-  }
-
-  @media (max-width: 768px) {
-    justify-content: center;
-    width: 3.5rem;
-  }
 }
 
 .pagination-button-number {
@@ -109,6 +100,16 @@
     color: var(--light-color);
     border-color: var(--primary-color-light);
     margin: 0;
+  }
+}
+@media (max-width: 768px) {
+  .pagination-button:disabled {
+    justify-content: center;
+    width: 3.5rem;
+  }
+  .pagination-button {
+    justify-content: center;
+    width: 3.5rem;
   }
 }
 
