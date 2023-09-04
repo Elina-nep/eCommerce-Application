@@ -32,6 +32,7 @@ export const QueryFilter = <T,>({
       ? selectedItems.filter((item) => item !== selectedItem)
       : [...selectedItems, selectedItem];
     searchParams.delete(queryType);
+    searchParams.delete('page');
     newSelectedItems.forEach((el) => {
       searchParams.append(queryType, el as string);
     });
