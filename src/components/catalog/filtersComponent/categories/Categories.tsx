@@ -1,5 +1,6 @@
 import './Categories.scss';
 
+import { Category } from '@commercetools/platform-sdk';
 import { useEffect, useState } from 'react';
 
 import { FiltersT } from '../../../../types';
@@ -20,7 +21,7 @@ export const Categories = ({
 
   const formCategories = () => {
     if (currentCategory === 'all') {
-      return categories.results.map((el) => {
+      return categories.results.map((el: Category) => {
         if (!el.parent) {
           return (
             <CategoryItem
