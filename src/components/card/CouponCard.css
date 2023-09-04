@@ -1,0 +1,84 @@
+.coupon-card {
+  width: 0.5vw;
+  flex: 0 0 32%;
+  padding: 0 10px;
+  box-sizing: border-box;
+  border-radius: 10px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: var(--light-color);
+  margin-right: 2%;
+}
+
+.coupon-card:last-child {
+  margin-right: 0;
+}
+
+.coupon-card-title {
+  position: relative;
+  top: 2vh;
+  margin: 0.5rem 0 0 0;
+  width: 20vw;
+  text-align: center;
+  font-size: var(--font-xlarge);
+}
+
+.coupon-card-img {
+  width: 12vw;
+  margin: 4vh;
+}
+
+@media screen and (max-width: 1000px) {
+  .coupon-card-title {
+    font-size: var(--font-large);
+    top: 1.5vh;
+    margin: 0.6rem 0 0 0;
+    width: 20vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .coupon-card-title {
+    margin: 0.5rem 0 0 0;
+    font-size: var(--font-small);
+  }
+
+  .coupon-card-img {
+    margin: 2vh;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .coupon-card {
+    width: 10.9vw;
+    flex: 0 0 33%;
+  }
+
+  .coupon-card-title {
+    margin: 0.7rem 0 0 0;
+    width: 30vw;
+  }
+
+  .coupon-card-img {
+    width: 50%;
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .coupon-card {
+    width: 15.6vw;
+    flex: 0 0 36%;
+    padding: 0 10px;
+  }
+
+  .coupon-card-title {
+    margin: 0.5rem 0 0 0;
+  }
+
+  .coupon-card-img {
+    width: 40%;
+    margin: 2.5vh;
+  }
+}

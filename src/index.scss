@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Iceland&display=swap');
+
+body {
+  margin: 0;
+  font-family: 'Iceland';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+:root {
+  --primary-color: #fe4004;
+  --primary-color-light: #ff814e;
+  --secondary-color: #50a294;
+  --secondary-color-light: #b7ede4;
+  --dark-color: #2a2a2a;
+  --light-color: #ffffff;
+  --font-xsmall: 1rem;
+  --font-small: 1.1rem;
+  --font-medium: 1.2rem;
+  --font-large: 1.4rem;
+  --font-xlarge: 1.7rem;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-container {
+  flex-grow: 1;
+  width: 100%;
+  background-size: cover;
+}

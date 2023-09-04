@@ -1,0 +1,116 @@
+.modal {
+  z-index: 2;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(42, 42, 42, 0.8);
+}
+
+.modal-wrapper {
+  position: relative;
+  width: 550px;
+  background-color: white;
+  padding: 1rem;
+  color: var(--dark-color);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  border-radius: 2%;
+  font-size: 1.4em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  z-index: 1;
+}
+
+.modal-content {
+  display: flex;
+}
+
+.modal-text {
+  text-align: center;
+  width: 60%;
+  position: relative;
+  right: 0px;
+  font-weight: normal;
+  color: var(--dark-color);
+  border-radius: 4%;
+}
+
+.modal-image {
+  width: 70%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.coupon-code {
+  width: auto;
+  color: var(--primary-color);
+  border: 5px dotted var(--primary-color-light);
+  border-radius: 4%;
+  padding: 0.1em;
+}
+
+@media screen and (max-width: 768px) {
+  .modal-wrapper {
+    width: 450px;
+  }
+
+  .modal-text h4 {
+    margin: 4% 0;
+    font-size: var(--font-medium);
+  }
+
+  .modal-text p {
+    font-size: var(--font-small);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .modal-wrapper {
+    width: 350px;
+  }
+
+  .modal-text {
+    width: 70%;
+  }
+
+  .modal-image {
+    width: 70%;
+  }
+
+  .modal-text h4 {
+    font-size: var(--font-small);
+  }
+
+  .modal-text p {
+    font-size: var(--font-xsmall);
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .modal-wrapper {
+    width: 250px;
+  }
+
+  .modal-text {
+    width: 100%;
+  }
+
+  .modal-image {
+    display: none;
+  }
+
+  .modal-text h4 {
+    font-size: var(--font-xsmall);
+  }
+
+  .modal-text p {
+    font-size: 0.9rem;
+  }
+}

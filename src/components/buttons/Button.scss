@@ -1,0 +1,168 @@
+button:focus {
+  outline: none;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-xsmall);
+
+  padding: 0.2rem 0.5rem;
+  background-color: var(--light-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  text-align: center;
+  list-style-type: none;
+  text-decoration: none;
+  transition: 0.5s ease;
+  cursor: pointer;
+  margin: auto;
+  margin-top: 0.5em;
+  width: 6rem;
+  font-family: Iceland;
+  &:hover {
+    background: var(--primary-color-light);
+    color: var(--light-color);
+    border-color: var(--primary-color-light);
+  }
+}
+
+.button-main {
+  width: 8em;
+}
+
+.button:disabled {
+  color: rgba(0, 0, 0, 0.26);
+  pointer-events: none;
+  cursor: default;
+  border: 1px solid rgb(155, 155, 155);
+}
+
+.button-info {
+  position: relative;
+  margin: 0 0 0.5rem 0;
+  bottom: 2vh;
+  background-color: var(--primary-color-light);
+  color: var(--dark-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4em 0;
+  width: 20vw;
+  font-size: var(--font-large);
+  list-style-type: none;
+  text-decoration: none;
+  border-radius: 5px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  font-family: 'Iceland';
+  &:hover {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+  }
+}
+
+.button-pagination {
+  font-size: var(--font-medium);
+  font-family: 'Iceland';
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  z-index: 1;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+}
+
+.close {
+  position: absolute;
+  right: -4.5%;
+  z-index: 1;
+  top: -6%;
+  font-size: var(--font-medium);
+  text-align: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50px;
+  z-index: 2;
+  background-color: var(--light-color);
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Iceland';
+  &:hover {
+    background-color: var(--primary-color-light);
+    color: var(--light-color);
+    border: 1px solid var(--primary-color-light);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .button-info {
+    font-size: var(--font-large);
+    bottom: 1.5vh;
+    margin: 0 0 0.6rem 0;
+    width: 20vw;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .button-pagination {
+    font-size: var(--font-small);
+    width: 50px;
+    height: 50px;
+    margin: 0;
+  }
+
+  .button-info {
+    font-size: var(--font-xsmall);
+  }
+
+  .close {
+    right: -5.5%;
+    top: -8%;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .button-info {
+    margin: 0 0 0.7rem 0;
+    width: 25vw;
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .button-pagination {
+    width: 45px;
+    height: 45px;
+  }
+
+  .button-info {
+    margin: 0 0 0.5rem 0;
+    font-size: var(--font-small);
+  }
+
+  .colors-button-show-all.button {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+    margin-top: 0.4em;
+    width: 4.5rem;
+  }
+
+  .colors-button-reset.button {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+    margin-top: 0.4em;
+    width: 4.5rem;
+  }
+}
