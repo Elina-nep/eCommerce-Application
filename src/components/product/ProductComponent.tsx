@@ -1,9 +1,8 @@
 import './ProductComponent.scss';
 
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { AuthContext } from '../../context/AuthProvider';
 import { IProductComponentProps } from '../../types';
 import {
   CURRENCY,
@@ -15,8 +14,8 @@ import {
   getProductPriceDiscounted,
   LANGUAGE,
 } from '../../util';
-import { changeItemInCart } from '../../util/cart';
 import Button from '../buttons/Button';
+import { ButtonCartActions } from './assets/ButtonCartActions';
 import { ProductModal } from './assets/ProductModal';
 
 export const ProductComponent: React.FC<IProductComponentProps> = ({
@@ -63,24 +62,6 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
           : currentImageIndex - 1;
       setCurrentImageIndex(prevIndex);
     }
-  };
-
-  const { cart, setCart } = useContext(AuthContext);
-
-  const handleItemInCartAction = (
-    sku: string,
-    action: string,
-    productInCartId: string,
-    quantity: number,
-  ) => {
-    changeItemInCart({
-      sku,
-      cartVersion: cart.version,
-      cartId: cart.id,
-      action,
-      cartItemId: productInCartId,
-      quantity,
-    }).then((res) => setCart(res));
   };
 
   return (
@@ -134,34 +115,9 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
               {price && <p className="product__price">{price}</p>}
             </div>
           )}
-          {cart.lineItems.find((el) => el.productId === id) ? (
-            <Button
-              onClick={() => {
-                handleItemInCartAction(
-                  product.current.masterVariant.sku || '',
-                  'removeLineItem',
-                  cart.lineItems.find((el) => el.productId === id)?.id || '',
-                  cart.lineItems.find((el) => el.productId === id)?.quantity ||
-                    1,
-                );
-              }}
-            >
-              Remove From Cart
-            </Button>
-          ) : (
-            <Button
-              onClick={() => {
-                handleItemInCartAction(
-                  product.current.masterVariant.sku || '',
-                  'addLineItem',
-                  id,
-                  1,
-                );
-              }}
-            >
-              Add to Cart
-            </Button>
-          )}
+
+          <ButtonCartActions product={product} id={id} />
+
           <div className="product__details">
             {description && (
               <p className="product__description">{description}</p>
