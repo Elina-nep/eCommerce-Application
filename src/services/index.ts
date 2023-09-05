@@ -1,6 +1,11 @@
 export { createCustomerService } from './auth/createCustomerService';
 export { loginCustomerService } from './auth/loginCustomerService';
 export {
+  addItemToCartService,
+  createCartService,
+  getCartService,
+} from './cart/cart';
+export {
   changeCustomerPasswordService,
   changeCustomerService,
   getCustomerService,

@@ -4,6 +4,7 @@ export {
   loginCustomerFunc,
   logOutFunc,
 } from './auth';
+export { createCart, defaultCart, getCart } from './cart';
 export {
   findCurrentCategoryId,
   getCategories,

@@ -1,8 +1,9 @@
 import './ProductComponent.scss';
 
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 
+import { AuthContext } from '../../context/AuthProvider';
 import { IProductComponentProps } from '../../types';
 import {
   CURRENCY,
@@ -14,12 +15,14 @@ import {
   getProductPriceDiscounted,
   LANGUAGE,
 } from '../../util';
+import { addItemToCart } from '../../util/cart';
 import Button from '../buttons/Button';
 import { ProductModal } from './assets/ProductModal';
 
 export const ProductComponent: React.FC<IProductComponentProps> = ({
   product,
   categories,
+  id,
 }) => {
   const title = product.current.name[LANGUAGE.EN] || '';
   const description = product.current.description?.en || '';
@@ -60,6 +63,12 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
           : currentImageIndex - 1;
       setCurrentImageIndex(prevIndex);
     }
+  };
+
+  const { cart, setCart } = useContext(AuthContext);
+
+  const addNewItem = (sku: string) => {
+    addItemToCart(sku, cart.version, cart.id).then((res) => setCart(res));
   };
 
   return (
@@ -113,7 +122,19 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
               {price && <p className="product__price">{price}</p>}
             </div>
           )}
-
+          {cart.lineItems.find((el) => {
+            return el.productId === id;
+          }) ? (
+            <Link to={'/cart'}>In Cart</Link>
+          ) : (
+            <Button
+              onClick={() => {
+                addNewItem(product.current.masterVariant.sku || '');
+              }}
+            >
+              Add to Cart {cart.version}
+            </Button>
+          )}
           <div className="product__details">
             {description && (
               <p className="product__description">{description}</p>

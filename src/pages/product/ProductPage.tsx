@@ -57,6 +57,7 @@ export const ProductPage = () => {
         <ProductComponent
           product={product.masterData}
           categories={categories}
+          id={product.id}
         />
       )}
     </main>
