@@ -132,7 +132,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
                 addNewItem(product.current.masterVariant.sku || '');
               }}
             >
-              Add to Cart {cart.version}
+              Add to Cart
             </Button>
           )}
           <div className="product__details">
