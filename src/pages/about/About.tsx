@@ -1,6 +1,6 @@
 export const AboutPage = () => {
   return (
-    <main className="main-container">
+    <main className="about-us-main-container">
       <h2>This is about page</h2>
     </main>
   );
