@@ -29,8 +29,8 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
             </div>
           </div>
         </Link>
-        <div className="cart">
-          <Link to="#">
+        <div className="cart__link">
+          <Link to="cart">
             CART / ${cartTotal.toFixed(2)} gds: {cartItemsCount}
           </Link>
         </div>

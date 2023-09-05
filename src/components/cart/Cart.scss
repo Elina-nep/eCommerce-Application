@@ -1,0 +1,18 @@
+.cart {
+  width: 800px;
+  background-color: var(--light-color);
+  padding: 1.4rem 2rem;
+  margin: 2rem 0;
+  border-radius: 10px;
+}
+
+.cart__link {
+  margin: 1.4rem 0 1rem 2rem;
+  text-decoration: none;
+  font-size: var(--font-medium);
+  color: var(--secondary-color);
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline 1px var(--secondary-color);
+  }
+}

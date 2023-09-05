@@ -90,7 +90,7 @@
   }
 }
 
-.cart {
+.cart__link {
   display: flex;
   flex-wrap: wrap;
   color: var(--dark-color);
@@ -104,7 +104,7 @@
   }
 }
 
-.cart a {
+.cart__link a {
   color: var(--dark-color);
   list-style-type: none;
   text-decoration: none;
