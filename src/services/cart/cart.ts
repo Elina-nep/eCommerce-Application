@@ -1,3 +1,4 @@
+import { ItemInCartChangeService } from '../../types';
 import { formFlow } from '../BuildClient';
 
 export const getCartService = () => formFlow().me().carts().get().execute();
@@ -11,11 +12,15 @@ export const createCartService = () =>
     })
     .execute();
 
-export const addItemToCartService = (
-  sku: string,
-  cartVersion: number,
-  cartId: string,
-) =>
+type actions = 'addLineItem' | 'removeLineItem';
+
+export const addItemToCartService = ({
+  sku,
+  cartVersion,
+  cartId,
+  cartItemId,
+  action,
+}: ItemInCartChangeService) =>
   formFlow()
     .me()
     .carts()
@@ -25,8 +30,9 @@ export const addItemToCartService = (
         version: cartVersion,
         actions: [
           {
-            action: 'addLineItem',
+            action: action as actions,
             sku: sku,
+            lineItemId: cartItemId,
             quantity: 1,
           },
         ],

@@ -6,6 +6,7 @@ import {
   createCartService,
   getCartService,
 } from '../services';
+import { ItemInCartChangeService } from '../types';
 
 export const getCart = (
   setLoading: Dispatch<SetStateAction<boolean>>,
@@ -38,13 +39,15 @@ export const createCart = (): Promise<Cart> => {
       });
   });
 };
-export const addItemToCart = (
-  sku: string,
-  cartVersion: number,
-  cartId: string,
-): Promise<Cart> => {
+export const addItemToCart = ({
+  sku,
+  cartVersion,
+  cartId,
+  cartItemId,
+  action,
+}: ItemInCartChangeService): Promise<Cart> => {
   return new Promise((resolve, reject) => {
-    addItemToCartService(sku, cartVersion, cartId)
+    addItemToCartService({ sku, cartVersion, cartId, action, cartItemId })
       .then((body) => {
         console.log(body.body);
         resolve(body.body);

@@ -67,8 +67,18 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
 
   const { cart, setCart } = useContext(AuthContext);
 
-  const addNewItem = (sku: string) => {
-    addItemToCart(sku, cart.version, cart.id).then((res) => setCart(res));
+  const handleItemInCartAction = (
+    sku: string,
+    action: string,
+    productInCartId: string,
+  ) => {
+    addItemToCart({
+      sku,
+      cartVersion: cart.version,
+      cartId: cart.id,
+      action,
+      cartItemId: productInCartId,
+    }).then((res) => setCart(res));
   };
 
   return (
@@ -122,14 +132,26 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
               {price && <p className="product__price">{price}</p>}
             </div>
           )}
-          {cart.lineItems.find((el) => {
-            return el.productId === id;
-          }) ? (
-            <Link to={'/cart'}>In Cart</Link>
+          {cart.lineItems.find((el) => el.productId === id) ? (
+            <Button
+              onClick={() => {
+                handleItemInCartAction(
+                  product.current.masterVariant.sku || '',
+                  'removeLineItem',
+                  cart.lineItems.find((el) => el.productId === id)?.id || '',
+                );
+              }}
+            >
+              Remove From Cart
+            </Button>
           ) : (
             <Button
               onClick={() => {
-                addNewItem(product.current.masterVariant.sku || '');
+                handleItemInCartAction(
+                  product.current.masterVariant.sku || '',
+                  'addLineItem',
+                  id,
+                );
               }}
             >
               Add to Cart
