@@ -15,7 +15,7 @@ import {
   getProductPriceDiscounted,
   LANGUAGE,
 } from '../../util';
-import { addItemToCart } from '../../util/cart';
+import { changeItemInCart } from '../../util/cart';
 import Button from '../buttons/Button';
 import { ProductModal } from './assets/ProductModal';
 
@@ -71,13 +71,15 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
     sku: string,
     action: string,
     productInCartId: string,
+    quantity: number,
   ) => {
-    addItemToCart({
+    changeItemInCart({
       sku,
       cartVersion: cart.version,
       cartId: cart.id,
       action,
       cartItemId: productInCartId,
+      quantity,
     }).then((res) => setCart(res));
   };
 
@@ -139,6 +141,8 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
                   product.current.masterVariant.sku || '',
                   'removeLineItem',
                   cart.lineItems.find((el) => el.productId === id)?.id || '',
+                  cart.lineItems.find((el) => el.productId === id)?.quantity ||
+                    1,
                 );
               }}
             >
@@ -151,6 +155,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
                   product.current.masterVariant.sku || '',
                   'addLineItem',
                   id,
+                  1,
                 );
               }}
             >

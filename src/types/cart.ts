@@ -9,4 +9,5 @@ export interface ItemInCartChangeService {
   cartId: string;
   cartItemId: string;
   action: string;
+  quantity: number;
 }

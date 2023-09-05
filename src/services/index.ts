@@ -1,7 +1,7 @@
 export { createCustomerService } from './auth/createCustomerService';
 export { loginCustomerService } from './auth/loginCustomerService';
 export {
-  addItemToCartService,
+  changeItemInCartService,
   createCartService,
   getCartService,
 } from './cart/cart';

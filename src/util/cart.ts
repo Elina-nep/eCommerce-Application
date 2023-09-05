@@ -2,7 +2,7 @@ import { Cart, CartPagedQueryResponse } from '@commercetools/platform-sdk';
 import { Dispatch, SetStateAction } from 'react';
 
 import {
-  addItemToCartService,
+  changeItemInCartService,
   createCartService,
   getCartService,
 } from '../services';
@@ -39,15 +39,23 @@ export const createCart = (): Promise<Cart> => {
       });
   });
 };
-export const addItemToCart = ({
+export const changeItemInCart = ({
   sku,
   cartVersion,
   cartId,
   cartItemId,
   action,
+  quantity,
 }: ItemInCartChangeService): Promise<Cart> => {
   return new Promise((resolve, reject) => {
-    addItemToCartService({ sku, cartVersion, cartId, action, cartItemId })
+    changeItemInCartService({
+      sku,
+      cartVersion,
+      cartId,
+      action,
+      cartItemId,
+      quantity,
+    })
       .then((body) => {
         console.log(body.body);
         resolve(body.body);

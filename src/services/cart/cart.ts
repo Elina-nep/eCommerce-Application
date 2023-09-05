@@ -14,12 +14,13 @@ export const createCartService = () =>
 
 type actions = 'addLineItem' | 'removeLineItem';
 
-export const addItemToCartService = ({
+export const changeItemInCartService = ({
   sku,
   cartVersion,
   cartId,
   cartItemId,
   action,
+  quantity,
 }: ItemInCartChangeService) =>
   formFlow()
     .me()
@@ -33,7 +34,7 @@ export const addItemToCartService = ({
             action: action as actions,
             sku: sku,
             lineItemId: cartItemId,
-            quantity: 1,
+            quantity,
           },
         ],
       },
