@@ -26,7 +26,11 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
       action,
       cartItemId: productInCartId,
       quantity,
-    }).then((res) => setCart(res));
+    })
+      .then((res) => setCart(res))
+      .catch((e) => {
+        console.log(e.message);
+      });
   };
 
   const itemInCart = cart.lineItems.find((el) => el.productId === id);
