@@ -1,6 +1,7 @@
 import './Head.scss';
 
 import React, { useContext } from 'react';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 
 import imageToAddCottoncandy from '../../../assets/cotton-candy.png';
@@ -29,9 +30,10 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
             </div>
           </div>
         </Link>
-        <div className="cart">
-          <Link to="#">
-            CART / ${cartTotal.toFixed(2)} gds: {cartItemsCount}
+        <div className="cart__link">
+          <Link to="cart">
+            <AiOutlineShoppingCart /> ${cartTotal.toFixed(2)} gds:{' '}
+            {cartItemsCount}
           </Link>
         </div>
         <div className="registration-links">
