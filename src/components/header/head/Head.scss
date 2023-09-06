@@ -90,7 +90,7 @@
   }
 }
 
-.cart {
+.cart__link {
   display: flex;
   flex-wrap: wrap;
   color: var(--dark-color);
@@ -111,15 +111,17 @@
   }
   @media (min-width: 210px) and (max-width: 575px) {
     margin: 0 4%;
-    width: 20%;
+    width: 24%;
   }
 }
 
-.cart a {
+.cart__link a {
+  display: flex;
+  gap: 3px;
   color: var(--dark-color);
   list-style-type: none;
   text-decoration: none;
-  font-size: var(--font-xsmall);
+  font-size: var(--font-small);
   transition: 0.5s;
   @media (min-width: 210px) and (max-width: 575px) {
     font-size: 0.8rem;
