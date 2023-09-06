@@ -32,8 +32,8 @@ const Head = () => {
         </Link>
         <div className="cart__link">
           <Link to="/cart">
-            <AiOutlineShoppingCart /> €‎{cart.totalPrice.centAmount / 100} gds:{' '}
-            {cart.lineItems.length}
+            <AiOutlineShoppingCart /> {cart.lineItems.length} ( €‎
+            {cart.totalPrice.centAmount / 100} )
           </Link>
         </div>
         <div className="registration-links">
