@@ -21,22 +21,33 @@ export const changeItemInCartService = ({
   cartItemId,
   action,
   quantity,
-}: ItemInCartChangeService) =>
-  formFlow()
+}: ItemInCartChangeService) => {
+  const actions = [];
+  if (Array.isArray(cartItemId)) {
+    cartItemId.map((el) => {
+      actions.push({
+        action: action as actions,
+        sku,
+        lineItemId: el,
+        quantity,
+      });
+    });
+  } else
+    actions.push({
+      action: action as actions,
+      sku,
+      lineItemId: cartItemId,
+      quantity,
+    });
+  return formFlow()
     .me()
     .carts()
     .withId({ ID: cartId })
     .post({
       body: {
         version: cartVersion,
-        actions: [
-          {
-            action: action as actions,
-            sku,
-            lineItemId: cartItemId,
-            quantity,
-          },
-        ],
+        actions: actions,
       },
     })
     .execute();
+};

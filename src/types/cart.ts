@@ -7,7 +7,7 @@ export interface ItemInCartChangeService {
   sku?: string;
   cartVersion: number;
   cartId: string;
-  cartItemId?: string;
+  cartItemId?: string | string[];
   action: string;
   quantity: number;
 }
