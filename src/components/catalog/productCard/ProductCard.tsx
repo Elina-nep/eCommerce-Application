@@ -1,8 +1,6 @@
 import './ProductCard.scss';
 
 import React from 'react';
-import { useState } from 'react';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
 import { IProductCardProps } from '../../../types';
@@ -28,13 +26,6 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
     ? { textDecoration: 'line-through 1px var(--primary-color)' }
     : {};
 
-  const [toCart, setToCart] = useState(false);
-
-  const addToCart = () => {
-    setToCart(!toCart);
-    console.log(toCart ? 'REMOVE FROM CART' : 'ADD TO CART');
-  };
-
   return (
     <Link to={`/product/${product.id}`} className="product_card__link">
       {discountedPrice ? <p className="sale-icon">%</p> : null}
@@ -55,12 +46,6 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
             {price}
           </p>
         )}
-        <button
-          className={toCart ? 'product__cart_btn_active' : 'product__cart_btn'}
-          onClick={addToCart}
-        >
-          <AiOutlineShoppingCart />
-        </button>
       </div>
     </Link>
   );

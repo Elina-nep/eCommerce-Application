@@ -1,12 +1,12 @@
 import imageToAddBalloons from '../assets/balloons.jpg';
 import imageToAddCandles from '../assets/candles.jpg';
 import imageToAddDecoration from '../assets/decoration.jpg';
+import imageDiscount10 from '../assets/get10.png';
+import imageDiscount20 from '../assets/get20.png';
+import imageDiscount30 from '../assets/get30.png';
 import imageToAddHats from '../assets/hats.jpg';
-import imageToAddHoli from '../assets/holi.jpg';
 import imageToAddPoppers from '../assets/poppers.jpg';
 import imageToAddSets from '../assets/sets.jpg';
-import imageToAddskylantern from '../assets/sky-lantern.jpeg';
-import imageToAddWeb from '../assets/spider-web.jpg';
 import { CardData } from '../types/sliderCard';
 
 export const PRODUCTS_ON_PAGE = 12;
@@ -14,39 +14,39 @@ export const PRODUCTS_ON_PAGE = 12;
 export const cards: CardData[] = [
   {
     id: 1,
-    discountText: 'Get 15% off on Sky lanterns',
-    image: imageToAddskylantern,
+    discountText: '10% off on 50$ purchase',
+    image: imageDiscount10,
     buttonText: 'Learn more',
-    couponDate: 'Ends 04/12/2023 Online exclusive! ',
-    couponCode: 'SKY15',
-    description: `Light up the night sky and create a magical atmosphere with sky lanterns! Add a touch of wonder and awe to your special event or celebration. Don't miss the chance to make your memories shine bright! `,
+    couponDate: 'Ends 30/09/2023 Online exclusive!',
+    couponCode: 'GET10',
+    description: `Embark on your shopping journey with a delightful 10% discount gracing your $50 purchase!`,
   },
   {
     id: 2,
+    discountText: '20% off on 100$ purchase',
+    image: imageDiscount20,
+    buttonText: 'Learn more',
+    couponDate: 'Ends 30/09/2023 Online exclusive!',
+    couponCode: 'GET20',
+    description: `Embark on your shopping journey with a delightful 20% discount gracing your $100 purchase!`,
+  },
+  {
+    id: 3,
+    discountText: '30% off on 150$ purchase',
+    image: imageDiscount30,
+    buttonText: 'Learn more',
+    couponDate: 'Ends 01/11/2023 Online exclusive!',
+    couponCode: 'GET30',
+    description: `Embark on your shopping journey with a delightful 30% discount gracing your $150 purchase!`,
+  },
+  {
+    id: 4,
     discountText: 'Get 20% off on Balloons set',
     image: imageToAddBalloons,
     buttonText: 'Learn more',
     couponDate: 'Ends 08/12/2023 Online exclusive! ',
-    couponCode: 'BALLOON20',
+    couponCode: 'Check in Catalog',
     description: `Infuse your birthday into delight with balloons! Watch as they gracefully float, creating a whimsical atmosphere that will leave you in awe. elevate your birthday to new heights with balloons!`,
-  },
-  {
-    id: 3,
-    discountText: 'Get 30% off on Holi colors',
-    image: imageToAddHoli,
-    buttonText: 'Learn more',
-    couponDate: 'Ends 01/11/2023 Online exclusive!',
-    couponCode: 'HOLI30',
-    description: `Make your celebration more vibrant with Holi colors! Get ready to create a colorful extravaganza and immerse yourself in a festive atmosphere. Don't miss the chance to experience a truly colorful celebration!`,
-  },
-  {
-    id: 4,
-    discountText: 'Get 30% off on Spider webs',
-    image: imageToAddWeb,
-    buttonText: 'Learn more',
-    couponDate: 'Ends 31/10/2023 Online exclusive! ',
-    couponCode: 'WEB30',
-    description: `Transform your Halloween into a spooktacular event with artificial spider webs! Set the scene for scares and create an eerily enchanting atmosphere. Don't miss out on this hauntingly good deal!`,
   },
   {
     id: 5,
@@ -54,7 +54,7 @@ export const cards: CardData[] = [
     image: imageToAddCandles,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/25/2023 Online exclusive!',
-    couponCode: 'CANDLE25',
+    couponCode: 'Check in Catalog',
     description: `Illuminate your celebrations with party candles! Create a warm and cozy ambiance for any occasion and make your moments even more memorable. Don't miss out on this fantastic offer!`,
   },
   {
@@ -63,7 +63,7 @@ export const cards: CardData[] = [
     image: imageToAddPoppers,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/31/2023 Online exclusive!',
-    couponCode: 'POPPER20',
+    couponCode: 'Check in Catalog',
     description: `Add excitement to your parties with party poppers! Watch the confetti burst into the air and let the festivities begin. Hurry up and grab this amazing deal before it's gone!`,
   },
   {
@@ -72,7 +72,7 @@ export const cards: CardData[] = [
     image: imageToAddSets,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/31/2023 Online exclusive!',
-    couponCode: 'All products from this category are on sale.',
+    couponCode: 'Check in Catalog',
     description: `Make your loved ones feel special with our gift sets! Whether it's a birthday, anniversary, or any other occasion, these thoughtful sets are sure to bring joy. Don't miss the chance to save on the perfect gift!`,
   },
   {
@@ -81,7 +81,7 @@ export const cards: CardData[] = [
     image: imageToAddHats,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/31/2023 Online exclusive!',
-    couponCode: 'HAT30',
+    couponCode: 'Check in Catalog',
     description: `Top off your celebrations with stylish party hats! From birthday parties to New Year's Eve, these hats will add fun and flair to any event. Grab this deal and get ready to party!`,
   },
   {

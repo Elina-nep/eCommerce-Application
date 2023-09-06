@@ -1,7 +1,6 @@
 import './ProductComponent.scss';
 
 import React, { useState } from 'react';
-import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
 import { IProductComponentProps } from '../../types';
@@ -63,13 +62,6 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
     }
   };
 
-  const [toCart, setToCart] = useState(false);
-
-  const addToCart = () => {
-    setToCart(!toCart);
-    console.log(toCart ? 'REMOVE FROM CART' : 'ADD TO CART');
-  };
-
   return (
     <div className="product">
       <Link
@@ -121,14 +113,6 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
               {price && <p className="product__price">{price}</p>}
             </div>
           )}
-          <button
-            className={
-              toCart ? 'product__cart_btn_active' : 'product__cart_btn'
-            }
-            onClick={addToCart}
-          >
-            <AiOutlineShoppingCart />
-          </button>
 
           <div className="product__details">
             {description && (
