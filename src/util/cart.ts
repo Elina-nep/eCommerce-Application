@@ -1,12 +1,18 @@
-import { Cart, CartPagedQueryResponse } from '@commercetools/platform-sdk';
+import {
+  Cart,
+  CartPagedQueryResponse,
+  DiscountCode,
+} from '@commercetools/platform-sdk';
 import { Dispatch, SetStateAction } from 'react';
 
 import {
   changeItemInCartService,
   createCartService,
+  discountCartService,
   getCartService,
+  getDiscountService,
 } from '../services';
-import { ItemInCartChangeService } from '../types';
+import { DiscountCartService, ItemInCartChangeService } from '../types';
 
 export const getCart = (
   setLoading: Dispatch<SetStateAction<boolean>>,
@@ -24,6 +30,19 @@ export const getCart = (
       })
       .finally(() => {
         setLoading(false);
+      });
+  });
+};
+
+export const getDiscount = (id: string): Promise<DiscountCode> => {
+  return new Promise((resolve, reject) => {
+    getDiscountService(id)
+      .then((body) => {
+        resolve(body.body);
+      })
+      .catch((e) => {
+        const errorMessage = e.message || 'An error occurred';
+        reject(new Error(errorMessage));
       });
   });
 };
@@ -57,13 +76,35 @@ export const changeItemInCart = ({
       quantity,
     })
       .then((body) => {
-        console.log(body.body);
         resolve(body.body);
       })
       .catch((e) => {
         const errorMessage = e.message || 'An error occurred';
         reject(new Error(errorMessage));
-        console.log(e.message);
+      });
+  });
+};
+export const discountCart = ({
+  discount,
+  discountCode,
+  cartVersion,
+  cartId,
+  action,
+}: DiscountCartService): Promise<Cart> => {
+  return new Promise((resolve, reject) => {
+    discountCartService({
+      discount,
+      discountCode,
+      cartVersion,
+      cartId,
+      action,
+    })
+      .then((body) => {
+        resolve(body.body);
+      })
+      .catch((e) => {
+        const errorMessage = e.message || 'An error occurred';
+        reject(new Error(errorMessage));
       });
   });
 };

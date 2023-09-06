@@ -1,9 +1,12 @@
 import { MyCartUpdateAction } from '@commercetools/platform-sdk';
 
-import { ItemInCartChangeService } from '../../types';
+import { DiscountCartService, ItemInCartChangeService } from '../../types';
 import { formFlow } from '../BuildClient';
 
 export const getCartService = () => formFlow().me().carts().get().execute();
+
+export const getDiscountService = (id: string) =>
+  formFlow().discountCodes().withId({ ID: id }).get().execute();
 
 export const createCartService = () =>
   formFlow()
@@ -14,7 +17,11 @@ export const createCartService = () =>
     })
     .execute();
 
-type actions = 'addLineItem' | 'removeLineItem';
+type actions =
+  | 'addLineItem'
+  | 'removeLineItem'
+  | 'removeDiscountCode'
+  | 'addDiscountCode';
 
 export const changeItemInCartService = ({
   sku,
@@ -41,6 +48,39 @@ export const changeItemInCartService = ({
       lineItemId: cartItemId,
       quantity,
     });
+  return formFlow()
+    .me()
+    .carts()
+    .withId({ ID: cartId })
+    .post({
+      body: {
+        version: cartVersion,
+        actions: actions as MyCartUpdateAction[],
+      },
+    })
+    .execute();
+};
+
+export const discountCartService = ({
+  discount, //user input of discount
+  discountCode, // uniq id of cart discount, used when deleting
+  cartVersion,
+  cartId,
+  action,
+}: DiscountCartService) => {
+  const actions = [];
+  if (action === 'addDiscountCode') {
+    actions.push({
+      action: action as actions,
+      code: discount,
+    });
+  } else {
+    actions.push({
+      action: action as actions,
+      discountCode: { typeId: 'discount-code', id: discountCode || '' },
+    });
+  }
+
   return formFlow()
     .me()
     .carts()

@@ -11,3 +11,11 @@ export interface ItemInCartChangeService {
   action: string;
   quantity: number | number[];
 }
+
+export interface DiscountCartService {
+  discount?: string;
+  discountCode?: string;
+  cartVersion: number;
+  cartId: string;
+  action: string;
+}

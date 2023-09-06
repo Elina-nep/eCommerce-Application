@@ -1,5 +1,9 @@
 export type { CardProps } from './cards';
-export type { HeadProps, ItemInCartChangeService } from './cart';
+export type {
+  DiscountCartService,
+  HeadProps,
+  ItemInCartChangeService,
+} from './cart';
 export type {
   CategoryT,
   FilterComponentT,

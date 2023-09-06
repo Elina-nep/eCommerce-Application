@@ -32,7 +32,7 @@ const Head = () => {
         </Link>
         <div className="cart__link">
           <Link to="/cart">
-            <AiOutlineShoppingCart /> {cart.lineItems.length} ( €‎
+            <AiOutlineShoppingCart /> {cart.totalLineItemQuantity} ( €‎
             {cart.totalPrice.centAmount / 100} )
           </Link>
         </div>

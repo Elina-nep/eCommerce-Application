@@ -4,7 +4,14 @@ export {
   loginCustomerFunc,
   logOutFunc,
 } from './auth';
-export { changeItemInCart, createCart, defaultCart, getCart } from './cart';
+export {
+  changeItemInCart,
+  createCart,
+  defaultCart,
+  discountCart,
+  getCart,
+  getDiscount,
+} from './cart';
 export {
   findCurrentCategoryId,
   getCategories,
