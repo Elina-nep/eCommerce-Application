@@ -4,10 +4,10 @@ export interface HeadProps {
 }
 
 export interface ItemInCartChangeService {
-  sku: string;
+  sku?: string;
   cartVersion: number;
   cartId: string;
-  cartItemId: string;
+  cartItemId?: string;
   action: string;
   quantity: number;
 }

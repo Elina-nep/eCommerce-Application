@@ -32,7 +32,7 @@ export const changeItemInCartService = ({
         actions: [
           {
             action: action as actions,
-            sku: sku,
+            sku,
             lineItemId: cartItemId,
             quantity,
           },
