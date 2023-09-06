@@ -9,5 +9,5 @@ export interface ItemInCartChangeService {
   cartId: string;
   cartItemId?: string | string[];
   action: string;
-  quantity: number;
+  quantity: number | number[];
 }

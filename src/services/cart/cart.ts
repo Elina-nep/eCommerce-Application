@@ -1,3 +1,5 @@
+import { MyCartUpdateAction } from '@commercetools/platform-sdk';
+
 import { ItemInCartChangeService } from '../../types';
 import { formFlow } from '../BuildClient';
 
@@ -23,13 +25,13 @@ export const changeItemInCartService = ({
   quantity,
 }: ItemInCartChangeService) => {
   const actions = [];
-  if (Array.isArray(cartItemId)) {
-    cartItemId.map((el) => {
+  if (Array.isArray(cartItemId) && Array.isArray(quantity)) {
+    cartItemId.map((el, i) => {
       actions.push({
         action: action as actions,
         sku,
         lineItemId: el,
-        quantity,
+        quantity: quantity[i],
       });
     });
   } else
@@ -46,7 +48,7 @@ export const changeItemInCartService = ({
     .post({
       body: {
         version: cartVersion,
-        actions: actions,
+        actions: actions as MyCartUpdateAction[],
       },
     })
     .execute();
