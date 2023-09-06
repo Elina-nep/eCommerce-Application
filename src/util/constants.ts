@@ -45,7 +45,7 @@ export const cards: CardData[] = [
     image: imageToAddBalloons,
     buttonText: 'Learn more',
     couponDate: 'Ends 08/12/2023 Online exclusive! ',
-    couponCode: 'Check in Catalog',
+    couponCode: 'Find the details in the Catalog',
     description: `Infuse your birthday into delight with balloons! Watch as they gracefully float, creating a whimsical atmosphere that will leave you in awe. elevate your birthday to new heights with balloons!`,
   },
   {
@@ -54,7 +54,7 @@ export const cards: CardData[] = [
     image: imageToAddCandles,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/25/2023 Online exclusive!',
-    couponCode: 'Check in Catalog',
+    couponCode: 'Find the details in the Catalog',
     description: `Illuminate your celebrations with party candles! Create a warm and cozy ambiance for any occasion and make your moments even more memorable. Don't miss out on this fantastic offer!`,
   },
   {
@@ -63,7 +63,7 @@ export const cards: CardData[] = [
     image: imageToAddPoppers,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/31/2023 Online exclusive!',
-    couponCode: 'Check in Catalog',
+    couponCode: 'Find the details in the Catalog',
     description: `Add excitement to your parties with party poppers! Watch the confetti burst into the air and let the festivities begin. Hurry up and grab this amazing deal before it's gone!`,
   },
   {
@@ -72,7 +72,7 @@ export const cards: CardData[] = [
     image: imageToAddSets,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/31/2023 Online exclusive!',
-    couponCode: 'Check in Catalog',
+    couponCode: 'Find the details in the Catalog',
     description: `Make your loved ones feel special with our gift sets! Whether it's a birthday, anniversary, or any other occasion, these thoughtful sets are sure to bring joy. Don't miss the chance to save on the perfect gift!`,
   },
   {
@@ -81,7 +81,7 @@ export const cards: CardData[] = [
     image: imageToAddHats,
     buttonText: 'Learn more',
     couponDate: 'Ends 12/31/2023 Online exclusive!',
-    couponCode: 'Check in Catalog',
+    couponCode: 'Find the details in the Catalog',
     description: `Top off your celebrations with stylish party hats! From birthday parties to New Year's Eve, these hats will add fun and flair to any event. Grab this deal and get ready to party!`,
   },
   {
