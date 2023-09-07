@@ -30,7 +30,7 @@ export const ProductPage = () => {
         setCategories(body);
       })
       .catch((e) => {
-        console.log(e);
+        console.log(e.message);
       });
   };
 
@@ -43,7 +43,7 @@ export const ProductPage = () => {
           setProduct(res);
         })
         .catch((e) => {
-          console.log(e);
+          console.log(e.message);
         })
         .finally(() => {
           setLoading(false);
@@ -57,6 +57,7 @@ export const ProductPage = () => {
         <ProductComponent
           product={product.masterData}
           categories={categories}
+          id={product.id}
         />
       )}
     </main>

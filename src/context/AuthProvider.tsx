@@ -1,4 +1,4 @@
-import { Category } from '@commercetools/platform-sdk';
+import { Cart, Category } from '@commercetools/platform-sdk';
 import React, {
   createContext,
   Dispatch,
@@ -9,7 +9,10 @@ import React, {
 
 import { ICreateCustomer, ILoginCustomer } from '../types';
 import {
+  createCart,
   createCustomerFunc,
+  defaultCart,
+  getCart,
   getCategories,
   getCustomerFunc,
   loginCustomerFunc,
@@ -20,8 +23,10 @@ interface IUserAuth {
   ifAuth: boolean;
   alertMessage: string;
   categories: Category[];
+  cart: Cart;
   setAlertMessage: Dispatch<SetStateAction<string>>;
   setIfAuth: Dispatch<SetStateAction<boolean>>;
+  setCart: Dispatch<SetStateAction<Cart>>;
   loginCustomer: (data: ILoginCustomer) => void;
   createCustomer: (data: ICreateCustomer) => void;
   logOut: () => void;
@@ -31,6 +36,8 @@ export const AuthContext = createContext<IUserAuth>({
   ifAuth: false,
   alertMessage: '',
   categories: [],
+  cart: defaultCart,
+  setCart: () => {},
   setAlertMessage: () => {},
   setIfAuth: () => {},
   loginCustomer: () => {},
@@ -42,11 +49,29 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [loading, setLoading] = useState(false);
   const [ifAuth, setIfAuth] = useState(false);
   const [categories, setCategories] = useState<Category[]>([]);
+  const [cart, setCart] = useState<Cart>(defaultCart);
+
+  const checkCart = () => {
+    getCart(setLoading)
+      .then((res) => {
+        if (res.results.length < 1) {
+          createCart().then((res) => {
+            setCart(res);
+          });
+        } else {
+          setCart(res.results[0]);
+        }
+      })
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
 
   useEffect(() => {
     getCustomerFunc(setLoading)
       .then(() => {
         setIfAuth(true);
+        checkCart();
         getCategories().then((res) => {
           setCategories(res.results);
         });
@@ -84,6 +109,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         ifAuth,
         alertMessage,
         categories,
+        cart,
+        setCart,
         setAlertMessage,
         setIfAuth,
         loginCustomer,

@@ -13,7 +13,8 @@ export const SelectSortProperty: React.FC<FilterStandardComponent> = ({
 }) => {
   const [showSelect, setShowSelect] = useState(false);
   const currentSort = AVAILABLE_SORT_OPTIONS.filter(
-    (el) => searchParams.get('sort') === el.value,
+    (el: { value: string; label: string }) =>
+      searchParams.get('sort') === el.value,
   );
 
   return (

@@ -5,6 +5,14 @@ export {
   logOutFunc,
 } from './auth';
 export {
+  changeItemInCart,
+  createCart,
+  defaultCart,
+  discountCart,
+  getCart,
+  getDiscount,
+} from './cart';
+export {
   findCurrentCategoryId,
   getCategories,
   getOneProduct,

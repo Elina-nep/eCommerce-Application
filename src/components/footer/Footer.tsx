@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
                   <Link
                     to={{
                       pathname: '/catalog',
-                      search: `?${el.name['en']}`,
+                      search: `?category=${el.name['en']}`,
                     }}
                   >
                     {el.name['en']}

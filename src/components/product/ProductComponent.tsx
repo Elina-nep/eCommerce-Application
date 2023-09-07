@@ -15,11 +15,13 @@ import {
   LANGUAGE,
 } from '../../util';
 import Button from '../buttons/Button';
+import { ButtonCartActions } from './assets/ButtonCartActions';
 import { ProductModal } from './assets/ProductModal';
 
 export const ProductComponent: React.FC<IProductComponentProps> = ({
   product,
   categories,
+  id,
 }) => {
   const title = product.current.name[LANGUAGE.EN] || '';
   const description = product.current.description?.en || '';
@@ -113,6 +115,8 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
               {price && <p className="product__price">{price}</p>}
             </div>
           )}
+
+          <ButtonCartActions product={product} id={id} />
 
           <div className="product__details">
             {description && (

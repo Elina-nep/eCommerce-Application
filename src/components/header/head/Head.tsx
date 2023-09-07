@@ -6,11 +6,11 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import imageToAddCottoncandy from '../../../assets/cotton-candy.png';
 import { AuthContext } from '../../../context/AuthProvider';
-import { HeadProps } from '../../../types/index';
 
-const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
+const Head = () => {
   const { ifAuth, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { cart } = useContext(AuthContext);
 
   return (
     <div className="head">
@@ -31,9 +31,9 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
           </div>
         </Link>
         <div className="cart__link">
-          <Link to="cart">
-            <AiOutlineShoppingCart /> ${cartTotal.toFixed(2)} gds:{' '}
-            {cartItemsCount}
+          <Link to="/cart">
+            <AiOutlineShoppingCart /> {cart.totalLineItemQuantity} ( €‎
+            {cart.totalPrice.centAmount / 100} )
           </Link>
         </div>
         <div className="registration-links">
