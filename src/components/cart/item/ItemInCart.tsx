@@ -14,6 +14,7 @@ import {
   getItemTotalPrice,
   LANGUAGE,
 } from '../../../util';
+import Button from '../../buttons/Button';
 
 export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
   const image = getItemImage(product);
@@ -26,10 +27,10 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
   const { cart, setCart } = useContext(AuthContext);
 
   const handleItemInCartAction = (
-    sku: string,
     action: string,
-    productInCartId: string,
     quantity: number,
+    productInCartId?: string,
+    sku?: string,
   ) => {
     changeItemInCart({
       sku,
@@ -48,19 +49,17 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
   return (
     <div className="item__container">
       <div className="item__col">
-        <button
-          className="item__delete_btn"
+        <Button
           onClick={() => {
             handleItemInCartAction(
-              product.variant.sku || '',
               'removeLineItem',
-              product.id || '',
               product.quantity,
+              product.id || '',
             );
           }}
         >
           x
-        </button>
+        </Button>
       </div>
       <div className="item__col">
         <img src={image} alt={name} className="item__image" />
@@ -73,10 +72,10 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
           className="item__quantity_btn"
           onClick={() => {
             handleItemInCartAction(
-              product.variant.sku || '',
               'removeLineItem',
-              product.id || '',
               1,
+              product.id,
+              product.variant.sku || '',
             );
           }}
         >
@@ -87,10 +86,10 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
           className="item__quantity_btn"
           onClick={() => {
             handleItemInCartAction(
-              product.variant.sku || '',
               'addLineItem',
-              cart.id,
               1,
+              cart.id,
+              product.variant.sku || '',
             );
           }}
         >

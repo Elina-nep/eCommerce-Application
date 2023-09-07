@@ -4,8 +4,13 @@ import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../../context/AuthProvider';
-import { CURRENCY } from '../../util';
-import { discountCart, getCartTotalPrice, getDiscount } from '../../util';
+import {
+  changeItemInCart,
+  CURRENCY,
+  discountCart,
+  getCartTotalPrice,
+  getDiscount,
+} from '../../util';
 import Button from '../buttons/Button';
 import { ItemInCart } from './item/ItemInCart';
 
@@ -62,17 +67,36 @@ export const Cart = () => {
 
   const total = getCartTotalPrice(cart, CURRENCY.EUR);
 
+  const handleClearCart = () => {
+    const itemsQuantities: number[] = [];
+    const itemsIds = cart.lineItems.map((el) => {
+      itemsQuantities.push(el.quantity);
+      return el.id;
+    });
+    changeItemInCart({
+      cartVersion: cart.version,
+      cartId: cart.id,
+      action: 'removeLineItem',
+      cartItemId: itemsIds,
+      quantity: itemsQuantities,
+    })
+      .then((res) => setCart(res))
+      .catch((e) => {
+        console.log(e.message);
+      });
+  };
+
   return (
     <div className="cart">
       <Link to="/" className="cart_page__link">
         Home
       </Link>
       <h1 className="cart__title">SHOPPING CART</h1>
-      {/* <button onClick={handleClearCart()}>Clear cart</button> */}
+
+      <Button onClick={() => handleClearCart()}>Clear cart</Button>
+
       {cart.lineItems.map((el) => (
-        <p key={el.id}>
-          <ItemInCart product={el} />
-        </p>
+        <ItemInCart product={el} key={el.id} />
       ))}
       <p className="cart__total">{total}</p>
 

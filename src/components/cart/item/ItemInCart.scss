@@ -14,19 +14,6 @@
   width: 2rem;
 }
 
-// BUTTONS
-
-.item__delete_btn {
-  width: 1.4rem;
-  height: 1.4rem;
-  border: 1px solid var(--secondary-color);
-  background-color: var(--light-color);
-  border-radius: 50%;
-  &:hover {
-    cursor: pointer;
-  }
-}
-
 .item__quantity_btn {
   height: 80%;
   background-color: var(--primary-color-light);
