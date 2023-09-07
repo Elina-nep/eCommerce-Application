@@ -3,7 +3,7 @@ import './About.scss';
 import imageToAddElina from '../../assets/Elina.jpg';
 import imageToAddGalina from '../../assets/Galina.jpg';
 import imageToAddGarland from '../../assets/garland.png';
-import imageToAddIrina from '../../assets/Irina.jpg';
+import imageToAddIrina from '../../assets/Irina.png';
 import imageToAddGit from '../../assets/logo git.png';
 import imageToAddRS from '../../assets/logo rs.png';
 export const AboutPage = () => {
