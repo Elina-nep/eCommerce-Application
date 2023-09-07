@@ -17,6 +17,16 @@ export const createCartService = () =>
     })
     .execute();
 
+export const createAnonCartService = () =>
+  formFlow()
+    .carts()
+    .post({
+      body: { currency: 'EUR' },
+    })
+    .execute();
+
+export const getAnonCartService = () => formFlow().carts().get().execute();
+
 type actions =
   | 'addLineItem'
   | 'removeLineItem'
