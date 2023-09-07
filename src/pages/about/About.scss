@@ -21,9 +21,30 @@
   font-weight: 400;
 }
 
+.about-us-team p {
+  margin-bottom: 0;
+}
+
 .about-us-team span {
   color: var(--primary-color);
   font-weight: 600;
+}
+
+.about-us-team a {
+  text-decoration: none;
+  list-style: none;
+  color: var(--primary-color-light);
+  font-weight: 600;
+}
+
+.about-us-team a:hover {
+  text-decoration: underline;
+}
+
+.about-us-team-last-paragraph {
+  text-align: center;
+  font-weight: 600;
+  text-decoration: underline;
 }
 
 .about-us-git-link {
@@ -70,6 +91,15 @@
 
 .about-us-description h2 {
   color: var(--secondary-color);
+}
+
+.about-us-description ul {
+  text-align: left;
+}
+
+.about-us-description-title {
+  text-decoration: underline;
+  font-weight: 600;
 }
 
 .about-us-garland-rotate {

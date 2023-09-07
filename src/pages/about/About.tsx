@@ -22,14 +22,52 @@ export const AboutPage = () => {
         </h2>
         <p>
           Our team worked on developing a website for an online store that sells
-          holiday goods. We implemented all the functionalities specified in the
-          task. Communication was conducted through Discord. Our team leader
-          developed a work plan for each sprint, which was very convenient for
-          tracking tasks. Almost daily calls and mutual assistance helped us
-          fully immerse ourselves in the development process. Each team member
-          participated in the development and contributed to the creation of
-          this amazing product. Worked on the project:
+          holiday goods. The development was carried out as part of the task of
+          the{' '}
+          <a
+            href="https://github.com/rolling-scopes-school/tasks/tree/master/tasks/eCommerce-Application"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            eCommerce-Application{' '}
+          </a>
+          from RS School. We implemented all the functionalities specified in
+          the task.
         </p>
+
+        <p>Technologies and libraries we used: </p>
+        <ul>
+          <li>Create-react-app;</li>
+          <li>Typescript;</li>
+          <li>React-router-dom library;</li>
+          <li>Eslint and prettier;</li>
+          <li>Husky;</li>
+          <li>Jest.</li>
+        </ul>
+
+        <p>
+          Our team leader developed a work plan for each sprint, which was very
+          convenient for tracking tasks.We tracked the completion of tasks in
+          GitHub:
+          <a
+            href="https://github.com/users/Elina-nep/projects/2"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {' '}
+            Project planning for developers.
+          </a>
+        </p>
+        <p>
+          Communication was conducted through Discord. Almost daily calls and
+          mutual assistance helped us fully immerse ourselves in the development
+          process.
+        </p>
+        <p>
+          Each team member participated in the development and contributed to
+          the creation of this amazing product.
+        </p>
+        <p className="about-us-team-last-paragraph">Worked on the project:</p>
       </div>
 
       <div className="about-us-card-wrapper">
@@ -44,15 +82,31 @@ export const AboutPage = () => {
           <p>Elina</p>
           <div className="about-us-description">
             <h2>Team Lead</h2>
-            <p>
-              Responsibilities include: organizing work, checking task
-              completion, configuring the project and the entire development
-              environment, setting up the API for working with the server,
-              obtaining tokens, routing, setting up navigation, website search,
-              filtering, and sorting, work with cart page functionality, setting
-              up product database in commercetools, writing tests, design,
-              responsive layout.
-            </p>
+            <div>
+              <p className="about-us-description-title">
+                Responsibilities include:
+              </p>
+              <ul>
+                <li>organizing work,</li>
+                <li>checking task completion,</li>
+                <li>
+                  configuring the project and the entire development
+                  environment,
+                </li>
+                <li>setting up the API for working with the server,</li>
+                <li>obtaining tokens,</li>
+                <li>routing,</li>
+                <li>setting up navigation, </li>
+                <li>website search,</li>
+                <li>filtering,</li>
+                <li>sorting,</li>
+                <li>work with cart page functionality, </li>
+                <li>setting up product database in commercetools,</li>
+                <li>writing tests,</li>
+                <li>design,</li>
+                <li>responsive layout.</li>
+              </ul>
+            </div>
           </div>
           <div className="about-us-git-link">
             <a
@@ -79,16 +133,29 @@ export const AboutPage = () => {
           <p>Irina</p>
           <div className="about-us-description">
             <h2>Middle</h2>
-            <p>
-              Responsibilities include: setting up registration and
-              authorization forms on the login page, including working with
-              addresses and tokens, implementing functionality on user pages,
-              integrating promo codes into the project, creating a shopping cart
-              page, writing tests, design, responsive layout.
+            <div>
+              <p className="about-us-description-title">
+                Responsibilities include:
+              </p>
+              <ul>
+                <li>setting up registration on the register page,</li>
+                <li>working with addresses and tokens,</li>
+                <li>authorization forms on the login page,</li>
+                <li>implementing functionality on user pages,</li>
+                <li>
+                  integrating promocodes from commercetools into the project,
+                </li>
+                <li>creating a shopping cart page,</li>
+                <li>writing tests,</li>
+                <li>design,</li>
+                <li>responsive layout.</li>
+              </ul>
               <br></br>
               <br></br>
               <br></br>
-            </p>
+              <br></br>
+              <br></br>
+            </div>
           </div>
           <div className="about-us-git-link">
             <a
@@ -115,17 +182,30 @@ export const AboutPage = () => {
           <p>Galina</p>
           <div className="about-us-description">
             <h2>Junior</h2>
-            <p>
-              Responsibilities include: project design, creating a slider on the
-              main page, header and footer setup, catalog page setup with
-              product cards, sorting, filtering, pagination, creating a 404
-              page, creating an about us page, setting up a product database,
-              design, responsive layout.
+            <div>
+              <p className="about-us-description-title">
+                Responsibilities include:
+              </p>
+              <ul>
+                <li>project design,</li>
+                <li>catalog page setup with product cards,</li>
+                <li>sorting,</li>
+                <li>filtering, </li>
+                <li>pagination,</li>
+                <li>creating a 404 page,</li>
+                <li>creating an about us page,</li>
+                <li>header and footer setup,</li>
+                <li>creating a slider on the main page,</li>
+                <li>setting up a product database,</li>
+                <li>design,</li>
+                <li>responsive layout.</li>
+              </ul>
               <br></br>
               <br></br>
               <br></br>
               <br></br>
-            </p>
+              <br></br>
+            </div>
           </div>
           <div className="about-us-git-link">
             <a
