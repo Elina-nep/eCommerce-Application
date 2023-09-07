@@ -16,3 +16,25 @@
     text-decoration: underline 1px var(--secondary-color);
   }
 }
+
+.cart__title {
+  text-align: center;
+}
+
+.cart__coupon_container {
+  display: flex;
+  flex-direction: column;
+  width: 35%;
+  gap: 1rem;
+}
+
+.cat__input {
+}
+
+.cart__coupon_btn {
+  // margin: 0;
+}
+
+.cart__coupon_error {
+  color: red;
+}

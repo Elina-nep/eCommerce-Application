@@ -136,3 +136,8 @@ export const defaultCart: Cart = {
   createdAt: '',
   lastModifiedAt: '',
 };
+
+export function getCartTotalPrice(cart: Cart, currency: string) {
+  const total = (cart.totalPrice.centAmount / 100).toFixed(2);
+  return `${total} ${currency}`;
+}
