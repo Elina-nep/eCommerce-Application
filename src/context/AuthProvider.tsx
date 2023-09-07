@@ -51,6 +51,10 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [cart, setCart] = useState<Cart>(defaultCart);
 
+  const clearCart = () => {
+    setCart(defaultCart);
+  };
+
   const checkCart = () => {
     getCart(setLoading)
       .then((res) => {
@@ -71,7 +75,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     getCustomerFunc(setLoading)
       .then(() => {
         setIfAuth(true);
-        checkCart();
         getCategories().then((res) => {
           setCategories(res.results);
         });
@@ -89,6 +92,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
           });
       })
       .finally(() => {
+        checkCart();
         setLoading(false);
       });
   }, []);
@@ -96,12 +100,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [alertMessage, setAlertMessage] = useState('');
 
   const loginCustomer = (data: ILoginCustomer): Promise<void> =>
-    loginCustomerFunc(data, setIfAuth, setAlertMessage);
+    loginCustomerFunc(data, setIfAuth, setAlertMessage, setCart);
 
   const createCustomer = (data: ICreateCustomer): Promise<void> =>
-    createCustomerFunc(data, setIfAuth, setAlertMessage);
+    createCustomerFunc(data, setIfAuth, setAlertMessage, setCart);
 
-  const logOut = () => logOutFunc(setIfAuth);
+  const logOut = () => logOutFunc(setIfAuth, clearCart);
 
   return (
     <AuthContext.Provider
