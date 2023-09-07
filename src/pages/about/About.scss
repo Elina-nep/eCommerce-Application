@@ -1,15 +1,30 @@
+.about-us-main-container {
+  background-image: url('../../assets/background-about-us-page.jpg');
+  justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.about-us-content-wrapper {
+  background: rgb(255, 255, 255, 0.8);
+  width: 90%;
+  margin: 2.5% auto;
+}
+
 .about-us-card-wrapper {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 90%;
+  width: 95%;
   margin: 2% auto;
   font-size: var(--font-small);
 }
 
 .about-us-team {
   margin: auto;
-  width: 90%;
+  width: 95%;
   display: flex;
   flex-direction: column;
   text-align: justify;
@@ -42,6 +57,7 @@
 }
 
 .about-us-team-last-paragraph {
+  margin-top: 4%;
   text-align: center;
   font-weight: 600;
   text-decoration: underline;
@@ -66,10 +82,6 @@
   width: 90%;
 }
 
-.about-us-garland {
-  width: 100%;
-}
-
 .about-us-card {
   max-width: 300px;
   width: 30%;
@@ -83,6 +95,7 @@
   box-shadow: 0 0 10px rgba(49, 136, 124, 0.5);
   margin-bottom: 2.5%;
   justify-content: space-between;
+  min-width: 115px;
 }
 
 .about-us-card p {
@@ -100,13 +113,6 @@
 .about-us-description-title {
   text-decoration: underline;
   font-weight: 600;
-}
-
-.about-us-garland-rotate {
-  transform: rotate(180deg);
-  width: 100%;
-  bottom: -4px;
-  position: relative;
 }
 
 .about-us-rs {
@@ -136,16 +142,57 @@
 @media screen and (max-width: 768px) {
   .about-us-card-wrapper {
     font-size: var(--font-xsmall);
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .about-us-card {
+    min-width: 320px;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    max-width: 90%;
+  }
+  .about-us-photo {
+    width: 40%;
+  }
+  .about-us-card-text {
+    display: flex;
+    flex-direction: column;
   }
   .about-us-team {
     font-size: var(--font-small);
   }
+  .about-us-description h2 {
+    font-size: var(--font-small);
+  }
+  .about-us-description ul {
+    word-wrap: break-word;
+  }
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 485px) {
   .about-us-card-wrapper {
     font-size: 0.9rem;
   }
+  .about-us-card {
+    min-width: 170px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 90%;
+  }
+  .about-us-photo {
+    width: 40%;
+  }
   .about-us-team {
+    font-size: var(--font-xsmall);
+  }
+  .about-us-description h2 {
     font-size: var(--font-xsmall);
   }
 }
