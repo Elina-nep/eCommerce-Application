@@ -13,7 +13,7 @@ export const Cart = () => {
   const { cart, setCart } = useContext(AuthContext);
   const [code, setCode] = useState({ code: '', id: '' });
 
-  console.log('LOOOK', cart);
+  console.log('CCAARRTT', cart);
   useEffect(() => {
     if (cart.discountCodes.length > 0) {
       const code = cart.discountCodes.find((el) => el.state === 'MatchesCart');
@@ -31,9 +31,11 @@ export const Cart = () => {
     } else setCode({ code: '', id: '' });
   }, [cart]); // это для того, чтобы отображать примененный к корзине и активный купон, можно перенести в отдельный компонент
 
-  const handleAddDiscount = (coupon: string) => {
+  const [couponInput, setCouponInput] = useState('');
+
+  const handleAddDiscount = (couponInput: string) => {
     discountCart({
-      discount: coupon,
+      discount: couponInput,
       cartVersion: cart.version,
       cartId: cart.id,
       action: 'addDiscountCode',
@@ -75,11 +77,22 @@ export const Cart = () => {
         </p>
       ))}
       <p className="cart__total">{total}</p>
-      <input placeholder="coupon"></input>
-      <Button onClick={() => handleAddDiscount('GET10')}>add discount</Button>
-      {/* кнопка, применяющая к корзине купон с соответствующим номером */}
-      <span onClick={() => handleDeleteDiscount(code.id)}>{code.code}</span>
-      {/* отображаем номер примененного купона, при нажатии на него он удаляется, пока без красоты) */}
+
+      <div className="cart__coupon_container">
+        <input
+          placeholder="coupon"
+          value={couponInput}
+          onChange={(e) => setCouponInput(e.target.value)}
+        />
+
+        <Button onClick={() => handleAddDiscount(couponInput)}>
+          add discount
+        </Button>
+        {/* кнопка, применяющая к корзине купон с соответствующим номером */}
+
+        <span onClick={() => handleDeleteDiscount(code.id)}>{code.code}</span>
+        {/* отображаем номер примененного купона, при нажатии на него он удаляется, пока без красоты) */}
+      </div>
     </div>
   );
 };

@@ -23,7 +23,6 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
   const discountedPrice = getItemDiscountedPrice(product, CURRENCY.EUR);
   const total = getItemTotalPrice(product, CURRENCY.EUR);
 
-  console.log('ITEM', product);
   const { cart, setCart } = useContext(AuthContext);
 
   const handleItemInCartAction = (
