@@ -1,0 +1,121 @@
+.about-us-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 90%;
+  margin: 2% auto;
+  font-size: var(--font-small);
+}
+
+.about-us-team {
+  margin: auto;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  font-size: var(--font-medium);
+  text-indent: 2rem;
+}
+
+.about-us-team h2 {
+  font-weight: 400;
+}
+
+.about-us-team span {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.about-us-git-link {
+  margin-top: 5%;
+  position: relative;
+  bottom: 0px;
+}
+
+.about-us-git-logo {
+  width: 15%;
+  transition: transform 0.15s;
+}
+
+.about-us-git-logo:hover {
+  transform: scale(1.1);
+}
+
+.about-us-photo {
+  width: 90%;
+}
+
+.about-us-garland {
+  width: 100%;
+}
+
+.about-us-card {
+  max-width: 300px;
+  width: 30%;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.6rem;
+  box-shadow: 0 0 10px rgba(49, 136, 124, 0.5);
+  margin-bottom: 2.5%;
+  justify-content: space-between;
+}
+
+.about-us-card p {
+  margin: 0;
+}
+
+.about-us-description h2 {
+  color: var(--secondary-color);
+}
+
+.about-us-garland-rotate {
+  transform: rotate(180deg);
+  width: 100%;
+  bottom: -4px;
+  position: relative;
+}
+
+.about-us-rs {
+  width: 20%;
+  transition: transform 0.15s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  margin: 2% auto;
+  padding: 1rem 0.4rem;
+  transition: transform 0.8s;
+}
+
+.about-us-rs:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  padding: 1rem 0.4rem;
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.about-us-rs img {
+  width: 90%;
+}
+
+@media screen and (max-width: 768px) {
+  .about-us-card-wrapper {
+    font-size: var(--font-xsmall);
+  }
+  .about-us-team {
+    font-size: var(--font-small);
+  }
+}
+@media screen and (max-width: 768px) {
+  .about-us-card-wrapper {
+    font-size: 0.9rem;
+  }
+  .about-us-team {
+    font-size: var(--font-xsmall);
+  }
+}
