@@ -10,6 +10,7 @@ export {
   defaultCart,
   discountCart,
   getCart,
+  getCartTotalPrice,
   getDiscount,
 } from './cart';
 export {

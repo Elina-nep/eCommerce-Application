@@ -4,7 +4,8 @@ import { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../../context/AuthProvider';
-import { discountCart, getDiscount } from '../../util';
+import { CURRENCY } from '../../util';
+import { discountCart, getCartTotalPrice, getDiscount } from '../../util';
 import Button from '../buttons/Button';
 import { ItemInCart } from './item-in-cart/ItemInCart';
 
@@ -12,6 +13,7 @@ export const Cart = () => {
   const { cart, setCart } = useContext(AuthContext);
   const [code, setCode] = useState({ code: '', id: '' });
 
+  console.log('LOOOK', cart);
   useEffect(() => {
     if (cart.discountCodes.length > 0) {
       const code = cart.discountCodes.find((el) => el.state === 'MatchesCart');
@@ -58,17 +60,22 @@ export const Cart = () => {
       });
   };
 
+  const total = getCartTotalPrice(cart, CURRENCY.EUR);
+
   return (
     <div className="cart">
       <Link to="/" className="cart_page__link">
         Home
       </Link>
       <h1 className="cart__title">SHOPPING CART</h1>
+      {/* <button onClick={handleClearCart()}>Clear cart</button> */}
       {cart.lineItems.map((el) => (
         <p key={el.id}>
           <ItemInCart product={el} />
         </p>
       ))}
+      <p className="cart__total">{total}</p>
+      <input placeholder="coupon"></input>
       <Button onClick={() => handleAddDiscount('GET10')}>add discount</Button>
       {/* кнопка, применяющая к корзине купон с соответствующим номером */}
       <span onClick={() => handleDeleteDiscount(code.id)}>{code.code}</span>
