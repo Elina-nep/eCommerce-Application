@@ -6,6 +6,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../../context/AuthProvider';
 import { IItemInCartProps } from '../../../types';
 import {
+  changeItemInCart,
   CURRENCY,
   getItemDiscountedPrice,
   getItemImage,
@@ -13,7 +14,6 @@ import {
   getItemTotalPrice,
   LANGUAGE,
 } from '../../../util';
-import { changeItemInCart } from '../../../util';
 
 export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
   const image = getItemImage(product);
@@ -65,10 +65,10 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
       <div className="item__col">
         <img src={image} alt={name} className="item__image" />
       </div>
-      <div className="item__col name">{name}</div>
-      <div className="item__col price">{price}</div>
-      <div className="item__col discountedPrice">{discountedPrice}</div>
-      <div className="item__col quantity">
+      <div className="item__col">{name}</div>
+      <div className="item__col">{price}</div>
+      <div className="item__col">{discountedPrice}</div>
+      <div className="item__col item__quantity">
         <button
           className="item__quantity_btn"
           onClick={() => {
@@ -97,7 +97,7 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
           +
         </button>
       </div>
-      <div className="item__col total">{total}</div>
+      <div className="item__col">{total}</div>
     </div>
   );
 };

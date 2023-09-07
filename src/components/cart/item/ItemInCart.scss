@@ -1,0 +1,37 @@
+.item__container {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 2fr 1fr 1fr 2fr 1fr;
+  grid-gap: 1rem;
+}
+
+.item__col {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.item__image {
+  width: 2rem;
+}
+
+// BUTTONS
+
+.item__delete_btn {
+  width: 1.4rem;
+  height: 1.4rem;
+  border: 1px solid var(--secondary-color);
+  background-color: var(--light-color);
+  border-radius: 50%;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.item__quantity_btn {
+  height: 80%;
+  background-color: var(--primary-color-light);
+  border: none;
+  &:hover {
+    cursor: pointer;
+  }
+}

@@ -7,13 +7,12 @@ import { AuthContext } from '../../context/AuthProvider';
 import { CURRENCY } from '../../util';
 import { discountCart, getCartTotalPrice, getDiscount } from '../../util';
 import Button from '../buttons/Button';
-import { ItemInCart } from './item-in-cart/ItemInCart';
+import { ItemInCart } from './item/ItemInCart';
 
 export const Cart = () => {
   const { cart, setCart } = useContext(AuthContext);
   const [code, setCode] = useState({ code: '', id: '' });
 
-  console.log('CCAARRTT', cart);
   useEffect(() => {
     if (cart.discountCodes.length > 0) {
       const code = cart.discountCodes.find((el) => el.state === 'MatchesCart');
@@ -25,7 +24,6 @@ export const Cart = () => {
           })
           .catch((e) => {
             console.log(e.message);
-            return <></>;
           });
       }
     } else setCode({ code: '', id: '' });
