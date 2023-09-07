@@ -4,7 +4,7 @@ import React from 'react';
 import { useContext } from 'react';
 
 import { AuthContext } from '../../../context/AuthProvider';
-import { IItemInCartProps } from '../../../types';
+import { IItemInCartProps, ItemInCartChange } from '../../../types';
 import {
   changeItemInCart,
   CURRENCY,
@@ -26,18 +26,18 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
 
   const { cart, setCart } = useContext(AuthContext);
 
-  const handleItemInCartAction = (
-    action: string,
-    quantity: number,
-    productInCartId?: string,
-    sku?: string,
-  ) => {
+  const handleItemInCartAction = ({
+    action,
+    quantity,
+    cartItemId,
+    sku,
+  }: ItemInCartChange) => {
     changeItemInCart({
       sku,
       cartVersion: cart.version,
       cartId: cart.id,
       action,
-      cartItemId: productInCartId,
+      cartItemId,
       quantity,
     })
       .then((res) => setCart(res))
@@ -51,11 +51,11 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
       <div className="item__col">
         <Button
           onClick={() => {
-            handleItemInCartAction(
-              'removeLineItem',
-              product.quantity,
-              product.id || '',
-            );
+            handleItemInCartAction({
+              action: 'removeLineItem',
+              quantity: product.quantity,
+              cartItemId: product.id,
+            });
           }}
         >
           x
@@ -71,12 +71,11 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
         <button
           className="item__quantity_btn"
           onClick={() => {
-            handleItemInCartAction(
-              'removeLineItem',
-              1,
-              product.id,
-              product.variant.sku || '',
-            );
+            handleItemInCartAction({
+              action: 'removeLineItem',
+              quantity: 1,
+              cartItemId: product.id,
+            });
           }}
         >
           -
@@ -85,12 +84,11 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
         <button
           className="item__quantity_btn"
           onClick={() => {
-            handleItemInCartAction(
-              'addLineItem',
-              1,
-              cart.id,
-              product.variant.sku || '',
-            );
+            handleItemInCartAction({
+              action: 'addLineItem',
+              quantity: 1,
+              sku: product.variant.sku,
+            });
           }}
         >
           +

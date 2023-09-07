@@ -5,13 +5,16 @@ export interface HeadProps {
   cartItemsCount: number;
 }
 
-export interface ItemInCartChangeService {
+export interface ItemInCartChange {
   sku?: string;
-  cartVersion: number;
-  cartId: string;
   cartItemId?: string | string[];
   action: string;
   quantity: number | number[];
+}
+
+export interface ItemInCartChangeService extends ItemInCartChange {
+  cartVersion: number;
+  cartId: string;
 }
 
 export interface DiscountCartService {
