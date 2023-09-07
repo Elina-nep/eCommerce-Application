@@ -17,6 +17,7 @@ import { ItemInCart } from './item/ItemInCart';
 export const Cart = () => {
   const { cart, setCart } = useContext(AuthContext);
   const [code, setCode] = useState({ code: '', id: '' });
+  const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
     if (cart.discountCodes.length > 0) {
@@ -45,9 +46,12 @@ export const Cart = () => {
     })
       .then((res) => {
         setCart(res);
+        setErrorMessage('');
+        setCouponInput('');
       })
       .catch((e) => {
         console.log(e.message);
+        setErrorMessage(e.message || 'An error occurred');
       });
   };
   const handleDeleteDiscount = (id: string) => {
@@ -80,7 +84,9 @@ export const Cart = () => {
       cartItemId: itemsIds,
       quantity: itemsQuantities,
     })
-      .then((res) => setCart(res))
+      .then((res) => {
+        setCart(res);
+      })
       .catch((e) => {
         console.log(e.message);
       });
@@ -98,23 +104,31 @@ export const Cart = () => {
       {cart.lineItems.map((el) => (
         <ItemInCart product={el} key={el.id} />
       ))}
-      <p className="cart__total">{total}</p>
 
       <div className="cart__coupon_container">
+        Coupon
         <input
           placeholder="coupon"
           value={couponInput}
           onChange={(e) => setCouponInput(e.target.value)}
+          className="cat__input"
         />
+        <button
+          onClick={() => handleAddDiscount(couponInput)}
+          className="cart__coupon_btn"
+        >
+          Apply Coupon
+        </button>
+        <p className="cart__coupon_error">{errorMessage}</p>
+      </div>
 
-        <Button onClick={() => handleAddDiscount(couponInput)}>
-          add discount
-        </Button>
-        {/* кнопка, применяющая к корзине купон с соответствующим номером */}
-
+      <div>
+        <p>Applied coupon: </p>
         <span onClick={() => handleDeleteDiscount(code.id)}>{code.code}</span>
         {/* отображаем номер примененного купона, при нажатии на него он удаляется, пока без красоты) */}
       </div>
+
+      <p className="cart__total">TOTAL: {total}</p>
     </div>
   );
 };
