@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthProvider';
 import { discountCart, getDiscount } from '../../util';
 import Button from '../buttons/Button';
+import { ItemInCart } from './item-in-cart/ItemInCart';
 
 export const Cart = () => {
   const { cart, setCart } = useContext(AuthContext);
@@ -62,10 +63,10 @@ export const Cart = () => {
       <Link to="/" className="cart_page__link">
         Home
       </Link>
-      <h2>This is cart page</h2>
+      <h1 className="cart__title">SHOPPING CART</h1>
       {cart.lineItems.map((el) => (
         <p key={el.id}>
-          {el.name['en']} / {el.quantity}
+          <ItemInCart product={el} />
         </p>
       ))}
       <Button onClick={() => handleAddDiscount('GET10')}>add discount</Button>

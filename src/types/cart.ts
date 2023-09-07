@@ -1,3 +1,5 @@
+import { LineItem } from '@commercetools/platform-sdk';
+
 export interface HeadProps {
   cartTotal: number;
   cartItemsCount: number;
@@ -18,4 +20,8 @@ export interface DiscountCartService {
   cartVersion: number;
   cartId: string;
   action: string;
+}
+
+export interface IItemInCartProps {
+  product: LineItem;
 }

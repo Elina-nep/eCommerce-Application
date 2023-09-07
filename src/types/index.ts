@@ -2,6 +2,7 @@ export type { CardProps } from './cards';
 export type {
   DiscountCartService,
   HeadProps,
+  IItemInCartProps,
   ItemInCartChangeService,
 } from './cart';
 export type {

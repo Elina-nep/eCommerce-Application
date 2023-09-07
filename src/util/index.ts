@@ -22,6 +22,12 @@ export { cards, PRODUCTS_ON_PAGE } from './constants';
 export { getCustomerFunc } from './customer';
 export { columns, links } from './footerConstants';
 export {
+  getItemDiscountedPrice,
+  getItemImage,
+  getItemPrice,
+  getItemTotalPrice,
+} from './itemInCart';
+export {
   formatAttributes,
   getProductAttribute,
   getProductCategories,
