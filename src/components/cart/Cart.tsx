@@ -98,37 +98,43 @@ export const Cart = () => {
         Home
       </Link>
       <h1 className="cart__title">SHOPPING CART</h1>
-
-      <Button onClick={() => handleClearCart()}>Clear cart</Button>
-
-      {cart.lineItems.map((el) => (
-        <ItemInCart product={el} key={el.id} />
-      ))}
-
-      <div className="cart__coupon_container">
-        Coupon
-        <input
-          placeholder="coupon"
-          value={couponInput}
-          onChange={(e) => setCouponInput(e.target.value)}
-          className="cat__input"
-        />
-        <button
-          onClick={() => handleAddDiscount(couponInput)}
-          className="cart__coupon_btn"
-        >
-          Apply Coupon
-        </button>
-        <p className="cart__coupon_error">{errorMessage}</p>
+      <div className="cart__content-wrapper">
+        {' '}
+        <div>
+          {' '}
+          {cart.lineItems.map((el) => (
+            <ItemInCart product={el} key={el.id} />
+          ))}
+          <Button onClick={() => handleClearCart()}>Clear cart</Button>
+          <div>
+            <p>Applied coupon: </p>
+            <span onClick={() => handleDeleteDiscount(code.id)}>
+              {code.code}
+            </span>
+            {/* отображаем номер примененного купона, при нажатии на него он удаляется, пока без красоты) */}
+          </div>
+        </div>
+        <div>
+          {' '}
+          <p className="cart__total">TOTAL: {total}</p>
+          <div className="cart__coupon_container">
+            Coupon
+            <input
+              placeholder="coupon"
+              value={couponInput}
+              onChange={(e) => setCouponInput(e.target.value)}
+              className="cat__input"
+            />
+            <button
+              onClick={() => handleAddDiscount(couponInput)}
+              className="cart__coupon_btn"
+            >
+              Apply Coupon
+            </button>
+            <p className="cart__coupon_error">{errorMessage}</p>
+          </div>
+        </div>
       </div>
-
-      <div>
-        <p>Applied coupon: </p>
-        <span onClick={() => handleDeleteDiscount(code.id)}>{code.code}</span>
-        {/* отображаем номер примененного купона, при нажатии на него он удаляется, пока без красоты) */}
-      </div>
-
-      <p className="cart__total">TOTAL: {total}</p>
     </div>
   );
 };
