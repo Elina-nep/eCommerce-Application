@@ -5,7 +5,7 @@
   align-items: center;
   text-align: center;
   padding: 0.4rem;
-  border-bottom: 1px solid #2a2a2a;
+  border-bottom: 1px solid var(--dark-color);
   min-height: 110px;
   margin-left: 2%;
 }
@@ -30,7 +30,7 @@
 .item__quantity div {
   width: 50%;
   padding: 0.5rem;
-  background: white;
+  background: var(--light-color);
 }
 
 .item__quantity_btn {
