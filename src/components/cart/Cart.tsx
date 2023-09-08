@@ -38,8 +38,6 @@ export const Cart = () => {
 
   const [couponInput, setCouponInput] = useState('');
 
-  const [currentCouponVisible, setCurrentCouponVisible] = useState(false);
-
   const handleAddDiscount = (couponInput: string) => {
     discountCart({
       discount: couponInput,
@@ -51,7 +49,6 @@ export const Cart = () => {
         setCart(res);
         setErrorMessage('');
         setCouponInput('');
-        setCurrentCouponVisible(true);
       })
       .catch((e) => {
         console.log(e.message);
@@ -68,7 +65,6 @@ export const Cart = () => {
     })
       .then((res) => {
         setCart(res);
-        setCurrentCouponVisible(false);
       })
       .catch((e) => {
         console.log(e.message);
@@ -130,7 +126,7 @@ export const Cart = () => {
             )}
           </div>
 
-          {currentCouponVisible ? (
+          {cart.discountCodes.length ? (
             <div className="coupon__current">
               <div className="coupon__current_container">
                 <p className="coupon__current_title">Applied coupon: </p>
