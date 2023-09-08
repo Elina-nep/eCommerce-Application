@@ -47,18 +47,23 @@
   background-color: var(--primary-color);
 }
 
+.cart__section {
+  display: flex;
+  justify-content: center;
+}
+
 .coupon {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 1rem auto;
+  justify-content: center;
   gap: 0.2rem;
-  border: 1px solid green;
+  width: 45%;
 }
 
 .coupon__new {
   display: flex;
-  width: 40%;
+  width: 100%;
   height: 1.4rem;
   padding: 0.1rem;
   gap: 1rem;
@@ -112,14 +117,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  border: 1px solid rgb(255, 48, 255);
 }
 
 .coupon__current_container {
   display: flex;
   align-items: center;
-  gap: 0.4rem;
-  border: 1px solid rgb(0, 255, 102);
+  justify-content: space-evenly;
+  width: 100%;
 }
 
 .coupon__current_title {
@@ -166,7 +170,7 @@
   }
 }
 
-.cart__current_coupon_tip {
+.coupon__current_tip {
   text-align: center;
   color: var(--primary-color);
   background-color: var(--light-color);
@@ -174,4 +178,10 @@
   border: 1px solid var(--primary-color);
   padding: 3px 10px;
   font-size: var(--font-small);
+}
+
+.cart__amount_summary {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
 }

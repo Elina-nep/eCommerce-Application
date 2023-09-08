@@ -8,6 +8,7 @@ import {
   changeItemInCart,
   CURRENCY,
   discountCart,
+  getCartBeforeCoupon,
   getCartTotalPrice,
   getDiscount,
 } from '../../util';
@@ -73,7 +74,8 @@ export const Cart = () => {
       });
   };
 
-  const total = getCartTotalPrice(cart, CURRENCY.EUR);
+  const totalBeforeDiscount = getCartBeforeCoupon(cart, CURRENCY.EUR);
+  const finalTotal = getCartTotalPrice(cart, CURRENCY.EUR);
 
   const handleClearCart = () => {
     const itemsQuantities: number[] = [];
@@ -96,6 +98,8 @@ export const Cart = () => {
       });
   };
 
+  console.log('HHHEEEEREEE', cart);
+
   return (
     <div className="cart">
       <h1 className="cart__title">SHOPPING CART</h1>
@@ -104,51 +108,64 @@ export const Cart = () => {
         <ItemInCart product={el} key={el.id} />
       ))}
 
-      <div className="coupon">
-        <div>
-          <div className="coupon__new">
-            <input
-              placeholder="coupon"
-              value={couponInput}
-              onChange={(e) => setCouponInput(e.target.value)}
-              className="coupon__new_input"
-            />
-            <button
-              onClick={() => handleAddDiscount(couponInput)}
-              className="coupon__new_btn"
-            >
-              Apply
-            </button>
-          </div>
-          {errorMessage && <p className="coupon__new_error">{errorMessage}</p>}
-        </div>
-
-        {currentCouponVisible ? (
-          <div className="coupon__current">
-            <div className="coupon__current_container">
-              <p className="coupon__current_title">Applied coupon: </p>
-              <div className="coupon__current_content">
-                <span className="coupon__current_code">{code.code}</span>
-                <button
-                  className="coupon__current_delete_btn"
-                  onClick={() => handleDeleteDiscount(code.id)}
-                >
-                  x
-                </button>
-              </div>
+      <div className="cart__section">
+        <div className="coupon">
+          <div>
+            <div className="coupon__new">
+              <input
+                placeholder="coupon"
+                value={couponInput}
+                onChange={(e) => setCouponInput(e.target.value)}
+                className="coupon__new_input"
+              />
+              <button
+                onClick={() => handleAddDiscount(couponInput)}
+                className="coupon__new_btn"
+              >
+                Apply
+              </button>
             </div>
-            <p className="coupon__current_tip">
-              Please note, that only one discount can be applied at a time.
-              <br /> If you wish to use another coupon, please remove the
-              current one.
-            </p>
+            {errorMessage && (
+              <p className="coupon__new_error">{errorMessage}</p>
+            )}
           </div>
-        ) : (
-          ''
-        )}
-      </div>
 
-      <p className="cart__total">TOTAL: {total}</p>
+          {currentCouponVisible ? (
+            <div className="coupon__current">
+              <div className="coupon__current_container">
+                <p className="coupon__current_title">Applied coupon: </p>
+                <div className="coupon__current_content">
+                  <span className="coupon__current_code">{code.code}</span>
+                  <button
+                    className="coupon__current_delete_btn"
+                    onClick={() => handleDeleteDiscount(code.id)}
+                  >
+                    x
+                  </button>
+                </div>
+              </div>
+              <p className="coupon__current_tip">
+                Please note, that only one discount can be applied at a time. If
+                you wish to use another coupon, please remove the current one.
+              </p>
+            </div>
+          ) : (
+            ''
+          )}
+        </div>
+        <div className="cart__amount_summary">
+          <p>Cart Total: </p>
+
+          {code ? (
+            <div>
+              <p>BEFORE: {totalBeforeDiscount}</p>
+              <p>AFTER: {finalTotal}</p>
+            </div>
+          ) : (
+            <div className="cart__total">{finalTotal}</div>
+          )}
+        </div>
+      </div>
 
       <div className="cart__container_btn">
         <Link to="/" className="cart_page__link">
