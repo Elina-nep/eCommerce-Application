@@ -11,6 +11,7 @@ export {
   discountCart,
   getCart,
   getCartBeforeCoupon,
+  getCartDiscount,
   getCartTotalPrice,
   getDiscount,
 } from './cart';

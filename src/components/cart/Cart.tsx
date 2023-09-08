@@ -9,6 +9,7 @@ import {
   CURRENCY,
   discountCart,
   getCartBeforeCoupon,
+  getCartDiscount,
   getCartTotalPrice,
   getDiscount,
 } from '../../util';
@@ -75,6 +76,7 @@ export const Cart = () => {
   };
 
   const totalBeforeDiscount = getCartBeforeCoupon(cart, CURRENCY.EUR);
+  const discount = getCartDiscount(cart, CURRENCY.EUR);
   const finalTotal = getCartTotalPrice(cart, CURRENCY.EUR);
 
   const handleClearCart = () => {
@@ -98,8 +100,6 @@ export const Cart = () => {
       });
   };
 
-  console.log('HHHEEEEREEE', cart);
-
   return (
     <div className="cart">
       <h1 className="cart__title">SHOPPING CART</h1>
@@ -108,12 +108,12 @@ export const Cart = () => {
         <ItemInCart product={el} key={el.id} />
       ))}
 
-      <div className="cart__section">
+      <div className="cart__payment">
         <div className="coupon">
           <div>
             <div className="coupon__new">
               <input
-                placeholder="coupon"
+                placeholder="COUPON"
                 value={couponInput}
                 onChange={(e) => setCouponInput(e.target.value)}
                 className="coupon__new_input"
@@ -145,24 +145,35 @@ export const Cart = () => {
                 </div>
               </div>
               <p className="coupon__current_tip">
-                Please note, that only one discount can be applied at a time. If
-                you wish to use another coupon, please remove the current one.
+                Please note, only one discount can be applied at a time.
               </p>
             </div>
           ) : (
             ''
           )}
         </div>
-        <div className="cart__amount_summary">
-          <p>Cart Total: </p>
+        <div className="cart__summary">
+          <p className="cart__summary_title">Cart Total</p>
 
-          {code ? (
-            <div>
-              <p>BEFORE: {totalBeforeDiscount}</p>
-              <p>AFTER: {finalTotal}</p>
+          {/* пока поставила вот такую дурацкую заслонку discount !== '0.00 EUR' */}
+          {discount !== '0.00 EUR' ? (
+            <div className="cart__summary_amounts">
+              <p className="cart__summary_subtotal">
+                Subtotal:
+                <span>{totalBeforeDiscount}</span>
+              </p>
+              <p className="cart__summary_discount">
+                Discount:
+                <span>{discount}</span>
+              </p>
+              <p className="cart__summary_final">
+                TOTAL<span>{finalTotal}</span>
+              </p>
             </div>
           ) : (
-            <div className="cart__total">{finalTotal}</div>
+            <p className="cart__summary_final">
+              TOTAL<span>{finalTotal}</span>
+            </p>
           )}
         </div>
       </div>
