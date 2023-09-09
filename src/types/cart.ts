@@ -4,7 +4,9 @@ export interface HeadProps {
   cartTotal: number;
   cartItemsCount: number;
 }
-
+export type CartInterface = {
+  lineItems: LineItem[];
+};
 export interface ItemInCartChange {
   sku?: string;
   cartItemId?: string | string[];

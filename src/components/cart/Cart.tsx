@@ -69,7 +69,7 @@ export const Cart = () => {
       });
   };
 
-  const total = getCartTotalPrice(cart, CURRENCY.EUR);
+  const total = getCartTotalPrice(cart, CURRENCY.symbol);
   const handleClearCart = () => {
     const itemsQuantities: number[] = [];
     const itemsIds = cart.lineItems.map((el) => {

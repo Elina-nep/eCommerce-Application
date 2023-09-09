@@ -1,4 +1,4 @@
-import { ProductCatalogData } from '@commercetools/platform-sdk';
+import { ProductData } from '@commercetools/platform-sdk';
 import { useContext } from 'react';
 
 import { AuthContext } from '../../../context/AuthProvider';
@@ -6,7 +6,7 @@ import { changeItemInCart } from '../../../util';
 import Button from '../../buttons/Button';
 
 interface IButtonCartActions {
-  product: ProductCatalogData;
+  product: ProductData;
   id: string;
 }
 
@@ -37,9 +37,11 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
   if (itemInCart)
     return (
       <Button
-        onClick={() => {
+        onClick={(e) => {
+          e.stopPropagation();
+          e.preventDefault();
           handleItemInCartAction(
-            product.current.masterVariant.sku || '',
+            product.masterVariant.sku || '',
             'removeLineItem',
             itemInCart.id || '',
             itemInCart.quantity || 1,
@@ -51,9 +53,11 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
     );
   return (
     <Button
-      onClick={() => {
+      onClick={(e) => {
+        e.stopPropagation();
+        e.preventDefault();
         handleItemInCartAction(
-          product.current.masterVariant.sku || '',
+          product.masterVariant.sku || '',
           'addLineItem',
           id,
           1,
