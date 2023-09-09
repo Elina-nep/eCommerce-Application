@@ -8,11 +8,10 @@ import {
   changeItemInCart,
   CURRENCY,
   discountCart,
-  getCartBeforeCoupon,
-  getCartDiscount,
   getCartTotalPrice,
   getDiscount,
 } from '../../util';
+import Button from '../buttons/Button';
 import { ItemInCart } from './item/ItemInCart';
 
 export const Cart = () => {
@@ -55,7 +54,6 @@ export const Cart = () => {
         setErrorMessage(e.message || 'An error occurred');
       });
   };
-
   const handleDeleteDiscount = (id: string) => {
     discountCart({
       discountCode: id,
@@ -71,10 +69,7 @@ export const Cart = () => {
       });
   };
 
-  const totalBeforeDiscount = getCartBeforeCoupon(cart, CURRENCY.EUR);
-  const discount = getCartDiscount(cart, CURRENCY.EUR);
-  const finalTotal = getCartTotalPrice(cart, CURRENCY.EUR);
-
+  const total = getCartTotalPrice(cart, CURRENCY.EUR);
   const handleClearCart = () => {
     const itemsQuantities: number[] = [];
     const itemsIds = cart.lineItems.map((el) => {
@@ -99,88 +94,63 @@ export const Cart = () => {
   return (
     <div className="cart">
       <h1 className="cart__title">SHOPPING CART</h1>
-
-      {cart.lineItems.map((el) => (
-        <ItemInCart product={el} key={el.id} />
-      ))}
-
-      <div className="cart__payment">
-        <div className="coupon">
-          <div>
-            <div className="coupon__new">
-              <input
-                placeholder="COUPON"
-                value={couponInput}
-                onChange={(e) => setCouponInput(e.target.value)}
-                className="coupon__new_input"
-              />
-              <button
-                onClick={() => handleAddDiscount(couponInput)}
-                className="coupon__new_btn"
-              >
-                Apply
-              </button>
-            </div>
-            {errorMessage && (
-              <p className="coupon__new_error">{errorMessage}</p>
-            )}
+      <div className="cart__content-wrapper">
+        <div className="cart__content-wrapper-table">
+          {' '}
+          <div className="cart__content-table-header">
+            <p>Product</p>
+            <p>Price</p>
+            <p>Quantity</p>
+            <p>Total</p>
           </div>
-
-          {cart.discountCodes.length ? (
-            <div className="coupon__current">
-              <div className="coupon__current_container">
-                <p className="coupon__current_title">Applied coupon: </p>
-                <div className="coupon__current_content">
-                  <span className="coupon__current_code">{code.code}</span>
-                  <button
-                    className="coupon__current_delete_btn"
-                    onClick={() => handleDeleteDiscount(code.id)}
-                  >
-                    x
-                  </button>
-                </div>
-              </div>
-              <p className="coupon__current_tip">
-                Please note, only one discount can be applied at a time.
-              </p>
+          <div>
+            {cart.lineItems.map((el) => (
+              <ItemInCart product={el} key={el.id} />
+            ))}
+            <div className="cart__content-table-button">
+              {' '}
+              <Link to="/catalog" className="cart_page__link">
+                &#8592; Continue Shopping
+              </Link>
+              <Button
+                className="cart_page__btn"
+                onClick={() => handleClearCart()}
+              >
+                Clear cart
+              </Button>
             </div>
-          ) : (
-            ''
-          )}
+          </div>
+        </div>{' '}
+        <div className="cart__content-coupon">
+          <div className="cart__content-total">
+            {' '}
+            <p className="cart__total">Cart Totals:</p>
+            <p>TOTAL {total}</p>
+          </div>
+          <div className="cart__coupon_container">
+            Coupon
+            <input
+              placeholder="coupon"
+              value={couponInput}
+              onChange={(e) => setCouponInput(e.target.value)}
+              className="cart__input"
+            />
+            <button
+              onClick={() => handleAddDiscount(couponInput)}
+              className="cart__coupon_btn"
+            >
+              Apply Coupon
+            </button>
+            <p className="cart__coupon_error">{errorMessage}</p>
+          </div>
+          <div>
+            <p>Applied coupon: </p>
+            <span onClick={() => handleDeleteDiscount(code.id)}>
+              {code.code}
+            </span>
+            {/* отображаем номер примененного купона, при нажатии на него он удаляется, пока без красоты) */}
+          </div>
         </div>
-        <div className="cart__summary">
-          <p className="cart__summary_title">Cart Total</p>
-
-          {/* пока поставила вот такую дурацкую заслонку discount !== '0.00 EUR' */}
-          {discount !== '0.00 EUR' ? (
-            <div className="cart__summary_amounts">
-              <p className="cart__summary_subtotal">
-                Subtotal:
-                <span>{totalBeforeDiscount}</span>
-              </p>
-              <p className="cart__summary_discount">
-                Discount:
-                <span>{discount}</span>
-              </p>
-              <p className="cart__summary_final">
-                TOTAL<span>{finalTotal}</span>
-              </p>
-            </div>
-          ) : (
-            <p className="cart__summary_final">
-              TOTAL<span>{finalTotal}</span>
-            </p>
-          )}
-        </div>
-      </div>
-
-      <div className="cart__container_btn">
-        <Link to="/" className="cart_page__link">
-          Back to shopping
-        </Link>
-        <button className="cart__clear_btn" onClick={() => handleClearCart()}>
-          Clear cart
-        </button>
       </div>
     </div>
   );
