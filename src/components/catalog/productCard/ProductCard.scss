@@ -55,6 +55,10 @@
   border-radius: 5px;
 }
 
+.product_card__discountedPrice {
+  text-decoration: line-through 1px var(--primary-color);
+}
+
 .product_card__description {
   position: relative;
   bottom: 1%;

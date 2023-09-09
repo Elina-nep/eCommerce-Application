@@ -1,5 +1,6 @@
 import './ProductCard.scss';
 
+import { ProductData } from '@commercetools/platform-sdk';
 import React from 'react';
 import { Link } from 'react-router-dom';
 
@@ -12,6 +13,7 @@ import {
   getProductCardPriceDiscounted,
   LANGUAGE,
 } from '../../../util';
+import { ButtonCartActions } from '../../product/assets/ButtonCartActions';
 
 export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
   const title = product.name[LANGUAGE.EN];
@@ -22,9 +24,6 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
   const productCardImageStyle = {
     backgroundImage: `url(${image})`,
   };
-  const priceStyle = discountedPrice
-    ? { textDecoration: 'line-through 1px var(--primary-color)' }
-    : {};
 
   return (
     <Link to={`/product/${product.id}`} className="product_card__link">
@@ -42,10 +41,15 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
           <p className="product_card__dicounted_price">{discountedPrice}</p>
         )}
         {price && (
-          <p className="product_card__price" style={priceStyle}>
+          <p
+            className={`product_card__price ${
+              discountedPrice ? 'product_card__discountedPrice' : ''
+            }`}
+          >
             {price}
           </p>
         )}
+        <ButtonCartActions product={product as ProductData} id={product.id} />
       </div>
     </Link>
   );

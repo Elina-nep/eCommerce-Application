@@ -116,7 +116,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
             </div>
           )}
 
-          <ButtonCartActions product={product} id={id} />
+          <ButtonCartActions product={product.current} id={id} />
 
           <div className="product__details">
             {description && (
