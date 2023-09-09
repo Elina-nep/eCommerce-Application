@@ -47,9 +47,9 @@ export const Cart = () => {
   return (
     <div className="cart">
       <h1 className="cart__title">SHOPPING CART</h1>
-      <div className="cart__content-wrapper">
-        <div className="cart__content-wrapper-table">
-          <div className="cart__content-table-header">
+      <div className="cart__wrapper">
+        <div className="cart__table">
+          <div className="cart__table_header">
             <p>Product</p>
             <p>Price</p>
             <p>Quantity</p>
@@ -58,7 +58,7 @@ export const Cart = () => {
           {cart.lineItems.map((el) => (
             <ItemInCart product={el} key={el.id} />
           ))}
-          <div className="cart__content-table-button">
+          <div className="cart__button_container">
             <Link to="/catalog" className="cart_page__link">
               &#8592; Continue Shopping
             </Link>
