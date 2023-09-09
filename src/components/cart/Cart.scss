@@ -44,24 +44,9 @@
   font-family: inherit;
 }
 
-.cart__content-coupon {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  font-size: var(--font-medium);
-  margin-right: 2%;
-
-  border: 1px solid black;
-}
-
 .cart__total:first-child {
   font-size: var(--font-large);
   padding-bottom: 1.4rem;
-}
-
-.cart__content-total p {
-  border-bottom: 1px solid var(--dark-color);
-  padding-bottom: 0.5rem;
 }
 
 .cat__input {
@@ -101,4 +86,8 @@
   display: flex;
   justify-content: space-between;
   margin: 0.8rem 0 0.8rem 2%;
+}
+
+.cart__aside {
+  border: 1px solid blue;
 }

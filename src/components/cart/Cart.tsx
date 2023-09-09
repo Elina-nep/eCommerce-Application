@@ -14,6 +14,7 @@ import {
 import Button from '../buttons/Button';
 import { Coupon } from './coupon/Coupon';
 import { ItemInCart } from './item/ItemInCart';
+import { Summary } from './summary/Summary';
 
 export const Cart = () => {
   const { cart, setCart } = useContext(AuthContext);
@@ -48,7 +49,6 @@ export const Cart = () => {
       <h1 className="cart__title">SHOPPING CART</h1>
       <div className="cart__content-wrapper">
         <div className="cart__content-wrapper-table">
-          {' '}
           <div className="cart__content-table-header">
             <p>Product</p>
             <p>Price</p>
@@ -59,7 +59,6 @@ export const Cart = () => {
             <ItemInCart product={el} key={el.id} />
           ))}
           <div className="cart__content-table-button">
-            {' '}
             <Link to="/catalog" className="cart_page__link">
               &#8592; Continue Shopping
             </Link>
@@ -70,25 +69,13 @@ export const Cart = () => {
               Clear cart
             </Button>
           </div>
-        </div>{' '}
-        <div className="cart__content-coupon">
-          <div className="cart__content-total">
-            {' '}
-            <p className="cart__total">Cart Totals:</p>
-            <div className="cart__summary_amounts">
-              <p className="cart__summary_subtotal">
-                Subtotal:
-                <span>{totalBeforeDiscount}</span>
-              </p>
-              <p className="cart__summary_discount">
-                Discount:
-                <span>{discount}</span>
-              </p>
-              <p className="cart__summary_final">
-                TOTAL<span>{finalTotal}</span>
-              </p>
-            </div>
-          </div>
+        </div>
+        <div className="cart__aside">
+          <Summary
+            totalBeforeDiscount={totalBeforeDiscount}
+            discount={discount}
+            finalTotal={finalTotal}
+          />
           <Coupon />
         </div>
       </div>
