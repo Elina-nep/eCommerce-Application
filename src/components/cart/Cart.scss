@@ -70,39 +70,11 @@
   }
 }
 
-///////////
-
 .cart__aside {
   width: 20%;
-  background-color: rgb(255, 223, 164);
+  background-color: #ffdcb1;
   padding: 1%;
-}
-
-///////
-///
-///
-///
-
-.cart__coupon_container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  font-size: var(--font-medium);
-  font-family: inherit;
-}
-
-.cart__total:first-child {
-  font-size: var(--font-large);
-  padding-bottom: 1.4rem;
-}
-
-.cat__input {
-}
-
-.cart__coupon_btn {
-  // margin: 0;
-}
-
-.cart__coupon_error {
-  color: red;
+  justify-content: space-between;
 }

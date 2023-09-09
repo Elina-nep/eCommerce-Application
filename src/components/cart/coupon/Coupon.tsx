@@ -60,45 +60,40 @@ export const Coupon: React.FC = () => {
       });
   };
 
+  console.log('here', cart.discountCodes);
+
   return (
     <div className="coupon">
-      <div className="coupon__new">
-        <input
-          placeholder="COUPON"
-          value={couponInput}
-          onChange={(e) => setCouponInput(e.target.value)}
-          className="coupon__new_input"
-        />
-        <button
-          onClick={() => handleAddDiscount(couponInput)}
-          className="coupon__new_btn"
-        >
-          Apply
-        </button>
-      </div>
-
       {errorMessage && <p className="coupon__new_error">{errorMessage}</p>}
 
       {cart.discountCodes.length ? (
         <div className="coupon__current">
-          <div className="coupon__current_container">
-            <p className="coupon__current_title">Applied coupon: </p>
-            <div className="coupon__current_content">
-              <span className="coupon__current_code">{code.code}</span>
-              <button
-                className="coupon__current_delete_btn"
-                onClick={() => handleDeleteDiscount(code.id)}
-              >
-                x
-              </button>
-            </div>
+          <p className="coupon__current_title">Applied coupon: </p>
+          <div className="coupon__current_content">
+            <span className="coupon__current_code">{code.code}</span>
+            <button
+              className="coupon__current_delete_btn"
+              onClick={() => handleDeleteDiscount(code.id)}
+            >
+              x
+            </button>
           </div>
-          <p className="coupon__current_tip">
-            Please note, only one discount can be applied at a time.
-          </p>
         </div>
       ) : (
-        ''
+        <div className="coupon__new">
+          <input
+            placeholder="COUPON"
+            value={couponInput}
+            onChange={(e) => setCouponInput(e.target.value)}
+            className="coupon__new_input"
+          />
+          <button
+            onClick={() => handleAddDiscount(couponInput)}
+            className="coupon__new_btn"
+          >
+            Apply
+          </button>
+        </div>
       )}
     </div>
   );
