@@ -30,3 +30,9 @@ export interface DiscountCartService {
 export interface IItemInCartProps {
   product: LineItem;
 }
+
+export interface ISummaryProps {
+  totalBeforeDiscount?: string;
+  discount?: string;
+  finalTotal: string;
+}

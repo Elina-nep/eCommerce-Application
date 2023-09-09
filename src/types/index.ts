@@ -3,6 +3,7 @@ export type {
   DiscountCartService,
   HeadProps,
   IItemInCartProps,
+  ISummaryProps,
   ItemInCartChange,
   ItemInCartChangeService,
 } from './cart';

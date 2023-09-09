@@ -1,7 +1,7 @@
 .cart {
   margin: 2.5% 0;
   width: 90%;
-  background-color: rgb(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.869);
 }
 
 .cart__title {
@@ -23,6 +23,7 @@
 .cart__table {
   display: flex;
   flex-direction: column;
+  width: 74%;
 }
 
 .cart__table_header {
@@ -71,6 +72,17 @@
 
 ///////////
 
+.cart__aside {
+  width: 20%;
+  background-color: rgb(255, 223, 164);
+  padding: 1%;
+}
+
+///////
+///
+///
+///
+
 .cart__coupon_container {
   display: flex;
   flex-direction: column;
@@ -93,8 +105,4 @@
 
 .cart__coupon_error {
   color: red;
-}
-
-.cart__aside {
-  border: 1px solid blue;
 }

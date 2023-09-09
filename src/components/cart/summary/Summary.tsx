@@ -1,11 +1,8 @@
 import './Summary.scss';
 
 import React from 'react';
-interface ISummaryProps {
-  totalBeforeDiscount?: string;
-  discount?: string;
-  finalTotal: string;
-}
+
+import { ISummaryProps } from '../../../types';
 
 export const Summary: React.FC<ISummaryProps> = ({
   totalBeforeDiscount,
@@ -13,24 +10,19 @@ export const Summary: React.FC<ISummaryProps> = ({
   finalTotal,
 }) => {
   return (
-    <div className="cart__content-coupon">
-      <div className="cart__content-total">
-        {' '}
-        <p className="cart__total">Cart Totals:</p>
-        <div className="cart__summary_amounts">
-          <p className="cart__summary_subtotal">
-            Subtotal:
-            <span>{totalBeforeDiscount}</span>
-          </p>
-          <p className="cart__summary_discount">
-            Discount:
-            <span>{discount}</span>
-          </p>
-          <p className="cart__summary_final">
-            TOTAL<span>{finalTotal}</span>
-          </p>
-        </div>
-      </div>
+    <div className="summary">
+      <h2 className="summary__title">Cart Totals</h2>
+      <p className="summary_subtotal">
+        Subtotal:
+        <span>{totalBeforeDiscount}</span>
+      </p>
+      <p className="summary_discount">
+        Discount:
+        <span>{discount}</span>
+      </p>
+      <p className="summary_final">
+        TOTAL<span>{finalTotal}</span>
+      </p>
     </div>
   );
 };
