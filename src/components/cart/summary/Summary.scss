@@ -16,12 +16,6 @@
   font-size: var(--font-xlarge);
   text-align: center;
   color: var(--dark-color);
-  @media (min-width: 300px) and (max-width: 557px) {
-    font-size: var(--font-medium);
-  }
-  @media (min-width: 558px) and (max-width: 830px) {
-    font-size: var(--font-large);
-  }
 }
 
 .summary__row {
@@ -31,15 +25,12 @@
   align-items: center;
   padding: 0.3rem 0;
   font-size: var(--font-medium);
+  width: 90%;
+  margin: 0 auto;
   span {
     border-radius: 5px;
     text-align: center;
     padding: 0.1rem 0.6rem;
-  }
-  @media (min-width: 300px) and (max-width: 830px) {
-    flex-direction: column;
-    padding: 0.4rem 0;
-    font-size: var(--font-small);
   }
 }
 

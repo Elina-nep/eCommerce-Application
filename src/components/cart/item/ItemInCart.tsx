@@ -62,7 +62,7 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
             x
           </Button>
         </div>
-        <div className="item__col">
+        <div className="item__col item__col_img">
           <img src={image} alt={name} className="item__image" />
         </div>
         <div className="item__col">{name}</div>
@@ -103,7 +103,7 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
             +
           </button>
         </div>
-        <div className="item__col">{total}</div>
+        <div className="item__col item__col_total">{total}</div>
       </div>
     </div>
   );

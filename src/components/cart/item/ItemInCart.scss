@@ -13,12 +13,22 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: fit-content;
+}
+
+.item__col_img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
 }
 
 .item__image {
   height: 5rem;
-  @media (min-width: 300px) and (max-width: 900px) {
-    height: 3.5rem;
+  transition: all ease 0.2s;
+  @media (min-width: 300px) and (max-width: 499px) {
+    height: 2.5rem;
   }
 }
 
@@ -80,4 +90,9 @@
   flex-direction: column;
   margin: auto;
   align-items: center;
+}
+
+.item__col_total {
+  width: 90%;
+  margin: 0 auto;
 }

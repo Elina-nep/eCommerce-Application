@@ -18,6 +18,9 @@
   justify-content: space-between;
   padding: 2%;
   gap: 5%;
+  @media (min-width: 300px) and (max-width: 940px) {
+    flex-direction: column;
+  }
 }
 
 .cart__table {
@@ -25,6 +28,10 @@
   flex-direction: column;
   justify-content: space-between;
   width: 74%;
+  @media (min-width: 300px) and (max-width: 940px) {
+    width: 94%;
+    margin: 1% auto;
+  }
 }
 
 .cart__table_header {
@@ -92,4 +99,8 @@
   justify-content: space-between;
   background-color: var(--secondary-color-light);
   border-radius: 10px;
+  @media (min-width: 300px) and (max-width: 940px) {
+    width: 94%;
+    margin: 0 auto;
+  }
 }

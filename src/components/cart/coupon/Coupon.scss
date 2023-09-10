@@ -12,10 +12,6 @@
   height: 1.6rem;
   gap: 0.5rem;
   width: 90%;
-  @media (min-width: 300px) and (max-width: 915px) {
-    flex-direction: column;
-    height: fit-content;
-  }
 }
 
 .coupon__new_input {
@@ -26,13 +22,6 @@
   border-radius: 5px;
   &:hover {
     border: 1px solid var(--secondary-color);
-  }
-  @media (min-width: 300px) and (max-width: 545px) {
-    font-size: var(--font-xsmall);
-    width: 95%;
-  }
-  @media (min-width: 546px) and (max-width: 915px) {
-    width: 95%;
   }
 }
 
@@ -51,13 +40,6 @@
   &:hover {
     cursor: pointer;
     background-color: var(--secondary-color);
-  }
-  @media (min-width: 300px) and (max-width: 545px) {
-    font-size: var(--font-small);
-    width: 100%;
-  }
-  @media (min-width: 546px) and (max-width: 915px) {
-    width: 100%;
   }
 }
 
@@ -95,9 +77,6 @@
   color: var(--secondary-color);
   margin: 0;
   text-align: center;
-  @media (min-width: 300px) and (max-width: 455px) {
-    font-size: var(--font-small);
-  }
 }
 
 .coupon__current_content {
@@ -105,10 +84,6 @@
   position: relative;
   width: 4.2rem;
   height: 1.8rem;
-  @media (min-width: 300px) and (max-width: 455px) {
-    width: 3.6rem;
-    height: 1.8rem;
-  }
 }
 
 .coupon__current_code {
