@@ -133,3 +133,17 @@ export const postalCodeValidation = {
     return true;
   },
 };
+
+export const couponValidation = (value: string, purchase: number) => {
+  if (value === 'GET10' && purchase < 5000) {
+    return 'Minimum purchase for GET10 is 50€';
+  }
+  if (value === 'GET20' && purchase < 10000) {
+    return 'Minimum purchase for GET20 is 100€';
+  }
+  if (value === 'GET30' && purchase < 15000) {
+    return 'Minimum purchase for GET30 is 150€';
+  }
+
+  return true;
+};

@@ -50,6 +50,7 @@ export { getExistingToken, tokenCache, userTokenCache } from './tokenProcess';
 export {
   ageValidation,
   countryValidation,
+  couponValidation,
   emailValidation,
   nameValidation,
   passwordValidation,

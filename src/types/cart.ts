@@ -36,3 +36,7 @@ export interface ISummaryProps {
   discount?: string;
   finalTotal: string;
 }
+
+export interface ICoupon {
+  coupon: string;
+}

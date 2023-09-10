@@ -1,16 +1,25 @@
 import './Coupon.scss';
 
+import { ThemeProvider } from '@mui/material/styles';
+import TextField from '@mui/material/TextField';
 import { useContext, useEffect, useState } from 'react';
 import React from 'react';
+import { Controller, useForm, useFormState } from 'react-hook-form';
 
 import { AuthContext } from '../../../context/AuthProvider';
-import { discountCart, getDiscount } from '../../../util';
+import { ICoupon } from '../../../types';
+import { couponValidation, discountCart, getDiscount } from '../../../util';
+import { couponTheme } from '../../auth/theme';
 
 export const Coupon: React.FC = () => {
   const { cart, setCart } = useContext(AuthContext);
   const [code, setCode] = useState({ code: '', id: '' });
   const [errorMessage, setErrorMessage] = useState('');
-  const [couponInput, setCouponInput] = useState('');
+
+  const { handleSubmit, control } = useForm<ICoupon>();
+  const { errors } = useFormState({
+    control,
+  });
 
   useEffect(() => {
     if (cart.discountCodes.length > 0) {
@@ -28,9 +37,9 @@ export const Coupon: React.FC = () => {
     } else setCode({ code: '', id: '' });
   }, [cart]);
 
-  const handleAddDiscount = (couponInput: string) => {
+  const handleAddDiscount = (formData: ICoupon) => {
     discountCart({
-      discount: couponInput,
+      discount: formData.coupon,
       cartVersion: cart.version,
       cartId: cart.id,
       action: 'addDiscountCode',
@@ -38,7 +47,6 @@ export const Coupon: React.FC = () => {
       .then((res) => {
         setCart(res);
         setErrorMessage('');
-        setCouponInput('');
       })
       .catch((e) => {
         console.log(e.message);
@@ -66,7 +74,9 @@ export const Coupon: React.FC = () => {
     <div className="coupon">
       {errorMessage && <p className="coupon__new_error">{errorMessage}</p>}
 
-      {cart.discountCodes.length ? (
+      {cart.discountCodes.find(
+        (discountCode) => discountCode.state === 'MatchesCart',
+      ) ? (
         <div className="coupon__current">
           <p className="coupon__current_title">Applied coupon: </p>
           <div className="coupon__current_content">
@@ -80,20 +90,41 @@ export const Coupon: React.FC = () => {
           </div>
         </div>
       ) : (
-        <div className="coupon__new">
-          <input
-            placeholder="COUPON"
-            value={couponInput}
-            onChange={(e) => setCouponInput(e.target.value)}
-            className="coupon__new_input"
-          />
-          <button
-            onClick={() => handleAddDiscount(couponInput)}
-            className="coupon__new_btn"
+        <ThemeProvider theme={couponTheme}>
+          <form
+            onSubmit={handleSubmit(handleAddDiscount)}
+            className="coupon__form"
           >
-            Apply
-          </button>
-        </div>
+            <Controller
+              control={control}
+              name="coupon"
+              rules={{
+                validate: (value) =>
+                  couponValidation(value, cart.totalPrice.centAmount),
+              }}
+              render={({ field }) => (
+                <TextField
+                  id="coupon"
+                  label="Coupon"
+                  onChange={(e) => {
+                    field.onChange(e);
+                    setErrorMessage('');
+                  }}
+                  value={field.value || ''}
+                  size="small"
+                  margin="normal"
+                  type="text"
+                  error={!!errors.coupon?.message}
+                  helperText={errors?.coupon?.message}
+                  className="coupon__new_input"
+                />
+              )}
+            />
+            <button type="submit" className="coupon__new_btn">
+              Apply
+            </button>
+          </form>
+        </ThemeProvider>
       )}
     </div>
   );
