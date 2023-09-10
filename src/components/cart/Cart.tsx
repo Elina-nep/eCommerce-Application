@@ -18,6 +18,7 @@ import { Summary } from './summary/Summary';
 
 export const Cart = () => {
   const { cart, setCart } = useContext(AuthContext);
+  console.log('here', cart);
 
   const totalBeforeDiscount = getCartBeforeCoupon(cart, CURRENCY.SYMBOL);
   const discount = getCartDiscount(cart, CURRENCY.SYMBOL);
@@ -49,12 +50,16 @@ export const Cart = () => {
       <h1 className="cart__title">SHOPPING CART</h1>
       <div className="cart__wrapper">
         <div className="cart__table">
-          <div className="cart__table_header">
-            <p>Product</p>
-            <p>Price</p>
-            <p>Quantity</p>
-            <p>Total</p>
-          </div>
+          {cart.lineItems.length < 1 ? (
+            <div className="cart__table_empty">Your cart is empty</div>
+          ) : (
+            <div className="cart__table_header">
+              <p>Product</p>
+              <p>Price</p>
+              <p>Quantity</p>
+              <p>Total</p>
+            </div>
+          )}
           {cart.lineItems.map((el) => (
             <ItemInCart product={el} key={el.id} />
           ))}

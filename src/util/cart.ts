@@ -159,8 +159,9 @@ export function getCartBeforeCoupon(cart: Cart, currency: string) {
 export function getCartDiscount(cart: Cart, currency: string): string {
   const cartTotalPrice = parseFloat(getCartTotalPrice(cart, currency));
   const cartBeforeCoupon = parseFloat(getCartBeforeCoupon(cart, currency));
-
   const discount = cartBeforeCoupon - cartTotalPrice;
-
-  return `${discount.toFixed(2)} ${currency}`;
+  if (discount) {
+    return `${discount.toFixed(2)} ${currency}`;
+  }
+  return '';
 }

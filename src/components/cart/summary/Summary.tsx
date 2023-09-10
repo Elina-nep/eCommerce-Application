@@ -12,17 +12,22 @@ export const Summary: React.FC<ISummaryProps> = ({
   return (
     <div className="summary">
       <h2 className="summary__title">Cart Totals</h2>
-      <p className="summary_subtotal">
-        Subtotal:
-        <span>{totalBeforeDiscount}</span>
-      </p>
-      <p className="summary_discount">
-        Discount:
-        <span>{discount}</span>
-      </p>
-      <p className="summary_final">
-        TOTAL<span>{finalTotal}</span>
-      </p>
+      {discount && (
+        <div className="summary__row summary_subtotal">
+          <p>Subtotal:</p>
+          <span>{totalBeforeDiscount}</span>
+        </div>
+      )}
+      {discount && (
+        <div className="summary__row summary_discount">
+          <p>Discount:</p>
+          <span>{discount}</span>
+        </div>
+      )}
+      <div className="summary__row summary_final">
+        <p>TOTAL</p>
+        <span>{finalTotal}</span>
+      </div>
     </div>
   );
 };
