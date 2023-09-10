@@ -12,10 +12,14 @@
   height: 1.6rem;
   gap: 0.5rem;
   width: 90%;
+  @media (min-width: 300px) and (max-width: 915px) {
+    flex-direction: column;
+    height: fit-content;
+  }
 }
 
 .coupon__new_input {
-  width: 50%;
+  width: 55%;
   font-family: 'Iceland';
   font-size: var(--font-small);
   border: 1px solid var(--primary-color-light);
@@ -23,10 +27,17 @@
   &:hover {
     border: 1px solid var(--secondary-color);
   }
+  @media (min-width: 300px) and (max-width: 545px) {
+    font-size: var(--font-xsmall);
+    width: 95%;
+  }
+  @media (min-width: 546px) and (max-width: 915px) {
+    width: 95%;
+  }
 }
 
 .coupon__new_btn {
-  min-width: 4rem;
+  width: 4rem;
   padding: 0.2rem 0.7rem;
   text-align: center;
   font-family: 'Iceland';
@@ -40,6 +51,13 @@
   &:hover {
     cursor: pointer;
     background-color: var(--secondary-color);
+  }
+  @media (min-width: 300px) and (max-width: 545px) {
+    font-size: var(--font-small);
+    width: 100%;
+  }
+  @media (min-width: 546px) and (max-width: 915px) {
+    width: 100%;
   }
 }
 
@@ -55,38 +73,53 @@
 }
 
 .coupon__current {
-  width: 100%;
+  width: 90%;
   padding: 0.6rem 0.2rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   background-color: var(--light-color);
   border-radius: 5px;
+  gap: 1rem;
+  font-size: var(--font-medium);
+  @media (min-width: 300px) and (max-width: 455px) {
+    font-size: var(--font-small);
+  }
+  @media (min-width: 300px) and (max-width: 915px) {
+    flex-direction: column;
+  }
 }
 
 .coupon__current_title {
   font-size: var(--font-medium);
   color: var(--secondary-color);
   margin: 0;
+  text-align: center;
+  @media (min-width: 300px) and (max-width: 455px) {
+    font-size: var(--font-small);
+  }
 }
 
 .coupon__current_content {
   display: flex;
   position: relative;
-  width: 5rem;
+  width: 4.2rem;
   height: 1.8rem;
+  @media (min-width: 300px) and (max-width: 455px) {
+    width: 3.6rem;
+    height: 1.8rem;
+  }
 }
 
 .coupon__current_code {
   width: 4rem;
+  height: 1.5rem;
+  padding: 0.3rem 0.1rem 0 0.1rem;
   text-align: center;
-  padding: 0.2rem 0.3rem;
-  font-size: var(--font-medium);
-  color: var(--primary-color);
   font-weight: 800;
-  background-color: var(--secondary-color-light);
-  border: 2px solid var(--secondary-color);
-  border-radius: 10px;
+  color: var(--light-color);
+  background-color: var(--primary-color);
+  border-radius: 8px;
   text-decoration: none;
 }
 
@@ -95,13 +128,15 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  top: -1;
-  right: 0;
-  width: 1rem;
-  height: 1rem;
-  color: white;
+  padding: 1px 0 2px 0;
+  top: -4px;
+  right: -5px;
+  width: 16px;
+  height: 16px;
+  font-weight: 800;
+  color: var(--secondary-color);
   border: 1px solid var(--secondary-color);
-  background-color: var(--secondary-color);
+  background-color: var(--light-color);
   border-radius: 50%;
   &:hover {
     cursor: pointer;
