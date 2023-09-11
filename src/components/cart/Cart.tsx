@@ -4,13 +4,7 @@ import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
 import { AuthContext } from '../../context/AuthProvider';
-import {
-  changeItemInCart,
-  CURRENCY,
-  getCartBeforeCoupon,
-  getCartDiscount,
-  getCartTotalPrice,
-} from '../../util';
+import { changeItemInCart } from '../../util';
 import Button from '../buttons/Button';
 import { Coupon } from './coupon/Coupon';
 import { ItemInCart } from './item/ItemInCart';
@@ -18,11 +12,6 @@ import { Summary } from './summary/Summary';
 
 export const Cart = () => {
   const { cart, setCart } = useContext(AuthContext);
-  console.log('here', cart);
-
-  const totalBeforeDiscount = getCartBeforeCoupon(cart, CURRENCY.SYMBOL);
-  const discount = getCartDiscount(cart, CURRENCY.SYMBOL);
-  const finalTotal = getCartTotalPrice(cart, CURRENCY.SYMBOL);
 
   const handleClearCart = () => {
     const itemsQuantities: number[] = [];
@@ -68,6 +57,7 @@ export const Cart = () => {
               &#8592; Continue Shopping
             </Link>
             <Button
+              disabled={cart.lineItems.length == 0}
               className="cart_page__btn"
               onClick={() => handleClearCart()}
             >
@@ -76,11 +66,7 @@ export const Cart = () => {
           </div>
         </div>
         <div className="cart__aside">
-          <Summary
-            totalBeforeDiscount={totalBeforeDiscount}
-            discount={discount}
-            finalTotal={finalTotal}
-          />
+          <Summary />
           <Coupon />
         </div>
       </div>

@@ -31,12 +31,6 @@ export interface IItemInCartProps {
   product: LineItem;
 }
 
-export interface ISummaryProps {
-  totalBeforeDiscount?: string;
-  discount?: string;
-  finalTotal: string;
-}
-
 export interface ICoupon {
   coupon: string;
 }

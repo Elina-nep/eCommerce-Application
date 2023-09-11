@@ -1,14 +1,22 @@
 import './Summary.scss';
 
 import React from 'react';
+import { useContext } from 'react';
 
-import { ISummaryProps } from '../../../types';
+import { AuthContext } from '../../../context/AuthProvider';
+import {
+  CURRENCY,
+  getCartBeforeCoupon,
+  getCartDiscount,
+  getCartTotalPrice,
+} from '../../../util';
 
-export const Summary: React.FC<ISummaryProps> = ({
-  totalBeforeDiscount,
-  discount,
-  finalTotal,
-}) => {
+export const Summary: React.FC = ({}) => {
+  const { cart } = useContext(AuthContext);
+  const totalBeforeDiscount = getCartBeforeCoupon(cart, CURRENCY.SYMBOL);
+  const discount = getCartDiscount(cart, CURRENCY.SYMBOL);
+  const finalTotal = getCartTotalPrice(cart, CURRENCY.SYMBOL);
+
   return (
     <div className="summary">
       <h2 className="summary__title">Cart Totals</h2>

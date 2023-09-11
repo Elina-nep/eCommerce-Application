@@ -91,6 +91,12 @@
   }
 }
 
+.cart_page__btn:disabled {
+  cursor: auto;
+  color: var(--light-color);
+  background-color: #ff4f199f;
+}
+
 .cart__aside {
   width: 20%;
   padding: 1.2%;

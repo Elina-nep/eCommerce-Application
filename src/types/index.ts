@@ -4,7 +4,6 @@ export type {
   HeadProps,
   ICoupon,
   IItemInCartProps,
-  ISummaryProps,
   ItemInCartChange,
   ItemInCartChangeService,
 } from './cart';

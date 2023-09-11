@@ -68,8 +68,6 @@ export const Coupon: React.FC = () => {
       });
   };
 
-  console.log('here', cart.discountCodes);
-
   return (
     <div className="coupon">
       {errorMessage && <p className="coupon__new_error">{errorMessage}</p>}
