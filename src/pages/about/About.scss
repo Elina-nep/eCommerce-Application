@@ -67,19 +67,23 @@
   margin-top: 5%;
   position: relative;
   bottom: 0px;
+  text-decoration: none;
+  color: var(--secondary-color);
+  transition: all 0.3s;
+  &:hover {
+    opacity: 0.6;
+  }
 }
 
 .about-us-git-logo {
-  width: 15%;
-  transition: transform 0.15s;
-}
-
-.about-us-git-logo:hover {
-  transform: scale(1.1);
+  width: 5%;
 }
 
 .about-us-photo {
-  width: 90%;
+  width: 20vw;
+  height: 20vw;
+  background-position: center;
+  background-size: cover;
 }
 
 .about-us-card {
@@ -94,16 +98,7 @@
   padding: 0.6rem;
   box-shadow: 0 0 10px rgba(49, 136, 124, 0.5);
   margin-bottom: 2.5%;
-  justify-content: space-between;
   min-width: 115px;
-}
-
-.about-us-card p {
-  margin: 0;
-}
-
-.about-us-description h2 {
-  color: var(--secondary-color);
 }
 
 .about-us-description ul {
@@ -157,9 +152,11 @@
     margin: auto;
     max-width: 90%;
   }
+
   .about-us-photo {
     width: 40%;
   }
+
   .about-us-card-text {
     display: flex;
     flex-direction: column;

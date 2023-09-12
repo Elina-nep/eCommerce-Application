@@ -1,3 +1,4 @@
+export type { IDeveloper } from './about';
 export type { CardProps } from './cards';
 export type { HeadProps } from './cart';
 export type {

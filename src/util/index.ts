@@ -10,7 +10,7 @@ export {
   getOneProduct,
   getProducts,
 } from './catalog';
-export { cards, PRODUCTS_ON_PAGE } from './constants';
+export { cards, DEVELOPERS, PRODUCTS_ON_PAGE } from './constants';
 export { getCustomerFunc } from './customer';
 export { columns, links } from './footerConstants';
 export {
