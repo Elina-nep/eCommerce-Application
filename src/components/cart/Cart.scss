@@ -64,11 +64,11 @@
 .cart__button_container {
   display: flex;
   justify-content: space-between;
-  margin: 2% 0 2% 2%;
 }
 
-.cart_page__btn.button {
-  margin: auto 0;
+.cart_page__btn {
+  margin: 1.4rem 0 1rem 0;
+  padding: 0.4rem 0.6rem;
   @media (min-width: 300px) and (max-width: 940px) {
     font-size: var(--font-medium);
   }

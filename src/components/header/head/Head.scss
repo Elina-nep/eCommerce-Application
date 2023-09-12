@@ -1,3 +1,5 @@
+@import '../../../index.scss';
+
 .head {
   display: flex;
   align-items: center;
@@ -125,7 +127,7 @@
   display: flex;
   justify-content: center;
   font-size: var(--font-medium);
-  gap: 2%;
+  gap: 5%;
   @media (min-width: 210px) and (max-width: 768px) {
     justify-content: flex-end;
   }
@@ -135,9 +137,21 @@
 .register {
   width: 4rem;
   padding: 0.2rem;
+  @media (min-width: 210px) and (max-width: 768px) {
+    font-size: 80%;
+  }
+}
+
+.login {
+  @extend %primary_button;
+}
+
+.register {
+  @extend %secondary_button;
 }
 
 .logout {
+  @extend %dark_button;
   margin-right: 10%;
   width: 5rem;
   padding: 0.2rem;

@@ -66,3 +66,85 @@ body {
     flex-direction: column;
   }
 }
+
+%button_behavior {
+  text-decoration: none;
+  font-family: 'Iceland';
+  text-align: center;
+  font-size: var(--font-medium);
+  border-radius: 5px;
+  transition: 0.2s ease;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+%primary_button {
+  @extend %button_behavior;
+  color: var(--light-color);
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+  &:hover {
+    background-color: var(--light-color);
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+  }
+}
+
+%secondary_button {
+  @extend %button_behavior;
+  color: var(--light-color);
+  background-color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  &:hover {
+    background-color: var(--light-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--secondary-color);
+  }
+}
+
+%secondary_light_button {
+  @extend %button_behavior;
+  width: fit-content;
+  margin: 0.5rem auto;
+  font-size: var(--font-medium);
+  color: var(--secondary-color);
+  background-color: var(--light-color);
+  border: 1px solid var(--secondary-color);
+  &:hover {
+    cursor: pointer;
+    background-color: var(--secondary-color);
+    border: 1px solid var(--secondary-color);
+    color: var(--light-color);
+  }
+}
+
+%dark_button {
+  @extend %button_behavior;
+  color: var(--dark-color);
+  background-color: var(--light-color);
+  border: 1px solid var(--dark-color);
+  &:hover {
+    background: var(--dark-color);
+    border: 1px solid var(--dark-color);
+    color: var(--light-color);
+  }
+  @media (min-width: 210px) and (max-width: 768px) {
+    font-size: 80%;
+  }
+}
+
+%round_button {
+  @extend %button_behavior;
+  width: 50px;
+  height: 50px;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  border-radius: 50%;
+  background-color: var(--light-color);
+  &:hover {
+    color: var(--light-color);
+    background-color: var(--primary-color-light);
+    border: 1px solid var(--primary-color-light);
+  }
+}
