@@ -25,13 +25,25 @@ body {
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-col;
   min-height: 100vh;
 }
 
 .main-container {
+  @extend %flex-row;
   flex-grow: 1;
   width: 100%;
   background-size: cover;
+}
+
+%flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+%flex-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
