@@ -1,3 +1,5 @@
+@import '../../../index.scss';
+
 .item__container {
   display: grid;
   grid-template-columns: 0.5fr 1.5fr 2fr 1fr 1fr 1fr;
@@ -10,16 +12,12 @@
 }
 
 .item__col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flex-row;
   width: fit-content;
 }
 
 .item__col_img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flex-row;
   width: 80%;
   margin: 0 auto;
 }
@@ -85,11 +83,11 @@
 }
 
 .price {
-  text-align: center;
   display: flex;
   flex-direction: column;
-  margin: auto;
   align-items: center;
+  text-align: center;
+  margin: auto;
 }
 
 .item__col_total {
