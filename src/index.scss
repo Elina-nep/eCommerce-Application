@@ -47,3 +47,14 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+.page__link {
+  text-decoration: none;
+  margin: 1.4rem 0 1rem 0;
+  font-size: var(--font-medium);
+  color: var(--secondary-color);
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline 1px var(--secondary-color);
+  }
+}

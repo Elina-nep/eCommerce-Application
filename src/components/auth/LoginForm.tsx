@@ -116,7 +116,7 @@ export const LoginForm: React.FC = () => {
               />
             )}
           />
-          <button type="submit" className="login-page__btn">
+          <button type="submit" className="primary_button login-page__btn">
             Sign in
           </button>
           {errorMessage && <FormError message={errorMessage} />}

@@ -67,17 +67,6 @@
   margin: 2% 0 2% 2%;
 }
 
-.cart_page__link {
-  margin: 0;
-  font-size: var(--font-medium);
-  text-decoration: none;
-  color: var(--secondary-color);
-  &:hover {
-    cursor: pointer;
-    text-decoration: underline 1px var(--secondary-color);
-  }
-}
-
 .cart_page__btn.button {
   margin: auto 0;
   font-size: var(--font-medium);

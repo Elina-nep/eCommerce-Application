@@ -1,30 +1,20 @@
 .registration-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   text-align: center;
-  height: fit-content;
   background-image: url('../../assets/big-balloons.jpg');
 }
 
 .registration-page__form {
-  margin: 20px 0;
   padding: 15px 25px;
   background-color: var(--light-color);
   border-radius: 10px;
   transition: all ease 0.2s;
-  @media (min-width: 768px) and (max-width: 4000px) {
-    width: 600px;
+  @media (min-width: 210) and (max-width: 768px) {
+    width: 80%;
   }
 }
 
 .registration-page__col-2 {
   display: flex;
-}
-.registration-page__col-1 {
-  display: flex;
-  justify-content: center;
 }
 
 .registration-page__spacing {
@@ -32,21 +22,6 @@
 }
 
 .registration-page__btn {
-  width: 8em;
-  padding: 0.2em 0;
+  padding: 0.2rem 1rem;
   margin-top: 1rem;
-  font-family: 'Iceland';
-  text-align: center;
-  font-size: var(--font-medium);
-  color: var(--light-color);
-  background-color: var(--secondary-color);
-  border: 1px solid var(--light-color);
-  border-radius: 5px;
-
-  &:hover {
-    cursor: pointer;
-    background-color: var(--light-color);
-    border: 1px solid var(--secondary-color);
-    color: var(--secondary-color);
-  }
 }
