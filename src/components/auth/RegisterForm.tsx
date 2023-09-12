@@ -1,10 +1,18 @@
 import './RegisterForm.scss';
 
 import { ThemeProvider } from '@mui/material/styles';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
-import { AuthContext } from '../../context/AuthProvider';
+import { createCustomerService } from '../../services';
+import {
+  AppDispatch,
+  changeAlert,
+  changeCart,
+  clearAlertThunk,
+  login,
+} from '../../store';
 import { IRegistrationForm } from '../../types/registrationForm';
 import { BillAddresses } from './assets/BillAddresses';
 import { CustomCheckbox } from './assets/CustomCheckbox';
@@ -14,6 +22,7 @@ import { FormError } from './FormError';
 import { registerTheme } from './theme';
 
 export const RegisterForm: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const { handleSubmit, control } = useForm<IRegistrationForm>({
     defaultValues: {
       areAddressesSame: true,
@@ -29,7 +38,6 @@ export const RegisterForm: React.FC = () => {
   };
 
   const [billingAddressMatches, setBillingAddressMatches] = useState(true);
-  const { createCustomer } = useContext(AuthContext);
 
   const [errorMessage, setErrorMessage] = useState<string>('');
   const onSubmit: SubmitHandler<IRegistrationForm> = async (data) => {
@@ -57,25 +65,33 @@ export const RegisterForm: React.FC = () => {
       defaultShippingAddress = 1;
     }
 
-    try {
-      await createCustomer({
-        email: data.email,
-        password: data.password,
-        firstName: data.firstName,
-        lastName: data.lastName,
-        dateOfBirth: data.dateOfBirth,
-        addresses: addresses,
-        defaultBillingAddress: data.isBillingAddressDefault ? 0 : undefined,
-        defaultShippingAddress: defaultShippingAddress,
-        billingAddresses: [0],
-        shippingAddresses: data.areAddressesSame ? [0] : [1],
+    createCustomerService({
+      email: data.email,
+      password: data.password,
+      firstName: data.firstName,
+      lastName: data.lastName,
+      dateOfBirth: data.dateOfBirth,
+      addresses: addresses,
+      defaultBillingAddress: data.isBillingAddressDefault ? 0 : undefined,
+      defaultShippingAddress: defaultShippingAddress,
+      billingAddresses: [0],
+      shippingAddresses: data.areAddressesSame ? [0] : [1],
+    })
+      .then((body) => {
+        dispatch(login());
+        dispatch(
+          changeAlert({
+            alertMessage: `User ${body.body.customer.email} is created`,
+          }),
+        );
+        dispatch(clearAlertThunk());
+        if (body.body.cart) {
+          dispatch(changeCart({ cart: body.body.cart }));
+        }
+      })
+      .catch((e) => {
+        setErrorMessage(e.message || 'An error occurred');
       });
-      setErrorMessage('');
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setErrorMessage(error.message || 'An error occurred');
-      }
-    }
   };
 
   return (

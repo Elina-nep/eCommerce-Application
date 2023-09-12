@@ -1,7 +1,7 @@
 import { ProductData } from '@commercetools/platform-sdk';
-import { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { AuthContext } from '../../../context/AuthProvider';
+import { changeCart, StoreType } from '../../../store';
 import { changeItemInCart } from '../../../util';
 import Button from '../../buttons/Button';
 
@@ -11,7 +11,8 @@ interface IButtonCartActions {
 }
 
 export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
-  const { cart, setCart } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const cart = useSelector((state: StoreType) => state.cart.cart);
 
   const handleItemInCartAction = (
     sku: string,
@@ -27,7 +28,7 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
       cartItemId: productInCartId,
       quantity,
     })
-      .then((res) => setCart(res))
+      .then((res) => dispatch(changeCart({ cart: res })))
       .catch((e) => {
         console.log(e.message);
       });

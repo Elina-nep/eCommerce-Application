@@ -1,16 +1,24 @@
 import './Head.scss';
 
-import React, { useContext } from 'react';
+import React from 'react';
 import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import imageToAddCottoncandy from '../../../assets/cotton-candy.png';
-import { AuthContext } from '../../../context/AuthProvider';
+import {
+  AppDispatch,
+  clearCart,
+  getCartThunk,
+  logout,
+  StoreType,
+} from '../../../store';
 
 const Head = () => {
-  const { ifAuth, logOut } = useContext(AuthContext);
+  const dispatch = useDispatch<AppDispatch>();
+  const ifAuth = useSelector((state: StoreType) => state.ifAuth.ifAuth);
+  const cart = useSelector((state: StoreType) => state.cart.cart);
   const navigate = useNavigate();
-  const { cart } = useContext(AuthContext);
 
   return (
     <div className="head">
@@ -41,7 +49,9 @@ const Head = () => {
             <button
               className="logout"
               onClick={() => {
-                logOut();
+                dispatch(logout());
+                dispatch(clearCart());
+                dispatch(getCartThunk());
                 navigate('/');
               }}
             >

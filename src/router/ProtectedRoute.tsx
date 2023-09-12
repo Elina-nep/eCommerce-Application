@@ -1,10 +1,10 @@
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 import { Navigate, Outlet } from 'react-router-dom';
 
-import { AuthContext } from '../context/AuthProvider';
+import { StoreType } from '../store/store';
 
 export const ProtectedRoute = () => {
-  const { ifAuth } = useContext(AuthContext);
+  const ifAuth = useSelector((state: StoreType) => state.ifAuth.ifAuth);
   return (
     <>
       {!ifAuth && <Outlet />}

@@ -3,7 +3,8 @@ import { MyCartUpdateAction } from '@commercetools/platform-sdk';
 import { DiscountCartService, ItemInCartChangeService } from '../../types';
 import { formFlow } from '../BuildClient';
 
-export const getCartService = () => formFlow().me().carts().get().execute();
+export const getCartService = () =>
+  formFlow().me().activeCart().get().execute();
 
 export const getDiscountService = (id: string) =>
   formFlow().discountCodes().withId({ ID: id }).get().execute();

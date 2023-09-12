@@ -1,9 +1,10 @@
 import './Cart.scss';
 
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { AuthContext } from '../../context/AuthProvider';
+import { changeCart, StoreType } from '../../store';
 import {
   changeItemInCart,
   CURRENCY,
@@ -15,7 +16,9 @@ import Button from '../buttons/Button';
 import { ItemInCart } from './item/ItemInCart';
 
 export const Cart = () => {
-  const { cart, setCart } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const cart = useSelector((state: StoreType) => state.cart.cart);
+  console.log(cart);
   const [code, setCode] = useState({ code: '', id: '' });
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -33,7 +36,7 @@ export const Cart = () => {
           });
       }
     } else setCode({ code: '', id: '' });
-  }, [cart]); // это для того, чтобы отображать примененный к корзине и активный купон, можно перенести в отдельный компонент
+  }, [cart]);
 
   const [couponInput, setCouponInput] = useState('');
 
@@ -45,7 +48,7 @@ export const Cart = () => {
       action: 'addDiscountCode',
     })
       .then((res) => {
-        setCart(res);
+        dispatch(changeCart({ cart: res }));
         setErrorMessage('');
         setCouponInput('');
       })
@@ -62,7 +65,7 @@ export const Cart = () => {
       action: 'removeDiscountCode',
     })
       .then((res) => {
-        setCart(res);
+        dispatch(changeCart({ cart: res }));
       })
       .catch((e) => {
         console.log(e.message);
@@ -84,7 +87,7 @@ export const Cart = () => {
       quantity: itemsQuantities,
     })
       .then((res) => {
-        setCart(res);
+        dispatch(changeCart({ cart: res }));
       })
       .catch((e) => {
         console.log(e.message);
@@ -148,7 +151,6 @@ export const Cart = () => {
             <span onClick={() => handleDeleteDiscount(code.id)}>
               {code.code}
             </span>
-            {/* отображаем номер примененного купона, при нажатии на него он удаляется, пока без красоты) */}
           </div>
         </div>
       </div>

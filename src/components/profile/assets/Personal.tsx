@@ -1,18 +1,19 @@
 import TextField from '@mui/material/TextField';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Controller,
   SubmitHandler,
   useForm,
   useFormState,
 } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
-import { AuthContext } from '../../../context/AuthProvider';
+import { changeCustomerService } from '../../../services';
+import { AppDispatch, changeAlert, clearAlertThunk } from '../../../store';
 import { CustomerChanges } from '../../../types';
 import { IPersonalProps } from '../../../types/profileFrom';
 import { IProfileForm } from '../../../types/profileFrom';
 import { ageValidation, nameValidation } from '../../../util';
-import { changeCustomerFunc } from '../../../util/customer';
 import { customerToFormMapper } from '../../../util/user';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
@@ -21,8 +22,8 @@ export const Personal: React.FC<IPersonalProps> = ({
   response,
   refreshCallback,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const profileFields = customerToFormMapper(response);
-  const { setAlertMessage } = useContext(AuthContext);
 
   const { handleSubmit, control, trigger } = useForm<IProfileForm>({
     mode: 'onBlur',
@@ -45,6 +46,7 @@ export const Personal: React.FC<IPersonalProps> = ({
 
   const onSubmit: SubmitHandler<IProfileForm> = async (data) => {
     setEditMode(false);
+    setLoading(true);
 
     const customerChanges: CustomerChanges = {
       setFirstName: {
@@ -60,22 +62,23 @@ export const Personal: React.FC<IPersonalProps> = ({
         dateOfBirth: data.dateOfBirth,
       },
     };
-
-    try {
-      await changeCustomerFunc(
-        setLoading,
-        customerChanges,
-        response.version,
-        setAlertMessage,
-      );
-
-      setErrorMessage('');
-      refreshCallback();
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setErrorMessage(error.message || 'An error occurred');
-      }
-    }
+    changeCustomerService(customerChanges, response.version)
+      .then(() => {
+        dispatch(
+          changeAlert({
+            alertMessage: `Changes saved successfully`,
+          }),
+        );
+        dispatch(clearAlertThunk());
+        setErrorMessage('');
+        refreshCallback();
+      })
+      .catch((e) => {
+        setErrorMessage(e.message || 'An error occurred');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
