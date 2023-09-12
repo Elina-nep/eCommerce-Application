@@ -3,10 +3,6 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { createCart, defaultCart, getCart } from '../util';
 
-interface cartState {
-  cart: Cart;
-}
-
 export const getCartThunk = createAsyncThunk('cart/getCart', async () =>
   getCart()
     .then((res) => res)
@@ -26,7 +22,12 @@ const changeCartSlice = createSlice({
     cart: defaultCart,
   },
   reducers: {
-    changeCart(state, action: PayloadAction<cartState>) {
+    changeCart(
+      state,
+      action: PayloadAction<{
+        cart: Cart;
+      }>,
+    ) {
       state.cart = action.payload.cart;
     },
     clearCart(state) {

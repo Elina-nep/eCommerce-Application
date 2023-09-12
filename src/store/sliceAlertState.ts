@@ -1,9 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface IInitialState {
-  alertMessage: string;
-}
-
 export const clearAlertThunk = createAsyncThunk(
   'alertMessage/clearAlertMessage',
   async () =>
@@ -16,7 +12,12 @@ const alertMessageSlice = createSlice({
     alertMessage: '',
   },
   reducers: {
-    changeAlert(state, action: PayloadAction<IInitialState>) {
+    changeAlert(
+      state,
+      action: PayloadAction<{
+        alertMessage: string;
+      }>,
+    ) {
       state.alertMessage = action.payload.alertMessage;
     },
   },

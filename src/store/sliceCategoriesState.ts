@@ -3,7 +3,7 @@ import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { getCategories } from '../util';
 
-interface cartState {
+interface categoryState {
   categories: Category[];
 }
 
@@ -18,13 +18,13 @@ export const getCategoriesThunk = createAsyncThunk(
         return res.results;
       }),
 );
-const initialState: cartState = { categories: [] };
+const initialState: categoryState = { categories: [] };
 
 const changeCategoriesSlice = createSlice({
   name: 'categories',
   initialState,
   reducers: {
-    changeCategories(state, action: PayloadAction<cartState>) {
+    changeCategories(state, action: PayloadAction<categoryState>) {
       state.categories = action.payload.categories;
     },
   },
