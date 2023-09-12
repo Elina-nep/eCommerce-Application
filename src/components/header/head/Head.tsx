@@ -39,7 +39,7 @@ const Head = () => {
         <div className="registration-links">
           {ifAuth ? (
             <button
-              className="logout"
+              className="dark_button logout"
               onClick={() => {
                 logOut();
                 navigate('/');
@@ -49,10 +49,10 @@ const Head = () => {
             </button>
           ) : (
             <>
-              <Link to="login" className="login">
+              <Link to="login" className="primary_button login">
                 Sign in
               </Link>
-              <Link to="register" className="register">
+              <Link to="register" className="secondary_button register">
                 Sign up
               </Link>
               <br />

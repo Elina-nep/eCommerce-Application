@@ -1,4 +1,4 @@
-import './Footer.css';
+import './Footer.scss';
 
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';

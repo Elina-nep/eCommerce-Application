@@ -82,3 +82,18 @@
     margin: 2.5vh;
   }
 }
+
+.coupon_card__button {
+  position: relative;
+  margin: 0 0 0.5rem 0;
+  bottom: 2vh;
+  background-color: var(--primary-color-light);
+  padding: 0.4em 0;
+  width: 20vw;
+  border: none;
+  &:hover {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    border: none;
+  }
+}
