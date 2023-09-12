@@ -8,13 +8,9 @@
   background-color: var(--light-color);
   border-radius: 10px;
   transition: all ease 0.2s;
-  @media (min-width: 210) and (max-width: 768px) {
-    width: 80%;
+  @media (min-width: 768px) and (max-width: 4000px) {
+    width: 600px;
   }
-}
-
-.registration-page__col-2 {
-  display: flex;
 }
 
 .registration-page__spacing {

@@ -92,7 +92,7 @@ export const RegisterForm: React.FC = () => {
               onFocusInput={onFocusInput}
             />
             <p>Billing Address</p>
-            <div className="registration-page__col-2">
+            <div className="form__col-2">
               <CustomCheckbox
                 id="isBillingAddressDefault"
                 control={control}
@@ -112,7 +112,7 @@ export const RegisterForm: React.FC = () => {
             {!billingAddressMatches && (
               <div>
                 <p>Shipping Address</p>
-                <div className="registration-page__col-2">
+                <div className="form__col-2">
                   <CustomCheckbox
                     id="isShippingAddressDefault"
                     control={control}
