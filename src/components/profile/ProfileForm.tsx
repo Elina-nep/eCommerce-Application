@@ -39,7 +39,7 @@ export const ProfileForm: React.FC<IProfileFormProps> = ({
 
   return (
     <div className="profile">
-      <Link to="/" className="profile__link">
+      <Link to="/" className="page__link">
         Home
       </Link>
       <h1 className="profile__title"> Profile</h1>

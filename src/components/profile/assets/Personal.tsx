@@ -89,7 +89,7 @@ export const Personal: React.FC<IPersonalProps> = ({
               ''
             ) : (
               <button
-                className="profile__edit_btn"
+                className="primary_button profile__edit_btn"
                 onClick={handleEditClick}
                 disabled={editMode}
               >
@@ -100,7 +100,7 @@ export const Personal: React.FC<IPersonalProps> = ({
             {editMode ? (
               <button
                 type="submit"
-                className="profile__save_btn"
+                className="primary_button profile__save_btn"
                 disabled={!editMode}
               >
                 Save
@@ -110,7 +110,7 @@ export const Personal: React.FC<IPersonalProps> = ({
             )}
           </div>
         </div>
-        <div className="prof__col-2">
+        <div className="form__col-2">
           <Controller
             control={control}
             name="firstName"

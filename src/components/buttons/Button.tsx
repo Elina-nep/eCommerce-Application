@@ -22,7 +22,7 @@ const Button: React.FC<ButtonProps> = ({
         if (e) e.stopPropagation();
         !disabled && onClick && onClick(e);
       }}
-      className={className + ' button'}
+      className={className}
     >
       {children}
     </button>

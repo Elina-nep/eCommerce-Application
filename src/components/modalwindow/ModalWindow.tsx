@@ -63,7 +63,7 @@ export const Modal: React.FC<ModalProps> = ({
           <div className="modal-text">
             <h4>{description}</h4>
             <p>{`Date: ${couponDate}`}</p>
-            <p className="coupon-code">{`${couponCode}`}</p>
+            <p className="coupon-code">{couponCode}</p>
           </div>
         </div>
       </div>

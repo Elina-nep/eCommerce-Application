@@ -14,7 +14,6 @@ import {
   getItemTotalPrice,
   LANGUAGE,
 } from '../../../util';
-import Button from '../../buttons/Button';
 
 export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
   const image = getItemImage(product);
@@ -49,7 +48,7 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
     <div>
       <div className="item__container">
         <div className="item__col">
-          <Button
+          <button
             className="item__col_remove-btn"
             onClick={() => {
               handleItemInCartAction({
@@ -60,7 +59,7 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
             }}
           >
             x
-          </Button>
+          </button>
         </div>
         <div className="item__col item__col_img">
           <img src={image} alt={name} className="item__image" />

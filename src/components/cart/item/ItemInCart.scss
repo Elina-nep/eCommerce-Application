@@ -1,3 +1,5 @@
+@import '../../../index.scss';
+
 .item__container {
   display: grid;
   grid-template-columns: 0.5fr 1.5fr 2fr 1fr 1fr 1fr;
@@ -10,16 +12,12 @@
 }
 
 .item__col {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flex-row;
   width: fit-content;
 }
 
 .item__col_img {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flex-row;
   width: 80%;
   margin: 0 auto;
 }
@@ -46,6 +44,8 @@
 }
 
 .item__quantity_btn {
+  display: flex;
+  justify-content: center;
   padding: 0.5rem;
   width: 30%;
   height: 80%;
@@ -67,17 +67,11 @@
 }
 
 .item__col_remove-btn {
-  font-size: var(--font-medium);
-  text-align: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 40px;
-  background-color: var(--light-color);
-  color: var(--secondary-color);
-  border: 1px solid var(--secondary-color);
-  transition: background-color 0.5s ease;
-  justify-content: center;
-  align-items: center;
+  @extend %round_button;
+  @media (min-width: 300px) and (max-width: 600px) {
+    width: 30px;
+    height: 30px;
+  }
 }
 
 .discount-price {
@@ -85,11 +79,11 @@
 }
 
 .price {
-  text-align: center;
   display: flex;
   flex-direction: column;
-  margin: auto;
   align-items: center;
+  text-align: center;
+  margin: auto;
 }
 
 .item__col_total {
