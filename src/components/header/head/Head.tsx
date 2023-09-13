@@ -1,15 +1,16 @@
 import './Head.scss';
 
 import React, { useContext } from 'react';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
 import { Link, useNavigate } from 'react-router-dom';
 
 import imageToAddCottoncandy from '../../../assets/cotton-candy.png';
 import { AuthContext } from '../../../context/AuthProvider';
-import { HeadProps } from '../../../types/index';
 
-const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
+const Head = () => {
   const { ifAuth, logOut } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { cart } = useContext(AuthContext);
 
   return (
     <div className="head">
@@ -29,9 +30,10 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
             </div>
           </div>
         </Link>
-        <div className="cart">
-          <Link to="#">
-            CART / ${cartTotal.toFixed(2)} gds: {cartItemsCount}
+        <div className="cart__link">
+          <Link to="/cart">
+            <AiOutlineShoppingCart /> {cart.totalLineItemQuantity} ( €‎
+            {cart.totalPrice.centAmount / 100} )
           </Link>
         </div>
         <div className="registration-links">

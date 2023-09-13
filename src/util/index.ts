@@ -5,6 +5,17 @@ export {
   logOutFunc,
 } from './auth';
 export {
+  changeItemInCart,
+  createCart,
+  defaultCart,
+  discountCart,
+  getCart,
+  getCartBeforeCoupon,
+  getCartDiscount,
+  getCartTotalPrice,
+  getDiscount,
+} from './cart';
+export {
   findCurrentCategoryId,
   getCategories,
   getOneProduct,
@@ -13,6 +24,12 @@ export {
 export { cards, DEVELOPERS, PRODUCTS_ON_PAGE } from './constants';
 export { getCustomerFunc } from './customer';
 export { columns, links } from './footerConstants';
+export {
+  getItemDiscountedPrice,
+  getItemImage,
+  getItemPrice,
+  getItemTotalPrice,
+} from './itemInCart';
 export {
   formatAttributes,
   getProductAttribute,
@@ -33,6 +50,7 @@ export { getExistingToken, tokenCache, userTokenCache } from './tokenProcess';
 export {
   ageValidation,
   countryValidation,
+  couponValidation,
   emailValidation,
   nameValidation,
   passwordValidation,

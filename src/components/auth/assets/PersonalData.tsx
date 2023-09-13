@@ -20,7 +20,7 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
 
   return (
     <div>
-      <div className="registration-page__col-2">
+      <div className="form__col-2">
         <Controller
           control={control}
           name="firstName"
@@ -56,7 +56,7 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
           }
         />
       </div>
-      <div className="registration-page__col-2">
+      <div className="form__col-2">
         <Controller
           control={control}
           name="email"

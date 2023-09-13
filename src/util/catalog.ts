@@ -1,5 +1,6 @@
 import {
   CategoryPagedQueryResponse,
+  ClientResponse,
   Product,
   ProductProjectionPagedQueryResponse,
 } from '@commercetools/platform-sdk';
@@ -49,10 +50,10 @@ export const getCategories = (): Promise<CategoryPagedQueryResponse> => {
 export const getOneProduct = (id: string): Promise<Product> => {
   return new Promise((resolve, reject) => {
     getOneProductService(id)
-      .then((body) => {
+      .then((body: ClientResponse<Product>) => {
         resolve(body.body);
       })
-      .catch((e) => {
+      .catch((e: Error) => {
         const errorMessage = e.message || 'An error occurred';
         reject(new Error(errorMessage));
       });

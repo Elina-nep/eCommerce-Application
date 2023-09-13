@@ -1,6 +1,13 @@
 export type { IDeveloper } from './about';
 export type { CardProps } from './cards';
-export type { HeadProps } from './cart';
+export type {
+  DiscountCartService,
+  HeadProps,
+  ICoupon,
+  IItemInCartProps,
+  ItemInCartChange,
+  ItemInCartChangeService,
+} from './cart';
 export type {
   CategoryT,
   FilterComponentT,

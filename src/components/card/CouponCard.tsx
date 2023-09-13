@@ -1,4 +1,4 @@
-import './CouponCard.css';
+import './CouponCard.scss';
 
 import React from 'react';
 
@@ -14,7 +14,7 @@ const Card: React.FC<CardProps> = ({ card, handleLearnMoreClick }) => {
 
         <Button
           onClick={() => handleLearnMoreClick(card)}
-          className="button-info"
+          className="primary_button coupon_card__button"
         >
           Learn more
         </Button>

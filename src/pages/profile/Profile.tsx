@@ -28,7 +28,7 @@ export const ProfilePage = () => {
         setCustomer(body);
       })
       .catch((e) => {
-        console.log(e);
+        console.log(e.message);
       });
   };
 

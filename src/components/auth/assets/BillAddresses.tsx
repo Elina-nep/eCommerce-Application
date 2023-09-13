@@ -31,7 +31,7 @@ export const BillAddresses: React.FC<AddressesContainerProps> = ({
 
   return (
     <div>
-      <div className="registration-page__col-2">
+      <div className="form__col-2">
         <Controller
           control={control}
           name={`billStreet`}
@@ -76,7 +76,7 @@ export const BillAddresses: React.FC<AddressesContainerProps> = ({
           )}
         />
       </div>
-      <div className="registration-page__col-2">
+      <div className="form__col-2">
         <FormControl
           margin="normal"
           fullWidth

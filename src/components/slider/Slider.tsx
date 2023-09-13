@@ -1,4 +1,4 @@
-import './Slider.css';
+import './Slider.scss';
 
 import { useEffect, useState } from 'react';
 
