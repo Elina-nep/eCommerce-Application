@@ -2,10 +2,10 @@ import imageToAddBalloons from '../assets/balloons.jpg';
 import imageToAddCandles from '../assets/candles.jpg';
 import imageToAddDecoration from '../assets/decoration.jpg';
 import imageToAddElina from '../assets/Elina.jpg';
-import imageToAddGalina from '../assets/Galina.jpg';
+import imageToAddHalina from '../assets/Halina.jpg';
 import imageToAddHats from '../assets/hats.jpg';
 import imageToAddHoli from '../assets/holi.jpg';
-import imageToAddIrina from '../assets/Irina.jpg';
+import imageToAddIryna from '../assets/Iryna.jpg';
 import imageToAddPoppers from '../assets/poppers.jpg';
 import imageToAddSets from '../assets/sets.jpg';
 import imageToAddskylantern from '../assets/sky-lantern.jpeg';
@@ -40,7 +40,7 @@ export const DEVELOPERS: IDeveloper[] = [
     photo: imageToAddElina,
   },
   {
-    name: 'Irina',
+    name: 'Iryna',
     role: 'Developer',
     done: [
       'setting up registration on the register page',
@@ -54,10 +54,10 @@ export const DEVELOPERS: IDeveloper[] = [
       'responsive layout',
     ],
     link: 'https://github.com/iradzh',
-    photo: imageToAddIrina,
+    photo: imageToAddIryna,
   },
   {
-    name: 'Galina',
+    name: 'Halina',
     role: 'Developer',
     done: [
       'project design',
@@ -75,7 +75,7 @@ export const DEVELOPERS: IDeveloper[] = [
       'responsive layout',
     ],
     link: 'https://github.com/HalinaD',
-    photo: imageToAddGalina,
+    photo: imageToAddHalina,
   },
 ];
 
