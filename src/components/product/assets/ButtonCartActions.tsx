@@ -38,6 +38,7 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
   if (itemInCart)
     return (
       <Button
+        className="secondary_light_button"
         onClick={(e) => {
           e.stopPropagation();
           e.preventDefault();
@@ -54,6 +55,7 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
     );
   return (
     <Button
+      className="secondary_light_button"
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();

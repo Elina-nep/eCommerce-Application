@@ -108,7 +108,7 @@ export const RegisterForm: React.FC = () => {
               onFocusInput={onFocusInput}
             />
             <p>Billing Address</p>
-            <div className="registration-page__col-2">
+            <div className="form__col-2">
               <CustomCheckbox
                 id="isBillingAddressDefault"
                 control={control}
@@ -117,20 +117,18 @@ export const RegisterForm: React.FC = () => {
               />
             </div>
             <BillAddresses control={control} errors={errors} />
-            <div className="registration-page__col-1">
-              <CustomCheckbox
-                id="areAddressesSame"
-                control={control}
-                name="areAddressesSame"
-                label="My billing address matches shipping address"
-                isChecked={billingAddressMatches}
-                onChange={(checked) => setBillingAddressMatches(checked)}
-              />
-            </div>
+            <CustomCheckbox
+              id="areAddressesSame"
+              control={control}
+              name="areAddressesSame"
+              label="My billing address matches shipping address"
+              isChecked={billingAddressMatches}
+              onChange={(checked) => setBillingAddressMatches(checked)}
+            />
             {!billingAddressMatches && (
               <div>
                 <p>Shipping Address</p>
-                <div className="registration-page__col-2">
+                <div className="form__col-2">
                   <CustomCheckbox
                     id="isShippingAddressDefault"
                     control={control}
@@ -141,7 +139,10 @@ export const RegisterForm: React.FC = () => {
                 <ShipAddresses control={control} errors={errors} />
               </div>
             )}
-            <button type="submit" className="registration-page__btn">
+            <button
+              type="submit"
+              className="secondary_button registration-page__btn"
+            >
               Create account
             </button>
             {errorMessage && <FormError message={errorMessage} />}{' '}

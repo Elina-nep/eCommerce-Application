@@ -71,7 +71,9 @@ export const Coupon: React.FC = () => {
 
   return (
     <div className="coupon">
-      {errorMessage && <p className="coupon__new_error">{errorMessage}</p>}
+      {errorMessage && (
+        <p className="primary_button coupon__new_error">{errorMessage}</p>
+      )}
 
       {cart.discountCodes.find(
         (discountCode) => discountCode.state === 'MatchesCart',
@@ -79,7 +81,9 @@ export const Coupon: React.FC = () => {
         <div className="coupon__current">
           <p className="coupon__current_title">Applied coupon: </p>
           <div className="coupon__current_content">
-            <span className="coupon__current_code">{code.code}</span>
+            <span className="primary_button coupon__current_code">
+              {code.code}
+            </span>
             <button
               className="coupon__current_delete_btn"
               onClick={() => handleDeleteDiscount(code.id)}
@@ -119,7 +123,7 @@ export const Coupon: React.FC = () => {
                 />
               )}
             />
-            <button type="submit" className="coupon__new_btn">
+            <button type="submit" className="primary_button coupon__new_btn">
               Apply
             </button>
           </form>

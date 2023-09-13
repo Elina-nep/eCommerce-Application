@@ -1,4 +1,4 @@
-import './Footer.css';
+import './Footer.scss';
 
 import React from 'react';
 import { useSelector } from 'react-redux';

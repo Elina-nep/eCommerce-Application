@@ -112,7 +112,9 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
             </div>
           ) : (
             <div className="product__no_discount">
-              {price && <p className="product__price">{price}</p>}
+              {price && (
+                <p className="primary_button product__price">{price}</p>
+              )}
             </div>
           )}
 
@@ -136,6 +138,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
                   search: `category=${category}`,
                 }}
                 key={index}
+                className="secondary_button"
               >
                 {category}
               </Link>

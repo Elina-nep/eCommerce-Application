@@ -207,7 +207,7 @@ export const Address: React.FC<IAddressProps> = ({
               ''
             ) : (
               <button
-                className="profile__edit_btn"
+                className="primary_button profile__edit_btn"
                 onClick={handleEditClick}
                 disabled={editMode}
               >
@@ -218,7 +218,7 @@ export const Address: React.FC<IAddressProps> = ({
             {editMode ? (
               <button
                 type="submit"
-                className="profile__save_btn"
+                className="primary_button profile__save_btn"
                 disabled={!editMode}
               >
                 Save
@@ -227,7 +227,7 @@ export const Address: React.FC<IAddressProps> = ({
               ''
             )}
             <button
-              className="profile__delete_btn"
+              className="primary_button profile__delete_btn"
               onClick={(e) => deleteAddress(e.nativeEvent)}
             >
               Delete
@@ -235,7 +235,7 @@ export const Address: React.FC<IAddressProps> = ({
           </div>
         </div>
 
-        <div className="prof__col-2">
+        <div className="form__col-2">
           <Controller
             control={control}
             name="streetName"
@@ -307,7 +307,7 @@ export const Address: React.FC<IAddressProps> = ({
           />
         </div>
 
-        <div className="prof__col-2">
+        <div className="form__col-2">
           <FormControl
             margin="normal"
             fullWidth

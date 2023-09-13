@@ -1,3 +1,5 @@
+@import '../../../index.scss';
+
 .product_card__link {
   list-style-type: none;
   text-decoration: none;
@@ -5,22 +7,20 @@
 }
 
 .product_card {
+  @extend %flex-col;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: center;
   background: var(--light-color);
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  text-align: center;
   height: 40vh;
-  align-items: center;
-  padding: 0.4rem 0;
+  padding: 0.4rem 0 0.8rem 0;
   border: 1px solid var(--secondary-color-light);
-}
-
-.product_card:hover {
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  transition: all 0.5s ease-in-out;
-  border: 1px solid var(--light-color);
+  &:hover {
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    transition: all 0.5s ease-in-out;
+    border: 1px solid var(--light-color);
+  }
 }
 
 .product_card__image {
@@ -43,16 +43,15 @@
 }
 
 .product_card__price {
-  width: 6rem;
-  margin: 0.5rem auto;
+  @extend %primary_button;
+  margin: 0.5rem auto 0.9rem auto;
   padding: 0.2rem 0.7rem;
-  font-family: 'Iceland';
-  text-align: center;
-  font-size: var(--font-small);
-  color: var(--light-color);
-  background-color: var(--primary-color-light);
-  border: 1px solid var(--primary-color-light);
-  border-radius: 5px;
+  &:hover {
+    cursor: auto;
+    color: var(--light-color);
+    background-color: var(--primary-color);
+    border: 1px solid var(--primary-color-light);
+  }
 }
 
 .product_card__discountedPrice {
@@ -68,10 +67,8 @@
 }
 
 .product_card__dicounted_price {
+  @extend %highlight_text;
   font-size: var(--font-small);
-  font-weight: 800;
-  color: var(--primary-color);
-  margin: 0;
 }
 
 .sale-icon {
@@ -113,9 +110,6 @@
   to {
     transform: rotate(-20deg) scale(1.1);
   }
-}
-
-@media (max-width: 768px) {
 }
 
 @media (max-width: 850px) {

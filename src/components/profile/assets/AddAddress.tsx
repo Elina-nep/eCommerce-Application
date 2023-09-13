@@ -187,7 +187,7 @@ export const AddAddress: React.FC<IAddAddressProps> = ({
           />
         </FormGroup>
 
-        <div className="prof__col-2">
+        <div className="form__col-2">
           <Controller
             control={control}
             name="streetName"
@@ -237,7 +237,7 @@ export const AddAddress: React.FC<IAddAddressProps> = ({
           />
         </div>
 
-        <div className="prof__col-2">
+        <div className="form__col-2">
           <FormControl
             margin="normal"
             fullWidth
