@@ -20,7 +20,9 @@
   margin-left: 2rem;
   visibility: visible;
   height: inherit;
-  transition: all 0.5s ease-out;
+  transition:
+    all 0.5s ease-out,
+    visibility 0s;
 }
 
 .categories-child-item.hidden {
