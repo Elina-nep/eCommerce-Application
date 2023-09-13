@@ -1,10 +1,4 @@
 export {
-  clearAlert,
-  createCustomerFunc,
-  loginCustomerFunc,
-  logOutFunc,
-} from './auth';
-export {
   changeItemInCart,
   createCart,
   defaultCart,
@@ -47,6 +41,7 @@ export {
 export { defaultCatalogeResponse, defaultProductData } from './productConstans';
 export { CURRENCY, LANGUAGE } from './productConstans';
 export { getExistingToken, tokenCache, userTokenCache } from './tokenProcess';
+export { customerToFormMapper } from './user';
 export {
   ageValidation,
   countryValidation,

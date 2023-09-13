@@ -1,9 +1,9 @@
 import './ItemInCart.scss';
 
 import React from 'react';
-import { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { AuthContext } from '../../../context/AuthProvider';
+import { changeCart, StoreType } from '../../../store';
 import { IItemInCartProps, ItemInCartChange } from '../../../types';
 import {
   changeItemInCart,
@@ -22,7 +22,8 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
   const price = getItemPrice(product, CURRENCY.SYMBOL);
   const discountedPrice = getItemDiscountedPrice(product, CURRENCY.SYMBOL);
   const total = getItemTotalPrice(product, CURRENCY.SYMBOL);
-  const { cart, setCart } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const cart = useSelector((state: StoreType) => state.cart.cart);
 
   const handleItemInCartAction = ({
     action,
@@ -38,7 +39,7 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
       cartItemId,
       quantity,
     })
-      .then((res) => setCart(res))
+      .then((res) => dispatch(changeCart({ cart: res })))
       .catch((e) => {
         console.log(e.message);
       });

@@ -4,7 +4,7 @@ import IconButton from '@mui/material/IconButton';
 import InputAdornment from '@mui/material/InputAdornment';
 import PropTypes from 'prop-types';
 
-import { ToggleVisibilityProps } from '../types/form';
+import { ToggleVisibilityProps } from '../../../types';
 
 export const TogglePasswordVisibility: React.FC<ToggleVisibilityProps> = ({
   visible,

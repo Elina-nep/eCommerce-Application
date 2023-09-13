@@ -1,9 +1,9 @@
 import './Cart.scss';
 
-import { useContext } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { AuthContext } from '../../context/AuthProvider';
+import { changeCart, StoreType } from '../../store';
 import { changeItemInCart } from '../../util';
 import Button from '../buttons/Button';
 import { Coupon } from './coupon/Coupon';
@@ -11,7 +11,8 @@ import { ItemInCart } from './item/ItemInCart';
 import { Summary } from './summary/Summary';
 
 export const Cart = () => {
-  const { cart, setCart } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const cart = useSelector((state: StoreType) => state.cart.cart);
 
   const handleClearCart = () => {
     const itemsQuantities: number[] = [];
@@ -27,7 +28,7 @@ export const Cart = () => {
       quantity: itemsQuantities,
     })
       .then((res) => {
-        setCart(res);
+        dispatch(changeCart({ cart: res }));
       })
       .catch((e) => {
         console.log(e.message);

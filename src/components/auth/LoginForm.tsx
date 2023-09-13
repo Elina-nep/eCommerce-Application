@@ -2,30 +2,37 @@ import './LoginForm.scss';
 
 import { ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import {
   Controller,
   SubmitHandler,
   useForm,
   useFormState,
 } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
-import { AuthContext } from '../../context/AuthProvider';
+import { formAuthoredService, loginCustomerService } from '../../services';
+import {
+  AppDispatch,
+  changeAlert,
+  changeCart,
+  clearAlertThunk,
+  login,
+} from '../../store';
 import { ILoginForm } from '../../types/loginForm';
-import { TogglePasswordVisibility } from '../../util/ToggleVisibility';
 import { emailValidation, passwordValidation } from '../../util/validation';
+import { TogglePasswordVisibility } from './assets/ToggleVisibility';
 import { FormError } from './FormError';
 import { loginTheme } from './theme';
 
 export const LoginForm: React.FC = () => {
+  const dispatch = useDispatch<AppDispatch>();
   const [visible, setVisible] = useState(false);
   const { handleSubmit, control, setError, trigger, setValue } =
     useForm<ILoginForm>();
   const { errors } = useFormState({
     control,
   });
-
-  const { loginCustomer } = useContext(AuthContext);
 
   const [errorMessage, setErrorMessage] = useState<string>('');
 
@@ -46,14 +53,26 @@ export const LoginForm: React.FC = () => {
   };
 
   const onSubmit: SubmitHandler<ILoginForm> = async (data) => {
-    try {
-      await loginCustomer({ email: data.email, password: data.password });
-      setErrorMessage('');
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setErrorMessage(error.message || 'An error occurred');
-      }
-    }
+    loginCustomerService(data)
+      .then((body) => {
+        formAuthoredService(data).catch((e) => console.log(e));
+        dispatch(login());
+        if (body.body.cart) {
+          dispatch(changeCart({ cart: body.body.cart }));
+        }
+        dispatch(
+          changeAlert({
+            alertMessage: `Hello ${
+              body.body.customer.firstName || 'my friend'
+            }!`,
+          }),
+        );
+        dispatch(clearAlertThunk());
+        setErrorMessage('');
+      })
+      .catch((e) => {
+        setErrorMessage(e.message || 'An error occurred');
+      });
   };
 
   return (

@@ -1,9 +1,4 @@
-import {
-  Cart,
-  CartPagedQueryResponse,
-  DiscountCode,
-} from '@commercetools/platform-sdk';
-import { Dispatch, SetStateAction } from 'react';
+import { Cart, DiscountCode } from '@commercetools/platform-sdk';
 
 import {
   changeItemInCartService,
@@ -14,11 +9,7 @@ import {
 } from '../services';
 import { DiscountCartService, ItemInCartChangeService } from '../types';
 
-export const getCart = (
-  setLoading: Dispatch<SetStateAction<boolean>>,
-): Promise<CartPagedQueryResponse> => {
-  setLoading(true);
-
+export const getCart = (): Promise<Cart> => {
   return new Promise((resolve, reject) => {
     getCartService()
       .then((body) => {
@@ -27,9 +18,6 @@ export const getCart = (
       .catch((e) => {
         const errorMessage = e.message || 'An error occurred';
         reject(new Error(errorMessage));
-      })
-      .finally(() => {
-        setLoading(false);
       });
   });
 };

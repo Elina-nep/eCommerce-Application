@@ -1,21 +1,27 @@
 import TextField from '@mui/material/TextField';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { AuthContext } from '../../../context/AuthProvider';
+import { changeCustomerPasswordService } from '../../../services';
+import {
+  AppDispatch,
+  changeAlert,
+  clearAlertThunk,
+  logout,
+} from '../../../store';
 import { Password } from '../../../types';
 import { IChangePasswordProps } from '../../../types/profileFrom';
 import { passwordValidation } from '../../../util';
-import { changeCustomerPasswordFunc } from '../../../util/customer';
-import { TogglePasswordVisibility } from '../../../util/ToggleVisibility';
+import { TogglePasswordVisibility } from '../../auth/assets/ToggleVisibility';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
 
 export const ChangePassword: React.FC<IChangePasswordProps> = ({ version }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { setAlertMessage, logOut } = useContext(AuthContext);
   const { handleSubmit, control, setError, trigger, setValue } =
     useForm<Password>({
       mode: 'onBlur',
@@ -52,24 +58,27 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({ version }) => {
 
   const onSubmit: SubmitHandler<Password> = async (data) => {
     setEditMode(false);
+    setLoading(true);
 
-    try {
-      await changeCustomerPasswordFunc(
-        setLoading,
-        data,
-        version,
-        setAlertMessage,
-      );
-
-      setErrorMessage('');
-      setSubmitted(true);
-      logOut();
-      navigate('/');
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setErrorMessage(error.message || 'An error occurred');
-      }
-    }
+    changeCustomerPasswordService(data, version)
+      .then(() => {
+        dispatch(
+          changeAlert({
+            alertMessage: `Changes saved successfully`,
+          }),
+        );
+        dispatch(clearAlertThunk());
+        setErrorMessage('');
+        setSubmitted(true);
+        dispatch(logout());
+        navigate('/');
+      })
+      .catch((e) => {
+        setErrorMessage(e.message || 'An error occurred');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (

@@ -1,9 +1,9 @@
 import './Summary.scss';
 
 import React from 'react';
-import { useContext } from 'react';
+import { useSelector } from 'react-redux';
 
-import { AuthContext } from '../../../context/AuthProvider';
+import { StoreType } from '../../../store';
 import {
   CURRENCY,
   getCartBeforeCoupon,
@@ -12,7 +12,7 @@ import {
 } from '../../../util';
 
 export const Summary: React.FC = ({}) => {
-  const { cart } = useContext(AuthContext);
+  const cart = useSelector((state: StoreType) => state.cart.cart);
   const totalBeforeDiscount = getCartBeforeCoupon(cart, CURRENCY.SYMBOL);
   const discount = getCartDiscount(cart, CURRENCY.SYMBOL);
   const finalTotal = getCartTotalPrice(cart, CURRENCY.SYMBOL);

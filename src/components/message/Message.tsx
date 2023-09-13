@@ -1,11 +1,14 @@
 import './Message.scss';
 
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 
-import { AuthContext } from '../../context/AuthProvider';
+import { StoreType } from '../../store';
 
 export const Message = () => {
-  const { alertMessage } = useContext(AuthContext);
+  const alertMessage = useSelector(
+    (state: StoreType) => state.alertMessage.alertMessage,
+  );
   const [messageStyles, setMessageStyles] = useState('message');
   useEffect(() => {
     if (alertMessage) {

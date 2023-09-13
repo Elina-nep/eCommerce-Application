@@ -2,17 +2,19 @@ import './Coupon.scss';
 
 import { ThemeProvider } from '@mui/material/styles';
 import TextField from '@mui/material/TextField';
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from 'react';
 import { Controller, useForm, useFormState } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { AuthContext } from '../../../context/AuthProvider';
+import { changeCart, StoreType } from '../../../store';
 import { ICoupon } from '../../../types';
 import { couponValidation, discountCart, getDiscount } from '../../../util';
 import { couponTheme } from '../../auth/theme';
 
 export const Coupon: React.FC = () => {
-  const { cart, setCart } = useContext(AuthContext);
+  const dispatch = useDispatch();
+  const cart = useSelector((state: StoreType) => state.cart.cart);
   const [code, setCode] = useState({ code: '', id: '' });
   const [errorMessage, setErrorMessage] = useState('');
 
@@ -27,7 +29,6 @@ export const Coupon: React.FC = () => {
       if (code) {
         getDiscount(code.discountCode.id)
           .then((res) => {
-            console.log(res);
             setCode({ code: res.code, id: res.id });
           })
           .catch((e) => {
@@ -45,7 +46,7 @@ export const Coupon: React.FC = () => {
       action: 'addDiscountCode',
     })
       .then((res) => {
-        setCart(res);
+        dispatch(changeCart({ cart: res }));
         setErrorMessage('');
       })
       .catch((e) => {
@@ -61,7 +62,7 @@ export const Coupon: React.FC = () => {
       action: 'removeDiscountCode',
     })
       .then((res) => {
-        setCart(res);
+        dispatch(changeCart({ cart: res }));
       })
       .catch((e) => {
         console.log(e.message);

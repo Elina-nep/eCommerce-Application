@@ -7,7 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Controller,
   SubmitHandler,
@@ -15,19 +15,22 @@ import {
   useFormState,
   useWatch,
 } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
-import { AuthContext } from '../../../context/AuthProvider';
-import { CustomerChanges } from '../../../types';
-import { IAddAddressProps } from '../../../types/profileFrom';
-import { AddressType } from '../../../types/profileFrom';
-import { IAddAdress } from '../../../types/profileFrom';
+import { changeCustomerService } from '../../../services';
+import { AppDispatch, changeAlert, clearAlertThunk } from '../../../store';
+import {
+  AddressType,
+  CustomerChanges,
+  IAddAddressProps,
+  IAddAdress,
+} from '../../../types';
 import {
   countryValidation,
   nameValidation,
   postalCodeValidation,
   streetValidation,
 } from '../../../util';
-import { changeCustomerFunc } from '../../../util/customer';
 import { FormError } from '../../auth/FormError';
 
 export const AddAddress: React.FC<IAddAddressProps> = ({
@@ -42,7 +45,7 @@ export const AddAddress: React.FC<IAddAddressProps> = ({
     control,
   });
 
-  const { setAlertMessage } = useContext(AuthContext);
+  const dispatch = useDispatch<AppDispatch>();
 
   const watchedCountry = useWatch({
     control,
@@ -79,14 +82,12 @@ export const AddAddress: React.FC<IAddAddressProps> = ({
         address: data,
       },
     };
+    setLoading(true);
 
     try {
-      const updatedCustomer = await changeCustomerFunc(
-        setLoading,
-        addressCreation,
-        version,
-        setAlertMessage,
-      );
+      const updatedCustomer = (
+        await changeCustomerService(addressCreation, version)
+      ).body;
 
       const createdAddress =
         updatedCustomer.addresses[updatedCustomer.addresses.length - 1];
@@ -138,19 +139,24 @@ export const AddAddress: React.FC<IAddAddressProps> = ({
         ...setType,
       };
 
-      await changeCustomerFunc(
-        setLoading,
+      await changeCustomerService(
         addressTypeAndDefault,
         updatedCustomer.version,
-        setAlertMessage,
       );
-
+      dispatch(
+        changeAlert({
+          alertMessage: `Changes saved successfully`,
+        }),
+      );
+      dispatch(clearAlertThunk());
       setErrorMessage('');
       refreshCallback();
     } catch (error: unknown) {
       if (error instanceof Error) {
         setErrorMessage(error.message || 'An error occurred');
       }
+    } finally {
+      setLoading(false);
     }
   };
 
