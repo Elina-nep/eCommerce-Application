@@ -7,6 +7,12 @@ interface StringValidation {
   validate: (value: string) => string | boolean;
 }
 
+enum PURCHASE_LIMIT {
+  GET10 = 5000,
+  GET20 = 10000,
+  GET30 = 15000,
+}
+
 export const nameValidation: StringValidation = {
   validate: (value: string) => {
     if (!value) {
@@ -132,4 +138,18 @@ export const postalCodeValidation = {
 
     return true;
   },
+};
+
+export const couponValidation = (value: string, purchase: number) => {
+  if (value === 'GET10' && purchase < PURCHASE_LIMIT.GET10) {
+    return 'Minimum purchase for GET10 is 50€';
+  }
+  if (value === 'GET20' && purchase < PURCHASE_LIMIT.GET20) {
+    return 'Minimum purchase for GET20 is 100€';
+  }
+  if (value === 'GET30' && purchase < PURCHASE_LIMIT.GET30) {
+    return 'Minimum purchase for GET30 is 150€';
+  }
+
+  return true;
 };

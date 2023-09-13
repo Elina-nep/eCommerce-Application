@@ -1,8 +1,8 @@
 .footer {
-  background-color: var(--dark-color);
-  color: var(--secondary-color);
   display: flex;
   justify-content: space-between;
+  color: var(--secondary-color);
+  background-color: var(--dark-color);
   padding: 0.8% 7%;
 }
 

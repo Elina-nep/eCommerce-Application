@@ -15,11 +15,13 @@ import {
   LANGUAGE,
 } from '../../util';
 import Button from '../buttons/Button';
+import { ButtonCartActions } from './assets/ButtonCartActions';
 import { ProductModal } from './assets/ProductModal';
 
 export const ProductComponent: React.FC<IProductComponentProps> = ({
   product,
   categories,
+  id,
 }) => {
   const title = product.current.name[LANGUAGE.EN] || '';
   const description = product.current.description?.en || '';
@@ -110,9 +112,13 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
             </div>
           ) : (
             <div className="product__no_discount">
-              {price && <p className="product__price">{price}</p>}
+              {price && (
+                <p className="primary_button product__price">{price}</p>
+              )}
             </div>
           )}
+
+          <ButtonCartActions product={product.current} id={id} />
 
           <div className="product__details">
             {description && (
@@ -132,6 +138,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
                   search: `category=${category}`,
                 }}
                 key={index}
+                className="secondary_button"
               >
                 {category}
               </Link>

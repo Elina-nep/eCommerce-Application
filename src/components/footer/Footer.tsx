@@ -1,4 +1,4 @@
-import './Footer.css';
+import './Footer.scss';
 
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
@@ -26,7 +26,7 @@ export const Footer: React.FC = () => {
                   <Link
                     to={{
                       pathname: '/catalog',
-                      search: `?${el.name['en']}`,
+                      search: `?category=${el.name['en']}`,
                     }}
                   >
                     {el.name['en']}

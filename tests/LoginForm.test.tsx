@@ -34,7 +34,7 @@ test('checks wrong email', async () => {
     </AuthProvider>,
   );
 
-  await waitFor(() => expect(fetch).toHaveBeenCalledTimes(4));
+  await waitFor(() => expect(fetch).toHaveBeenCalledTimes(6));
   expect(wrapper).toBeTruthy();
 
   const inputs = {

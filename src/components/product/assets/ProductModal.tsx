@@ -65,7 +65,7 @@ export const ProductModal: React.FC<IProductModalProps> = ({
         className="product-modal__wrapper"
         onClick={handleModalClick}
       >
-        <Button onClick={handleCloseModal} className="close">
+        <Button onClick={handleCloseModal} className="product_modal__close">
           {'x'}
         </Button>
 

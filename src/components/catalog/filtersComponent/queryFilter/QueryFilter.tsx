@@ -65,12 +65,15 @@ export const QueryFilter = <T,>({
       {formItems()}
       <div>
         <Button
-          className="colors-button-show-all"
+          className="secondary_button colors-button-show-all"
           onClick={() => setShowAllItems(!showAllItems)}
         >
           {showAllItems ? 'Hide' : 'Show all'}
         </Button>
-        <Button className="colors-button-reset" onClick={handleResetItems}>
+        <Button
+          className="secondary_light_button colors-button-reset"
+          onClick={handleResetItems}
+        >
           Reset
         </Button>
       </div>

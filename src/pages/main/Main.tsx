@@ -1,6 +1,4 @@
-import './Main.css';
-
-import React from 'react';
+import './Main.scss';
 
 import Slider from '../../components/slider/Slider';
 
