@@ -5,7 +5,9 @@ export const CategoryItem = ({
   searchParams,
   setSearchParams,
   isChild,
-  hasChildren,
+  children,
+  isActive,
+  isVisible,
 }: CategoryT) => {
   return (
     <div
@@ -15,11 +17,13 @@ export const CategoryItem = ({
         searchParams.set('category', `${category.name['en']}`);
         setSearchParams(searchParams);
       }}
-      className={`categories-list-item ${isChild && 'categories-child-item'}  ${
-        hasChildren && 'categories-parent-item'
+      className={`categories-list-item filter-item ${
+        isChild ? 'categories-child-item' : 'categories-parent-item'
+      } ${isActive ? 'active' : ''} ${isVisible ? '' : 'hidden'}
       }`}
     >
-      {category.name['en']}
+      {category.name['en']} {isChild ? '' : '>'}
+      {children}
     </div>
   );
 };
