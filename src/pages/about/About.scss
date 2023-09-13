@@ -1,0 +1,195 @@
+.about-us-main-container {
+  background-image: url('../../assets/background-about-us-page.jpg');
+  justify-content: space-evenly;
+  display: flex;
+  align-items: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.about-us-content-wrapper {
+  background: rgb(255, 255, 255);
+  width: 90%;
+  margin: 2.5% auto;
+}
+
+.about-us-card-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 95%;
+  margin: 2% auto;
+  font-size: var(--font-small);
+}
+
+.about-us-team {
+  margin: auto;
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  text-align: justify;
+  font-size: var(--font-medium);
+  text-indent: 2rem;
+}
+
+.about-us-team h2 {
+  font-weight: 400;
+}
+
+.about-us-team p {
+  margin-bottom: 0;
+}
+
+.about-us-team span {
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+.about-us-team a {
+  text-decoration: none;
+  list-style: none;
+  color: var(--primary-color-light);
+  font-weight: 600;
+}
+
+.about-us-team a:hover {
+  text-decoration: underline;
+}
+
+.about-us-team-last-paragraph {
+  margin-top: 4%;
+  text-align: center;
+  font-weight: 600;
+  text-decoration: underline;
+}
+
+.about-us-git-link {
+  margin-top: 5%;
+  position: relative;
+  bottom: 0px;
+  text-decoration: none;
+  color: var(--secondary-color);
+  transition: all 0.3s;
+  &:hover {
+    opacity: 0.6;
+  }
+}
+
+.about-us-git-logo {
+  width: 5%;
+}
+
+.about-us-photo {
+  width: 20vw;
+  height: 20vw;
+  background-position: center;
+  background-size: cover;
+}
+
+.about-us-card {
+  max-width: 300px;
+  width: 30%;
+  border: 1px solid var(--secondary-color);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.6rem;
+  box-shadow: 0 0 10px rgba(49, 136, 124, 0.5);
+  margin-bottom: 2.5%;
+  min-width: 115px;
+}
+
+.about-us-description ul {
+  text-align: left;
+}
+
+.about-us-description-title {
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+.about-us-rs {
+  width: 20%;
+  transition: transform 0.15s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  margin: 2% auto;
+  padding: 1rem 0.4rem;
+  transition: transform 0.8s;
+}
+
+.about-us-rs:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+  padding: 1rem 0.4rem;
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.about-us-rs img {
+  width: 90%;
+}
+
+@media screen and (max-width: 768px) {
+  .about-us-card-wrapper {
+    font-size: var(--font-xsmall);
+    flex-wrap: wrap;
+    word-wrap: break-word;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .about-us-card {
+    min-width: 320px;
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    margin: auto;
+    max-width: 90%;
+  }
+
+  .about-us-photo {
+    width: 40%;
+  }
+
+  .about-us-card-text {
+    display: flex;
+    flex-direction: column;
+  }
+  .about-us-team {
+    font-size: var(--font-small);
+  }
+  .about-us-description h2 {
+    font-size: var(--font-small);
+  }
+  .about-us-description ul {
+    word-wrap: break-word;
+  }
+}
+@media screen and (max-width: 485px) {
+  .about-us-card-wrapper {
+    font-size: 0.9rem;
+  }
+  .about-us-card {
+    min-width: 170px;
+    width: auto;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    max-width: 90%;
+  }
+  .about-us-photo {
+    width: 40%;
+  }
+  .about-us-team {
+    font-size: var(--font-xsmall);
+  }
+  .about-us-description h2 {
+    font-size: var(--font-xsmall);
+  }
+}

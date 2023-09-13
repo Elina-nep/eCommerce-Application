@@ -1,15 +1,86 @@
 import imageToAddBalloons from '../assets/balloons.jpg';
 import imageToAddCandles from '../assets/candles.jpg';
 import imageToAddDecoration from '../assets/decoration.jpg';
+import imageToAddElina from '../assets/Elina.jpg';
+import imageToAddGalina from '../assets/Galina.jpg';
+import imageToAddHats from '../assets/hats.jpg';
+import imageToAddHoli from '../assets/holi.jpg';
+import imageToAddIrina from '../assets/Irina.jpg';
+import imageToAddPoppers from '../assets/poppers.jpg';
+import imageToAddSets from '../assets/sets.jpg';
+import imageToAddskylantern from '../assets/sky-lantern.jpeg';
+import imageToAddWeb from '../assets/spider-web.jpg';
+import { IDeveloper } from '../types';
 import imageDiscount10 from '../assets/get10.png';
 import imageDiscount20 from '../assets/get20.png';
 import imageDiscount30 from '../assets/get30.png';
-import imageToAddHats from '../assets/hats.jpg';
-import imageToAddPoppers from '../assets/poppers.jpg';
-import imageToAddSets from '../assets/sets.jpg';
 import { CardData } from '../types/sliderCard';
 
 export const PRODUCTS_ON_PAGE = 12;
+
+export const DEVELOPERS: IDeveloper[] = [
+  {
+    name: 'Elina',
+    role: 'Team Lead',
+    done: [
+      'organizing work',
+      'checking task completion',
+      ' configuring the project and the entire development environment',
+      'setting up the API for working with the server',
+      'obtaining tokens',
+      'routing',
+      'setting up navigation',
+      'website search',
+      'filtering',
+      'sorting',
+      'work with cart page functionality',
+      'setting up product database in commercetools',
+      'writing tests',
+      'design',
+      'responsive layout',
+    ],
+    link: 'https://github.com/Elina-nep',
+    photo: imageToAddElina,
+  },
+  {
+    name: 'Irina',
+    role: 'Developer',
+    done: [
+      'setting up registration on the register page',
+      'working with addresses and tokens',
+      'authorization forms on the login page',
+      'implementing functionality on user pages',
+      'integrating promocodes from commercetools into the project',
+      'creating a shopping cart page',
+      'writing tests',
+      'design',
+      'responsive layout',
+    ],
+    link: 'https://github.com/iradzh',
+    photo: imageToAddIrina,
+  },
+  {
+    name: 'Galina',
+    role: 'Developer',
+    done: [
+      'project design',
+      'catalog page setup with product cards',
+      'sorting',
+      'filtering',
+      'pagination',
+      'creating a 404 page',
+      'creating an about us page',
+      'header and footer setup',
+      'creating a slider on the main page',
+      'setting up a product database',
+      'writing tests',
+      'design',
+      'responsive layout',
+    ],
+    link: 'https://github.com/HalinaD',
+    photo: imageToAddGalina,
+  },
+];
 
 export const cards: CardData[] = [
   {
