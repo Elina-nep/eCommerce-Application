@@ -1,4 +1,4 @@
-import { clearAlert, tokenCache } from '../src/util';
+import { tokenCache } from '../src/util';
 const localStorageExample = {
   getItem: jest.fn(),
   setItem: jest.fn(),
@@ -36,15 +36,5 @@ describe('tokenCache', () => {
     const result = tokenCache.get();
     expect(localStorageExample.getItem).toHaveBeenCalledWith('token');
     expect(result).toBeNull();
-  });
-});
-
-describe('clearAlert', () => {
-  it('should clear alert message after 3 seconds', () => {
-    jest.useFakeTimers();
-    const setAlertMessageExample = jest.fn();
-    clearAlert(setAlertMessageExample);
-    jest.advanceTimersByTime(3000);
-    expect(setAlertMessageExample).toHaveBeenCalledWith('');
   });
 });
