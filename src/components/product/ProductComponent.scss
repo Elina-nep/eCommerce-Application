@@ -135,8 +135,7 @@
   }
   .product__dicounted_price {
     font-size: var(--font-large);
-    font-weight: 800;
-    color: var(--primary-color);
+    @extend %highlight_text;
     @media (min-width: 210px) and (max-width: 576px) {
       font-size: var(--font-medium);
     }

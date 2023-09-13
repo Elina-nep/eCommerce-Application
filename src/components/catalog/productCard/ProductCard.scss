@@ -67,10 +67,8 @@
 }
 
 .product_card__dicounted_price {
+  @extend %highlight_text;
   font-size: var(--font-small);
-  font-weight: 800;
-  color: var(--primary-color);
-  margin: 0;
 }
 
 .sale-icon {
@@ -112,9 +110,6 @@
   to {
     transform: rotate(-20deg) scale(1.1);
   }
-}
-
-@media (max-width: 768px) {
 }
 
 @media (max-width: 850px) {

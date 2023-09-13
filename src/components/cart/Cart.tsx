@@ -58,7 +58,7 @@ export const Cart = () => {
             </Link>
             <Button
               disabled={cart.lineItems.length == 0}
-              className="primary_button cart_page__btn"
+              className="cart_page__btn"
               onClick={() => handleClearCart()}
             >
               Clear cart

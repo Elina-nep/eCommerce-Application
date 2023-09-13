@@ -147,4 +147,26 @@ body {
     background-color: var(--primary-color-light);
     border: 1px solid var(--primary-color-light);
   }
+  @media (min-width: 300px) and (max-width: 467px) {
+    width: 35px;
+    height: 35px;
+  }
+  @media (min-width: 468px) and (max-width: 768px) {
+    width: 42px;
+    height: 42px;
+  }
+}
+
+%highlight_text {
+  font-weight: 800;
+  color: var(--primary-color);
+  text-align: center;
+  margin: 0;
+}
+
+%secondary_title {
+  text-align: center;
+  font-size: var(--font-large);
+  color: var(--secondary-color);
+  margin: 0;
 }
