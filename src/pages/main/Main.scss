@@ -1,5 +1,5 @@
 .main-page {
-  background-image: url('../../assets/big-balloons.jpg');
+  background-image: url('../../assets/background-main.png');
   justify-content: space-evenly;
   display: flex;
   align-items: center;
@@ -14,4 +14,79 @@
   gap: 30px;
   height: 90%;
   margin: 2% 0;
+}
+
+.main__welcome {
+  display: flex;
+  justify-content: center;
+  margin: 3% 15%;
+  background-color: var(--light-color);
+  border-radius: 10px;
+  padding: 3%;
+  @media (min-width: 210px) and (max-width: 760px) {
+    flex-direction: column;
+  }
+}
+
+.main__welcome_image,
+.main__welcome_typography {
+  width: 45%;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+
+  @media (min-width: 210px) and (max-width: 760px) {
+    width: 90%;
+  }
+}
+
+.main__welcome_image {
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    margin: 0 auto;
+    border-radius: 15px;
+  }
+}
+
+.main__welcome_typography {
+  h1 {
+    margin: 1.4rem 0;
+    color: var(--primary-color);
+  }
+  h2 {
+    margin: 0;
+    font-weight: 100;
+    span {
+      font-size: small;
+    }
+    @media (min-width: 210px) and (max-width: 760px) {
+      margin: 1rem auto;
+    }
+  }
+}
+
+.main__welcome_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 1.4rem;
+  gap: 3%;
+  margin: 10% 0;
+  a {
+    width: fit-content;
+    font-size: var(--font-large);
+    padding: 0.2rem 0.5rem;
+    height: 100%;
+  }
+}
+
+.main__title {
+  margin: 0 auto;
+  font-size: var(--font-xlarge);
+  width: 90%;
+  text-align: center;
 }

@@ -2,12 +2,13 @@ import imageToAddBalloons from '../assets/balloons.jpg';
 import imageToAddCandles from '../assets/candles.jpg';
 import imageToAddDecoration from '../assets/decoration.jpg';
 import imageToAddElina from '../assets/Elina.jpg';
-import imageToAddHalina from '../assets/Galina.jpg';
 import imageDiscount10 from '../assets/get10.png';
 import imageDiscount20 from '../assets/get20.png';
 import imageDiscount30 from '../assets/get30.png';
+import imageToAddHalina from '../assets/Halina.jpg';
 import imageToAddHats from '../assets/hats.jpg';
-import imageToAddIryna from '../assets/Irina.jpg';
+import imageToAddIryna from '../assets/Iryna.jpg';
+import imageToMain from '../assets/main_image.png';
 import imageToAddPoppers from '../assets/poppers.jpg';
 import imageToAddSets from '../assets/sets.jpg';
 import { IDeveloper } from '../types';
@@ -162,3 +163,5 @@ export const cards: CardData[] = [
     description: `Transform your venue into a festive wonderland with our party decorations! Create a picture-perfect setting for your celebrations. Don't miss this opportunity to save!`,
   },
 ];
+
+export const MAIN_IMAGE = imageToMain;

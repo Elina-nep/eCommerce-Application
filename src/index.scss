@@ -106,7 +106,7 @@ body {
 %secondary_light_button {
   @extend %button_behavior;
   width: fit-content;
-  margin: 0.5rem auto;
+  // margin: 0.5rem auto;
   font-size: var(--font-medium);
   color: var(--secondary-color);
   background-color: var(--light-color);
