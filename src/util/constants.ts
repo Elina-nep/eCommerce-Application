@@ -70,6 +70,7 @@ export const DEVELOPERS: IDeveloper[] = [
       'header and footer setup',
       'creating a slider on the main page',
       'setting up a product database',
+      'writing tests',
       'design',
       'responsive layout',
     ],
