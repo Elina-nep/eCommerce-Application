@@ -129,3 +129,27 @@ export function getCartTotalPrice(cart: Cart, currency: string) {
   const total = (cart.totalPrice.centAmount / 100).toFixed(2);
   return `${total} ${currency}`;
 }
+
+export function getCartBeforeCoupon(cart: Cart, currency: string) {
+  let total = 0;
+
+  for (const product of cart.lineItems) {
+    if (product.price.discounted) {
+      total += product.price.discounted.value.centAmount * product.quantity;
+    } else {
+      total += product.price.value.centAmount * product.quantity;
+    }
+  }
+
+  return `${(total / 100).toFixed(2)} ${currency}`;
+}
+
+export function getCartDiscount(cart: Cart, currency: string): string {
+  const cartTotalPrice = parseFloat(getCartTotalPrice(cart, currency));
+  const cartBeforeCoupon = parseFloat(getCartBeforeCoupon(cart, currency));
+  const discount = cartBeforeCoupon - cartTotalPrice;
+  if (discount) {
+    return `${discount.toFixed(2)} ${currency}`;
+  }
+  return '';
+}

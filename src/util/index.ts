@@ -4,6 +4,8 @@ export {
   defaultCart,
   discountCart,
   getCart,
+  getCartBeforeCoupon,
+  getCartDiscount,
   getCartTotalPrice,
   getDiscount,
 } from './cart';
@@ -43,6 +45,7 @@ export { customerToFormMapper } from './user';
 export {
   ageValidation,
   countryValidation,
+  couponValidation,
   emailValidation,
   nameValidation,
   passwordValidation,

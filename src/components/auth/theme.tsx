@@ -28,3 +28,18 @@ export const registerTheme = createTheme({
     },
   },
 });
+
+export const couponTheme = createTheme({
+  typography: {
+    fontSize: 14,
+    fontFamily: ['Iceland', 'sans-serif'].join(','),
+  },
+  palette: {
+    primary: {
+      main: '#50a294',
+    },
+    error: {
+      main: '#FE4004',
+    },
+  },
+});
