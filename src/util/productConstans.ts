@@ -6,7 +6,7 @@ export enum LANGUAGE {
 
 export enum CURRENCY {
   EUR = 'EUR',
-  symbol = '€',
+  SYMBOL = '€',
 }
 
 export const defaultProductData: Product = {

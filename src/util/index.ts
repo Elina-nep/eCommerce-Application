@@ -10,6 +10,8 @@ export {
   defaultCart,
   discountCart,
   getCart,
+  getCartBeforeCoupon,
+  getCartDiscount,
   getCartTotalPrice,
   getDiscount,
 } from './cart';
@@ -48,6 +50,7 @@ export { getExistingToken, tokenCache, userTokenCache } from './tokenProcess';
 export {
   ageValidation,
   countryValidation,
+  couponValidation,
   emailValidation,
   nameValidation,
   passwordValidation,

@@ -20,9 +20,9 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
   const image = getItemImage(product);
   const name = product.name[LANGUAGE.EN];
   const quantity = product.quantity;
-  const price = getItemPrice(product, CURRENCY.symbol);
-  const discountedPrice = getItemDiscountedPrice(product, CURRENCY.symbol);
-  const total = getItemTotalPrice(product, CURRENCY.symbol);
+  const price = getItemPrice(product, CURRENCY.SYMBOL);
+  const discountedPrice = getItemDiscountedPrice(product, CURRENCY.SYMBOL);
+  const total = getItemTotalPrice(product, CURRENCY.SYMBOL);
   const { cart, setCart } = useContext(AuthContext);
 
   const handleItemInCartAction = ({
@@ -62,7 +62,7 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
             x
           </Button>
         </div>
-        <div className="item__col">
+        <div className="item__col item__col_img">
           <img src={image} alt={name} className="item__image" />
         </div>
         <div className="item__col">{name}</div>
@@ -103,7 +103,7 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
             +
           </button>
         </div>
-        <div className="item__col">{total}</div>
+        <div className="item__col item__col_total">{total}</div>
       </div>
     </div>
   );

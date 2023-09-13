@@ -30,3 +30,7 @@ export interface DiscountCartService {
 export interface IItemInCartProps {
   product: LineItem;
 }
+
+export interface ICoupon {
+  coupon: string;
+}
