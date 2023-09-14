@@ -1,0 +1,66 @@
+$off_white: #ffffff;
+$bright_pink: #ff814e;
+$dull_pink: #fe4004;
+
+.sparkling_button_wrapper {
+  position: relative;
+}
+
+.sparkling_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.4rem 0.6rem;
+  font-family: 'Iceland';
+  font-size: var(--font-medium);
+  text-transform: uppercase;
+  background: $bright_pink;
+  color: $off_white;
+  appearance: none;
+  border: none;
+  border-radius: 10px;
+  // min-width: 200px;
+  // padding: 0 24px;
+  // box-shadow: 0 10px 60px -10px $dull_pink;
+  cursor: pointer;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
+  transform-style: preserve-3d;
+
+  transition: all 1s cubic-bezier(0.03, 0.98, 0.52, 0.99);
+  will-change: transform, box-shadow, background;
+  outline: none;
+  position: relative;
+  z-index: 2;
+
+  &:hover {
+    background: lighten($bright_pink, 2%);
+    transform: perspective(250px) scale3d(1, 1, 1);
+    // box-shadow: 0 8px 65px -5px $dull_pink;
+  }
+
+  &:active {
+    background: $dull_pink;
+    box-shadow: 0 10px 60px -10px $dull_pink;
+    transform: perspective(250px) scale3d(1, 1, 1) translateY(5%) !important;
+  }
+}
+
+.particle {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  z-index: -1;
+  animation: explode 0.7s reverse forwards ease-in;
+}
+
+@keyframes explode {
+  from {
+    opacity: 0;
+  }
+  to {
+    top: 40%;
+    left: 40%;
+    opacity: 1;
+  }
+}
