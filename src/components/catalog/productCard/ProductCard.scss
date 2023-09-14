@@ -15,7 +15,7 @@
   background: var(--light-color);
   width: 100%;
   height: 40vh;
-  padding: 0.4rem 0 0.8rem 0;
+  padding: 0.4rem 0;
   border: 1px solid var(--secondary-color-light);
   &:hover {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
@@ -45,7 +45,8 @@
 
 .product_card__price {
   @extend %primary_button;
-  margin: 0.5rem auto 0.9rem auto;
+  font-size: var(--font-small);
+  margin: 0.5rem auto;
   padding: 0.2rem 0.7rem;
   &:hover {
     cursor: auto;
@@ -53,6 +54,10 @@
     background-color: var(--primary-color);
     border: 1px solid var(--primary-color-light);
   }
+}
+
+.product_card__priceContent {
+  width: 90%;
 }
 
 .product_card__discountedPrice {
@@ -66,10 +71,15 @@
   margin: 0.5rem auto;
   width: 90%;
 }
+.product_card__wrapper {
+  display: flex;
+  justify-content: space-between;
+}
 
 .product_card__dicounted_price {
   @extend %highlight_text;
   font-size: var(--font-small);
+  width: 70%;
 }
 
 .sale-icon {

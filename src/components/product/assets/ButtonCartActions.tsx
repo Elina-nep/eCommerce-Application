@@ -1,4 +1,6 @@
 import { ProductData } from '@commercetools/platform-sdk';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineDelete } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { changeCart, StoreType } from '../../../store';
@@ -50,7 +52,7 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
           );
         }}
       >
-        Remove From Cart
+        <AiOutlineDelete />
       </Button>
     );
   return (
@@ -67,7 +69,7 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
         );
       }}
     >
-      Add to Cart
+      <AiOutlineShoppingCart />
     </Button>
   );
 };

@@ -37,19 +37,27 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
         {description && (
           <p className="product_card__description">{description}</p>
         )}
-        {discountedPrice && (
-          <p className="product_card__dicounted_price">{discountedPrice}</p>
-        )}
-        {price && (
-          <p
-            className={`product_card__price ${
-              discountedPrice ? 'product_card__discountedPrice' : ''
-            }`}
-          >
-            {price}
-          </p>
-        )}
-        <ButtonCartActions product={product as ProductData} id={product.id} />
+        <div className="product_card__priceContent">
+          {' '}
+          {discountedPrice && (
+            <p className="product_card__dicounted_price">{discountedPrice}</p>
+          )}
+          <div className="product_card__wrapper">
+            {price && (
+              <p
+                className={`product_card__price ${
+                  discountedPrice ? 'product_card__discountedPrice' : ''
+                }`}
+              >
+                {price}
+              </p>
+            )}
+            <ButtonCartActions
+              product={product as ProductData}
+              id={product.id}
+            />
+          </div>
+        </div>
       </div>
     </Link>
   );
