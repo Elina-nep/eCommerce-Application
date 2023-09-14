@@ -1,3 +1,5 @@
+@import '../../index.scss';
+
 .coupon-card {
   width: 0.5vw;
   flex: 0 0 32%;
@@ -84,16 +86,17 @@
 }
 
 .coupon_card__button {
-  position: relative;
-  margin: 0 0 0.5rem 0;
+  @extend %special_hover_template;
   bottom: 2vh;
-  background-color: var(--primary-color-light);
-  padding: 0.4em 0;
+  height: 2rem;
   width: 20vw;
-  border: none;
-  &:hover {
-    background-color: var(--primary-color);
-    color: var(--light-color);
-    border: none;
+  padding: 0.2em 0;
+  margin: 0 0 0.5rem 0;
+
+  &::before {
+    width: 21vw;
+    height: 20vw;
+    line-height: 20vw;
+    left: -0.2rem;
   }
 }

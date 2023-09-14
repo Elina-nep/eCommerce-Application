@@ -18,9 +18,11 @@ export const MainPage = () => {
               presents for your loved ones. <span>❤️</span>
             </h2>
             <div className="main__welcome_buttons">
-              <Link to="/catalog" className="primary_button">
-                Start now
-              </Link>
+              <div className="special_hover_container">
+                <Link to="/catalog" className="main__welcome_to_catalog">
+                  Start now
+                </Link>
+              </div>
               <Link to="/about" className="secondary_light_button">
                 Our Team
               </Link>
