@@ -24,7 +24,7 @@
   scale: 1.1;
 }
 .st1:nth-child(3) {
-  transform: translate(45px, 350%) rotate(10deg);
+  transform: translate(45px, 250%) rotate(10deg);
 }
 .st1:nth-child(4) {
   transform: translate(110px, 180%) rotate(60deg);
@@ -123,6 +123,9 @@
   }
   @media (min-width: 992px) and (max-width: 1200px) {
     width: 61%;
+  }
+  @media (min-width: 1201px) {
+    width: 35px;
   }
 }
 
