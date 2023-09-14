@@ -1,5 +1,7 @@
 import './ProductComponent.scss';
 
+import { GlassMagnifier } from '@ricarso/react-image-magnifiers';
+import classes from 'classnames';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -85,15 +87,20 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
           <Button onClick={showPreviousImage} className="button-pagination">
             {'<'}
           </Button>
-          <div className="product__image">
-            {productImages?.length && (
-              <img
-                onClick={handleOpenModal}
-                src={productImages[currentImageIndex]}
-                alt={title}
+          {productImages?.length && (
+            <div
+              className={classes('container')}
+              onClick={handleOpenModal}
+              style={{ width: '80%' }}
+            >
+              <GlassMagnifier
+                className={classes('magnifier')}
+                imageSrc={productImages[currentImageIndex]}
+                imageAlt={title}
+                magnifierSize="80%"
               />
-            )}
-          </div>
+            </div>
+          )}
 
           <Button onClick={showNextImage} className="button-pagination">
             {'>'}

@@ -20,6 +20,10 @@ button:focus {
   @extend %secondary_light_button;
 }
 
+.product_button {
+  margin: 0.5rem auto;
+}
+
 .button-main {
   width: 8em;
 }
