@@ -1,21 +1,27 @@
 import TextField from '@mui/material/TextField';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Controller } from 'react-hook-form';
 import { SubmitHandler, useForm, useFormState } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { AuthContext } from '../../../context/AuthProvider';
+import { changeCustomerPasswordService } from '../../../services';
+import {
+  AppDispatch,
+  changeAlert,
+  clearAlertThunk,
+  logout,
+} from '../../../store';
 import { Password } from '../../../types';
 import { IChangePasswordProps } from '../../../types/profileFrom';
 import { passwordValidation } from '../../../util';
-import { changeCustomerPasswordFunc } from '../../../util/customer';
-import { TogglePasswordVisibility } from '../../../util/ToggleVisibility';
+import { TogglePasswordVisibility } from '../../auth/assets/ToggleVisibility';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
 
 export const ChangePassword: React.FC<IChangePasswordProps> = ({ version }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
-  const { setAlertMessage, logOut } = useContext(AuthContext);
   const { handleSubmit, control, setError, trigger, setValue } =
     useForm<Password>({
       mode: 'onBlur',
@@ -52,24 +58,27 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({ version }) => {
 
   const onSubmit: SubmitHandler<Password> = async (data) => {
     setEditMode(false);
+    setLoading(true);
 
-    try {
-      await changeCustomerPasswordFunc(
-        setLoading,
-        data,
-        version,
-        setAlertMessage,
-      );
-
-      setErrorMessage('');
-      setSubmitted(true);
-      logOut();
-      navigate('/');
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setErrorMessage(error.message || 'An error occurred');
-      }
-    }
+    changeCustomerPasswordService(data, version)
+      .then(() => {
+        dispatch(
+          changeAlert({
+            alertMessage: `Changes saved successfully`,
+          }),
+        );
+        dispatch(clearAlertThunk());
+        setErrorMessage('');
+        setSubmitted(true);
+        dispatch(logout());
+        navigate('/');
+      })
+      .catch((e) => {
+        setErrorMessage(e.message || 'An error occurred');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -83,7 +92,7 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({ version }) => {
               ''
             ) : (
               <button
-                className="profile__change_btn"
+                className="primary_button profile__change_btn"
                 onClick={handleEditClick}
                 disabled={editMode}
               >
@@ -94,7 +103,7 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({ version }) => {
             {editMode ? (
               <button
                 type="submit"
-                className="profile__save_btn"
+                className="primary_button profile__save_btn"
                 disabled={!editMode}
               >
                 Save
@@ -105,7 +114,7 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({ version }) => {
 
             {editMode ? (
               <button
-                className="profile__exit_btn"
+                className="primary_button profile__exit_btn"
                 disabled={!editMode}
                 onClick={() => {
                   if (submitted) {
@@ -125,7 +134,7 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({ version }) => {
         </div>
         {editMode ? (
           <div>
-            <div className="prof__col-2">
+            <div className="form__col-2">
               <Controller
                 control={control}
                 name="oldPassword"
@@ -195,9 +204,9 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({ version }) => {
                 )}
               />
             </div>
-            <h1 className="profile__tip">
+            <p className="secondary_button profile__tip">
               Sign in again after changing your password{' '}
-            </h1>
+            </p>
           </div>
         ) : (
           ''

@@ -1,20 +1,20 @@
+@import '../../index.scss';
+
 .not-found-page {
-  background: var(--light-color);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+  @extend %flex-col;
   justify-content: space-around;
-  margin: 2% 0;
+  align-items: center;
   flex-grow: 1;
+  margin: 2% 0;
+  text-align: center;
+  background: var(--light-color);
 }
 
 .not-found-page-text {
-  display: flex;
+  @extend %flex-col;
+  align-items: center;
   text-align: center;
   color: var(--secondary-color);
-  flex-direction: column;
-  align-items: center;
   font-size: var(--font-medium);
   width: 50%;
 }
@@ -36,13 +36,12 @@
   border-radius: 5px;
   text-align: center;
   border: none;
-  cursor: pointer;
   transition: background-color 0.5s ease;
-}
-
-.not-found-page-text a:hover {
-  color: var(--light-color);
-  background: var(--primary-color);
+  &:hover {
+    cursor: pointer;
+    color: var(--light-color);
+    background: var(--primary-color);
+  }
 }
 
 .not-found-page-img {

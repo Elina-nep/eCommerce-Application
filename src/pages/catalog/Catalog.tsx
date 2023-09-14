@@ -44,7 +44,7 @@ export const CatalogPage = () => {
         setProducts(body);
       })
       .catch((e) => {
-        console.log(e);
+        console.log(e.message);
       });
   };
 
@@ -81,7 +81,7 @@ export const CatalogPage = () => {
         setLoaded(true);
       })
       .catch((e) => {
-        console.log(e);
+        console.log(e.message);
       });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

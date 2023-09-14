@@ -1,3 +1,5 @@
+@import '../../../index.scss';
+
 .pagination {
   height: 2rem;
   width: 100%;
@@ -51,13 +53,9 @@
 }
 
 .pagination-button {
-  background-color: var(--light-color);
-  border: 1px solid var(--secondary-color);
-  border-radius: 5px;
-  color: var(--secondary-color);
-  cursor: pointer;
+  @extend %secondary_light_button;
+  @extend %flex-row;
   padding: 8px 16px;
-  text-decoration: none;
   margin: 0;
   width: 5em;
 
@@ -83,9 +81,11 @@
 }
 
 .pagination-button-number {
+  @extend %secondary_light_button;
+  @extend %flex-row;
   width: 30px;
   height: 30px;
-  font-family: 'Iceland';
+  font-size: var(--font-xsmall);
   margin: 0;
 
   &:hover:not(.active) {
@@ -102,6 +102,7 @@
     margin: 0;
   }
 }
+
 @media (max-width: 768px) {
   .pagination-button:disabled {
     justify-content: center;

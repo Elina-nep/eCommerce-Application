@@ -15,6 +15,7 @@ export interface IProductProps {
 export interface IProductComponentProps {
   product: ProductCatalogData;
   categories: CategoryPagedQueryResponse;
+  id: string;
 }
 
 export interface IProductModalProps {

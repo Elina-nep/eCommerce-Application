@@ -1,12 +1,14 @@
 import { enableFetchMocks } from 'jest-fetch-mock';
 import fetch from 'jest-fetch-mock';
+import { Provider } from 'react-redux';
 enableFetchMocks();
 
-import { act, fireEvent, render, waitFor } from '@testing-library/react';
+import { act, fireEvent, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import { RegisterForm } from '../src/components/auth/RegisterForm';
-import { AuthProvider } from '../src/context/AuthProvider';
+import { store } from '../src/store';
+import { renderWithProviders } from './helper-test';
 
 fetch.mockResponse(() =>
   Promise.resolve({ json: () => Promise.resolve('resolved') }).then(() => {
@@ -23,14 +25,12 @@ fetch.mockResponse(() =>
 window.alert = () => {};
 
 test('checks Registration form render with correct inputs', async () => {
-  const wrapper = render(
-    <AuthProvider>
+  const wrapper = renderWithProviders(
+    <Provider store={store}>
       <RegisterForm />
-    </AuthProvider>,
+    </Provider>,
   );
   expect(wrapper).toBeTruthy();
-
-  await waitFor(() => expect(fetch).toHaveBeenCalledTimes(4));
 
   const inputs = {
     firstName: wrapper.container.querySelector('#firstName'),
@@ -148,7 +148,11 @@ test('checks Registration form render with correct inputs', async () => {
 });
 
 test('checks Registration form render with wrong inputs', async () => {
-  const wrapper = render(<RegisterForm />);
+  const wrapper = renderWithProviders(
+    <Provider store={store}>
+      <RegisterForm />
+    </Provider>,
+  );
 
   const inputs = {
     firstName: wrapper.container.querySelector('#firstName'),

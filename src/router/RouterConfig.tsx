@@ -5,7 +5,7 @@ import { AboutPage } from '../pages/about/About';
 import { App } from '../pages/App';
 import { LoginPage } from '../pages/auth/Login';
 import { RegisterPage } from '../pages/auth/Register';
-import { CartPage } from '../pages/cart/Cart';
+import { CartPage } from '../pages/cart/CartPage';
 import { CatalogPage } from '../pages/catalog/Catalog';
 import { MainPage } from '../pages/main/Main';
 import { ProductPage } from '../pages/product/ProductPage';

@@ -1,5 +1,15 @@
 export { createCustomerService } from './auth/createCustomerService';
-export { loginCustomerService } from './auth/loginCustomerService';
+export {
+  formAuthoredService,
+  loginCustomerService,
+} from './auth/loginCustomerService';
+export {
+  changeItemInCartService,
+  createCartService,
+  discountCartService,
+  getCartService,
+  getDiscountService,
+} from './cart/cart';
 export {
   changeCustomerPasswordService,
   changeCustomerService,

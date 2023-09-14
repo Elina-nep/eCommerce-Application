@@ -1,17 +1,13 @@
 import { enableFetchMocks } from 'jest-fetch-mock';
 import fetch from 'jest-fetch-mock';
+import { Provider } from 'react-redux';
 enableFetchMocks();
 
-import {
-  act,
-  fireEvent,
-  render,
-  screen,
-  waitFor,
-} from '@testing-library/react';
+import { act, fireEvent, screen, waitFor } from '@testing-library/react';
 
 import { LoginForm } from '../src/components/auth/LoginForm';
-import { AuthProvider } from '../src/context/AuthProvider';
+import { store } from '../src/store';
+import { renderWithProviders } from './helper-test';
 
 fetch.mockResponse(() =>
   Promise.resolve({ json: () => Promise.resolve('resolved') }).then(() => {
@@ -28,13 +24,12 @@ fetch.mockResponse(() =>
 window.alert = () => {};
 
 test('checks wrong email', async () => {
-  const wrapper = render(
-    <AuthProvider>
+  const wrapper = renderWithProviders(
+    <Provider store={store}>
       <LoginForm />
-    </AuthProvider>,
+    </Provider>,
   );
 
-  await waitFor(() => expect(fetch).toHaveBeenCalledTimes(4));
   expect(wrapper).toBeTruthy();
 
   const inputs = {
@@ -93,7 +88,11 @@ test('checks wrong email', async () => {
 });
 
 test('checks wrong password', async () => {
-  const wrapper = render(<LoginForm />);
+  const wrapper = renderWithProviders(
+    <Provider store={store}>
+      <LoginForm />
+    </Provider>,
+  );
 
   expect(wrapper).toBeTruthy();
   const inputs = {
@@ -300,7 +299,11 @@ test('checks wrong password', async () => {
 });
 
 test('checks email and password', async () => {
-  const wrapper = render(<LoginForm />);
+  const wrapper = renderWithProviders(
+    <Provider store={store}>
+      <LoginForm />
+    </Provider>,
+  );
 
   expect(wrapper).toBeTruthy();
   const inputs = {

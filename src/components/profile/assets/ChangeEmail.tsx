@@ -1,19 +1,17 @@
 import TextField from '@mui/material/TextField';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Controller,
   SubmitHandler,
   useForm,
   useFormState,
 } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
-import { AuthContext } from '../../../context/AuthProvider';
-import { CustomerChanges } from '../../../types';
-import { IPersonalProps } from '../../../types/profileFrom';
-import { IProfileForm } from '../../../types/profileFrom';
-import { emailValidation } from '../../../util';
-import { changeCustomerFunc } from '../../../util/customer';
-import { customerToFormMapper } from '../../../util/user';
+import { changeCustomerService } from '../../../services';
+import { AppDispatch, changeAlert, clearAlertThunk } from '../../../store';
+import { CustomerChanges, IPersonalProps, IProfileForm } from '../../../types';
+import { customerToFormMapper, emailValidation } from '../../../util';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
 
@@ -21,7 +19,7 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
   response,
   refreshCallback,
 }) => {
-  const { setAlertMessage } = useContext(AuthContext);
+  const dispatch = useDispatch<AppDispatch>();
 
   const profileFields = customerToFormMapper(response);
 
@@ -55,22 +53,23 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
       },
     };
 
-    try {
-      await changeCustomerFunc(
-        setLoading,
-        customerChanges,
-        response.version,
-        setAlertMessage,
-      );
-
-      setErrorMessage('');
-      setSubmitted(true);
-      refreshCallback();
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setErrorMessage(error.message || 'An error occurred');
-      }
-    }
+    changeCustomerService(customerChanges, response.version)
+      .then(() => {
+        dispatch(
+          changeAlert({
+            alertMessage: `Changes saved successfully`,
+          }),
+        );
+        dispatch(clearAlertThunk());
+        setErrorMessage('');
+        refreshCallback();
+      })
+      .catch((e) => {
+        setErrorMessage(e.message || 'An error occurred');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -84,7 +83,7 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
               ''
             ) : (
               <button
-                className="profile__change_btn"
+                className="primary_button profile__change_btn"
                 onClick={handleEditClick}
                 disabled={editMode}
               >
@@ -95,7 +94,7 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
             {editMode ? (
               <button
                 type="submit"
-                className="profile__save_btn"
+                className="primary_button profile__save_btn"
                 disabled={!editMode}
               >
                 Save
@@ -105,7 +104,7 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
             )}
             {editMode ? (
               <button
-                className="profile__exit_btn"
+                className="primary_button profile__exit_btn"
                 disabled={!editMode}
                 onClick={() => {
                   if (submitted) {
@@ -124,7 +123,7 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
           </div>
         </div>
         {editMode ? (
-          <div className="prof__col-2">
+          <div className="form__col-2">
             <Controller
               control={control}
               name="email"

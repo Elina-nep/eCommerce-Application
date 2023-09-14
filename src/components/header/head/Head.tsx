@@ -1,14 +1,23 @@
 import './Head.scss';
 
-import React, { useContext } from 'react';
+import React from 'react';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import imageToAddCottoncandy from '../../../assets/cotton-candy.png';
-import { AuthContext } from '../../../context/AuthProvider';
-import { HeadProps } from '../../../types/index';
+import {
+  AppDispatch,
+  clearCart,
+  getCartThunk,
+  logout,
+  StoreType,
+} from '../../../store';
 
-const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
-  const { ifAuth, logOut } = useContext(AuthContext);
+const Head = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const ifAuth = useSelector((state: StoreType) => state.ifAuth.ifAuth);
+  const cart = useSelector((state: StoreType) => state.cart.cart);
   const navigate = useNavigate();
 
   return (
@@ -29,9 +38,10 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
             </div>
           </div>
         </Link>
-        <div className="cart">
-          <Link to="#">
-            CART / ${cartTotal.toFixed(2)} gds: {cartItemsCount}
+        <div className="cart__link">
+          <Link to="/cart">
+            <AiOutlineShoppingCart /> {cart.totalLineItemQuantity} ( €‎
+            {cart.totalPrice.centAmount / 100} )
           </Link>
         </div>
         <div className="registration-links">
@@ -39,7 +49,9 @@ const Head: React.FC<HeadProps> = ({ cartTotal, cartItemsCount }) => {
             <button
               className="logout"
               onClick={() => {
-                logOut();
+                dispatch(logout());
+                dispatch(clearCart());
+                dispatch(getCartThunk());
                 navigate('/');
               }}
             >

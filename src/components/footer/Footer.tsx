@@ -1,14 +1,17 @@
-import './Footer.css';
+import './Footer.scss';
 
-import React, { useContext } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { AuthContext } from '../../context/AuthProvider';
+import { StoreType } from '../../store/store';
 import { links } from '../../util/index';
 import LinkList from './FooterLink';
 
 export const Footer: React.FC = () => {
-  const { categories } = useContext(AuthContext);
+  const categories = useSelector(
+    (state: StoreType) => state.categories.categories,
+  );
   return (
     <footer className="footer">
       <div className="footer__column">

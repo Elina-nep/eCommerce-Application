@@ -1,9 +1,25 @@
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import { useOutlet } from 'react-router-dom';
 
-import { AuthProvider } from '../context/AuthProvider';
+import {
+  AppDispatch,
+  getCartThunk,
+  getCategoriesThunk,
+  getIfAuthThunk,
+} from '../store';
 
 export const AuthLayout = () => {
   const outlet = useOutlet();
+  const dispatch = useDispatch<AppDispatch>();
 
-  return <AuthProvider>{outlet}</AuthProvider>;
+  useEffect(() => {
+    dispatch(getIfAuthThunk()).finally(() => {
+      dispatch(getCategoriesThunk()).finally(() => {
+        dispatch(getCartThunk());
+      });
+    });
+  }, [dispatch]);
+
+  return <>{outlet}</>;
 };

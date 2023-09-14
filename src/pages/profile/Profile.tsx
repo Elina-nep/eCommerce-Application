@@ -23,13 +23,15 @@ export const ProfilePage = () => {
   const [loading, setLoading] = useState(false);
 
   const handleGetCustomer = () => {
-    getCustomerFunc(setLoading)
+    setLoading(true);
+    getCustomerFunc()
       .then((body) => {
         setCustomer(body);
       })
       .catch((e) => {
-        console.log(e);
-      });
+        console.log(e.message);
+      })
+      .finally(() => setLoading(false));
   };
 
   useEffect(() => {

@@ -7,7 +7,7 @@ import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import TextField from '@mui/material/TextField';
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import {
   Controller,
   SubmitHandler,
@@ -15,19 +15,22 @@ import {
   useFormState,
   useWatch,
 } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
 
-import { AuthContext } from '../../../context/AuthProvider';
-import { CustomerChanges } from '../../../types';
-import { IAddressProps } from '../../../types/profileFrom';
-import { IAddress } from '../../../types/profileFrom';
-import { AddressType } from '../../../types/profileFrom';
+import { changeCustomerService } from '../../../services';
+import { AppDispatch, changeAlert, clearAlertThunk } from '../../../store';
+import {
+  AddressType,
+  CustomerChanges,
+  IAddress,
+  IAddressProps,
+} from '../../../types';
 import {
   countryValidation,
   nameValidation,
   postalCodeValidation,
   streetValidation,
 } from '../../../util';
-import { changeCustomerFunc } from '../../../util/customer';
 import { FormError } from '../../auth/FormError';
 import LoadingSpinner from '../../loading/LoadingSpinner';
 
@@ -38,12 +41,11 @@ export const Address: React.FC<IAddressProps> = ({
   addressType,
   refreshCallback,
 }) => {
+  const dispatch = useDispatch<AppDispatch>();
   const { handleSubmit, control, trigger } = useForm<IAddress>({
     mode: 'onBlur',
     defaultValues: address,
   });
-
-  const { setAlertMessage } = useContext(AuthContext);
 
   const { errors } = useFormState({ control });
   const [errorMessage, setErrorMessage] = useState<string>('');
@@ -80,28 +82,33 @@ export const Address: React.FC<IAddressProps> = ({
           },
         };
 
+  const handleCustomerDataChange = (myActions: CustomerChanges) => {
+    changeCustomerService(myActions, version)
+      .then(() => {
+        dispatch(
+          changeAlert({
+            alertMessage: `Changes saved successfully`,
+          }),
+        );
+        dispatch(clearAlertThunk());
+        setErrorMessage('');
+        refreshCallback();
+      })
+      .catch((e) => {
+        setErrorMessage(e.message || 'An error occurred');
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
   const deleteAddress = async (event: MouseEvent) => {
     event.stopPropagation();
     event.preventDefault();
     const removeAction: CustomerChanges = {
       ...removeAddressId,
     };
-
-    try {
-      await changeCustomerFunc(
-        setLoading,
-        removeAction,
-        version,
-        setAlertMessage,
-      );
-
-      setErrorMessage('');
-      refreshCallback();
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setErrorMessage(error.message || 'An error occurred');
-      }
-    }
+    handleCustomerDataChange(removeAction);
   };
 
   const onSubmit: SubmitHandler<IAddress> = async (data) => {
@@ -143,23 +150,9 @@ export const Address: React.FC<IAddressProps> = ({
       },
       ...setDefaultAction,
     };
-
-    try {
-      await changeCustomerFunc(
-        setLoading,
-        customerChanges,
-        version,
-        setAlertMessage,
-      );
-
-      setErrorMessage('');
-      refreshCallback();
-    } catch (error: unknown) {
-      if (error instanceof Error) {
-        setErrorMessage(error.message || 'An error occurred');
-      }
-    }
+    handleCustomerDataChange(customerChanges);
   };
+
   return (
     <div className={`profile__section ${editMode ? 'edit-mode' : ''}`}>
       {loading && <LoadingSpinner />}
@@ -214,7 +207,7 @@ export const Address: React.FC<IAddressProps> = ({
               ''
             ) : (
               <button
-                className="profile__edit_btn"
+                className="primary_button profile__edit_btn"
                 onClick={handleEditClick}
                 disabled={editMode}
               >
@@ -225,7 +218,7 @@ export const Address: React.FC<IAddressProps> = ({
             {editMode ? (
               <button
                 type="submit"
-                className="profile__save_btn"
+                className="primary_button profile__save_btn"
                 disabled={!editMode}
               >
                 Save
@@ -234,7 +227,7 @@ export const Address: React.FC<IAddressProps> = ({
               ''
             )}
             <button
-              className="profile__delete_btn"
+              className="primary_button profile__delete_btn"
               onClick={(e) => deleteAddress(e.nativeEvent)}
             >
               Delete
@@ -242,7 +235,7 @@ export const Address: React.FC<IAddressProps> = ({
           </div>
         </div>
 
-        <div className="prof__col-2">
+        <div className="form__col-2">
           <Controller
             control={control}
             name="streetName"
@@ -314,7 +307,7 @@ export const Address: React.FC<IAddressProps> = ({
           />
         </div>
 
-        <div className="prof__col-2">
+        <div className="form__col-2">
           <FormControl
             margin="normal"
             fullWidth

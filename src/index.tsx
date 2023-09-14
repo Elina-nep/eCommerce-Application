@@ -2,9 +2,11 @@ import './index.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react-redux';
 import { createHashRouter, RouterProvider } from 'react-router-dom';
 
 import { routerObj } from './router/RouterConfig';
+import { store } from './store/store';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement,
@@ -16,6 +18,8 @@ const router = createHashRouter(routerObj, {
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <Provider store={store}>
+      <RouterProvider router={router} />,
+    </Provider>
   </React.StrictMode>,
 );
