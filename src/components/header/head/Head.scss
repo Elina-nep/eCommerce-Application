@@ -6,6 +6,80 @@
   padding: 5px;
   background-color: var(--light-color);
 }
+.st1,
+.st8 {
+  position: absolute;
+}
+.st0,
+.st9 {
+  fill: var(--primary-color-light);
+}
+
+.st1:nth-child(1) {
+  transform: translate(5px, 250%) rotate(40deg);
+  scale: 0.8;
+}
+.st1:nth-child(2) {
+  transform: translate(30px, 0%) rotate(80deg);
+  scale: 1.1;
+}
+.st1:nth-child(3) {
+  transform: translate(45px, 350%) rotate(10deg);
+}
+.st1:nth-child(4) {
+  transform: translate(110px, 180%) rotate(60deg);
+  scale: 0.7;
+}
+.st1:nth-child(5) {
+  transform: translate(135px, 200%);
+}
+.st1:nth-child(6) {
+  transform: translate(230px, 30%) rotate(20deg);
+  scale: 0.7;
+}
+
+.st1:nth-child(1) .st0 {
+  animation:
+    sparkle 0.25s linear infinite alternate,
+    rotate 0.3s linear infinite alternate;
+}
+.st1:nth-child(2) .st0 {
+  animation:
+    sparkle 0.18s 0.6s linear infinite alternate,
+    rotate 0.3s 0.6s linear infinite alternate;
+}
+.st1:nth-child(3) .st0 {
+  animation:
+    sparkle 0.2s 0.1s linear infinite alternate,
+    rotate 0.3s 0.1s linear infinite alternate;
+}
+.st1:nth-child(4) .st0 {
+  animation:
+    sparkle 0.22s 0.8s linear infinite alternate,
+    rotate 0.3s 0.4s linear infinite alternate;
+}
+.st1:nth-child(5) .st0 {
+  animation:
+    sparkle 0.25s 0.3s linear infinite alternate,
+    rotate 0.3s 0.3s linear infinite alternate;
+}
+.st1:nth-child(6) .st0 {
+  animation:
+    sparkle 0.3s 0.4s linear infinite alternate,
+    rotate 0.3s 0.4s linear infinite alternate;
+}
+
+@keyframes sparkle {
+  100% {
+    fill: var(--secondary-color-light);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(10deg);
+  }
+}
 
 .headnav {
   display: inline-flex;
@@ -30,6 +104,10 @@
 .logo {
   display: flex;
   flex-direction: row;
+  transition: all 0.5s;
+  &:hover {
+    scale: 1.05;
+  }
 }
 
 .logo-img {
