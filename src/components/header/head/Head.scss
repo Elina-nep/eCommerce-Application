@@ -106,7 +106,7 @@
   flex-direction: row;
   transition: all 0.5s;
   &:hover {
-    scale: 1.05;
+    opacity: 0.7;
   }
 }
 
@@ -115,10 +115,10 @@
   @media (min-width: 210px) and (max-width: 576px) {
     width: 48%;
   }
-  @media (min-width: 576px) and (max-width: 768px) {
+  @media (min-width: 577px) and (max-width: 768px) {
     width: 40%;
   }
-  @media (min-width: 768px) and (max-width: 991px) {
+  @media (min-width: 769px) and (max-width: 991px) {
     width: 59%;
   }
   @media (min-width: 992px) and (max-width: 1200px) {
