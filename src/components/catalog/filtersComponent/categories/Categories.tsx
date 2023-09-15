@@ -42,7 +42,7 @@ export const Categories = ({
       </div>,
       parentsList.map((parent) => {
         return (
-          <>
+          <div key={parent.id}>
             <CategoryItem
               key={parent.id}
               category={parent}
@@ -69,7 +69,7 @@ export const Categories = ({
                   }
                 />
               ))}
-          </>
+          </div>
         );
       }),
     ];
