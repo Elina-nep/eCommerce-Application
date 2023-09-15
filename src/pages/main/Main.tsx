@@ -2,7 +2,6 @@ import './Main.scss';
 
 import { Link } from 'react-router-dom';
 
-import { SparklingButton } from '../../components/buttons/SparklingButton/SparklingButton';
 import Slider from '../../components/slider/Slider';
 import { MAIN_IMAGE } from '../../util';
 
@@ -33,7 +32,6 @@ export const MainPage = () => {
             <img src={MAIN_IMAGE} alt="main image" />
           </div>
         </div>
-        <SparklingButton />
         <h2 className="main__title">Unlock Discounts with Promo Codes</h2>
         <Slider />
       </div>

@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeCart, StoreType } from '../../../store';
 import { changeItemInCart } from '../../../util';
 import Button from '../../buttons/Button';
+import { SparklingButton } from '../../buttons/SparklingButton/SparklingButton';
 
 interface IButtonCartActions {
   product: ProductData;
@@ -28,7 +29,11 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
       cartItemId: productInCartId,
       quantity,
     })
-      .then((res) => dispatch(changeCart({ cart: res })))
+      .then((res) => {
+        setTimeout(() => {
+          dispatch(changeCart({ cart: res }));
+        }, 400);
+      })
       .catch((e) => {
         console.log(e.message);
       });
@@ -54,8 +59,8 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
       </Button>
     );
   return (
-    <Button
-      className="secondary_light_button product_button"
+    <SparklingButton
+      className="primary_transparent_button product_button"
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -68,6 +73,6 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
       }}
     >
       Add to Cart
-    </Button>
+    </SparklingButton>
   );
 };

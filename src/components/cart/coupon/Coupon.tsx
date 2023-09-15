@@ -11,6 +11,7 @@ import { changeCart, StoreType } from '../../../store';
 import { ICoupon } from '../../../types';
 import { couponValidation, discountCart, getDiscount } from '../../../util';
 import { couponTheme } from '../../auth/theme';
+import { SparklingButton } from '../../buttons/SparklingButton/SparklingButton';
 
 export const Coupon: React.FC = () => {
   const dispatch = useDispatch();
@@ -123,9 +124,9 @@ export const Coupon: React.FC = () => {
                 />
               )}
             />
-            <button type="submit" className="primary_button coupon__new_btn">
+            <SparklingButton className="primary_button coupon__new_btn">
               Apply
-            </button>
+            </SparklingButton>
           </form>
         </ThemeProvider>
       )}

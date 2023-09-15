@@ -8,6 +8,9 @@ button:focus {
   @extend %primary_button;
 }
 
+.primary_transparent_button {
+  @extend %primary_transparent_button;
+}
 .secondary_button {
   @extend %secondary_button;
 }
@@ -21,7 +24,7 @@ button:focus {
 }
 
 .product_button {
-  margin: 0.5rem auto;
+  margin: 0.4rem auto;
 }
 
 .button-main {

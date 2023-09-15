@@ -2,14 +2,9 @@ import './Button.scss';
 
 import React from 'react';
 
-interface ButtonProps {
-  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
-  children: React.ReactNode;
-  className?: string;
-  disabled?: boolean;
-}
+import { IButtonProps } from '../../types';
 
-const Button: React.FC<ButtonProps> = ({
+const Button: React.FC<IButtonProps> = ({
   onClick,
   children,
   className,

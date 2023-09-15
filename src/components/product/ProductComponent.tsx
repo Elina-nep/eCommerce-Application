@@ -91,7 +91,7 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
             <div
               className={classes('container')}
               onClick={handleOpenModal}
-              style={{ width: '80%' }}
+              style={{ width: '50%' }}
             >
               <GlassMagnifier
                 className={classes('magnifier')}
