@@ -77,7 +77,6 @@
 
 .cart__aside {
   @extend %flex-col;
-  justify-content: space-between;
   width: 20%;
   padding: 1.2%;
   background-color: var(--secondary-color-light);

@@ -75,10 +75,6 @@ export const Coupon: React.FC = () => {
 
   return (
     <div className="coupon">
-      {errorMessage && (
-        <p className="primary_button coupon__new_error">{errorMessage}</p>
-      )}
-
       {cart.discountCodes.find(
         (discountCode) => discountCode.state === 'MatchesCart',
       ) ? (
@@ -97,41 +93,43 @@ export const Coupon: React.FC = () => {
           </div>
         </div>
       ) : (
-        <ThemeProvider theme={couponTheme}>
-          <form
-            onSubmit={handleSubmit(handleAddDiscount)}
-            className="coupon__form"
-          >
-            <Controller
-              control={control}
-              name="coupon"
-              rules={{
-                validate: (value) =>
-                  couponValidation(value, cart.totalPrice.centAmount),
-              }}
-              render={({ field }) => (
-                <TextField
-                  id="coupon"
-                  label="Coupon"
-                  onChange={(e) => {
-                    field.onChange(e);
-                    setErrorMessage('');
-                  }}
-                  value={field.value || ''}
-                  size="small"
-                  margin="normal"
-                  type="text"
-                  error={!!errors.coupon?.message}
-                  helperText={errors?.coupon?.message}
-                  className="coupon__new_input"
-                />
-              )}
-            />
-            <SparklingButton className="primary_button coupon__new_btn">
-              Apply
-            </SparklingButton>
-          </form>
-        </ThemeProvider>
+        <div className="coupon__form">
+          <ThemeProvider theme={couponTheme}>
+            <form onSubmit={handleSubmit(handleAddDiscount)}>
+              <Controller
+                control={control}
+                name="coupon"
+                rules={{
+                  validate: (value) =>
+                    couponValidation(value, cart.totalPrice.centAmount),
+                }}
+                render={({ field }) => (
+                  <TextField
+                    id="coupon"
+                    label="Coupon"
+                    onChange={(e) => {
+                      field.onChange(e);
+                      setErrorMessage('');
+                    }}
+                    value={field.value || ''}
+                    size="small"
+                    margin="normal"
+                    type="text"
+                    error={!!errors.coupon?.message}
+                    helperText={errors?.coupon?.message}
+                    className="coupon__new_input"
+                  />
+                )}
+              />
+              <SparklingButton className="primary_transparent_button coupon__new_btn">
+                Apply
+              </SparklingButton>
+            </form>
+          </ThemeProvider>
+          {errorMessage && (
+            <p className="primary_button coupon__new_error">{errorMessage}</p>
+          )}
+        </div>
       )}
     </div>
   );
