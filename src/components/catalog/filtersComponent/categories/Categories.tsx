@@ -28,7 +28,7 @@ export const Categories = ({
 
     return [
       <div
-        key="all-products"
+        key="all"
         onClick={() => {
           searchParams.set('page', `1`);
           searchParams.set('category', `all`);
@@ -76,7 +76,7 @@ export const Categories = ({
   };
 
   return (
-    <div className="sidebar-filter-category">
+    <div className="sidebar-filter-category" key={'category'}>
       <p className="sidebar-filter-category-title">Filter by Category:</p>
       {allCategories()}
     </div>

@@ -11,7 +11,6 @@ export const CategoryItem = ({
 }: CategoryT) => {
   return (
     <div
-      key={category.id}
       onClick={() => {
         searchParams.set('page', `1`);
         searchParams.set('category', `${category.name['en']}`);
