@@ -47,9 +47,12 @@ export const Coupon: React.FC = () => {
       action: 'addDiscountCode',
     })
       .then((res) => {
-        dispatch(changeCart({ cart: res }));
-        setErrorMessage('');
+        setTimeout(() => {
+          dispatch(changeCart({ cart: res }));
+          setErrorMessage('');
+        }, 400);
       })
+
       .catch((e) => {
         console.log(e.message);
         setErrorMessage(e.message || 'An error occurred');

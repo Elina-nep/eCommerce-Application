@@ -105,20 +105,22 @@ export const ChangeEmail: React.FC<IPersonalProps> = ({
               ''
             )}
             {editMode ? (
-              <button
-                className="primary_button profile__exit_btn"
-                disabled={!editMode}
-                onClick={() => {
-                  if (submitted) {
-                    setEditMode(false);
-                  } else {
-                    setEditMode(false);
-                    setSubmitted(true);
-                  }
-                }}
-              >
-                Exit
-              </button>
+              <div className="special_hover_container">
+                <button
+                  className="profile__exit_btn"
+                  disabled={!editMode}
+                  onClick={() => {
+                    if (submitted) {
+                      setEditMode(false);
+                    } else {
+                      setEditMode(false);
+                      setSubmitted(true);
+                    }
+                  }}
+                >
+                  Exit
+                </button>
+              </div>
             ) : (
               ''
             )}

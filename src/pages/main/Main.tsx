@@ -23,9 +23,11 @@ export const MainPage = () => {
                   Start now
                 </Link>
               </div>
-              <Link to="/about" className="secondary_light_button">
-                Our Team
-              </Link>
+              <div className="special_hover_container">
+                <Link to="/about" className="main__welcome_to_about">
+                  Our Team
+                </Link>
+              </div>
             </div>
           </div>
           <div className="main__welcome_image">

@@ -52,8 +52,6 @@
 
 .profile__add_btn,
 .profile__change_btn,
-.profile__edit_btn,
-.profile__delete_btn,
 .profile__exit_btn {
   margin: 0.7rem 0;
   padding: 0.2rem 0.5rem;
@@ -76,6 +74,8 @@
 }
 
 .profile__save_btn,
+.profile__edit_btn,
+.profile__exit_btn,
 .profile__delete_btn {
   @extend %special_hover_template;
   height: 1.8rem;
@@ -90,6 +90,7 @@
   }
 }
 
+.profile__exit_btn,
 .profile__delete_btn {
   color: var(--secondary-color);
   border: 1px solid var(--secondary-color);

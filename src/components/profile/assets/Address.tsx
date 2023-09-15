@@ -206,13 +206,15 @@ export const Address: React.FC<IAddressProps> = ({
             {editMode ? (
               ''
             ) : (
-              <button
-                className="primary_button profile__edit_btn"
-                onClick={handleEditClick}
-                disabled={editMode}
-              >
-                Edit
-              </button>
+              <div className="special_hover_container">
+                <button
+                  className="profile__edit_btn"
+                  onClick={handleEditClick}
+                  disabled={editMode}
+                >
+                  Edit
+                </button>
+              </div>
             )}
 
             {editMode ? (
