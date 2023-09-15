@@ -8,23 +8,17 @@
 }
 
 .main-page-container {
-  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   gap: 30px;
-  height: 90%;
-  margin: 2% 0;
 }
 
 .main__welcome {
   display: flex;
   justify-content: center;
-  margin: 3% 15%;
   background-color: var(--light-color);
-  border-radius: 10px;
-  padding: 3%;
   @media (min-width: 210px) and (max-width: 760px) {
     flex-direction: column;
   }
@@ -32,8 +26,7 @@
 
 .main__welcome_image,
 .main__welcome_typography {
-  width: 45%;
-  margin: auto;
+  width: 50%;
   display: flex;
   flex-direction: column;
   align-self: center;
@@ -43,14 +36,19 @@
   }
 }
 
+.main__welcome_typography {
+  margin: 0 2%;
+}
+
 .main__welcome_image {
   img {
     max-width: 100%;
     max-height: 100%;
     width: auto;
     height: auto;
-    margin: 0 auto;
-    border-radius: 15px;
+    @media (min-width: 210px) and (max-width: 760px) {
+      margin: 0.5rem 0 1.3rem 0;
+    }
   }
 }
 
@@ -77,7 +75,7 @@
   justify-content: flex-start;
   height: 1.4rem;
   gap: 3%;
-  margin: 10% 0;
+  margin: 4% 0;
   a {
     width: fit-content;
     font-size: var(--font-large);
