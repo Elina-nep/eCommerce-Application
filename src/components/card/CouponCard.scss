@@ -95,8 +95,11 @@
 
   &::before {
     width: 21vw;
-    height: 20vw;
+    height: 21vw;
     line-height: 20vw;
     left: -0.2rem;
+    @media (min-width: 1930px) {
+      height: 20vh;
+    }
   }
 }

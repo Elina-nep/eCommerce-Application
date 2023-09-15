@@ -229,7 +229,7 @@ export const Address: React.FC<IAddressProps> = ({
               ''
             )}
             <button
-              className="primary_button profile__delete_btn"
+              className="profile__delete_btn"
               onClick={(e) => deleteAddress(e.nativeEvent)}
             >
               Delete
