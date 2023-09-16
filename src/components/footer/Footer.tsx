@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { StoreType } from '../../store/store';
 import { links } from '../../util/index';
 import LinkList from './FooterLink';
+import { Social } from './social/Social';
 
 export const Footer: React.FC = () => {
   const categories = useSelector(
@@ -43,14 +44,7 @@ export const Footer: React.FC = () => {
       </div>
 
       <div className="footer__column">
-        <h3>Contacts</h3>
-        <p className="footer__column-address">
-          Company Inc., <br />
-          ZM404, Cosmic St., 42, <br />
-          Zuom Dustyville <br /> <br />
-          Call us now:
-        </p>
-        <p className="footer__column-phone-number">(800) 2345-6789</p>
+        <Social />
       </div>
     </footer>
   );

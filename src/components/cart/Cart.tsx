@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { changeCart, StoreType } from '../../store';
 import { changeItemInCart } from '../../util';
 import Button from '../buttons/Button';
+import { OrderButton } from '../buttons/OrderButton/OrderButton';
 import { Coupon } from './coupon/Coupon';
 import { ItemInCart } from './item/ItemInCart';
 import { Summary } from './summary/Summary';
@@ -69,6 +70,7 @@ export const Cart = () => {
         <div className="cart__aside">
           <Summary />
           <Coupon />
+          <OrderButton />
         </div>
       </div>
     </div>
