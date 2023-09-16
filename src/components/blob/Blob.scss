@@ -1,0 +1,15 @@
+circle {
+  animation: move var(--duration) ease-in-out infinite;
+}
+
+@keyframes move {
+  0%,
+  100% {
+    cx: var(--from-x);
+    cy: var(--from-y);
+  }
+  50% {
+    cx: var(--to-x);
+    cy: var(--to-y);
+  }
+}

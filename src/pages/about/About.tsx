@@ -2,7 +2,9 @@ import './About.scss';
 
 import imageToAddRS from '../../assets/logo rs.png';
 import { DeveloperCard } from '../../components/about/DeveloperCard';
+import { InfiniteLoop } from '../../components/infiniteScroll/InfiniteScroll';
 import { DEVELOPERS } from '../../util';
+
 export const AboutPage = () => {
   return (
     <main className="about-us-main-container">
@@ -34,6 +36,8 @@ export const AboutPage = () => {
           </p>
 
           <p>Main technologies and libraries we used: </p>
+          <InfiniteLoop />
+
           <ul>
             <li>Create-react-app;</li>
             <li>Typescript;</li>
