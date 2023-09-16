@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { changeCart, StoreType } from '../../../store';
 import { ItemInCartChange } from '../../../types';
 import { changeItemInCart } from '../../../util';
-import Button from '../../buttons/Button';
+import { SparklingButton } from '../../buttons/SparklingButton/SparklingButton';
 import { QuantityButtons } from '../../cart/item/QuantityButtons';
 
 interface IButtonCartActions {
@@ -47,8 +47,8 @@ export const ButtonProductCart = ({ product, id }: IButtonCartActions) => {
       />
     );
   return (
-    <Button
-      className="secondary_light_button"
+    <SparklingButton
+      className="primary_button"
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -60,6 +60,6 @@ export const ButtonProductCart = ({ product, id }: IButtonCartActions) => {
       }}
     >
       Add to Cart
-    </Button>
+    </SparklingButton>
   );
 };
