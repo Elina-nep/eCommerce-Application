@@ -54,7 +54,13 @@ export const Cart = () => {
             <ItemInCart product={el} key={el.id} />
           ))}
           <div className="cart__button_container">
-            <Link to="/catalog" className="page__link">
+            <Link
+              to={{
+                pathname: `/catalog`,
+                search: 'category=all',
+              }}
+              className="page__link"
+            >
               &#8592; Continue Shopping
             </Link>
             <Button

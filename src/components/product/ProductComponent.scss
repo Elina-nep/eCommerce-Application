@@ -30,6 +30,17 @@
   }
 }
 
+.product__price-cart {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.product__price-cart .item__quantity {
+  width: 7rem;
+  text-align: center;
+  margin: 0 auto;
+}
+
 .product__slider {
   @extend %flex-row;
   align-self: center;

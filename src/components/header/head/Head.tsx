@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import imageToAddCottoncandy from '../../../assets/cotton-candy.png';
+import { ReactComponent as Star } from '../../../assets/star-solid.svg';
 import {
   AppDispatch,
   clearCart,
@@ -25,6 +26,12 @@ const Head = () => {
       <div className="headnav">
         <Link to="/" className="store-name">
           <div className="logo">
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+            <Star />
             <div className="logo-picture">
               <img
                 className="logo-img"

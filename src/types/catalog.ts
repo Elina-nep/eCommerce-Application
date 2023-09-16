@@ -28,7 +28,9 @@ export interface FiltersT {
 export interface CategoryT extends FilterStandardComponent {
   category: Category;
   isChild: boolean;
-  hasChildren: boolean;
+  isActive: boolean;
+  isVisible: boolean;
+  children?: React.ReactNode;
 }
 
 export const AVAILABLE_SORT_OPTIONS = [

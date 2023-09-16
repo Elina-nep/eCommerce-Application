@@ -14,11 +14,12 @@ import {
   getItemTotalPrice,
   LANGUAGE,
 } from '../../../util';
+import { QuantityButtons } from './QuantityButtons';
 
 export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
   const image = getItemImage(product);
   const name = product.name[LANGUAGE.EN];
-  const quantity = product.quantity;
+  // const quantity = product.quantity;
   const price = getItemPrice(product, CURRENCY.SYMBOL);
   const discountedPrice = getItemDiscountedPrice(product, CURRENCY.SYMBOL);
   const total = getItemTotalPrice(product, CURRENCY.SYMBOL);
@@ -76,7 +77,7 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
             <span>{price}</span>
           )}
         </div>
-        <div className="item__col item__quantity">
+        {/* <div className="item__col item__quantity">
           <button
             className="item__quantity_btn"
             onClick={() => {
@@ -102,7 +103,12 @@ export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
           >
             +
           </button>
-        </div>
+        </div> */}
+        <QuantityButtons
+          sku={product.variant.sku}
+          id={product.productId}
+          action={handleItemInCartAction}
+        />
         <div className="item__col item__col_total">{total}</div>
       </div>
     </div>
