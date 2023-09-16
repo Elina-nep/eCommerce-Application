@@ -40,8 +40,8 @@ const Head = () => {
         </Link>
         <div className="cart__link">
           <Link to="/cart">
-            <AiOutlineShoppingCart /> {cart.totalLineItemQuantity} ( €‎
-            {cart.totalPrice.centAmount / 100} )
+            {cart.totalLineItemQuantity} <AiOutlineShoppingCart />
+            €‎{cart.totalPrice.centAmount / 100}
           </Link>
         </div>
         <div className="registration-links">
