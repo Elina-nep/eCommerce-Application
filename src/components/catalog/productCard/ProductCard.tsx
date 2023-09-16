@@ -38,11 +38,12 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
           <p className="product_card__description">{description}</p>
         )}
         <div className="product_card__priceContent">
-          {' '}
-          {discountedPrice && (
-            <p className="product_card__dicounted_price">{discountedPrice}</p>
-          )}
-          <div className="product_card__wrapper">
+          <div className="top-row">
+            {discountedPrice && (
+              <p className="product_card__dicounted_price">{discountedPrice}</p>
+            )}
+          </div>
+          <div className="bottom-row">
             {price && (
               <p
                 className={`product_card__price ${

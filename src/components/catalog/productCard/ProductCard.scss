@@ -1,5 +1,20 @@
 @import '../../../index.scss';
 
+.secondary_light_button__trash {
+  @extend %secondary_button;
+  background-color: var(--primary-color-light);
+  color: var(--light-color);
+  border: 1px solid var(--primary-color-light);
+}
+
+.secondary_light_button__trash:hover {
+  color: var(--primary-color-light);
+  border: 1px solid var(--primary-color-light);
+}
+.secondary_light_button__cart {
+  @extend %secondary_light_button;
+  margin: 0;
+}
 .product_card__link {
   list-style-type: none;
   text-decoration: none;
@@ -46,7 +61,7 @@
 .product_card__price {
   @extend %primary_button;
   font-size: var(--font-small);
-  margin: 0.5rem auto;
+  margin: 0;
   padding: 0.2rem 0.7rem;
   &:hover {
     cursor: auto;
@@ -57,13 +72,30 @@
 }
 
 .product_card__priceContent {
+  display: grid;
+  grid-template-rows: 0.5fr;
   width: 90%;
+}
+
+.product_card__priceContent .bottom-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  justify-items: flex-start;
+}
+
+.product_card__priceContent .top-row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  justify-items: flex-start;
 }
 
 .product_card__discountedPrice {
   text-decoration: line-through 1px var(--primary-color);
 }
-
+.product_card__dicounted_price {
+  margin: 0;
+  padding: 0.2rem 0.7rem;
+}
 .product_card__description {
   position: relative;
   bottom: 1%;
@@ -71,15 +103,10 @@
   margin: 0.5rem auto;
   width: 90%;
 }
-.product_card__wrapper {
-  display: flex;
-  justify-content: space-between;
-}
 
 .product_card__dicounted_price {
   @extend %highlight_text;
   font-size: var(--font-small);
-  width: 70%;
 }
 
 .sale-icon {
