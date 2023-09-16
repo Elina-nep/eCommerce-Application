@@ -1,11 +1,11 @@
 import './Blob.scss';
 
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 
-const ORB_COUNT = 20;
+const ORB_COUNT = 16;
 
 interface IBlobProps {
-  set?: number;
+  componentHue?: number;
   children?: React.ReactNode;
 }
 
@@ -63,16 +63,27 @@ const Gradient: React.FC<{ id: string; hue: number }> = ({ id, hue }) => {
 
 const Orb: React.FC<{ hue: number }> = ({ hue }) => {
   const r = random(30, 100);
-  const from: [number, number] = [
+  const initialFrom: [number, number] = [
     random(0 - r, 1000 + r),
     random(0 - r, 1000 + r),
   ];
-  const to: [number, number] = [
+  const initialTo: [number, number] = [
     random(0 - r, 1000 + r),
     random(0 - r, 1000 + r),
   ];
+  const [from, setFrom] = useState<[number, number]>(initialFrom);
+  const [to, setTo] = useState<[number, number]>(initialTo);
   const d = distance(from, to);
   const id = random(0, 1000);
+
+  useEffect(() => {
+    const moveOrb = () => {
+      setFrom(() => [random(0 - r, 500 + r), random(0 - r, 500 + r)]);
+      setTo(() => [random(0 - r, 1000 + r), random(0 - r, 1000 + r)]);
+    };
+
+    moveOrb();
+  }, [r]);
 
   return (
     <>
@@ -83,9 +94,9 @@ const Orb: React.FC<{ hue: number }> = ({ hue }) => {
         fill={`url(#grad-${id})`}
         style={{
           transitionDuration: `${d / 15}s`,
-          left: `${from[0]}px`,
-          top: `${from[1]}px`,
-          transform: `translate(${to[0]}px, ${to[1]}px)`,
+          left: `${initialFrom[0]}px`,
+          top: `${initialFrom[1]}px`,
+          transform: `translate(${initialTo[0]}px, ${initialTo[1]}px)`,
         }}
       />
       <Gradient id={`grad-${id}`} hue={hue} />
@@ -118,17 +129,17 @@ const Orbs: React.FC<OrbsProps> = memo(({ hue }) => {
   );
 });
 
-export const Blob: React.FC<IBlobProps> = ({ children }) => {
-  const [hue, setHue] = useState<number>(random(0, 360));
+export const Blob: React.FC<IBlobProps> = ({ componentHue, children }) => {
+  // const [hue, setHue] = useState<number>(random(0, 360));
 
-  const buttonStyle: React.CSSProperties = {
-    backgroundColor: `hsl(${hue}, 80%, 50%)`,
-  };
+  // const buttonStyle: React.CSSProperties = {
+  //   backgroundColor: `hsl(${hue}, 80%, 50%)`,
+  // };
   return (
     <div className="blob">
       {children}
-      <Orbs hue={hue} />
-      <div className="banner">
+      <Orbs hue={componentHue ?? 0} />
+      {/* <div className="banner">
         <button
           className="my-button"
           style={buttonStyle}
@@ -136,7 +147,7 @@ export const Blob: React.FC<IBlobProps> = ({ children }) => {
         >
           Regenerate
         </button>
-      </div>
+      </div> */}
     </div>
   );
 };
