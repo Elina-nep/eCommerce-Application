@@ -75,6 +75,9 @@
   display: grid;
   grid-template-rows: 0.5fr;
   width: 90%;
+  position: relative;
+  bottom: 2%;
+  margin: 0.4rem auto 0;
 }
 
 .product_card__priceContent .bottom-row {
