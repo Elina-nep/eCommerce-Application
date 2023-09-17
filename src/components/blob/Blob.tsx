@@ -98,7 +98,7 @@ const Orbs = ({ hue }: OrbsProps) => {
       viewBox="0 0 1000 1000"
       preserveAspectRatio="xMinYMin slice"
       style={{
-        background: `linear-gradient(hsl(${hue},${34}%,${47}%), hsl(${hue},${100}%,${80}%))`,
+        background: `linear-gradient(hsl(${hue},${34}%,${47}%), hsl(${hue},${60}%,${82}%))`,
       }}
     >
       <g filter="url(#blur)">
