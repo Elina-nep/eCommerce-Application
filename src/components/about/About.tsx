@@ -52,6 +52,9 @@ export const About = () => {
             <img src={ABOUT_IMAGE} alt="about image" />
           </div>
         </div>
+        <p className="about__technologies">
+          Technologies we used in the project:
+        </p>
         <InfiniteLoop />
       </div>
 
