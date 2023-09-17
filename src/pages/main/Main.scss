@@ -6,7 +6,8 @@
   align-items: center;
   width: 100%;
   gap: 30px;
-  padding-bottom: 2rem;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .main__welcome {
@@ -16,6 +17,13 @@
   @media (min-width: 210px) and (max-width: 760px) {
     flex-direction: column;
   }
+}
+
+.slider-part {
+  padding-top: 2rem;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
 .main__welcome_image,

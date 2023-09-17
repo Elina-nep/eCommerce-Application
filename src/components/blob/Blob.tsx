@@ -98,7 +98,7 @@ const Orbs = ({ hue }: OrbsProps) => {
       viewBox="0 0 1000 1000"
       preserveAspectRatio="xMinYMin slice"
       style={{
-        background: `linear-gradient(hsl(${hue},${34}%,${47}%), hsl(${hue},${60}%,${82}%))`,
+        background: `linear-gradient(hsl(${hue},${60}%,${82}%), hsl(${hue},${34}%,${47}%))`,
       }}
     >
       <g filter="url(#blur)">
@@ -115,10 +115,13 @@ const Orbs = ({ hue }: OrbsProps) => {
     </svg>
   );
 };
-
-export const Blob = () => {
+interface IBlobProps {
+  children?: React.ReactNode;
+}
+export const Blob: React.FC<IBlobProps> = ({ children }) => {
   return (
     <div className="blob">
+      {children}
       <Orbs hue={170} />
     </div>
   );

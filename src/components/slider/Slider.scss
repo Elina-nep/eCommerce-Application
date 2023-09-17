@@ -3,11 +3,7 @@
 .slider {
   @extend %flex-row;
   margin-top: 2%;
-  width: 95%;
   height: 100%;
-  @media (min-width: 210px) and (max-width: 485px) {
-    width: 85%;
-  }
 }
 
 .slide-container {
@@ -17,10 +13,10 @@
   height: 100%;
   width: 82%;
   @media (min-width: 210px) and (max-width: 485px) {
-    width: 60%;
+    width: 52%;
   }
   @media (min-width: 486px) and (max-width: 576px) {
-    width: 72%;
+    width: 68%;
   }
 }
 
@@ -31,7 +27,7 @@
 
 .slider-indicator {
   @extend %flex-row;
-  margin-bottom: 10px;
+  margin: 2rem auto;
 }
 
 .slider__indicator-dot {
