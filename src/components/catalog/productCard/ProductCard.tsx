@@ -45,15 +45,17 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
             )}
           </div>
           <div className="bottom-row">
-            {price && (
-              <p
-                className={`product_card__price ${
-                  discountedPrice ? 'product_card__discountedPrice' : ''
-                }`}
-              >
-                {price}
-              </p>
-            )}
+            <div className="price-container">
+              {price && (
+                <p
+                  className={`product_card__price ${
+                    discountedPrice ? 'product_card__discountedPrice' : ''
+                  }`}
+                >
+                  {price}
+                </p>
+              )}
+            </div>
             <ButtonCartActions
               product={product as ProductData}
               id={product.id}

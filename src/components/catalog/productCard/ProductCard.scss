@@ -64,7 +64,7 @@
   @extend %primary_button;
   font-size: var(--font-small);
   margin: 0;
-  padding: 0.2rem 0.4rem;
+  padding: 0.25rem 0.4rem;
   &:hover {
     cursor: auto;
     color: var(--light-color);
@@ -75,24 +75,29 @@
 
 .product_card__priceContent {
   display: grid;
-  grid-template-rows: 0.5fr;
-  width: 90%;
+  grid-template-columns: 1fr 0.5fr;
+  grid-template-rows: auto auto;
   position: relative;
   bottom: 2%;
-  margin: 0.4rem auto 0;
-}
-
-.product_card__priceContent .bottom-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  justify-items: flex-start;
 }
 
 .product_card__priceContent .top-row {
+  grid-column: 1 / 3;
   display: grid;
-  grid-template-columns: 1fr auto;
-  justify-items: flex-start;
-  min-height: 24px;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+}
+
+.product_card__priceContent .bottom-row {
+  grid-column: 1 / 3;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 10px;
+  align-items: center;
+}
+
+.product_card__empty_line {
+  height: 24px;
 }
 
 .product_card__discountedPrice {
@@ -180,7 +185,7 @@
   }
 
   .product_card__price {
-    padding: 0.2rem 0.2rem;
+    padding: 0.25rem 0.28rem;
   }
 
   .product_card__dicounted_price {
@@ -212,7 +217,7 @@
   }
 
   .product_card__price {
-    padding: 0.2rem 0.5rem;
+    padding: 0.25rem 0.5rem;
   }
 
   .product_card__dicounted_price {
