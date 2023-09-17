@@ -79,7 +79,7 @@ const Orb: React.FC<{ hue: number }> = ({ hue }) => {
         fill={`url(#grad-${id})`}
         style={
           {
-            '--duration': `${d / 15}s`,
+            '--duration': `${d / 25}s`,
             '--from-x': from[0],
             '--from-y': from[1],
             '--to-x': to[0],
