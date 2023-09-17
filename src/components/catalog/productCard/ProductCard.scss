@@ -11,10 +11,12 @@
   color: var(--primary-color-light);
   border: 1px solid var(--primary-color-light);
 }
+
 .secondary_light_button__cart {
   @extend %secondary_light_button;
   margin: 0;
 }
+
 .product_card__link {
   list-style-type: none;
   text-decoration: none;
@@ -90,6 +92,7 @@
   display: grid;
   grid-template-columns: 1fr auto;
   justify-items: flex-start;
+  min-height: 24px;
 }
 
 .product_card__discountedPrice {

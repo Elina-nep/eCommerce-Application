@@ -39,6 +39,7 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
         )}
         <div className="product_card__priceContent">
           <div className="top-row">
+            {!discountedPrice && <span className="product_card__empty_line" />}
             {discountedPrice && (
               <p className="product_card__dicounted_price">{discountedPrice}</p>
             )}
