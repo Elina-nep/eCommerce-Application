@@ -24,8 +24,7 @@ export const About = () => {
               >
                 RS School FE course
               </a>
-              {`
-            , proudly presents this online store for holiday goods. We've
+              {`, proudly presents this online store for holiday goods. We've
             designed it with passion and dedication, and you can learn more
             about the project `}
               <a
@@ -56,15 +55,13 @@ export const About = () => {
         <InfiniteLoop />
       </div>
 
-      <div className="about-us-content-wrapper">
-        <div className="about-us-team"></div>
-
-        <div className="about-us-card-wrapper">
+      <div className="about__members">
+        <div className="about__members_wrapper">
           {DEVELOPERS.map((el) => (
             <DeveloperCard key={el.name} {...el} />
           ))}
         </div>
-        <div className="about-us-rs">
+        <div className="about__rslogo">
           <a
             href="https://rs.school/"
             target="_blank"

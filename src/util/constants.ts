@@ -8,7 +8,7 @@ import imageDiscount20 from '../assets/get20.png';
 import imageDiscount30 from '../assets/get30.png';
 import imageToAddHalina from '../assets/Halina.jpg';
 import imageToAddHats from '../assets/hats.jpg';
-import imageToAddIryna from '../assets/Iryna.jpg';
+import imageToAddIryna from '../assets/Iryna.png';
 import imageToMain from '../assets/main_image.png';
 import imageToAddPoppers from '../assets/poppers.jpg';
 import imageToAddSets from '../assets/sets.jpg';
@@ -21,22 +21,18 @@ export const DEVELOPERS: IDeveloper[] = [
   {
     name: 'Elina',
     role: 'Team Lead',
+    bio: 'Our team lead devised a detailed sprint plan for efficient task tracking, managed through GitHub Project. Discord served as our communication hub, allowing for daily calls and mutual support.',
     done: [
-      'organizing work',
-      'checking task completion',
-      ' configuring the project and the entire development environment',
-      'setting up the API for working with the server',
-      'obtaining tokens',
+      'tasks coordination and progress tracking',
+      'configuring entire development environment',
+      'product database setup',
+      'setting up the API and tokens obtaining',
+      'handling backend requests',
       'routing',
-      'setting up navigation',
-      'website search',
-      'filtering',
-      'sorting',
+      'catalog search, sorting and filtering',
       'work with cart page functionality',
-      'setting up product database in commercetools',
-      'writing tests',
-      'design',
-      'responsive layout',
+      'tests',
+      'design & responsive layout',
     ],
     link: 'https://github.com/Elina-nep',
     photo: imageToAddElina,
@@ -44,16 +40,14 @@ export const DEVELOPERS: IDeveloper[] = [
   {
     name: 'Iryna',
     role: 'Developer',
+    bio: 'Our team lead devised a detailed sprint plan for efficient task tracking, managed through GitHub Project. Discord served as our communication hub, allowing for daily calls and mutual support.',
     done: [
-      'setting up registration on the register page',
-      'working with addresses and tokens',
-      'authorization forms on the login page',
-      'implementing functionality on user pages',
-      'integrating promocodes from commercetools into the project',
-      'creating a shopping cart page',
-      'writing tests',
-      'design',
-      'responsive layout',
+      'login and registration setup',
+      'user profile page',
+      'promocodes integration',
+      'cart setup',
+      'tests',
+      'design & responsive layout',
     ],
     link: 'https://github.com/iradzh',
     photo: imageToAddIryna,
@@ -61,20 +55,16 @@ export const DEVELOPERS: IDeveloper[] = [
   {
     name: 'Halina',
     role: 'Developer',
+    bio: 'Our team lead devised a detailed sprint plan for efficient task tracking, managed through GitHub Project. Discord served as our communication hub, allowing for daily calls and mutual support.',
     done: [
       'project design',
-      'catalog page setup with product cards',
-      'sorting',
-      'filtering',
-      'pagination',
-      'creating a 404 page',
-      'creating an about us page',
-      'header and footer setup',
-      'creating a slider on the main page',
-      'setting up a product database',
-      'writing tests',
-      'design',
-      'responsive layout',
+      'product database setup',
+      'catalog page setup',
+      'sorting, filtering',
+      'header, footer, pagination and slider setup',
+      'main, about us and 404 page',
+      'tests',
+      'design & responsive layout',
     ],
     link: 'https://github.com/HalinaD',
     photo: imageToAddHalina,
