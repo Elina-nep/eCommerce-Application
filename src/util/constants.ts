@@ -1,3 +1,4 @@
+import imageToAboutUs from '../assets/about_image.png';
 import imageToAddBalloons from '../assets/balloons.jpg';
 import imageToAddCandles from '../assets/candles.jpg';
 import imageToAddDecoration from '../assets/decoration.jpg';
@@ -165,3 +166,4 @@ export const cards: CardData[] = [
 ];
 
 export const MAIN_IMAGE = imageToMain;
+export const ABOUT_IMAGE = imageToAboutUs;

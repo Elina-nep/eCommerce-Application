@@ -9,19 +9,23 @@ type CustomStyles = {
 };
 
 const TAGS = [
+  'Commerce tools',
   'React',
   'Redux',
+  'Typescript',
   'Husky',
   'GitHub',
   'Jest',
   'Eslint',
   'prettier',
   'useForm',
-  'MUI',
+  'Material UI',
   'Magnifier',
+  'React Icons',
+  'Sass',
 ];
 const DURATION = 21000;
-const ROWS = 3;
+const ROWS = 1;
 const TAGS_PER_ROW = 6;
 
 const random = (min: number, max: number) =>

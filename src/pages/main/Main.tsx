@@ -7,7 +7,7 @@ import { MAIN_IMAGE } from '../../util';
 
 export const MainPage = () => {
   return (
-    <main className="main-page main-container">
+    <main className=" main-container main-page">
       <div className="main-page-container">
         <div className="main__welcome">
           <div className="main__welcome_typography">

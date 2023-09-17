@@ -2,12 +2,21 @@
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  width: 70%;
+  width: 600px;
   gap: 1rem 0;
   margin: 0 auto;
   padding: 1.5rem 0;
   position: relative;
   overflow: hidden;
+  @media (min-width: 210px) and (max-width: 385px) {
+    width: 200px;
+  }
+  @media (min-width: 386px) and (max-width: 485px) {
+    width: 380px;
+  }
+  @media (min-width: 486px) and (max-width: 650px) {
+    width: 460px;
+  }
 }
 
 .loop-slider {
@@ -26,13 +35,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #1cab917a;
+  background-color: var(--secondary-color-light);
   border-radius: 8px;
   padding: 0.7rem 1rem;
   margin-right: 1rem;
+  width: max-content;
   box-shadow:
     0 0.1rem 0.2rem rgb(0 0 0 / 20%),
-    // 0 0.1rem 0.5rem rgb(0 0 0 / 30%),
     0 0.2rem 1.5rem rgba(0, 0, 0, 0.25);
 
   p {
