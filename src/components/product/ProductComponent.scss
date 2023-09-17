@@ -33,6 +33,7 @@
 .product__price-cart {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  align-items: center;
 }
 
 .product__price-cart .item__quantity {

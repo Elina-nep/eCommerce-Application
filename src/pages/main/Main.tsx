@@ -2,6 +2,7 @@ import './Main.scss';
 
 import { Link } from 'react-router-dom';
 
+import { Blob } from '../../components/blob/Blob';
 import Slider from '../../components/slider/Slider';
 import { MAIN_IMAGE } from '../../util';
 
@@ -37,6 +38,7 @@ export const MainPage = () => {
         <h2 className="main__title">Unlock Discounts with Promo Codes</h2>
         <Slider />
       </div>
+      <Blob />
     </main>
   );
 };
