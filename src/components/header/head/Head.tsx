@@ -14,6 +14,7 @@ import {
   logout,
   StoreType,
 } from '../../../store';
+import { CURRENCY, getCartTotalPrice } from '../../../util';
 
 const Head = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -48,7 +49,7 @@ const Head = () => {
         <div className="cart__link">
           <Link to="/cart">
             <AiOutlineShoppingCart /> {cart.totalLineItemQuantity} ( €‎
-            {cart.totalPrice.centAmount / 100} )
+            {getCartTotalPrice(cart, CURRENCY.SYMBOL)} )
           </Link>
         </div>
         <div className="registration-links">
