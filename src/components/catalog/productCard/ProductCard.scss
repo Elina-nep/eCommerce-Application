@@ -62,7 +62,7 @@
   @extend %primary_button;
   font-size: var(--font-small);
   margin: 0;
-  padding: 0.2rem 0.7rem;
+  padding: 0.2rem 0.4rem;
   &:hover {
     cursor: auto;
     color: var(--light-color);
@@ -95,10 +95,12 @@
 .product_card__discountedPrice {
   text-decoration: line-through 1px var(--primary-color);
 }
+
 .product_card__dicounted_price {
   margin: 0;
-  padding: 0.2rem 0.7rem;
+  padding: 0.2rem 0.5rem;
 }
+
 .product_card__description {
   position: relative;
   bottom: 1%;
@@ -166,22 +168,21 @@
   }
 
   .product_card__name {
-    font-weight: 600;
-    width: 50%;
+    width: 70%;
     max-height: 50%;
-    font-size: var(--font-xsmall);
-    margin: 0.5rem auto;
   }
 
   .product_card__description {
-    bottom: 1%;
-    margin: 0.5rem auto;
     width: 80%;
   }
 
+  .product_card__price {
+    padding: 0.2rem 0.2rem;
+  }
+
   .product_card__dicounted_price {
-    font-size: var(--font-xsmall);
-    font-weight: 600;
+    margin: 0;
+    padding: 0.2rem 0.35rem;
   }
 
   .sale-icon {
@@ -203,22 +204,18 @@
   }
 
   .product_card__name {
-    font-weight: 600;
-    width: 50%;
-    max-height: 50%;
+    width: 60%;
     font-size: var(--font-xsmall);
-    margin: 0.5rem auto;
   }
 
-  .product_card__description {
-    bottom: 1%;
-    margin: 0.5rem auto;
-    width: 80%;
+  .product_card__price {
+    padding: 0.2rem 0.5rem;
   }
 
   .product_card__dicounted_price {
-    font-size: var(--font-xsmall);
+    font-size: var(--font-small);
     font-weight: 600;
+    padding: 0.2rem 0.5rem;
   }
 
   .sale-icon {

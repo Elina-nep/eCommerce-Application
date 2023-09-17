@@ -12,8 +12,11 @@
   display: flex;
   margin: auto;
   gap: 1rem;
+  @media (max-width: 1000px) {
+    gap: 0.5rem;
+  }
   @media (max-width: 850px) {
-    gap: 0.4rem;
+    gap: 0.25rem;
     .pagination-button-number {
       font-size: var(--font-xsmall);
     }
@@ -126,5 +129,15 @@
     .pagination-button-number.active {
       display: inline-flex;
     }
+  }
+}
+
+@media (max-width: 320px) {
+  .pagination-button:disabled {
+    width: 2.5rem;
+  }
+
+  .pagination-button {
+    width: 2.5rem;
   }
 }

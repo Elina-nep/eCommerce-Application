@@ -52,6 +52,7 @@
 .product__content_details {
   @extend %flex-col;
   width: 48%;
+  align-items: center;
   @media (min-width: 210px) and (max-width: 767px) {
     width: 90%;
     align-self: center;
