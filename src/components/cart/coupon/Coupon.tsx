@@ -117,17 +117,17 @@ export const Coupon: React.FC = () => {
                     type="text"
                     error={!!errors.coupon?.message}
                     helperText={errors?.coupon?.message}
-                    className="coupon__new_input"
+                    className="coupon__add_input"
                   />
                 )}
               />
-              <SparklingButton className="primary_transparent_button coupon__new_btn">
+              <SparklingButton className="primary_transparent_button coupon__add_btn">
                 Apply
               </SparklingButton>
             </form>
           </ThemeProvider>
           {errorMessage && (
-            <p className="primary_button coupon__new_error">{errorMessage}</p>
+            <p className="primary_button coupon__add_error">{errorMessage}</p>
           )}
         </div>
       )}

@@ -37,10 +37,6 @@
   }
 }
 
-.main__welcome_typography {
-  margin: 0 2%;
-}
-
 .main__welcome_image {
   img {
     max-width: 100%;
@@ -55,6 +51,7 @@
 }
 
 .main__welcome_typography {
+  margin: 0 2%;
   h1 {
     margin: 1.4rem 0;
     color: var(--primary-color);
