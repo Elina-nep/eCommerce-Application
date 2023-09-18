@@ -9,7 +9,6 @@ import { MAIN_IMAGE } from '../../util';
 export const MainPage = () => {
   return (
     <main className="main-page main-page-container">
-      {/* <div className="main-page-container"> */}
       <div className="main__welcome">
         <div className="main__welcome_typography">
           <h1>Discover Joyful Treasures at Enchant Fest</h1>
@@ -40,7 +39,6 @@ export const MainPage = () => {
         <Slider />
         <Blob></Blob>
       </div>
-      {/* </div> */}
     </main>
   );
 };

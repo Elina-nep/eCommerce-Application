@@ -5,12 +5,15 @@ import React, { useState } from 'react';
 
 export const OrderButton: React.FC = () => {
   const [isButtonDone] = useState(false);
+  const [isOrdered, setIsOrdered] = useState(false);
 
   const handleClick = () => {
-    if (!isButtonDone) {
+    if (!isOrdered) {
       animateButton();
+      setIsOrdered(true);
     } else {
       resetButton();
+      setIsOrdered(false);
     }
   };
 
@@ -134,10 +137,6 @@ export const OrderButton: React.FC = () => {
           <div className="front"></div>
           <div className="box"></div>
         </div>
-      </button>
-
-      <button onClick={resetButton} className="order_close_button">
-        x
       </button>
     </div>
   );

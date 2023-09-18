@@ -23,6 +23,9 @@
 .profile__section_head {
   @extend %flex-row;
   justify-content: space-between;
+  .profile__add_btn {
+    margin: 0.3rem 0.6rem;
+  }
 }
 
 .profile__section_head_btn {

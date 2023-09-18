@@ -4,4 +4,5 @@ export interface IDeveloper {
   link: string;
   photo: string;
   role: string;
+  bio: string;
 }
