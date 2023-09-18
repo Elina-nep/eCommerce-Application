@@ -19,7 +19,6 @@ import { QuantityButtons } from './QuantityButtons';
 export const ItemInCart: React.FC<IItemInCartProps> = ({ product }) => {
   const image = getItemImage(product);
   const name = product.name[LANGUAGE.EN];
-  // const quantity = product.quantity;
   const price = getItemPrice(product, CURRENCY.SYMBOL);
   const discountedPrice = getItemDiscountedPrice(product, CURRENCY.SYMBOL);
   const total = getItemTotalPrice(product, CURRENCY.SYMBOL);

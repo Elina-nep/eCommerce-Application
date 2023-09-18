@@ -73,7 +73,6 @@ export const Cart = () => {
               className="cart_page__btn"
               onClick={() => {
                 setIsModalOpen(true);
-                console.log(isModalOpen);
               }}
             >
               Clear cart
