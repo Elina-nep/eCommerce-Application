@@ -7,10 +7,12 @@
   z-index: 1;
   gap: 2rem;
   border-radius: 10px;
+  max-width: 280px;
 }
 
 .cart__modal-wrapper > * {
   display: flex;
   gap: 2rem;
   justify-content: center;
+  text-align: center;
 }

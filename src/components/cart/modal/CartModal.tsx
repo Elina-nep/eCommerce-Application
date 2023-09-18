@@ -15,7 +15,7 @@ export const CartModal = ({
     <>
       <div className="modal" onClick={closeModal}>
         <div className="cart__modal-wrapper">
-          <p> Clear cart? </p>
+          <p> Are you sure you want to clear the cart? </p>
           <div>
             <Button
               onClick={() => {
