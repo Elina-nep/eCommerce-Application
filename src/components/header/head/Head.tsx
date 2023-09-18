@@ -49,7 +49,7 @@ const Head = () => {
         <div className="cart__link">
           <Link to="/cart">
             {cart.totalLineItemQuantity} <AiOutlineShoppingCart />
-            €‎{getCartTotalPrice(cart, CURRENCY.SYMBOL)}
+            {getCartTotalPrice(cart, CURRENCY.SYMBOL)}
           </Link>
         </div>
         <div className="registration-links">
