@@ -65,17 +65,15 @@
   width: 20px;
 }
 
-.about__description {
-  p {
-    margin: 0 auto 1rem 0;
-  }
+.about__bio {
+  margin: 0 auto 1rem auto;
+  text-align: justify;
 }
 
 .about_card__ul {
   margin: 0;
-  padding: 0;
-  list-style: none;
   padding: 2px 0;
+  list-style: none;
 }
 
 .about_card__li {
