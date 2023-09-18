@@ -2,7 +2,7 @@ import { ColumnItem, LinkItem } from '../types/footer';
 
 export const links: LinkItem[] = [
   { title: 'Home', to: '/' },
-  { title: 'Catalog', to: '/catalog/all' },
+  { title: 'Catalog', to: '/catalog?category=all' },
   { title: 'About us', to: '/about' },
 ];
 
