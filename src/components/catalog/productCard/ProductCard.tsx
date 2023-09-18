@@ -9,16 +9,16 @@ import {
   CURRENCY,
   getProductCardDescription,
   getProductCardImage,
-  getProductCardPrice,
-  getProductCardPriceDiscounted,
+  getProductPrice,
+  getProductPriceDiscounted,
   LANGUAGE,
 } from '../../../util';
 import { ButtonCartActions } from '../../product/assets/ButtonCartActions';
 
 export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
   const title = product.name[LANGUAGE.EN];
-  const price = getProductCardPrice(product, CURRENCY.EUR);
-  const discountedPrice = getProductCardPriceDiscounted(product, CURRENCY.EUR);
+  const price = getProductPrice(product, CURRENCY.EUR);
+  const discountedPrice = getProductPriceDiscounted(product, CURRENCY.EUR);
   const image = getProductCardImage(product);
   const description = getProductCardDescription(product, LANGUAGE.EN);
   const productCardImageStyle = {

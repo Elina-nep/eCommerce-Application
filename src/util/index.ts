@@ -32,12 +32,7 @@ export {
   getProductPrice,
   getProductPriceDiscounted,
 } from './product';
-export {
-  getProductCardDescription,
-  getProductCardImage,
-  getProductCardPrice,
-  getProductCardPriceDiscounted,
-} from './productCard';
+export { getProductCardDescription, getProductCardImage } from './productCard';
 export { defaultCatalogeResponse, defaultProductData } from './productConstans';
 export { CURRENCY, LANGUAGE } from './productConstans';
 export { getExistingToken, tokenCache, userTokenCache } from './tokenProcess';

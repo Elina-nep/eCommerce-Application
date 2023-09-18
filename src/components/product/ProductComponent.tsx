@@ -30,8 +30,11 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
   const material = getProductAttribute(product, 'material', LANGUAGE.EN);
   const color = getProductAttribute(product, 'color', LANGUAGE.EN);
   const occasions = getProductAttribute(product, 'occasions', LANGUAGE.EN);
-  const price = getProductPrice(product, CURRENCY.EUR);
-  const discountedPrice = getProductPriceDiscounted(product, CURRENCY.EUR);
+  const price = getProductPrice(product.current, CURRENCY.EUR);
+  const discountedPrice = getProductPriceDiscounted(
+    product.current,
+    CURRENCY.EUR,
+  );
   const productCategories = getProductCategories(
     product,
     categories,

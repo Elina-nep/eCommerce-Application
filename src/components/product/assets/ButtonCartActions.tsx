@@ -62,7 +62,7 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
     );
   return (
     <SparklingButton
-      className="primary_transparent_button product_button"
+      className="secondary_light_button product_button"
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();

@@ -1,7 +1,11 @@
 import {
   CategoryPagedQueryResponse,
   ProductCatalogData,
+  ProductData,
+  ProductProjection,
 } from '@commercetools/platform-sdk';
+
+import { CURRENCY } from './productConstans';
 
 export const getProductCategories = (
   product: ProductCatalogData,
@@ -93,31 +97,31 @@ export function formatAttributes(attributes: string[] | string) {
 }
 
 export function getProductPrice(
-  product: ProductCatalogData,
+  product: ProductProjection | ProductData,
   currency: string,
 ): string {
-  const prices = product.current.masterVariant.prices || [];
+  const prices = product.masterVariant.prices || [];
   for (const price of prices) {
     if (price.value.currencyCode === currency) {
       const formattedPrice = (price.value.centAmount / 100).toFixed(2);
-      return `${formattedPrice} ${currency}`;
+      return `${formattedPrice} ${CURRENCY.SYMBOL}`;
     }
   }
   return 'Not Available';
 }
 
 export function getProductPriceDiscounted(
-  product: ProductCatalogData,
+  product: ProductProjection | ProductData,
   currency: string,
 ): string {
-  const prices = product.current.masterVariant.prices || [];
+  const prices = product.masterVariant.prices || [];
   for (const price of prices) {
     if (price.value.currencyCode === currency) {
       if (price.discounted && price.discounted.value) {
         const formattedPrice = (
           price.discounted.value.centAmount / 100
         ).toFixed(2);
-        return `${formattedPrice} ${currency}`;
+        return `${formattedPrice} ${CURRENCY.SYMBOL}`;
       }
     }
   }
