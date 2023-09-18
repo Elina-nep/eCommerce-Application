@@ -48,8 +48,8 @@ const Head = () => {
         </Link>
         <div className="cart__link">
           <Link to="/cart">
-            <AiOutlineShoppingCart /> {cart.totalLineItemQuantity} ( €‎
-            {getCartTotalPrice(cart, CURRENCY.SYMBOL)} )
+            {cart.totalLineItemQuantity} <AiOutlineShoppingCart />
+            €‎{getCartTotalPrice(cart, CURRENCY.SYMBOL)}
           </Link>
         </div>
         <div className="registration-links">

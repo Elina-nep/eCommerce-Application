@@ -167,6 +167,7 @@
 }
 
 .cart__link {
+  justify-content: flex-start;
   display: flex;
   flex-wrap: wrap;
   color: var(--dark-color);

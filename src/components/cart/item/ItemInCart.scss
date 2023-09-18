@@ -6,7 +6,6 @@
   grid-gap: 0.5rem;
   align-items: center;
   text-align: center;
-  padding: 0.4rem;
   border-bottom: 1px solid var(--secondary-color);
   min-height: 100px;
 }
@@ -14,6 +13,12 @@
 .item__col {
   @extend %flex-row;
   width: fit-content;
+  @media (min-width: 300px) and (max-width: 419px) {
+    font-size: 10px;
+  }
+  @media (min-width: 420px) and (max-width: 499px) {
+    font-size: 12px;
+  }
 }
 
 .item__col_img {
@@ -28,6 +33,9 @@
   @media (min-width: 300px) and (max-width: 499px) {
     height: 2.5rem;
   }
+  @media (min-width: 500px) and (max-width: 600px) {
+    height: 3.5rem;
+  }
 }
 
 .item__quantity {
@@ -35,12 +43,20 @@
   justify-content: space-evenly;
   width: 90%;
   border-radius: 5px;
+  margin: 0 auto;
+  @media (min-width: 300px) and (max-width: 550px) {
+    width: 60%;
+  }
 }
 
 .item__quantity div {
   width: 50%;
   padding: 0.5rem;
   background: var(--light-color);
+  @media (min-width: 300px) and (max-width: 550px) {
+    width: fit-content;
+    padding: 0.2rem;
+  }
 }
 
 .item__quantity_btn {
@@ -64,13 +80,17 @@
     cursor: pointer;
     background-color: var(--primary-color);
   }
+  @media (min-width: 300px) and (max-width: 550px) {
+    width: 28%;
+    padding: 6px;
+  }
 }
 
 .item__col_remove-btn {
   @extend %round_button;
   @media (min-width: 300px) and (max-width: 600px) {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
   }
 }
 
@@ -87,6 +107,5 @@
 }
 
 .item__col_total {
-  width: 90%;
   margin: 0 auto;
 }

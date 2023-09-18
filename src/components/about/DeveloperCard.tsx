@@ -32,6 +32,7 @@ export const DeveloperCard = (developer: IDeveloper) => {
       <div className="about__description">
         <p className="about__bio">{developer.bio}</p>
         <div>
+          <p className="about__resp">Responsibilities:</p>
           <ul className="about_card__ul">
             {developer.done.map((el, index) => (
               <li key={index} className="about_card__li">

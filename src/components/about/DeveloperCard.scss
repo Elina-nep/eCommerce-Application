@@ -78,8 +78,14 @@
 
 .about_card__li {
   &::before {
-    content: '🪄';
+    content: '✨';
     font-size: 12px;
     margin-right: 6px;
   }
+}
+
+.about__resp {
+  font-weight: 800;
+  text-align: center;
+  color: var(--secondary-color);
 }
