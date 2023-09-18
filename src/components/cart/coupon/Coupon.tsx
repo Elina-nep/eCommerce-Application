@@ -11,6 +11,7 @@ import { changeCart, StoreType } from '../../../store';
 import { ICoupon } from '../../../types';
 import { couponValidation, discountCart, getDiscount } from '../../../util';
 import { couponTheme } from '../../auth/theme';
+import { SparklingButton } from '../../buttons/SparklingButton/SparklingButton';
 
 export const Coupon: React.FC = () => {
   const dispatch = useDispatch();
@@ -46,9 +47,12 @@ export const Coupon: React.FC = () => {
       action: 'addDiscountCode',
     })
       .then((res) => {
-        dispatch(changeCart({ cart: res }));
-        setErrorMessage('');
+        setTimeout(() => {
+          dispatch(changeCart({ cart: res }));
+          setErrorMessage('');
+        }, 400);
       })
+
       .catch((e) => {
         console.log(e.message);
         setErrorMessage(e.message || 'An error occurred');
@@ -71,10 +75,6 @@ export const Coupon: React.FC = () => {
 
   return (
     <div className="coupon">
-      {errorMessage && (
-        <p className="primary_button coupon__new_error">{errorMessage}</p>
-      )}
-
       {cart.discountCodes.find(
         (discountCode) => discountCode.state === 'MatchesCart',
       ) ? (
@@ -93,41 +93,43 @@ export const Coupon: React.FC = () => {
           </div>
         </div>
       ) : (
-        <ThemeProvider theme={couponTheme}>
-          <form
-            onSubmit={handleSubmit(handleAddDiscount)}
-            className="coupon__form"
-          >
-            <Controller
-              control={control}
-              name="coupon"
-              rules={{
-                validate: (value) =>
-                  couponValidation(value, cart.totalPrice.centAmount),
-              }}
-              render={({ field }) => (
-                <TextField
-                  id="coupon"
-                  label="Coupon"
-                  onChange={(e) => {
-                    field.onChange(e);
-                    setErrorMessage('');
-                  }}
-                  value={field.value || ''}
-                  size="small"
-                  margin="normal"
-                  type="text"
-                  error={!!errors.coupon?.message}
-                  helperText={errors?.coupon?.message}
-                  className="coupon__new_input"
-                />
-              )}
-            />
-            <button type="submit" className="primary_button coupon__new_btn">
-              Apply
-            </button>
-          </form>
-        </ThemeProvider>
+        <div className="coupon__form">
+          <ThemeProvider theme={couponTheme}>
+            <form onSubmit={handleSubmit(handleAddDiscount)}>
+              <Controller
+                control={control}
+                name="coupon"
+                rules={{
+                  validate: (value) =>
+                    couponValidation(value, cart.totalPrice.centAmount),
+                }}
+                render={({ field }) => (
+                  <TextField
+                    id="coupon"
+                    label="Coupon"
+                    onChange={(e) => {
+                      field.onChange(e);
+                      setErrorMessage('');
+                    }}
+                    value={field.value || ''}
+                    size="small"
+                    margin="normal"
+                    type="text"
+                    error={!!errors.coupon?.message}
+                    helperText={errors?.coupon?.message}
+                    className="coupon__add_input"
+                  />
+                )}
+              />
+              <SparklingButton className="primary_transparent_button coupon__add_btn">
+                Apply
+              </SparklingButton>
+            </form>
+          </ThemeProvider>
+          {errorMessage && (
+            <p className="primary_button coupon__add_error">{errorMessage}</p>
+          )}
+        </div>
       )}
     </div>
   );

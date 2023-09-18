@@ -1,7 +1,7 @@
 import { createRoutesFromElements, Route } from 'react-router-dom';
 
 import { NotFound } from '../pages/404/NotFound';
-import { AboutPage } from '../pages/about/About';
+import { AboutPage } from '../pages/about/AboutPage';
 import { App } from '../pages/App';
 import { LoginPage } from '../pages/auth/Login';
 import { RegisterPage } from '../pages/auth/Register';

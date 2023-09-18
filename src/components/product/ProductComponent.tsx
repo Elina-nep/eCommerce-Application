@@ -1,5 +1,7 @@
 import './ProductComponent.scss';
 
+import { GlassMagnifier } from '@ricarso/react-image-magnifiers';
+import classes from 'classnames';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
@@ -15,7 +17,7 @@ import {
   LANGUAGE,
 } from '../../util';
 import Button from '../buttons/Button';
-import { ButtonCartActions } from './assets/ButtonCartActions';
+import { ButtonProductCart } from './assets/ButtonProductCart';
 import { ProductModal } from './assets/ProductModal';
 
 export const ProductComponent: React.FC<IProductComponentProps> = ({
@@ -85,15 +87,20 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
           <Button onClick={showPreviousImage} className="button-pagination">
             {'<'}
           </Button>
-          <div className="product__image">
-            {productImages?.length && (
-              <img
-                onClick={handleOpenModal}
-                src={productImages[currentImageIndex]}
-                alt={title}
+          {productImages?.length && (
+            <div
+              className={classes('container')}
+              onClick={handleOpenModal}
+              style={{ width: '50%' }}
+            >
+              <GlassMagnifier
+                className={classes('magnifier')}
+                imageSrc={productImages[currentImageIndex]}
+                imageAlt={title}
+                magnifierSize="80%"
               />
-            )}
-          </div>
+            </div>
+          )}
 
           <Button onClick={showNextImage} className="button-pagination">
             {'>'}
@@ -101,25 +108,29 @@ export const ProductComponent: React.FC<IProductComponentProps> = ({
         </div>
         <div className="product__content_details">
           <h1 className="product__title">{title}</h1>
-          {discountedPrice ? (
-            <div className="product__with_discount">
-              <p className="product__offer">Special Offer</p>
+          <div className="product__price-cart">
+            {discountedPrice ? (
+              <div className="product__with_discount">
+                <p className="product__offer">Special Offer</p>
 
-              <div className="product__prices_box">
-                {price && <p className="product__price">{price}</p>}
-                {<p className="product__dicounted_price">{discountedPrice}</p>}
+                <div className="product__prices_box">
+                  {price && <p className="product__price">{price}</p>}
+                  {
+                    <p className="product__dicounted_price">
+                      {discountedPrice}
+                    </p>
+                  }
+                </div>
               </div>
-            </div>
-          ) : (
-            <div className="product__no_discount">
-              {price && (
-                <p className="primary_button product__price">{price}</p>
-              )}
-            </div>
-          )}
-
-          <ButtonCartActions product={product.current} id={id} />
-
+            ) : (
+              <div className="product__no_discount">
+                {price && (
+                  <p className="primary_button product__price">{price}</p>
+                )}
+              </div>
+            )}
+            <ButtonProductCart product={product.current} id={id} />
+          </div>
           <div className="product__details">
             {description && (
               <p className="product__description">{description}</p>

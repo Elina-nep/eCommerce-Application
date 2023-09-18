@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 import imageToAddCottoncandy from '../../../assets/cotton-candy.png';
+import { ReactComponent as Star } from '../../../assets/star-solid.svg';
 import {
   AppDispatch,
   clearCart,
@@ -13,6 +14,7 @@ import {
   logout,
   StoreType,
 } from '../../../store';
+import { CURRENCY, getCartTotalPrice } from '../../../util';
 
 const Head = () => {
   const dispatch = useDispatch<AppDispatch>();
@@ -25,6 +27,12 @@ const Head = () => {
       <div className="headnav">
         <Link to="/" className="store-name">
           <div className="logo">
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+            <Star />
+            <Star />
             <div className="logo-picture">
               <img
                 className="logo-img"
@@ -40,8 +48,8 @@ const Head = () => {
         </Link>
         <div className="cart__link">
           <Link to="/cart">
-            <AiOutlineShoppingCart /> {cart.totalLineItemQuantity} ( €‎
-            {cart.totalPrice.centAmount / 100} )
+            {cart.totalLineItemQuantity} <AiOutlineShoppingCart />
+            {getCartTotalPrice(cart, CURRENCY.SYMBOL)}
           </Link>
         </div>
         <div className="registration-links">

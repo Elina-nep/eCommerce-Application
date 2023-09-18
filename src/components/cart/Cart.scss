@@ -1,9 +1,11 @@
 @import '../../index.scss';
 
 .cart {
-  margin: 2.5% 0;
+  margin: 2rem 0;
   width: 90%;
-  background-color: rgba(255, 255, 255, 0.869);
+  background-color: rgba(255, 255, 255);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .cart__title {
@@ -77,8 +79,7 @@
 
 .cart__aside {
   @extend %flex-col;
-  justify-content: space-between;
-  width: 20%;
+  width: 25%;
   padding: 1.2%;
   background-color: var(--secondary-color-light);
   border-radius: 10px;

@@ -1,4 +1,5 @@
 export type { IDeveloper } from './about';
+export type { IButtonProps } from './button';
 export type { CardProps } from './cards';
 export type {
   DiscountCartService,

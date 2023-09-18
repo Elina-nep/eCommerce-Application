@@ -1,6 +1,7 @@
 .categories-list-item {
   display: block;
   cursor: pointer;
+  padding: 2px;
 }
 
 .sidebar-filter-category {
@@ -17,10 +18,26 @@
 
 .categories-child-item {
   margin-left: 2rem;
+  visibility: visible;
+  height: inherit;
+  transition:
+    all 0.5s ease-out,
+    visibility 0s;
+}
+
+.categories-child-item.hidden {
+  visibility: hidden;
+  opacity: 0;
+  height: 0px;
+  padding: 0;
+  &:hover {
+    pointer-events: none;
+  }
 }
 
 .categories-parent-item {
-  margin-left: 1rem;
+  margin-left: 0;
+  border-top: 1px solid var(--secondary-color-light);
 }
 
 @media (max-width: 850px) {

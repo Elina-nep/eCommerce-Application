@@ -4,14 +4,16 @@
 
 .catalog-container {
   width: 95%;
-  margin: 2.5% auto;
+  margin: 2rem auto;
   background: var(--light-color);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 .catalog-container-product {
   display: flex;
   justify-content: space-between;
-  gap: 2%;
+  gap: 2vw;
   width: 96%;
   margin: auto;
 }

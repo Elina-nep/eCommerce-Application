@@ -1,18 +1,22 @@
 import './Cart.scss';
 
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import { changeCart, StoreType } from '../../store';
+import { changeAlert, changeCart, StoreType } from '../../store';
 import { changeItemInCart } from '../../util';
 import Button from '../buttons/Button';
+import { OrderButton } from '../buttons/OrderButton/OrderButton';
 import { Coupon } from './coupon/Coupon';
 import { ItemInCart } from './item/ItemInCart';
+import { CartModal } from './modal/CartModal';
 import { Summary } from './summary/Summary';
 
 export const Cart = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state: StoreType) => state.cart.cart);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleClearCart = () => {
     const itemsQuantities: number[] = [];
@@ -29,6 +33,7 @@ export const Cart = () => {
     })
       .then((res) => {
         dispatch(changeCart({ cart: res }));
+        dispatch(changeAlert({ alertMessage: 'Cart cleared' }));
       })
       .catch((e) => {
         console.log(e.message);
@@ -54,13 +59,21 @@ export const Cart = () => {
             <ItemInCart product={el} key={el.id} />
           ))}
           <div className="cart__button_container">
-            <Link to="/catalog" className="page__link">
+            <Link
+              to={{
+                pathname: `/catalog`,
+                search: 'category=all',
+              }}
+              className="page__link"
+            >
               &#8592; Continue Shopping
             </Link>
             <Button
               disabled={cart.lineItems.length == 0}
               className="cart_page__btn"
-              onClick={() => handleClearCart()}
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
             >
               Clear cart
             </Button>
@@ -69,8 +82,17 @@ export const Cart = () => {
         <div className="cart__aside">
           <Summary />
           <Coupon />
+          <OrderButton />
         </div>
       </div>
+      {isModalOpen && (
+        <CartModal
+          closeModal={() => {
+            setIsModalOpen(false);
+          }}
+          handleClearCart={handleClearCart}
+        />
+      )}
     </div>
   );
 };

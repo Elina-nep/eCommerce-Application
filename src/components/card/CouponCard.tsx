@@ -12,12 +12,14 @@ const Card: React.FC<CardProps> = ({ card, handleLearnMoreClick }) => {
         <h3 className="coupon-card-title">{card.discountText}</h3>
         <img className="coupon-card-img" src={card.image} alt="Card" />
 
-        <Button
-          onClick={() => handleLearnMoreClick(card)}
-          className="primary_button coupon_card__button"
-        >
-          Learn more
-        </Button>
+        <div className="special_hover_container">
+          <Button
+            onClick={() => handleLearnMoreClick(card)}
+            className="coupon_card__button"
+          >
+            Learn more
+          </Button>
+        </div>
       </div>
     </>
   );

@@ -10,7 +10,8 @@
 .about-us-content-wrapper {
   background: rgb(255, 255, 255);
   width: 90%;
-  margin: 2.5% auto;
+  margin: 2rem auto;
+  border-radius: 10px;
 }
 
 .about-us-card-wrapper {
@@ -18,7 +19,7 @@
   flex-direction: row;
   justify-content: space-between;
   width: 95%;
-  margin: 2% auto;
+  margin: 2rem auto;
   font-size: var(--font-small);
 }
 
@@ -57,14 +58,14 @@
 }
 
 .about-us-team-last-paragraph {
-  margin-top: 4%;
+  margin-top: 4rem;
   text-align: center;
   font-weight: 600;
   text-decoration: underline;
 }
 
 .about-us-git-link {
-  margin-top: 5%;
+  margin-top: 5rem;
   position: relative;
   bottom: 0px;
   text-decoration: none;
@@ -97,7 +98,7 @@
   text-align: center;
   padding: 0.6rem;
   box-shadow: 0 0 10px rgba(49, 136, 124, 0.5);
-  margin-bottom: 2.5%;
+  margin-bottom: 2.5rem;
   min-width: 115px;
 }
 
@@ -117,7 +118,7 @@
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  margin: 2% auto;
+  margin: 2rem auto;
   padding: 1rem 0.4rem;
   transition: transform 0.8s;
 }
