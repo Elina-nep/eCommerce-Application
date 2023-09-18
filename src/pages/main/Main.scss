@@ -1,18 +1,13 @@
 @import '../../index.scss';
 
-.main-page {
-  background-image: url('../../assets/background-main.png');
-  justify-content: space-evenly;
-  display: flex;
-  align-items: center;
-}
-
 .main-page-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   gap: 30px;
+  flex-grow: 1;
+  justify-content: space-between;
 }
 
 .main__welcome {
@@ -22,6 +17,13 @@
   @media (min-width: 210px) and (max-width: 760px) {
     flex-direction: column;
   }
+}
+
+.slider-part {
+  padding-top: 2rem;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
 .main__welcome_image,

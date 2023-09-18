@@ -30,21 +30,6 @@ const authAnonMiddlewareOptions: AuthMiddlewareOptions = {
   tokenCache,
 };
 
-// const refreshMiddlewareOptions: RefreshAuthMiddlewareOptions = {
-//   host: process.env.REACT_APP_AUTH_URL!,
-//   projectKey: projectKey,
-//   credentials: {
-//     clientId: clientId!,
-//     clientSecret: clientSecret!,
-//   },
-//   fetch,
-//   tokenCache,
-// };
-
-// const existingAuthMiddlewareOptions: ExistingTokenMiddlewareOptions = {
-//   force: true,
-// };
-
 // Configure httpMiddlewareOptions
 const httpMiddlewareOptions: HttpMiddlewareOptions = {
   host: process.env.REACT_APP_HOST_URL!,
@@ -60,7 +45,6 @@ const formAnonFlow = () => {
           ...authAnonMiddlewareOptions,
           refreshToken: currentToken,
         })
-        // .withExistingTokenFlow(currentToken, existingAuthMiddlewareOptions)
         .withHttpMiddleware(httpMiddlewareOptions)
         .build()
     : new ClientBuilder()

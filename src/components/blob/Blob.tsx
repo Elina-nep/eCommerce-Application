@@ -1,13 +1,8 @@
 import './Blob.scss';
 
-import React, { memo, useEffect, useState } from 'react';
+import React from 'react';
 
 const ORB_COUNT = 16;
-
-interface IBlobProps {
-  componentHue?: number;
-  children?: React.ReactNode;
-}
 
 const random = (min: number, max: number) =>
   Math.floor(Math.random() * (max - min) + min);
@@ -63,27 +58,17 @@ const Gradient: React.FC<{ id: string; hue: number }> = ({ id, hue }) => {
 
 const Orb: React.FC<{ hue: number }> = ({ hue }) => {
   const r = random(30, 100);
-  const initialFrom: [number, number] = [
+  const from: [number, number] = [
     random(0 - r, 1000 + r),
     random(0 - r, 1000 + r),
   ];
-  const initialTo: [number, number] = [
+  const to: [number, number] = [
     random(0 - r, 1000 + r),
     random(0 - r, 1000 + r),
   ];
-  const [from, setFrom] = useState<[number, number]>(initialFrom);
-  const [to, setTo] = useState<[number, number]>(initialTo);
+
   const d = distance(from, to);
   const id = random(0, 1000);
-
-  useEffect(() => {
-    const moveOrb = () => {
-      setFrom(() => [random(0 - r, 500 + r), random(0 - r, 500 + r)]);
-      setTo(() => [random(0 - r, 1000 + r), random(0 - r, 1000 + r)]);
-    };
-
-    moveOrb();
-  }, [r]);
 
   return (
     <>
@@ -92,26 +77,28 @@ const Orb: React.FC<{ hue: number }> = ({ hue }) => {
         cy={to[0]}
         r={r}
         fill={`url(#grad-${id})`}
-        style={{
-          transitionDuration: `${d / 15}s`,
-          left: `${initialFrom[0]}px`,
-          top: `${initialFrom[1]}px`,
-          transform: `translate(${initialTo[0]}px, ${initialTo[1]}px)`,
-        }}
+        style={
+          {
+            '--duration': `${d / 25}s`,
+            '--from-x': from[0],
+            '--from-y': from[1],
+            '--to-x': to[0],
+            '--to-y': to[1],
+          } as React.CSSProperties
+        }
       />
       <Gradient id={`grad-${id}`} hue={hue} />
     </>
   );
 };
 
-// eslint-disable-next-line react/prop-types
-const Orbs: React.FC<OrbsProps> = memo(({ hue }) => {
+const Orbs = ({ hue }: OrbsProps) => {
   return (
     <svg
       viewBox="0 0 1000 1000"
       preserveAspectRatio="xMinYMin slice"
       style={{
-        background: `linear-gradient(hsl(${hue},${80}%,${90}%), hsl(${hue},${100}%,${80}%))`,
+        background: `linear-gradient(hsl(${hue},${60}%,${82}%), hsl(${hue},${34}%,${47}%))`,
       }}
     >
       <g filter="url(#blur)">
@@ -127,27 +114,15 @@ const Orbs: React.FC<OrbsProps> = memo(({ hue }) => {
       </defs>
     </svg>
   );
-});
-
-export const Blob: React.FC<IBlobProps> = ({ componentHue, children }) => {
-  // const [hue, setHue] = useState<number>(random(0, 360));
-
-  // const buttonStyle: React.CSSProperties = {
-  //   backgroundColor: `hsl(${hue}, 80%, 50%)`,
-  // };
+};
+interface IBlobProps {
+  children?: React.ReactNode;
+}
+export const Blob: React.FC<IBlobProps> = ({ children }) => {
   return (
     <div className="blob">
       {children}
-      <Orbs hue={componentHue ?? 0} />
-      {/* <div className="banner">
-        <button
-          className="my-button"
-          style={buttonStyle}
-          onClick={() => setHue(random(0, 360))}
-        >
-          Regenerate
-        </button>
-      </div> */}
+      <Orbs hue={170} />
     </div>
   );
 };

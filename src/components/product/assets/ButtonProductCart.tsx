@@ -30,7 +30,11 @@ export const ButtonProductCart = ({ product, id }: IButtonCartActions) => {
       cartItemId,
       quantity,
     })
-      .then((res) => dispatch(changeCart({ cart: res })))
+      .then((res) =>
+        setTimeout(() => {
+          dispatch(changeCart({ cart: res }));
+        }, 400),
+      )
       .catch((e) => {
         console.log(e.message);
       });

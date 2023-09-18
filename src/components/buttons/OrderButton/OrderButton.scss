@@ -25,6 +25,9 @@
 }
 
 .truck-button {
+  &:hover {
+    --background: #fe4004;
+  }
   --color: #fff;
   --background: #ff814e;
   --tick: #16bf78;

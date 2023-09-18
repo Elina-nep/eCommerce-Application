@@ -100,7 +100,6 @@ export const PersonalData: React.FC<PersonalDataProps> = ({
         render={({ field }) => (
           <TextField
             id="dateBirth"
-            // label="Date of Birth"
             {...field}
             fullWidth={true}
             size="small"
