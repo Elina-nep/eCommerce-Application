@@ -37,19 +37,31 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
         {description && (
           <p className="product_card__description">{description}</p>
         )}
-        {discountedPrice && (
-          <p className="product_card__dicounted_price">{discountedPrice}</p>
-        )}
-        {price && (
-          <p
-            className={`product_card__price ${
-              discountedPrice ? 'product_card__discountedPrice' : ''
-            }`}
-          >
-            {price}
-          </p>
-        )}
-        <ButtonCartActions product={product as ProductData} id={product.id} />
+        <div className="product_card__price_content">
+          <div className="top-row">
+            {!discountedPrice && <span className="product_card__empty_line" />}
+            {discountedPrice && (
+              <p className="product_card__dicounted_price">{discountedPrice}</p>
+            )}
+          </div>
+          <div className="bottom-row">
+            <div className="price-container">
+              {price && (
+                <p
+                  className={`product_card__price ${
+                    discountedPrice ? 'product_card__price-crossed' : ''
+                  }`}
+                >
+                  {price}
+                </p>
+              )}
+            </div>
+            <ButtonCartActions
+              product={product as ProductData}
+              id={product.id}
+            />
+          </div>
+        </div>
       </div>
     </Link>
   );

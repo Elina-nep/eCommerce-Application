@@ -1,4 +1,6 @@
 import { ProductProjection } from '@commercetools/platform-sdk';
+
+import { CURRENCY } from './productConstans';
 const DESCRIPTION_LIMIT = 40;
 
 export function getProductCardPrice(
@@ -9,7 +11,7 @@ export function getProductCardPrice(
   for (const price of prices) {
     if (price.value.currencyCode === currency) {
       const formattedPrice = (price.value.centAmount / 100).toFixed(2);
-      return `${formattedPrice} ${currency}`;
+      return `${formattedPrice} ${CURRENCY.SYMBOL}`;
     }
   }
   return 'Not Available';
@@ -26,7 +28,7 @@ export function getProductCardPriceDiscounted(
         const formattedPrice = (
           price.discounted.value.centAmount / 100
         ).toFixed(2);
-        return `${formattedPrice} ${currency}`;
+        return `${formattedPrice} ${CURRENCY.SYMBOL}`;
       }
     }
   }
