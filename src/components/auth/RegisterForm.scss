@@ -1,6 +1,6 @@
 .registration-page {
   text-align: center;
-  background-image: url('../../assets/big-balloons.jpg');
+  background-image: url('../../assets/background-login-page.jpeg');
 }
 
 .registration-page__form {
@@ -8,6 +8,7 @@
   background-color: var(--light-color);
   border-radius: 10px;
   transition: all ease 0.2s;
+  margin: 2rem auto;
   @media (min-width: 768px) and (max-width: 4000px) {
     width: 600px;
   }

@@ -1,4 +1,6 @@
 import { ProductData } from '@commercetools/platform-sdk';
+import { AiOutlineShoppingCart } from 'react-icons/ai';
+import { AiOutlineDelete } from 'react-icons/ai';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { changeCart, StoreType } from '../../../store';
@@ -38,7 +40,7 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
   if (itemInCart)
     return (
       <Button
-        className="secondary_light_button"
+        className="secondary_light_button__trash"
         onClick={(e) => {
           e.stopPropagation();
           e.preventDefault();
@@ -50,12 +52,12 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
           );
         }}
       >
-        Remove From Cart
+        <AiOutlineDelete />
       </Button>
     );
   return (
     <Button
-      className="secondary_light_button"
+      className="secondary_light_button__cart"
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -67,7 +69,7 @@ export const ButtonCartActions = ({ product, id }: IButtonCartActions) => {
         );
       }}
     >
-      Add to Cart
+      <AiOutlineShoppingCart />
     </Button>
   );
 };
