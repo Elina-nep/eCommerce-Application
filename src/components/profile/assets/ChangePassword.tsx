@@ -101,32 +101,36 @@ export const ChangePassword: React.FC<IChangePasswordProps> = ({ version }) => {
             )}
 
             {editMode ? (
-              <button
-                type="submit"
-                className="primary_button profile__save_btn"
-                disabled={!editMode}
-              >
-                Save
-              </button>
+              <div className="special_hover_container">
+                <button
+                  type="submit"
+                  className="profile__save_btn"
+                  disabled={!editMode}
+                >
+                  Save
+                </button>
+              </div>
             ) : (
               ''
             )}
 
             {editMode ? (
-              <button
-                className="primary_button profile__exit_btn"
-                disabled={!editMode}
-                onClick={() => {
-                  if (submitted) {
-                    setEditMode(false);
-                  } else {
-                    setEditMode(false);
-                    setSubmitted(true);
-                  }
-                }}
-              >
-                Exit
-              </button>
+              <div className="special_hover_container">
+                <button
+                  className="profile__exit_btn"
+                  disabled={!editMode}
+                  onClick={() => {
+                    if (submitted) {
+                      setEditMode(false);
+                    } else {
+                      setEditMode(false);
+                      setSubmitted(true);
+                    }
+                  }}
+                >
+                  Exit
+                </button>
+              </div>
             ) : (
               ''
             )}

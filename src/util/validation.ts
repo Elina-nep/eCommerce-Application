@@ -141,6 +141,9 @@ export const postalCodeValidation = {
 };
 
 export const couponValidation = (value: string, purchase: number) => {
+  if (!value) {
+    return 'Please, type the coupon code';
+  }
   if (value === 'GET10' && purchase < PURCHASE_LIMIT.GET10) {
     return 'Minimum purchase for GET10 is 50€';
   }

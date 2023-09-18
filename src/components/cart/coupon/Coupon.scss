@@ -5,21 +5,22 @@
   justify-content: center;
   gap: 0.2rem;
   width: 100%;
+  height: fit-content;
 }
 
 .coupon__form {
   display: flex;
-  align-items: baseline;
-  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   gap: 2%;
   margin: 0 auto 2rem auto;
-  justify-content: center;
   @media (min-width: 300px) and (max-width: 940px) {
     margin-bottom: 1rem;
   }
 }
 
-.coupon__new_input {
+.coupon__add_input {
   font-family: 'Iceland';
   font-size: var(--font-small);
   @media (min-width: 300px) and (max-width: 940px) {
@@ -27,19 +28,14 @@
   }
 }
 
-.coupon__new_btn {
-  width: 22%;
-  min-width: 4rem;
-  padding: 0.2rem 0.4rem;
-  height: 2.2rem;
+.coupon__add_btn {
+  margin: 0.5rem 0 0 0;
+  padding: 0.2rem 0.8rem;
   font-weight: 800;
-  @media (min-width: 300px) and (max-width: 940px) {
-    font-size: var(--font-medium);
-    width: 6rem;
-  }
+  font-size: var(--font-large);
 }
 
-.coupon__new_error {
+.coupon__add_error {
   margin: 1rem 0;
   padding: 3px 10px;
   &:hover {

@@ -1,3 +1,4 @@
+import imageToAboutUs from '../assets/about_image.png';
 import imageToAddBalloons from '../assets/balloons.jpg';
 import imageToAddCandles from '../assets/candles.jpg';
 import imageToAddDecoration from '../assets/decoration.jpg';
@@ -7,7 +8,8 @@ import imageDiscount20 from '../assets/get20.png';
 import imageDiscount30 from '../assets/get30.png';
 import imageToAddHalina from '../assets/Halina.jpg';
 import imageToAddHats from '../assets/hats.jpg';
-import imageToAddIryna from '../assets/Iryna.jpg';
+import imageToAddIryna from '../assets/Iryna.png';
+import imageToMain from '../assets/main_image.png';
 import imageToAddPoppers from '../assets/poppers.jpg';
 import imageToAddSets from '../assets/sets.jpg';
 import { IDeveloper } from '../types';
@@ -19,22 +21,15 @@ export const DEVELOPERS: IDeveloper[] = [
   {
     name: 'Elina',
     role: 'Team Lead',
+    bio: 'Dedicated and highly motivated front-end developer with two years of experience. Holding a PhD in technical physics. University teacher and scientific advisor. This unique blend of technical expertise and teaching experience positions me to contribute effectively to innovative front-end development projects.',
     done: [
-      'organizing work',
-      'checking task completion',
-      ' configuring the project and the entire development environment',
-      'setting up the API for working with the server',
-      'obtaining tokens',
+      'tasks coordination and progress tracking',
+      'configuring entire development environment',
+      'product database setup',
+      'services for backend requests',
+      'catalog search, sorting and filtering',
+      'tests setup',
       'routing',
-      'setting up navigation',
-      'website search',
-      'filtering',
-      'sorting',
-      'work with cart page functionality',
-      'setting up product database in commercetools',
-      'writing tests',
-      'design',
-      'responsive layout',
     ],
     link: 'https://github.com/Elina-nep',
     photo: imageToAddElina,
@@ -42,15 +37,13 @@ export const DEVELOPERS: IDeveloper[] = [
   {
     name: 'Iryna',
     role: 'Developer',
+    bio: 'BSUIR alumnus with a video editing background, embarking on an exciting journey at RS School to master frontend development. Passionately committed to creating user-friendly and visually captivating digital experiences, with a keen focus on merging creativity and cutting-edge technology.',
     done: [
-      'setting up registration on the register page',
-      'working with addresses and tokens',
-      'authorization forms on the login page',
-      'implementing functionality on user pages',
-      'integrating promocodes from commercetools into the project',
-      'creating a shopping cart page',
-      'writing tests',
-      'design',
+      'login and registration setup',
+      'user profile page',
+      'cart page',
+      'magnifying glass implementation',
+      'tests',
       'responsive layout',
     ],
     link: 'https://github.com/iradzh',
@@ -59,20 +52,16 @@ export const DEVELOPERS: IDeveloper[] = [
   {
     name: 'Halina',
     role: 'Developer',
+    bio: 'As a Master of Technical Sciences, my educational foundation is solid. Enrolled at RS School since December 5th, 2022, I have been diligently cultivating my skills in front-end development. I am thrilled at the prospect of utilizing my skills and knowledge to make a meaningful contribution to this development project.',
     done: [
       'project design',
-      'catalog page setup with product cards',
-      'sorting',
-      'filtering',
-      'pagination',
-      'creating a 404 page',
-      'creating an about us page',
-      'header and footer setup',
-      'creating a slider on the main page',
-      'setting up a product database',
-      'writing tests',
-      'design',
-      'responsive layout',
+      'product database setup',
+      'catalog page setup',
+      'sorting, filtering',
+      'header, footer, pagination and slider setup',
+      'main, about us and 404 page',
+      'tests',
+      'design & responsive layout',
     ],
     link: 'https://github.com/HalinaD',
     photo: imageToAddHalina,
@@ -162,3 +151,6 @@ export const cards: CardData[] = [
     description: `Transform your venue into a festive wonderland with our party decorations! Create a picture-perfect setting for your celebrations. Don't miss this opportunity to save!`,
   },
 ];
+
+export const MAIN_IMAGE = imageToMain;
+export const ABOUT_IMAGE = imageToAboutUs;

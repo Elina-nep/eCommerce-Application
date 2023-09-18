@@ -1,17 +1,118 @@
+@import '../../index.scss';
+
 .main-page {
-  background-image: url('../../assets/big-balloons.jpg');
+  background-image: url('../../assets/background-main.png');
   justify-content: space-evenly;
   display: flex;
   align-items: center;
 }
 
 .main-page-container {
-  margin: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   gap: 30px;
-  height: 90%;
-  margin: 2% 0;
+}
+
+.main__welcome {
+  display: flex;
+  justify-content: center;
+  background-color: var(--light-color);
+  @media (min-width: 210px) and (max-width: 760px) {
+    flex-direction: column;
+  }
+}
+
+.main__welcome_image,
+.main__welcome_typography {
+  width: 45%;
+  display: flex;
+  flex-direction: column;
+  align-self: center;
+  padding: 3%;
+
+  @media (min-width: 210px) and (max-width: 760px) {
+    width: 90%;
+  }
+}
+
+.main__welcome_image {
+  img {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    border-radius: 15px;
+    @media (min-width: 210px) and (max-width: 760px) {
+      margin: 0.5rem 0 1.3rem 0;
+    }
+  }
+}
+
+.main__welcome_typography {
+  margin: 0 2%;
+  h1 {
+    margin: 1.4rem 0;
+    color: var(--primary-color);
+  }
+  h2 {
+    margin: 0;
+    font-weight: 100;
+    span {
+      font-size: small;
+    }
+    @media (min-width: 210px) and (max-width: 760px) {
+      margin: 1rem auto;
+    }
+  }
+}
+
+.main__welcome_buttons {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  height: 1.4rem;
+  gap: 3%;
+  margin: 4% 0;
+  a {
+    width: fit-content;
+    font-size: var(--font-large);
+    padding: 0.2rem 0.5rem;
+    height: 100%;
+  }
+}
+
+.main__title {
+  margin: 0 auto;
+  font-size: var(--font-xlarge);
+  width: 90%;
+  text-align: center;
+}
+
+.main__welcome_to_catalog,
+.main__welcome_to_about {
+  @extend %special_hover_template;
+
+  height: 1rem;
+  width: 2.5rem;
+  padding: 1rem 0;
+
+  &::before {
+    width: 7.4rem;
+    height: 7.4rem;
+    line-height: 5rem;
+    left: -0.2rem;
+  }
+}
+
+.main__welcome_to_about {
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+
+  &:hover {
+    &::before {
+      box-shadow: inset 0 0 0 10em var(--secondary-color);
+    }
+  }
 }

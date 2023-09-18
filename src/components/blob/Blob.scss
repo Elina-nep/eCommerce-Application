@@ -1,0 +1,24 @@
+circle {
+  animation: move var(--duration) ease-in-out infinite;
+}
+
+.blob {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+@keyframes move {
+  0%,
+  100% {
+    cx: var(--from-x);
+    cy: var(--from-y);
+  }
+  50% {
+    cx: var(--to-x);
+    cy: var(--to-y);
+  }
+}

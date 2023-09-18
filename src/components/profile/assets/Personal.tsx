@@ -91,23 +91,27 @@ export const Personal: React.FC<IPersonalProps> = ({
             {editMode ? (
               ''
             ) : (
-              <button
-                className="primary_button profile__edit_btn"
-                onClick={handleEditClick}
-                disabled={editMode}
-              >
-                Edit
-              </button>
+              <div className="special_hover_container">
+                <button
+                  className="profile__edit_btn"
+                  onClick={handleEditClick}
+                  disabled={editMode}
+                >
+                  Edit
+                </button>
+              </div>
             )}
 
             {editMode ? (
-              <button
-                type="submit"
-                className="primary_button profile__save_btn"
-                disabled={!editMode}
-              >
-                Save
-              </button>
+              <div className="special_hover_container">
+                <button
+                  type="submit"
+                  className="profile__save_btn"
+                  disabled={!editMode}
+                >
+                  Save
+                </button>
+              </div>
             ) : (
               ''
             )}
