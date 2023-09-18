@@ -37,7 +37,7 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
         {description && (
           <p className="product_card__description">{description}</p>
         )}
-        <div className="product_card__priceContent">
+        <div className="product_card__price_content">
           <div className="top-row">
             {!discountedPrice && <span className="product_card__empty_line" />}
             {discountedPrice && (
@@ -49,7 +49,7 @@ export const ProductCard: React.FC<IProductCardProps> = ({ product }) => {
               {price && (
                 <p
                   className={`product_card__price ${
-                    discountedPrice ? 'product_card__discountedPrice' : ''
+                    discountedPrice ? 'product_card__price-crossed' : ''
                   }`}
                 >
                   {price}
