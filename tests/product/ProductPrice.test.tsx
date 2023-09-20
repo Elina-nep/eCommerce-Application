@@ -26,19 +26,21 @@ describe('getProductPrice', () => {
   ]);
 
   it('should return the product price in USD', () => {
-    expect(getProductPrice(product, 'USD')).toBe('19.99 USD');
+    expect(getProductPrice(product.current, 'USD')).toBe('19.99 USD');
   });
 
   it('should return the product price in EUR', () => {
-    expect(getProductPrice(product, 'EUR')).toBe('14.99 EUR');
+    expect(getProductPrice(product.current, 'EUR')).toBe('14.99 €');
   });
 
   it('should return "Not Available" for an unsupported currency', () => {
-    expect(getProductPrice(product, 'GBP')).toBe('Not Available');
+    expect(getProductPrice(product.current, 'GBP')).toBe('Not Available');
   });
 
   it('should return "Not Available" when prices are not provided', () => {
     const productWithoutPrices: ProductCatalogData = createMockPrice([]);
-    expect(getProductPrice(productWithoutPrices, 'USD')).toBe('Not Available');
+    expect(getProductPrice(productWithoutPrices.current, 'USD')).toBe(
+      'Not Available',
+    );
   });
 });
