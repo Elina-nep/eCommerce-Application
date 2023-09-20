@@ -15,17 +15,17 @@ https://elina-nep.github.io/eCommerce-Application/
 - react-router-dom library for creating rotation in the application. Advantages: quick start; the ability to work with search queries (query); easy integration with create-react-app.
 - eslint and prettier were used to reduce code misprints and enforce code style.
 - Husky was used to organize pre-commit eslint launch and abort the commit in case of errors.
-- jest, date-fnsб identity-obj-proxy are the testing libraries used for functional component testing.
+- jest, date-fns, identity-obj-proxy are the testing libraries used for functional component testing.
 - material UI was chosen for styling and creation login and registration form components.
 - commercetools SDK was used to organize work with API.
-- react-redux was used for effective store manipulation.
+- react-redux and reduxjs/toolkit were used for effective store manipulation.
 - react-hook-form simplified the form validation processes.
 - node-fetch helps to make requests to and/from commercstools
 - react-image-magnifiers and classnames were used to implement magnifying glass on product's inage
-- gsap helpd to animate paths in button's behavior
+- gsap helped to animate paths in button's behavior
 - react-icons helped us to use user-friendly icons
 - dotenv and react-scripts load environment variables from a .env file
-
+- eslint-plugin-simple-import-sort simplifies import
 
 
 
