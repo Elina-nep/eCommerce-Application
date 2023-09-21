@@ -66,7 +66,7 @@ export const CatalogPage = () => {
         setQueryParams({
           ...queryParams,
           sort: searchParams.get('sort') || undefined,
-          pageNum: Number(searchParams.get('number')) || 1,
+          pageNum: Number(searchParams.get('page')) || 1,
           colors: searchParams.getAll('color') || undefined,
           materials: searchParams.getAll('material') || undefined,
           occasions: searchParams.getAll('occasions') || undefined,
