@@ -72,9 +72,11 @@
 .product__content_details {
   @extend %flex-col;
   width: 48%;
+  padding-right: 2rem;
   @media (min-width: 210px) and (max-width: 800px) {
     width: 90%;
     align-self: center;
+    padding-right: 0;
   }
 }
 
@@ -221,4 +223,8 @@
 .product__categories a {
   padding: 0.2rem 0.6rem;
   border-radius: 10px;
+}
+
+.product__price-cart__buttons {
+  @extend %flex-row;
 }
