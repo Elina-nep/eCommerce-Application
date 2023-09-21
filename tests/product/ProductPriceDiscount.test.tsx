@@ -35,11 +35,11 @@ describe('getProductPriceDiscounted', () => {
       },
     ]);
 
-    expect(getProductPriceDiscounted(product, 'USD')).toBe('17.99 USD');
+    expect(getProductPriceDiscounted(product.current, 'USD')).toBe('17.99 USD');
   });
 
   it('should return an empty string when prices are not provided', () => {
     const product = createMockProductWithoutPrices();
-    expect(getProductPriceDiscounted(product, 'USD')).toBe('');
+    expect(getProductPriceDiscounted(product.current, 'USD')).toBe('');
   });
 });
