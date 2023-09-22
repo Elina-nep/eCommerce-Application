@@ -104,7 +104,9 @@ export function getProductPrice(
   for (const price of prices) {
     if (price.value.currencyCode === currency) {
       const formattedPrice = (price.value.centAmount / 100).toFixed(2);
-      return `${formattedPrice} ${CURRENCY.SYMBOL}`;
+      return `${formattedPrice} ${
+        currency === 'EUR' ? CURRENCY.SYMBOL : CURRENCY.USD
+      }`;
     }
   }
   return 'Not Available';
@@ -121,7 +123,9 @@ export function getProductPriceDiscounted(
         const formattedPrice = (
           price.discounted.value.centAmount / 100
         ).toFixed(2);
-        return `${formattedPrice} ${CURRENCY.SYMBOL}`;
+        return `${formattedPrice} ${
+          currency === 'EUR' ? CURRENCY.SYMBOL : CURRENCY.USD
+        }`;
       }
     }
   }
