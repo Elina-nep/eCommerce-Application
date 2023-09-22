@@ -1,0 +1,70 @@
+@import '../../index.scss';
+
+button:focus {
+  outline: none;
+}
+
+.primary_button {
+  @extend %primary_button;
+}
+
+.primary_transparent_button {
+  @extend %primary_transparent_button;
+}
+
+.secondary_button {
+  @extend %secondary_button;
+}
+
+.dark_button {
+  @extend %dark_button;
+}
+
+.secondary_light_button {
+  @extend %secondary_light_button;
+}
+
+.product_button {
+  margin: 0.4rem auto;
+  height: 100%;
+}
+
+.button-main {
+  width: 8em;
+}
+
+.button:disabled {
+  color: rgba(0, 0, 0, 0.26);
+  pointer-events: none;
+  cursor: default;
+  border: 1px solid rgb(155, 155, 155);
+}
+
+.button-pagination {
+  @extend %round_button;
+  padding: 0.2rem 0.5rem;
+  margin: 0.5em auto 0 auto;
+}
+
+.close {
+  @extend %round_button;
+  position: absolute;
+  z-index: 2;
+  top: -6%;
+  right: -4.5%;
+  @media (min-width: 486px) and (max-width: 768px) {
+    right: -5.5%;
+    top: -8%;
+  }
+}
+
+.colors-button-show-all,
+.colors-button-reset {
+  margin: 0.5rem;
+  @media screen and (max-width: 485px) {
+    font-size: 0.9rem;
+    padding: 0.2rem 0.5rem;
+    margin-top: 0.4em;
+    width: 4.5rem;
+  }
+}

@@ -1,0 +1,85 @@
+@import '../../../index.scss';
+
+.product_modal {
+  z-index: 3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(42, 42, 42, 0.8);
+}
+
+.product-modal__wrapper {
+  display: flex;
+  flex-direction: row;
+  z-index: 1;
+  position: relative;
+  padding: 1rem;
+  color: var(--dark-color);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  background-color: white;
+  border-radius: 2%;
+  font-size: 1.4em;
+  height: 70%;
+  width: 100vh;
+  max-width: 900px;
+  transition: 0.5s ease;
+  @media (min-width: 328px) and (max-width: 485px) {
+    width: 250px;
+  }
+  @media (min-width: 486px) and (max-width: 575px) {
+    width: 350px;
+  }
+  @media (min-width: 576px) and (max-width: 815px) {
+    width: 450px;
+  }
+  @media (min-width: 816px) and (max-width: 1070px) {
+    width: 700px;
+  }
+}
+
+.product_modal__slider {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-self: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  transition: 0.5s ease;
+  @media (min-width: 210px) and (max-width: 359px) {
+    height: 100px;
+  }
+  @media (min-width: 360px) and (max-width: 575px) {
+    height: 200px;
+  }
+}
+
+.product_modal__image {
+  height: 100%;
+  width: 78%;
+  position: relative;
+  overflow: hidden;
+}
+
+.product_modal__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.product_modal__close {
+  @extend %round_button;
+  position: absolute;
+  z-index: 2;
+  top: -4%;
+  right: -4%;
+  @media (min-width: 576px) and (max-width: 815px) {
+    right: -5%;
+  }
+}

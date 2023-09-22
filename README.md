@@ -6,18 +6,27 @@
 - Halina Dziamyanchyk - https://github.com/halinad
 
 ## Deploy
-to be announced
-
-## Database
-to be announced
+https://elina-nep.github.io/eCommerce-Application/
 
 ## Technologies and libraries
 - create-react-app was chosen to simplify the creation of the SPA. The advantages of the selected library: built-in and customized builder, which reduces the time to start; JSX language - to reduce the code base and more descriptive code; built-in efficient rendering methods. Disadvantages: the need to learn new syntax and ideology for the team.
 - typescript was chosen to reduce errors and integration errors of modules in the task.
+- sass for simpler style formatting.
 - react-router-dom library for creating rotation in the application. Advantages: quick start; the ability to work with search queries (query); easy integration with create-react-app.
 - eslint and prettier were used to reduce code misprints and enforce code style.
 - Husky was used to organize pre-commit eslint launch and abort the commit in case of errors.
-- jest is the testing library, was used for functional testing of components.
+- jest, date-fns, identity-obj-proxy are the testing libraries used for functional component testing.
+- material UI was chosen for styling and creation login and registration form components.
+- commercetools SDK was used to organize work with API.
+- react-redux and reduxjs/toolkit were used for effective store manipulation.
+- react-hook-form simplified the form validation processes.
+- node-fetch helps to make requests to and/from commercstools
+- react-image-magnifiers and classnames were used to implement magnifying glass on product's inage
+- gsap helped to animate paths in button's behavior
+- react-icons helped us to use user-friendly icons
+- dotenv and react-scripts load environment variables from a .env file
+- eslint-plugin-simple-import-sort simplifies import
+
 
 
 ## Available scripts
@@ -32,7 +41,7 @@ You will also see any lint errors in the console.
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.\
+Launches the test runner in the interactive watch mode. Coverage is reflected in console.\
 
 ### `npm run build`
 

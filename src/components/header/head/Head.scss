@@ -1,0 +1,245 @@
+@import '../../../index.scss';
+
+.head {
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  background-color: var(--light-color);
+}
+.st1,
+.st8 {
+  position: absolute;
+}
+.st0,
+.st9 {
+  fill: var(--primary-color-light);
+}
+
+.st1:nth-child(1) {
+  transform: translate(5px, 250%) rotate(40deg);
+  scale: 0.8;
+}
+.st1:nth-child(2) {
+  transform: translate(30px, 0%) rotate(80deg);
+  scale: 1.1;
+}
+.st1:nth-child(3) {
+  transform: translate(45px, 250%) rotate(10deg);
+}
+.st1:nth-child(4) {
+  transform: translate(110px, 180%) rotate(60deg);
+  scale: 0.7;
+}
+.st1:nth-child(5) {
+  transform: translate(135px, 200%);
+}
+.st1:nth-child(6) {
+  transform: translate(230px, 30%) rotate(20deg);
+  scale: 0.7;
+}
+
+.st1:nth-child(1) .st0 {
+  animation:
+    sparkle 0.25s linear infinite alternate,
+    rotate 0.3s linear infinite alternate;
+}
+.st1:nth-child(2) .st0 {
+  animation:
+    sparkle 0.18s 0.6s linear infinite alternate,
+    rotate 0.3s 0.6s linear infinite alternate;
+}
+.st1:nth-child(3) .st0 {
+  animation:
+    sparkle 0.2s 0.1s linear infinite alternate,
+    rotate 0.3s 0.1s linear infinite alternate;
+}
+.st1:nth-child(4) .st0 {
+  animation:
+    sparkle 0.22s 0.8s linear infinite alternate,
+    rotate 0.3s 0.4s linear infinite alternate;
+}
+.st1:nth-child(5) .st0 {
+  animation:
+    sparkle 0.25s 0.3s linear infinite alternate,
+    rotate 0.3s 0.3s linear infinite alternate;
+}
+.st1:nth-child(6) .st0 {
+  animation:
+    sparkle 0.3s 0.4s linear infinite alternate,
+    rotate 0.3s 0.4s linear infinite alternate;
+}
+
+@keyframes sparkle {
+  100% {
+    fill: var(--secondary-color-light);
+  }
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(10deg);
+  }
+}
+
+.headnav {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 60%;
+  left: 40%;
+  @media (min-width: 210px) and (max-width: 768px) {
+    left: 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    padding: 0 2%;
+    margin: 0 auto;
+  }
+}
+
+.logo {
+  display: flex;
+  flex-direction: row;
+  transition: all 0.5s;
+  &:hover {
+    opacity: 0.7;
+  }
+}
+
+.logo-img {
+  width: 20px;
+  @media (min-width: 210px) and (max-width: 576px) {
+    width: 48%;
+  }
+  @media (min-width: 577px) and (max-width: 768px) {
+    width: 40%;
+  }
+  @media (min-width: 769px) and (max-width: 991px) {
+    width: 59%;
+  }
+  @media (min-width: 992px) and (max-width: 1200px) {
+    width: 61%;
+  }
+  @media (min-width: 1201px) {
+    width: 35px;
+  }
+}
+
+.logo-picture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20%;
+  height: auto;
+}
+
+.store-title {
+  width: 80%;
+  font-size: var(--font-large);
+  @media (min-width: 210px) and (max-width: 768px) {
+    font-size: var(--font-small);
+  }
+}
+.store-name {
+  width: 40%;
+  margin: 0;
+  list-style-type: none;
+  text-decoration: none;
+  color: var(--primary-color);
+  @media (min-width: 210px) and (max-width: 768px) {
+    width: 40%;
+  }
+}
+.slogan {
+  color: var(--primary-color-light);
+  font-size: var(--font-xsmall);
+  display: flex;
+  @media (min-width: 210px) and (max-width: 576px) {
+    font-size: 0.8rem;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    font-size: 0.9rem;
+  }
+}
+
+.cart__link {
+  justify-content: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  color: var(--dark-color);
+  list-style-type: none;
+  text-decoration: none;
+  position: relative;
+  font-size: var(--font-xsmall);
+  padding: 0.5rem;
+  transition: 0.5s;
+  border-radius: 5px;
+  &:hover {
+    background-color: var(--primary-color-light);
+    color: var(--light-color);
+    cursor: pointer;
+    & a {
+      color: var(--light-color);
+    }
+  }
+  @media (min-width: 210px) and (max-width: 575px) {
+    margin: 0 4%;
+    width: 24%;
+  }
+}
+
+.cart__link a {
+  display: flex;
+  gap: 3px;
+  color: var(--dark-color);
+  list-style-type: none;
+  text-decoration: none;
+  font-size: var(--font-small);
+  transition: 0.5s;
+  @media (min-width: 210px) and (max-width: 575px) {
+    font-size: 0.8rem;
+  }
+}
+
+.registration-links {
+  display: flex;
+  justify-content: center;
+  font-size: var(--font-medium);
+  gap: 5%;
+  @media (min-width: 210px) and (max-width: 768px) {
+    justify-content: flex-end;
+  }
+}
+
+.login,
+.register {
+  width: 4rem;
+  padding: 0.2rem;
+  @media (min-width: 210px) and (max-width: 768px) {
+    font-size: 80%;
+  }
+}
+
+.login {
+  @extend %primary_button;
+}
+
+.register {
+  @extend %secondary_button;
+}
+
+.logout {
+  @extend %dark_button;
+  margin-right: 10%;
+  width: 5rem;
+  padding: 0.2rem;
+  &:disabled {
+    pointer-events: none;
+    color: rgb(155, 155, 155);
+    border: 1px solid rgb(155, 155, 155);
+  }
+}

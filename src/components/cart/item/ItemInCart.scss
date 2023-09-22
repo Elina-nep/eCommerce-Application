@@ -1,0 +1,111 @@
+@import '../../../index.scss';
+
+.item__container {
+  display: grid;
+  grid-template-columns: 0.5fr 1.5fr 2fr 1fr 1fr 1fr;
+  grid-gap: 0.5rem;
+  align-items: center;
+  text-align: center;
+  border-bottom: 1px solid var(--secondary-color);
+  min-height: 100px;
+}
+
+.item__col {
+  @extend %flex-row;
+  width: fit-content;
+  @media (max-width: 419px) {
+    font-size: 10px;
+  }
+  @media (min-width: 420px) and (max-width: 499px) {
+    font-size: 12px;
+  }
+}
+
+.item__col_img {
+  @extend %flex-row;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.item__image {
+  height: 5rem;
+  transition: all ease 0.2s;
+  @media (min-width: 300px) and (max-width: 499px) {
+    height: 2.5rem;
+  }
+  @media (min-width: 500px) and (max-width: 600px) {
+    height: 3.5rem;
+  }
+}
+
+.item__quantity {
+  display: flex;
+  justify-content: space-evenly;
+  width: 90%;
+  border-radius: 5px;
+  margin: 0 auto;
+  @media (min-width: 300px) and (max-width: 550px) {
+    width: 60%;
+  }
+}
+
+.item__quantity div {
+  width: 50%;
+  padding: 0.5rem;
+  background: var(--light-color);
+  @media (min-width: 300px) and (max-width: 550px) {
+    width: fit-content;
+    padding: 0.2rem;
+  }
+}
+
+.item__quantity_btn {
+  display: flex;
+  justify-content: center;
+  padding: 0.5rem;
+  width: 35%;
+  height: 80%;
+  color: var(--light-color);
+  font-weight: 800;
+  background-color: var(--primary-color-light);
+  border: none;
+  transition: all ease 0.2s;
+  &:first-child {
+    border-radius: 5px 0 0 5px;
+  }
+  &:last-child {
+    border-radius: 0 5px 5px 0;
+  }
+  &:hover {
+    cursor: pointer;
+    background-color: var(--primary-color);
+  }
+  @media (min-width: 300px) and (max-width: 550px) {
+    width: 28%;
+    padding: 6px;
+  }
+}
+
+.item__col_remove-btn {
+  @extend %round_button;
+  @media (min-width: 300px) and (max-width: 600px) {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.discount-price {
+  color: var(--primary-color);
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: auto;
+}
+
+.item__col_total {
+  margin: 0 auto;
+}

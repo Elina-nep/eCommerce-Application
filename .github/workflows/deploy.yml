@@ -37,7 +37,7 @@ jobs:
           cache: 'npm'
       - name: Install dependencies
         run: npm install
-      - name: Build with ${{ secrets.REACT_APP_PROJECT_KEY }}
+      - name: Build
         env:
           REACT_APP_CLIENT_ID: ${{ secrets.REACT_APP_CLIENT_ID }}
           REACT_APP_CLIENT_SECRET: ${{ secrets.REACT_APP_CLIENT_SECRET }}

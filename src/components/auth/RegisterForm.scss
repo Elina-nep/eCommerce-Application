@@ -1,0 +1,24 @@
+.registration-page {
+  text-align: center;
+  background-image: url('../../assets/background-login-page.jpeg');
+}
+
+.registration-page__form {
+  padding: 15px 25px;
+  background-color: var(--light-color);
+  border-radius: 10px;
+  transition: all ease 0.2s;
+  margin: 2rem auto;
+  @media (min-width: 768px) and (max-width: 4000px) {
+    width: 600px;
+  }
+}
+
+.registration-page__spacing {
+  width: 26px;
+}
+
+.registration-page__btn {
+  padding: 0.2rem 1rem;
+  margin-top: 1rem;
+}

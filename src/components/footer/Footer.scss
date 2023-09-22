@@ -1,0 +1,160 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  color: var(--secondary-color);
+  background-color: var(--dark-color);
+  padding: 1% 7%;
+}
+
+.footer__column {
+  margin: 2% 2% 0 0;
+}
+
+.footer__column h3 {
+  margin: 0 0 10px 0;
+  font-weight: inherit;
+  font-size: var(--font-medium);
+}
+
+.footer__column ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer__column ul li {
+  margin-bottom: 5px;
+}
+
+.footer__column ul li a {
+  font-size: var(--font-small);
+  color: var(--secondary-color);
+  text-decoration: none;
+  transition: color 0.5s ease;
+}
+
+.footer__column p {
+  font-size: var(--font-small);
+  margin: 0 10%;
+  white-space: nowrap;
+}
+
+.footer__column a:hover {
+  color: var(--light-color);
+}
+
+.footer__column-phone-number {
+  color: var(--primary-color);
+  margin-top: 0;
+  font-weight: 900;
+}
+
+.footer__column a::before {
+  height: 5%;
+  content: url('../../assets/salut.png');
+  background-size: contain;
+  opacity: 0;
+  transition:
+    width 0.5s,
+    opacity 0.5s;
+}
+
+.footer__column a:hover::before {
+  height: 5%;
+  width: 30px;
+  opacity: 1;
+}
+
+@media screen and (max-width: 768px) {
+  .footer {
+    padding: 0.6% 5%;
+  }
+
+  .footer__column h3 {
+    font-size: var(--font-small);
+    margin: 0 0 8px 0;
+  }
+
+  .footer__column ul li {
+    margin-bottom: 3px;
+  }
+
+  .footer__column ul li a {
+    font-size: var(--font-xsmall);
+  }
+
+  .footer__column p {
+    font-size: var(--font-xsmall);
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .footer {
+    padding: 0.5% 4%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .footer__column {
+    width: 33%;
+  }
+
+  .footer__column h3 {
+    margin: 0 2% 0 0;
+    width: 10rem;
+  }
+
+  .footer__column p {
+    white-space: wrap;
+  }
+
+  .footer__column ul li {
+    margin-bottom: 0px;
+  }
+
+  .footer__column a::before {
+    opacity: 0;
+    transition: none;
+  }
+
+  .footer__column a:hover::before {
+    opacity: 0;
+  }
+
+  .footer__column:last-child {
+    width: 100%;
+    margin: 2% auto 2% auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 485px) {
+  .footer {
+    justify-content: space-evenly;
+    padding: 0.4% 1%;
+  }
+
+  .footer__column:nth-child(1),
+  .footer__column:nth-child(2) {
+    display: none;
+  }
+  .footer__column h3 {
+    font-size: 1rem;
+    width: 5rem;
+  }
+  .footer__column ul li a {
+    font-size: 0.9rem;
+  }
+
+  .footer__column p {
+    white-space: wrap;
+    font-size: 0.9rem;
+  }
+
+  .footer__column-address {
+    white-space: pre-wrap;
+  }
+}

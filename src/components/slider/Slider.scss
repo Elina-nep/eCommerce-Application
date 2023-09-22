@@ -1,0 +1,53 @@
+@import '../../index.scss';
+
+.slider {
+  @extend %flex-row;
+  margin-top: 2%;
+  height: 100%;
+}
+
+.slide-container {
+  display: flex;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  width: 82%;
+  @media (min-width: 210px) and (max-width: 485px) {
+    width: 52%;
+  }
+  @media (min-width: 486px) and (max-width: 576px) {
+    width: 68%;
+  }
+}
+
+.slide-container-cards {
+  display: flex;
+  transition: transform 0.5s ease;
+}
+
+.slider-indicator {
+  @extend %flex-row;
+  margin: 2rem auto;
+}
+
+.slider__indicator-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--light-color);
+  margin: 0 5px;
+  transition: background-color 0.5s ease;
+  &.active {
+    background-color: var(--primary-color-light);
+  }
+  @media (min-width: 486px) and (max-width: 576px) {
+    width: 1.4vw;
+    height: 1.4vw;
+  }
+  @media (min-width: 576px) and (max-width: 768px) {
+    width: 1.2vw;
+    height: 1.2vw;
+    border-radius: 50%;
+    margin: 0 5px;
+  }
+}

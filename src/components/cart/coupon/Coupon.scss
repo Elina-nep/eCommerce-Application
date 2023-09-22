@@ -1,0 +1,100 @@
+.coupon {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.2rem;
+  width: 100%;
+  height: fit-content;
+}
+
+.coupon__form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2%;
+  margin: 0 auto 2rem auto;
+  @media (min-width: 300px) and (max-width: 940px) {
+    margin-bottom: 1rem;
+  }
+}
+
+.coupon__add_input {
+  font-family: 'Iceland';
+  font-size: var(--font-small);
+  @media (min-width: 300px) and (max-width: 940px) {
+    width: 13rem;
+  }
+}
+
+.coupon__add_btn {
+  margin: 0.5rem 0 0 0;
+  padding: 0.2rem 0.8rem;
+  font-weight: 800;
+  font-size: var(--font-large);
+}
+
+.coupon__add_error {
+  margin: 1rem 0;
+  padding: 3px 10px;
+  &:hover {
+    cursor: auto;
+    color: var(--light-color);
+    background-color: var(--primary-color);
+  }
+}
+
+.coupon__current {
+  width: 90%;
+  padding: 0.6rem 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: var(--light-color);
+  border-radius: 5px;
+  gap: 1rem;
+  font-size: var(--font-medium);
+}
+
+.coupon__current_title {
+  font-size: var(--font-medium);
+  color: var(--secondary-color);
+  margin: 0;
+  text-align: center;
+}
+
+.coupon__current_content {
+  display: flex;
+  position: relative;
+  width: 4.2rem;
+  height: 1.8rem;
+}
+
+.coupon__current_code {
+  width: 4rem;
+  height: 1.5rem;
+  padding: 0.3rem 0.1rem 0 0.1rem;
+  font-weight: 800;
+}
+
+.coupon__current_delete_btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  padding: 1px 0 2px 0;
+  top: -4px;
+  right: -5px;
+  width: 16px;
+  height: 16px;
+  font-weight: 800;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+  background-color: var(--light-color);
+  border-radius: 50%;
+  &:hover {
+    cursor: pointer;
+    font-weight: 800;
+  }
+}
